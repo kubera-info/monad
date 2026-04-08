@@ -77,7 +77,7 @@ function Update-MonadCURL(
 	}
 
 	# Populate to projects
-	@('Report', 'OldPolishClock', 'EnchantedCrayon')|
+	@('Report', 'EnchantedCrayon')|
 		ForEach-Object{ Copy-MonadFile $SourceProject "..\..\Apps\$_\$Output$Configuration\$DynamicLinkLibrary" }
 }
 
