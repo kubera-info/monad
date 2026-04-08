@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="VS">
+      <UniqueIdentifier>{5fd3b22d-490d-4e4f-bd7a-e843e1e7b8cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{44a5a2e1-91f1-424c-bd61-738f263a6635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Core">
+      <UniqueIdentifier>{2cbf6ebe-ed82-4e50-8b27-61032f8f2c18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Constant Buffers">
+      <UniqueIdentifier>{b9042034-bd42-4a24-bb7d-bb851f903b33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PS">
+      <UniqueIdentifier>{497b4614-3295-43a0-aa26-8e68a5309bcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PS\Low">
+      <UniqueIdentifier>{817d8bf9-313c-4d24-a4e4-5f8f350633fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PS\High">
+      <UniqueIdentifier>{3cec0930-b671-437b-b3fc-413f9da2d57a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PS\Medium">
+      <UniqueIdentifier>{0c0ed5f9-68e1-43ff-a07c-de9d10a0432e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GS">
+      <UniqueIdentifier>{110dd76d-8f47-4d7a-93e8-8a66ab54e240}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="VS/font.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS/shadow.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS/shadow_tex.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\metal_hr.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\metal_border.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\shadow_border.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\shadow_hr.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\raw_tex.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\color_button.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\shadow_font.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\wallpaper.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\crayon.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\paper.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\iconic.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\blank_tex.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\shadow.hlsl">
+      <Filter>PS</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\color_button.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\crayon.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\font.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\iconic.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\metal.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\paper.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\raw_tex.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\wood_tex.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\logo.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\color_button.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\crayon.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\font.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\iconic.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\logo.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\metal.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\paper.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\raw_tex.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\wood_tex.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\shadow_font.hlsl">
+      <Filter>PS</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\flag.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\flag.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="GS\div.hlsl">
+      <Filter>GS</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\High\emoji.hlsl">
+      <Filter>PS\High</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Low\emoji.hlsl">
+      <Filter>PS\Low</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\emoji.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\shadow_emoji.hlsl">
+      <Filter>PS</Filter>
+    </FxCompile>
+    <FxCompile Include="VS\shadow_emoji.hlsl">
+      <Filter>VS</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\color_button.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\crayon.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\emoji.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\flag.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\font.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\iconic.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\logo.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\metal.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\paper.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\raw_tex.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\Medium\wood_tex.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+    <FxCompile Include="PS\blank_tex.hlsl">
+      <Filter>PS\Medium</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Include\input.hlsli">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\metal_pipe.hlsli">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\output.hlsli">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\params.hlsli">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\shadow_common.hlsli">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\lookup.hlsli">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\cModel.hlsli">
+      <Filter>Include\Constant Buffers</Filter>
+    </None>
+    <None Include="Include\color_button.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\cPipe.hlsli">
+      <Filter>Include\Constant Buffers</Filter>
+    </None>
+    <None Include="Include\cWorldViewProj.hlsli">
+      <Filter>Include\Constant Buffers</Filter>
+    </None>
+    <None Include="Include\crayon.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\iconic.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\logo.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\main_tex.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\metal.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\paper.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\raw_tex.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\wood_tex.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\cLightPos.hlsli">
+      <Filter>Include\Constant Buffers</Filter>
+    </None>
+    <None Include="Include\font_vert.hlsli">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="Include\font.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\flag.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\button_generic.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="Include\cForecolor.hlsli">
+      <Filter>Include\Constant Buffers</Filter>
+    </None>
+    <None Include="Include\emoji.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="..\..\..\MonadEngine\HLSL\tools.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="..\..\..\MonadEngine\HLSL\color_space.hlsli">
+      <Filter>Include\Core</Filter>
+    </None>
+    <None Include="..\..\..\MonadEngine\HLSL\cHDRSettings.hlsli">
+      <Filter>Include\Constant Buffers</Filter>
+    </None>
+    <None Include="..\..\..\MonadEngine\HLSL\struct.hlsli">
+      <Filter>Include</Filter>
+    </None>
+    <None Include="..\..\..\MonadEngine\HLSL\poisson.hlsli">
+      <Filter>Include</Filter>
+    </None>
+  </ItemGroup>
+</Project>

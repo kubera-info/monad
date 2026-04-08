@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\packages\WiX.3.11.2\build\wix.props" Condition="Exists('..\..\..\packages\WiX.3.11.2\build\wix.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{BBD6A5A8-B2E9-4678-929D-D481BED559C7}</ProjectGuid>
+    <Keyword>MFCProj</Keyword>
+    <RootNamespace>Report</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>false</UseOfMfc>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Configuration)\</OutDir>
+    <TargetExt>.exe</TargetExt>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <TargetExt>.exe</TargetExt>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Platform)$(Configuration)\</OutDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(Configuration)\</OutDir>
+    <TargetExt>.exe</TargetExt>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <TargetExt>.exe</TargetExt>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(Platform)$(Configuration)\</OutDir>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>
+      </FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
+      <BuildStlModules>false</BuildStlModules>
+      <EnableModules>false</EnableModules>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <StringPooling>true</StringPooling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>$(SolutionDir)libs\lzma\$(Configuration)\lzma.lib;Winmm.lib;XmlLite.lib;Crypt32.lib;Normaliz.lib;Ws2_32.lib;Version.lib;runtimeobject.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>PwSh CopyReport.ps1 $(Platform) $(Configuration) &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" Book</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <EnableDpiAwareness>false</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv81</EnableEnhancedInstructionSet>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
+      <BuildStlModules>false</BuildStlModules>
+      <EnableModules>false</EnableModules>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <StringPooling>true</StringPooling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>$(SolutionDir)libs\lzma\$(Platform)$(Configuration)\lzma.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>PwSh CopyReport.ps1 $(Platform) $(Configuration) &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" Book</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>MONAD_ENGINE;_WINDOWS;_DEBUG;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <GuardEHContMetadata>false</GuardEHContMetadata>
+      <BuildStlModules>false</BuildStlModules>
+      <EnableModules>false</EnableModules>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <StringPooling>true</StringPooling>
+      <ControlFlowGuard>
+      </ControlFlowGuard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>$(SolutionDir)libs\lzma\$(Configuration)\lzma.lib;Winmm.lib;XmlLite.lib;Normaliz.lib;Ws2_32.lib;Version.lib;runtimeobject.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>PwSh CopyReport.ps1 $(Platform) $(Configuration) &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" Book</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <EnableDpiAwareness>false</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>MONAD_ENGINE;_WINDOWS;_DEBUG;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv80</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <GuardEHContMetadata>false</GuardEHContMetadata>
+      <BuildStlModules>false</BuildStlModules>
+      <EnableModules>false</EnableModules>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <StringPooling>true</StringPooling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>Winmm.lib;XmlLite.lib;Normaliz.lib;Ws2_32.lib;Version.lib;runtimeobject.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>PwSh CopyReport.ps1 $(Platform) $(Configuration) &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" Book</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Manifest>
+      <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\AudioThread.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\Changed.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\Jingle.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\MediaStreamer.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\Persistent.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\State.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\Voice.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\VoiceManager.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\WaveBuffer.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\WaveWithCallback.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\__MonadAudio.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Core\DXSample.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Core\DXSampleHelper.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Core\Win32ApplicationGeneric.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Dev\Coding.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Catch.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Exceptions\EventView.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Exceptions.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Exceptions\__MonadException.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\EncryptAndSave.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\FileManager.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Folder.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Handle.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Op.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Registry.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\SaveUTF8.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\SaveUTF8Encrypted.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Struct.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Temporary.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\XML.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Files\__MonadFile.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\EmojiBuilder.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\EmojiManager.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\FontBuilder.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\FontLoader.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\FontManager.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\FontMeta.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\__MonadFont.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Globals\__MonadGlobals.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\Background.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\Button.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\Dialog.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\Frame.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\GUI.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\GUIMath.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\LookAndFeel.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\__MonadGUI.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\I18N\I18N.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\I18N\I18NLocale.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Inet\BoxedCurl.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Input\Cursor.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Input\Hook.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Input\StickyKeys.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Input\XBOXControler.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\BytesVector.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\ComManager.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Del.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Dummy.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Events.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Format.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Main.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Patterns.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Templates.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\__MonadKernel.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Math\Math.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Math\Random.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Pages\Page.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Pages\__MonadPage.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer2D\2D.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer2D\__Monad2D.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Combine.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\CommandList.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\ConstantBuffers.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\First.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\HDR.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Heap.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\InputLayout.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Matrices.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Mesh.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\MeshCore.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Metallic.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Pipeline.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Shader.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Shader0.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\ShaderMatrix.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Stateless.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\States.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Targets.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Tex.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Twin.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\__MonadRenderer.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Repository\Repo.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Safety\Cipher.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Safety\Hash.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Safety\SafetyManager.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Safety\__MonadSafety.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\System\Console.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\System\Execute.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\System\Exit.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\System\Library.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\System\Parameter.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\System\System.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\System\__MonadSystem.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Threads\Thread.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Threads\ThreadPool.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Threads\__MonadThread.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Time\TimeLerp.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Time\Timer.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Time\__MonadTime.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Tools\Convert.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Tools\SingleCall.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Wnd\Message.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Wnd\Monitor.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Wnd\Window.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Wnd\WindowMain.h" />
+    <ClInclude Include="AppParameter.h" />
+    <ClInclude Include="Books\AppConstantBuffers.h" />
+    <ClInclude Include="Books\AppFileManager.h" />
+    <ClInclude Include="Books\AppGesture.h" />
+    <ClInclude Include="Books\AppSingleton.h" />
+    <ClInclude Include="Books\AppWorld.h" />
+    <ClInclude Include="Books\D3D12Framework.h" />
+    <ClInclude Include="Books\Win32Application.h" />
+    <ClInclude Include="Books\__App.h" />
+    <ClInclude Include="BugXML.h" />
+    <ClInclude Include="HttpsAPI.h" />
+    <ClInclude Include="AppMain.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\AudioThread.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\Changed.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\Jingle.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\MediaStreamer.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\Persistent.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\State.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\Voice.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\VoiceManager.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\WaveBuffer.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\WaveWithCallback.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\__MonadAudio.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Core\DXSample.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Core\Win32ApplicationGeneric.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Dev\Coding.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Exceptions\EventView.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Exceptions\Exceptions.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\FileManager.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Folder.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Handle.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Op.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Registry.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\SaveUTF8.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\SaveUTF8Encrypted.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Struct.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Temporary.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\XML.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Files\__MonadFile.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\EmojiBuilder.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\EmojiManager.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\FontBuilder.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\FontLoader.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\FontManager.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\FontMeta.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\__MonadFont.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Globals\__MonadGlobals.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\Background.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\Button.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\Dialog.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\Frame.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\GUI.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\GUIMath.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\LookAndFeel.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\__MonadGUI.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\I18N\I18N.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\I18N\I18NLocale.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Inet\BoxedCurl.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Input\Cursor.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Input\Hook.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Input\StickyKeys.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Input\XBOXControler.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Kernel\BytesVector.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Kernel\Events.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Kernel\Patterns.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Kernel\__MonadKernel.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Math\Math.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Math\Random.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Pages\Page.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Pages\__MonadPage.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer2D\2D.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Combine.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\CommandList.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\ConstantBuffers.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\First.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\HDR.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Heap.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\InputLayout.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Matrices.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Mesh.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\MeshCore.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Metallic.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Pipeline.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Shader0.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\ShaderMatrix.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Stateless.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\States.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Targets.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Tex.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\__MonadRenderer.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Repository\Repo.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Safety\Cipher.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Safety\Hash.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Safety\SafetyManager.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Safety\__MonadSafety.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\System\Console.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\System\Execute.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\System\Exit.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\System\Library.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\System\Parameter.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\System\System.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\System\__MonadSystem.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Threads\Thread.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Threads\ThreadPool.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Time\TimeLerp.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Time\Timer.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Time\__MonadTime.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Tools\Convert.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Tools\SingleCall.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Wnd\Message.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Wnd\Monitor.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Wnd\Window.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Wnd\WindowMain.cpp" />
+    <ClCompile Include="AppParameter.cpp" />
+    <ClCompile Include="Books\AppFileManager.cpp" />
+    <ClCompile Include="Books\AppGesture.cpp" />
+    <ClCompile Include="Books\AppPipeline.cpp" />
+    <ClCompile Include="Books\AppSingleton.cpp" />
+    <ClCompile Include="Books\AppWorld.cpp" />
+    <ClCompile Include="Books\D3D12Framework.cpp" />
+    <ClCompile Include="Books\Win32Application.cpp" />
+    <ClCompile Include="BugXML.cpp" />
+    <ClCompile Include="HttpsAPI.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="AppMain.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Report.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\MonadEngine\bin\Tools.ps1" />
+    <None Include="..\..\MonadEngine\C++\Files\README.md" />
+    <None Include="..\..\MonadEngine\C++\Fonts\README.md" />
+    <None Include="..\..\MonadEngine\C++\GUI\README.md" />
+    <None Include="..\..\MonadEngine\C++\Input\README.md" />
+    <None Include="..\..\MonadEngine\C++\Kernel\README.md" />
+    <None Include="..\..\MonadEngine\C++\Math\README.md">
+      <FileType>Document</FileType>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Renderer2D\README.md" />
+    <None Include="..\..\MonadEngine\C++\Renderer\README.md" />
+    <None Include="..\..\MonadEngine\C++\Repository\README.md" />
+    <None Include="..\..\MonadEngine\C++\Safety\README.md" />
+    <None Include="..\..\MonadEngine\C++\Time\README.md" />
+    <None Include="..\..\MonadEngine\C++\Wnd\README.md" />
+    <None Include="CopyReport.ps1" />
+    <None Include="packages.config" />
+    <None Include="Report.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\MonadEngine\Assets\Icons\cpy.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\packages\directxtex_desktop_win10.2026.4.1.1\build\native\directxtex_desktop_win10.targets" Condition="Exists('..\..\packages\directxtex_desktop_win10.2026.4.1.1\build\native\directxtex_desktop_win10.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\directxtex_desktop_win10.2026.4.1.1\build\native\directxtex_desktop_win10.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\directxtex_desktop_win10.2026.4.1.1\build\native\directxtex_desktop_win10.targets'))" />
+  </Target>
+</Project>

@@ -1,0 +1,1064 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{d6e501ec-26f1-472e-b9dc-af37018daf27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Books">
+      <UniqueIdentifier>{e1f545a4-2e76-4d61-8ec3-9916d2ec6aeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pch">
+      <UniqueIdentifier>{cbae8259-1563-473b-893c-acfed7c83374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes">
+      <UniqueIdentifier>{729b862b-6f53-42e4-8e05-e800ebfa8e49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Renderer">
+      <UniqueIdentifier>{1cfe80dc-6cf7-47f8-9df6-178a65ca26e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Renderer\Doc">
+      <UniqueIdentifier>{3d701d3b-d05e-45fb-82d7-bc0a863a7c14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Safety">
+      <UniqueIdentifier>{84bb1e96-277f-4b11-bb44-576675eab274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Safety\Doc">
+      <UniqueIdentifier>{a683624f-dfbf-47d0-828c-d9456ac98aa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Tools">
+      <UniqueIdentifier>{ab59f61e-686b-4f0e-96c1-c49f90d0473c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Tools\Doc">
+      <UniqueIdentifier>{ee82b013-a72a-474c-8683-8102a991d89d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Printer">
+      <UniqueIdentifier>{f6ea9d4b-ca82-4551-8d8b-a6154046755b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Printer\Doc">
+      <UniqueIdentifier>{a163802c-bd2c-4f4a-bf21-8f10f330cb39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Kernel">
+      <UniqueIdentifier>{d28df68c-3d8c-4357-8f34-98bba3d5cf8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Kernel\Doc">
+      <UniqueIdentifier>{5ce50791-3f8d-4471-83c3-fca70ed40f96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Time">
+      <UniqueIdentifier>{dd2895d8-2256-4037-96bf-44dd7f2d4c91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Time\Doc">
+      <UniqueIdentifier>{233575f1-806e-41ff-9568-d3be523e3822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Input">
+      <UniqueIdentifier>{ed77c16e-34f5-48e2-9c24-19d8e540f3d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Input\Doc">
+      <UniqueIdentifier>{73e7ce3c-bd0c-464e-840d-8a9ba081be15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Wnd">
+      <UniqueIdentifier>{f2895aa5-2012-40cd-8908-d5f954842f47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Wnd\Doc">
+      <UniqueIdentifier>{45c52301-bf18-4069-a600-20c3f13b97b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Threads">
+      <UniqueIdentifier>{c499a343-c02b-4be3-aace-6f03fb2c69e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Threads\Doc">
+      <UniqueIdentifier>{d0e1371a-90e7-456b-b942-8aa14ea1eb9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Repository">
+      <UniqueIdentifier>{a085242f-c728-43f9-b14c-c335e63a08d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Repository\Doc">
+      <UniqueIdentifier>{2fe08888-8fe9-4be0-ac5f-3f20e1936fdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Fonts">
+      <UniqueIdentifier>{7791f92f-6e77-4e0c-b51d-3478d98f2399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Fonts\Doc">
+      <UniqueIdentifier>{750af178-08c5-4de9-9d83-5fcd7d1f0606}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Files">
+      <UniqueIdentifier>{44ccaf0a-0d21-4fac-b7ed-5471ccfb646c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Files\Doc">
+      <UniqueIdentifier>{ae8ba68c-1d41-4544-83d4-a2b326c4705f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Audio">
+      <UniqueIdentifier>{f99202be-b082-4803-a6f7-b6cfa7e55ee7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Audio\Doc">
+      <UniqueIdentifier>{a72739d3-f683-449e-81bd-4c82bfd4b1b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Renderer2D">
+      <UniqueIdentifier>{5dece6dc-59c1-46aa-a3f3-fe43ba31356c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Renderer2D\Doc">
+      <UniqueIdentifier>{c617689b-07f0-4432-879a-4e105badccf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Pages">
+      <UniqueIdentifier>{27322e44-f781-4538-a17d-e67f21429f23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Pages\Doc">
+      <UniqueIdentifier>{43f59d8a-8f10-4f99-9b29-cac9d1c2f65a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\System">
+      <UniqueIdentifier>{14ab7dbd-ffd8-4bd9-8f4f-f1c591bbd7a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\System\Doc">
+      <UniqueIdentifier>{933aded5-4ab1-4707-8c6f-a7c98c499c93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Dev">
+      <UniqueIdentifier>{837ae891-6075-4bc3-a0d0-d2962e753e01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Dev\Doc">
+      <UniqueIdentifier>{80534e05-47ae-440e-abe8-5f2884d6227c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\GUI">
+      <UniqueIdentifier>{fe8ac66a-58ca-4e4a-8711-21a2cd593243}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\GUI\Doc">
+      <UniqueIdentifier>{a74cfc6c-6647-443f-91a5-bbb3180e0d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Math">
+      <UniqueIdentifier>{8b6f00e5-b51c-40cc-ad60-d47115d108e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Math\Doc">
+      <UniqueIdentifier>{44bbaead-2741-45a8-9082-972d8d4c79ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Exceptions">
+      <UniqueIdentifier>{43c001b2-45d8-43c1-8d16-1555a969df40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Exceptions\Doc">
+      <UniqueIdentifier>{e8f39459-d7f4-4dbf-83fa-f011376e28d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Globals">
+      <UniqueIdentifier>{90e73f70-879e-489c-83b0-0568dbded7c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{9740d709-c2b9-49c2-9858-ad7e59dde58f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\I18N">
+      <UniqueIdentifier>{306b9116-c92a-4303-ab39-6748e58994da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\I18N\Doc">
+      <UniqueIdentifier>{061a359f-affe-4a82-bf05-138e49e21b8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Globals\Doc">
+      <UniqueIdentifier>{d9a602e6-278b-4f0e-b9b4-4f225f0b9149}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\GUI.h">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\Background.h">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\Dialog.h">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\LookAndFeel.h">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\GUIMath.h">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\System\Library.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Printer\Texture.h">
+      <Filter>Monad%28a%29 Incudes\Printer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Printer\D2DPrintJobChecker.h">
+      <Filter>Monad%28a%29 Incudes\Printer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Tools\SingleCall.h">
+      <Filter>Monad%28a%29 Incudes\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\System\Console.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Tools\Convert.h">
+      <Filter>Monad%28a%29 Incudes\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\I18N\I18N.h">
+      <Filter>Monad%28a%29 Incudes\I18N</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\System\System.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>pch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Core\DXSample.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Core\DXSampleHelper.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Input\Cursor.h">
+      <Filter>Monad%28a%29 Incudes\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Input\Hook.h">
+      <Filter>Monad%28a%29 Incudes\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Input\StickyKeys.h">
+      <Filter>Monad%28a%29 Incudes\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Input\XBOXControler.h">
+      <Filter>Monad%28a%29 Incudes\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Time\__MonadTime.h">
+      <Filter>Monad%28a%29 Incudes\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Time\TimeLerp.h">
+      <Filter>Monad%28a%29 Incudes\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Time\Timer.h">
+      <Filter>Monad%28a%29 Incudes\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\System\Exit.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\System\Parameter.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\Button.h">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Wnd\Window.h">
+      <Filter>Monad%28a%29 Incudes\Wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Wnd\WindowMain.h">
+      <Filter>Monad%28a%29 Incudes\Wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Wnd\WindowSat.h">
+      <Filter>Monad%28a%29 Incudes\Wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Wnd\Monitor.h">
+      <Filter>Monad%28a%29 Incudes\Wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\__MonadGUI.h">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\__MonadKernel.h">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\BytesVector.h">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\ComManager.h">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Del.h">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Dummy.h">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Format.h">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Main.h">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Patterns.h">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Templates.h">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\__MonadRenderer.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\CommandList.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\ConstantBuffers.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\First.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\InputLayout.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Heap.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Combine.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Matrices.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Mesh.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\MeshCore.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Metallic.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Shader.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Shader0.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\ShaderMatrix.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Stateless.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\States.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Targets.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Tex.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Twin.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Safety\__MonadSafety.h">
+      <Filter>Monad%28a%29 Incudes\Safety</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Safety\Cipher.h">
+      <Filter>Monad%28a%29 Incudes\Safety</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Safety\Hash.h">
+      <Filter>Monad%28a%29 Incudes\Safety</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Safety\SafetyManager.h">
+      <Filter>Monad%28a%29 Incudes\Safety</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Repository\Repo.h">
+      <Filter>Monad%28a%29 Incudes\Repository</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\__MonadFont.h">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\EmojiBuilder.h">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\EmojiManager.h">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\FontBuilder.h">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\FontLoader.h">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\FontManager.h">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\__MonadFile.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\EncryptAndSave.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Folder.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Handle.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\FileManager.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Op.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Registry.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Struct.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Temporary.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Exceptions\__MonadException.h">
+      <Filter>Monad%28a%29 Incudes\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Exceptions.h">
+      <Filter>Monad%28a%29 Incudes\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Catch.h">
+      <Filter>Monad%28a%29 Incudes\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\__MonadAudio.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\Changed.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\Persistent.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\State.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\AudioThread.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\Jingle.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\MediaStreamer.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\Voice.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\VoiceManager.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\WaveBuffer.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Audio\WaveWithCallback.h">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Threads\__MonadThread.h">
+      <Filter>Monad%28a%29 Incudes\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Threads\Thread.h">
+      <Filter>Monad%28a%29 Incudes\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Threads\ThreadPool.h">
+      <Filter>Monad%28a%29 Incudes\Threads</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Core\__MonadCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer2D\2D.h">
+      <Filter>Monad%28a%29 Incudes\Renderer2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer2D\__Monad2D.h">
+      <Filter>Monad%28a%29 Incudes\Renderer2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\I18N\__MonadI18N.h">
+      <Filter>Monad%28a%29 Incudes\I18N</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\System\__MonadSystem.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\Pipeline.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Pages\Page.h">
+      <Filter>Monad%28a%29 Incudes\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Core\Win32ApplicationGeneric.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Printer\Sketch.h">
+      <Filter>Monad%28a%29 Incudes\Printer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\System\UniqueInstance.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\HDR.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Dev\Coding.h">
+      <Filter>Monad%28a%29 Incudes\Dev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\GUI\Frame.h">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Math\Math.h">
+      <Filter>Monad%28a%29 Incudes\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Math\Random.h">
+      <Filter>Monad%28a%29 Incudes\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Events.h">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\XML.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\System\Execute.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\__App.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppArtPane.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppArtTex.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppColorIndex.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppConstantBuffers.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppCursor.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppDict.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppFileManager.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppGesture.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppGUILookAndFeel.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppKeyboardHook.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppMain.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppPalette.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppPaletteMap.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppRepo.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppSettings.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppSingleton.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppSketch.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppStartMenu.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppToolbox.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppWorld.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\AppXMLProfile.h">
+      <Filter>Books</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\D3D12Framework.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Books\Win32Application.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Fonts\FontMeta.h">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Pages\__MonadPage.h">
+      <Filter>Monad%28a%29 Incudes\Pages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Globals\__MonadGlobals.h">
+      <Filter>Monad%28a%29 Incudes\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\SaveUTF8.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\SaveUTF8Encrypted.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\I18N\I18NLocale.h">
+      <Filter>Monad%28a%29 Incudes\I18N</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Wnd\Message.h">
+      <Filter>Monad%28a%29 Incudes\Wnd</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\System\ResourceLoader.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\GUI.cpp">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\Background.cpp">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\Dialog.cpp">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\LookAndFeel.cpp">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\GUIMath.cpp">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\System\Library.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Printer\D2DPrintJobChecker.cpp">
+      <Filter>Monad%28a%29 Incudes\Printer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Printer\Texture.cpp">
+      <Filter>Monad%28a%29 Incudes\Printer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Tools\SingleCall.cpp">
+      <Filter>Monad%28a%29 Incudes\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\System\Console.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Tools\Convert.cpp">
+      <Filter>Monad%28a%29 Incudes\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\I18N\I18N.cpp">
+      <Filter>Monad%28a%29 Incudes\I18N</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\System\System.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\System\Exit.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\System\Parameter.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Time\__MonadTime.cpp">
+      <Filter>Monad%28a%29 Incudes\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Time\TimeLerp.cpp">
+      <Filter>Monad%28a%29 Incudes\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Time\Timer.cpp">
+      <Filter>Monad%28a%29 Incudes\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Input\Cursor.cpp">
+      <Filter>Monad%28a%29 Incudes\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Input\Hook.cpp">
+      <Filter>Monad%28a%29 Incudes\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Input\StickyKeys.cpp">
+      <Filter>Monad%28a%29 Incudes\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Input\XBOXControler.cpp">
+      <Filter>Monad%28a%29 Incudes\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>pch</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>pch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Core\DXSample.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\Button.cpp">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Wnd\WindowMain.cpp">
+      <Filter>Monad%28a%29 Incudes\Wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Wnd\WindowSat.cpp">
+      <Filter>Monad%28a%29 Incudes\Wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Wnd\Monitor.cpp">
+      <Filter>Monad%28a%29 Incudes\Wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Wnd\Window.cpp">
+      <Filter>Monad%28a%29 Incudes\Wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Kernel\__MonadKernel.cpp">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Kernel\BytesVector.cpp">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Kernel\Patterns.cpp">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\__MonadRenderer.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\CommandList.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\ConstantBuffers.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\First.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Heap.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Combine.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Matrices.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Mesh.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\MeshCore.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Metallic.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Shader0.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\ShaderMatrix.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Stateless.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\States.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Targets.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Tex.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Safety\__MonadSafety.cpp">
+      <Filter>Monad%28a%29 Incudes\Safety</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Safety\Hash.cpp">
+      <Filter>Monad%28a%29 Incudes\Safety</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Safety\SafetyManager.cpp">
+      <Filter>Monad%28a%29 Incudes\Safety</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Repository\Repo.cpp">
+      <Filter>Monad%28a%29 Incudes\Repository</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\EmojiBuilder.cpp">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\EmojiManager.cpp">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\FontBuilder.cpp">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\FontLoader.cpp">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\FontManager.cpp">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\__MonadFile.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Folder.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Handle.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\FileManager.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Op.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Registry.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Struct.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Temporary.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\XML.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Exceptions\Exceptions.cpp">
+      <Filter>Monad%28a%29 Incudes\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\__MonadAudio.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\Changed.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\Persistent.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\State.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\AudioThread.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\Jingle.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\MediaStreamer.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\Voice.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\VoiceManager.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\WaveBuffer.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Audio\WaveWithCallback.cpp">
+      <Filter>Monad%28a%29 Incudes\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Threads\Thread.cpp">
+      <Filter>Monad%28a%29 Incudes\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Threads\ThreadPool.cpp">
+      <Filter>Monad%28a%29 Incudes\Threads</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer2D\2D.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\System\__MonadSystem.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\Pipeline.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Pages\Page.cpp">
+      <Filter>Monad%28a%29 Incudes\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Core\Win32ApplicationGeneric.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Printer\Sketch.cpp">
+      <Filter>Monad%28a%29 Incudes\Printer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\System\UniqueInstance.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\HDR.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Dev\Coding.cpp">
+      <Filter>Monad%28a%29 Incudes\Dev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\Frame.cpp">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Math\Math.cpp">
+      <Filter>Monad%28a%29 Incudes\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Math\Random.cpp">
+      <Filter>Monad%28a%29 Incudes\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\GUI\__MonadGUI.cpp">
+      <Filter>Monad%28a%29 Incudes\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Kernel\Events.cpp">
+      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\System\Execute.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\InputLayout.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppArtPane.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppArtTex.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppColorIndex.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppCursor.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppFileManager.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppGesture.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppGUILookAndFeel.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppKeyboardHook.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppMain.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppPalette.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppPaletteMap.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppPipeline.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppRepo.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppSettings.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppSingleton.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppSketch.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppStartMenu.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppToolbox.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppWorld.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\AppXMLProfile.cpp">
+      <Filter>Books</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\D3D12Framework.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Books\Win32Application.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\FontMeta.cpp">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Pages\__MonadPage.cpp">
+      <Filter>Monad%28a%29 Incudes\Pages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Globals\__MonadGlobals.cpp">
+      <Filter>Monad%28a%29 Incudes\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\SaveUTF8.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\SaveUTF8Encrypted.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Safety\Cipher.cpp">
+      <Filter>Monad%28a%29 Incudes\Safety</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Fonts\__MonadFont.cpp">
+      <Filter>Monad%28a%29 Incudes\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\I18N\I18NLocale.cpp">
+      <Filter>Monad%28a%29 Incudes\I18N</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Wnd\Message.cpp">
+      <Filter>Monad%28a%29 Incudes\Wnd</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\System\ResourceLoader.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Main.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="..\..\MonadEngine\C++\Audio\README.md">
+      <Filter>Monad%28a%29 Incudes\Audio\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Safety\README.md">
+      <Filter>Monad%28a%29 Incudes\Safety\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Files\README.md">
+      <Filter>Monad%28a%29 Incudes\Files\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Exceptions\README.md">
+      <Filter>Monad%28a%29 Incudes\Exceptions\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Fonts\README.md">
+      <Filter>Monad%28a%29 Incudes\Fonts\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\GUI\README.md">
+      <Filter>Monad%28a%29 Incudes\GUI\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\I18N\README.md">
+      <Filter>Monad%28a%29 Incudes\I18N\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Input\README.md">
+      <Filter>Monad%28a%29 Incudes\Input\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Pages\README.md">
+      <Filter>Monad%28a%29 Incudes\Pages\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Time\README.md">
+      <Filter>Monad%28a%29 Incudes\Time\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Threads\README.md">
+      <Filter>Monad%28a%29 Incudes\Threads\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Tools\README.md">
+      <Filter>Monad%28a%29 Incudes\Tools\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Repository\README.md">
+      <Filter>Monad%28a%29 Incudes\Repository\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Wnd\README.md">
+      <Filter>Monad%28a%29 Incudes\Wnd\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Renderer2D\README.md">
+      <Filter>Monad%28a%29 Incudes\Renderer2D\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Printer\README.md">
+      <Filter>Monad%28a%29 Incudes\Printer\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\System\README.md">
+      <Filter>Monad%28a%29 Incudes\System\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Kernel\README.md">
+      <Filter>Monad%28a%29 Incudes\Kernel\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Renderer\README.md">
+      <Filter>Monad%28a%29 Incudes\Renderer\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Dev\README.md">
+      <Filter>Monad%28a%29 Incudes\Dev\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Math\README.md">
+      <Filter>Monad%28a%29 Incudes\Math\Doc</Filter>
+    </None>
+    <None Include="..\..\MonadEngine\C++\Globals\README.md">
+      <Filter>Monad%28a%29 Incudes\Globals\Doc</Filter>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

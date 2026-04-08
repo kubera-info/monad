@@ -1,0 +1,9 @@
+[submodule "Modules/noto-emoji"]
+	path = Modules/noto-emoji
+	url = https://github.com/googlefonts/noto-emoji.git
+[submodule "Modules/7zip"]
+	path = Modules/7zip
+	url = https://github.com/ip7z/7zip.git
+[submodule "Modules/Xbox-ATG-Samples"]
+	path = Modules/Xbox-ATG-Samples
+	url = https://github.com/microsoft/Xbox-ATG-Samples.git

@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F685DAE3-5F88-4B6C-A4EB-27EEE9177B54}</ProjectGuid>
+    <RootNamespace>Encryption</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfAtl>Static</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfAtl>Static</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\Bin\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <IncludePath>$(SolutionDir)libs;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\Bin\</OutDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <IncludePath>$(SolutionDir)libs;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir);..\..\C++\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MONAD_TOOLS;NOMINMAX;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <SDLCheck>true</SDLCheck>
+      <BuildStlModules>false</BuildStlModules>
+      <EnableModules>false</EnableModules>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <LargeAddressAware>true</LargeAddressAware>
+      <AdditionalDependencies>$(SolutionDir)libs\lzma\$(Configuration)\lzma.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <ProgramDatabaseFile>$(ProjectDir)..\pdb\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>PwSh.exe "..\..\Bin\end.ps1" 1 "$(ProjectName)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir);..\..\C++\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>MONAD_TOOLS;NOMINMAX;WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <SDLCheck>true</SDLCheck>
+      <BuildStlModules>false</BuildStlModules>
+      <EnableModules>false</EnableModules>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <LargeAddressAware>true</LargeAddressAware>
+      <AdditionalDependencies>$(SolutionDir)libs\lzma\$(Configuration)\lzma.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <ProgramDatabaseFile>$(ProjectDir)..\pdb\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>PwSh.exe "..\..\Bin\end.ps1" 1 "$(ProjectName)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\C++\Exceptions\Exceptions.cpp" />
+    <ClCompile Include="..\..\C++\Files\Folder.cpp" />
+    <ClCompile Include="..\..\C++\Files\Op.cpp" />
+    <ClCompile Include="..\..\C++\Files\Registry.cpp" />
+    <ClCompile Include="..\..\C++\Files\SaveUTF8.cpp" />
+    <ClCompile Include="..\..\C++\Files\Struct.cpp" />
+    <ClCompile Include="..\..\C++\Files\Temporary.cpp" />
+    <ClCompile Include="..\..\C++\Files\XML.cpp" />
+    <ClCompile Include="..\..\C++\Files\__MonadFile.cpp" />
+    <ClCompile Include="..\..\C++\Globals\__MonadGlobals.cpp" />
+    <ClCompile Include="..\..\C++\GUI\__MonadGUI.cpp" />
+    <ClCompile Include="..\..\C++\I18N\I18NLocale.cpp" />
+    <ClCompile Include="..\..\C++\Pages\__MonadPage.cpp" />
+    <ClCompile Include="..\..\C++\Safety\SafetyManager.cpp" />
+    <ClCompile Include="..\..\C++\Safety\__MonadSafety.cpp" />
+    <ClCompile Include="..\..\C++\System\Console.cpp" />
+    <ClCompile Include="..\..\C++\System\Execute.cpp" />
+    <ClCompile Include="..\..\C++\System\Exit.cpp" />
+    <ClCompile Include="..\..\C++\System\Library.cpp" />
+    <ClCompile Include="..\..\C++\I18N\I18N.cpp" />
+    <ClCompile Include="..\..\C++\Kernel\BytesVector.cpp" />
+    <ClCompile Include="..\..\C++\Safety\Cipher.cpp" />
+    <ClCompile Include="..\..\C++\Safety\Hash.cpp" />
+    <ClCompile Include="..\..\C++\System\Parameter.cpp" />
+    <ClCompile Include="..\..\C++\System\System.cpp" />
+    <ClCompile Include="..\..\C++\System\__MonadSystem.cpp" />
+    <ClCompile Include="..\..\C++\Tools\Convert.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Encryption.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\C++\Exceptions\Exceptions.h" />
+    <ClInclude Include="..\..\C++\Exceptions\Catch.h" />
+    <ClInclude Include="..\..\C++\Exceptions\__MonadException.h" />
+    <ClInclude Include="..\..\C++\Files\Op.h" />
+    <ClInclude Include="..\..\C++\Files\Registry.h" />
+    <ClInclude Include="..\..\C++\Files\SaveUTF8.h" />
+    <ClInclude Include="..\..\C++\Files\Struct.h" />
+    <ClInclude Include="..\..\C++\Files\Temporary.h" />
+    <ClInclude Include="..\..\C++\Files\XML.h" />
+    <ClInclude Include="..\..\C++\Files\__MonadFile.h" />
+    <ClInclude Include="..\..\C++\Globals\__MonadGlobals.h" />
+    <ClInclude Include="..\..\C++\GUI\__MonadGUI.h" />
+    <ClInclude Include="..\..\C++\I18N\I18N.h" />
+    <ClInclude Include="..\..\C++\I18N\I18NLocale.h" />
+    <ClInclude Include="..\..\C++\Pages\__MonadPage.h" />
+    <ClInclude Include="..\..\C++\Safety\Hash.h" />
+    <ClInclude Include="..\..\C++\Safety\SafetyManager.h" />
+    <ClInclude Include="..\..\C++\Safety\__MonadSafety.h" />
+    <ClInclude Include="..\..\C++\System\Console.h" />
+    <ClInclude Include="..\..\C++\System\Execute.h" />
+    <ClInclude Include="..\..\C++\System\Exit.h" />
+    <ClInclude Include="..\..\C++\System\Library.h" />
+    <ClInclude Include="..\..\C++\Kernel\BytesVector.h" />
+    <ClInclude Include="..\..\C++\Kernel\Dummy.h" />
+    <ClInclude Include="..\..\C++\Kernel\Templates.h" />
+    <ClInclude Include="..\..\C++\Safety\Cipher.h" />
+    <ClInclude Include="..\..\C++\System\Parameter.h" />
+    <ClInclude Include="..\..\C++\System\System.h" />
+    <ClInclude Include="..\..\C++\System\__MonadSystem.h" />
+    <ClInclude Include="..\..\C++\Tools\Convert.h" />
+    <ClInclude Include="..\..\C++\Tools\SingleCall.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

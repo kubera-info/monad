@@ -1,0 +1,14 @@
+en-US
+Color picture. Press green button to start coloring. Press the paw to select a picture. With your mouse drag the picture to change it.
+
+Select a color using a pencil. Now press on the picture with a pencil to start coloring. You can color by dragging a button with the selected color to the picture. To erase the picture press the scissors button with a green background. To print the picture press the print button with a white background. To exit coloring any picture press the cross button with a red background. Turn the sound on to listen to help commands.
+
+Select a color using a pencil. Now press on the picture with a pencil to start coloring. You can color by dragging a button with the selected color to the picture. To erase the picture press the scissors button with a green background. To exit coloring any picture press the cross button with a red background. Turn the sound on to listen to help commands.
+
+en-UK
+Colour picture. Press green button to start colouring. Press the paw to select a picture. With your mouse drag the picture to change it. 
+
+Select a colour using a pencil. Now press with a pencil on the picture to start colouring. You can colour by dragging a button with selected colour to the picture. To clear the picture press a button with scissors on green background. To print the picture press a button with a printer on white background. To exit colouring any picture press a button with a cross on a red background. Turn the sound on to listen to Help commands.
+
+Select a colour using a pencil. Now press with a pencil on the picture to start colouring. You can colour by dragging a button with selected colour to the picture. To clear the picture press a button with scissors on green background. To exit colouring any picture press a button with a cross on a red background. Turn the sound on to listen to Help commands.
+

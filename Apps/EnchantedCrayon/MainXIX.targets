@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema
+      Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml" />
+    <AvailableItemName
+      Include="FileCopyCreator">
+      <Targets>_FileCopyCreator</Targets>
+    </AvailableItemName>
+  </ItemGroup>
+  <UsingTask
+    TaskName="FileCopyCreator"
+    TaskFactory="XamlTaskFactory"
+    AssemblyName="Microsoft.Build.Tasks.v4.0">
+    <Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+  <Target
+    Name="_FileCopyCreator"
+    BeforeTargets="$(FileCopyCreatorBeforeTargets)"
+    AfterTargets="$(FileCopyCreatorAfterTargets)"
+    Condition="'@(FileCopyCreator)' != ''"
+    DependsOnTargets="$(FileCopyCreatorDependsOn);ComputeFileCopyCreatorOutput"
+    Outputs="%(FileCopyCreator.Outputs)"
+    Inputs="%(FileCopyCreator.Identity);%(FileCopyCreator.AdditionalDependencies);$(MSBuildProjectFile)">
+    <ItemGroup
+      Condition="'@(SelectedFiles)' != ''">
+      <FileCopyCreator
+        Remove="@(FileCopyCreator)"
+        Condition="'%(Identity)' != '@(SelectedFiles)'" />
+    </ItemGroup>
+    <ItemGroup>
+      <FileCopyCreator_tlog
+        Include="%(FileCopyCreator.Outputs)"
+        Condition="'%(FileCopyCreator.Outputs)' != '' and '%(FileCopyCreator.ExcludedFromBuild)' != 'true'">
+        <Source>@(FileCopyCreator, '|')</Source>
+      </FileCopyCreator_tlog>
+    </ItemGroup>
+    <Message
+      Importance="High"
+      Text="%(FileCopyCreator.ExecutionDescription)" />
+    <WriteLinesToFile
+      Condition="'@(FileCopyCreator_tlog)' != '' and '%(FileCopyCreator_tlog.ExcludedFromBuild)' != 'true'"
+      File="$(IntDir)$(ProjectName).write.1.tlog"
+      Lines="^%(FileCopyCreator_tlog.Source);@(FileCopyCreator_tlog-&gt;'%(Fullpath)')" />
+    <FileCopyCreator
+      Condition="'@(FileCopyCreator)' != '' and '%(FileCopyCreator.ExcludedFromBuild)' != 'true'"
+      CommandLineTemplate="%(FileCopyCreator.CommandLineTemplate)"
+      TargetPath="%(FileCopyCreator.TargetPath)"
+      AdditionalOptions="%(FileCopyCreator.AdditionalOptions)"
+      Inputs="%(FileCopyCreator.Identity)" />
+  </Target>
+  <PropertyGroup>
+    <ComputeLinkInputsTargets>
+            $(ComputeLinkInputsTargets);
+            ComputeFileCopyCreatorOutput;
+          </ComputeLinkInputsTargets>
+    <ComputeLibInputsTargets>
+            $(ComputeLibInputsTargets);
+            ComputeFileCopyCreatorOutput;
+          </ComputeLibInputsTargets>
+  </PropertyGroup>
+  <Target
+    Name="ComputeFileCopyCreatorOutput"
+    Condition="'@(FileCopyCreator)' != ''">
+    <ItemGroup>
+      <FileCopyCreatorDirsToMake
+        Condition="'@(FileCopyCreator)' != '' and '%(FileCopyCreator.ExcludedFromBuild)' != 'true'"
+        Include="%(FileCopyCreator.Outputs)" />
+      <Link
+        Include="%(FileCopyCreatorDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <Lib
+        Include="%(FileCopyCreatorDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <ImpLib
+        Include="%(FileCopyCreatorDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+    </ItemGroup>
+    <MakeDir
+      Directories="@(FileCopyCreatorDirsToMake-&gt;'%(RootDir)%(Directory)')" />
+  </Target>
+</Project>

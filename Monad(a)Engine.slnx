@@ -1,0 +1,246 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="0-Engine" />
+    <BuildType Name="1-Assets" />
+    <BuildType Name="2-Debug" />
+    <BuildType Name="2-Release" />
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Folder Name="/Apps/">
+    <Project Path="Apps/Report/Report.vcxproj" Id="bbd6a5a8-b2e9-4678-929d-d481bed559c7">
+      <BuildDependency Project="Libs/curl/curl.vcxproj" />
+      <BuildDependency Project="Libs/lzma/lzma.vcxproj" />
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Apps/Enchanted Crayon/" />
+  <Folder Name="/Apps/Enchanted Crayon/Assets/">
+    <Project Path="Apps/EnchantedCrayon/Assets/Art/Arts.vcxproj" Id="f0cb79d6-a576-4a51-95fa-2efe47c8799c">
+      <BuildDependency Project="MonadEngine/Tools/Encryption/Encryption.vcxproj" />
+      <BuildDependency Project="MonadEngine/Tools/translator/Translator.csproj" />
+      <BuildType Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+    <Project Path="Apps/EnchantedCrayon/Assets/Fonts/Fonts.vcxproj" Id="f6547db0-4674-45fa-a9d1-e5a4b494e0ce">
+      <BuildDependency Project="MonadEngine/Assets/Fonts/Fonts.vcxproj" />
+      <BuildDependency Project="MonadEngine/Assets/Textures/Textures.vcxproj" />
+      <BuildDependency Project="MonadEngine/Tools/Encryption/Encryption.vcxproj" />
+      <BuildType Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+    <Project Path="Apps/EnchantedCrayon/Assets/Shaders/Shaders.vcxproj" Id="2c2ea39f-64f8-4d7f-b5dd-c099ce1c11c2">
+      <BuildDependency Project="Apps/EnchantedCrayon/HLSL/HLSL.vcxproj" />
+      <BuildDependency Project="MonadEngine/Tools/Encryption/Encryption.vcxproj" />
+      <BuildDependency Project="MonadEngine/Tools/VSI/VSI.vcxproj" />
+      <BuildType Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="*|ARM64" Project="false" />
+      <Build Solution="0-Engine|x64" Project="false" />
+      <Build Solution="1-Assets|x64" Project="false" />
+    </Project>
+    <Project Path="Apps/EnchantedCrayon/Assets/Varia/Varia.vcxproj" Id="62a33e1f-19e5-4e15-8f39-c53bf7eb616f">
+      <BuildDependency Project="MonadEngine/Assets/Audio/Audio.vcxproj" />
+      <BuildDependency Project="MonadEngine/Assets/Textures/Textures.vcxproj" />
+      <BuildDependency Project="MonadEngine/Tools/Encryption/Encryption.vcxproj" />
+      <BuildDependency Project="MonadEngine/Tools/MeshConverter/MeshConverter.vcxproj" />
+      <BuildDependency Project="MonadEngine/Tools/PCMConverter/PCMConverter.vcxproj" />
+      <BuildType Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Apps/Enchanted Crayon/Code/">
+    <Project Path="Apps/EnchantedCrayon/Book.vcxproj" Id="d3d09108-96d0-4629-88b8-122c0256058c">
+      <BuildDependency Project="Apps/EnchantedCrayon/Assets/Shaders/Shaders.vcxproj" />
+      <BuildDependency Project="Libs/lzma/lzma.vcxproj" />
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+    </Project>
+    <Project Path="Apps/EnchantedCrayon/HLSL/HLSL.vcxproj" Id="35297052-f354-4f7b-89c6-83c5021459a5">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="*|ARM64" Project="false" />
+      <Build Solution="0-Engine|x64" Project="false" />
+      <Build Solution="1-Assets|x64" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Apps/Enchanted Crayon/Setup/">
+    <File Path="Apps/EnchantedCrayon/Setup/CreateBundle.cmd" />
+    <Project Path="Apps/EnchantedCrayon/Setup/Post-Process/Post-Process.vcxproj" Id="f71f43fe-1f54-4dde-9e08-39fb1d7102fd">
+      <BuildDependency Project="Apps/EnchantedCrayon/Assets/Art/Arts.vcxproj" />
+      <BuildDependency Project="Apps/EnchantedCrayon/Assets/Fonts/Fonts.vcxproj" />
+      <BuildDependency Project="Apps/EnchantedCrayon/Assets/Shaders/Shaders.vcxproj" />
+      <BuildDependency Project="Apps/EnchantedCrayon/Assets/Varia/Varia.vcxproj" />
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+    </Project>
+    <Project Path="Apps/EnchantedCrayon/Setup/SetupBook/SetupBook.wapproj" Type="c7167f0d-bc9f-4e6e-afe1-012c56b48db5">
+      <BuildDependency Project="Apps/EnchantedCrayon/Setup/Post-Process/Post-Process.vcxproj" />
+      <BuildDependency Project="Apps/Report/Report.vcxproj" />
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Deploy Solution="2-Release|*" />
+    </Project>
+  </Folder>
+  <Folder Name="/Libs/">
+    <Project Path="Libs/curl/curl.vcxproj" Id="b92d3fa8-f304-45a2-adb6-1946691a67c8">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+    </Project>
+    <Project Path="Libs/lzma/lzma.vcxproj" Id="07f5ee92-5621-4ba0-834f-2790d574ff6a">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Monad(a) Engine/" />
+  <Folder Name="/Monad(a) Engine/Assets - Objects/">
+    <Project Path="MonadEngine/Assets/Audio/Audio.vcxproj" Id="d467e7c4-9393-42c4-8806-8c0d1964a68a">
+      <BuildDependency Project="MonadEngine/Tools/PCMConverter/PCMConverter.vcxproj" />
+      <BuildType Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+    <Project Path="MonadEngine/Assets/Emoji/Emoji.vcxproj">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Platform Project="x64" />
+    </Project>
+    <Project Path="MonadEngine/Assets/Fonts/Fonts.vcxproj" Id="ca6142cf-5c69-43cc-a47f-9a76d09abda5">
+      <BuildType Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+    <Project Path="MonadEngine/Assets/Textures/Textures.vcxproj" Id="a27010f3-ce75-41c8-8023-12c1b534df43">
+      <BuildType Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Monad(a) Engine/Tools/">
+    <Project Path="MonadEngine/Tools/CleanColors/CleanColors.csproj">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+    <Project Path="MonadEngine/Tools/CountColors/CountColors.csproj">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+    <Project Path="MonadEngine/Tools/Encryption/Encryption.vcxproj" Id="f685dae3-5f88-4b6c-a4eb-27eee9177b54">
+      <BuildDependency Project="Libs/lzma/lzma.vcxproj" />
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+    <Project Path="MonadEngine/Tools/MeshConverter/MeshConverter.vcxproj" Id="be14c82b-b17c-4bb1-8e7e-ab35047b8644">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+    <Project Path="MonadEngine/Tools/PCMConverter/PCMConverter.vcxproj" Id="e766728c-10fd-49c9-b806-e2643cbb64b6">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+    <Project Path="MonadEngine/Tools/translator/Translator.csproj">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+    <Project Path="MonadEngine/Tools/VSI/VSI.vcxproj" Id="71878aa4-c4c3-4f1f-a971-763e600daa22">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="Doc/TODO.md" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="SECURITY.md" />
+  </Folder>
+</Solution>

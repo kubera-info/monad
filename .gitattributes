@@ -1,0 +1,21 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Explicitly declare code/VS files as CRLF
+*.cpp eol=crlf
+*.cmd eol=crlf
+*.h eol=crlf
+*.hlsl eol=crlf
+*.hlsli eol=crlf
+*.filters eol=crlf
+*.fx eol=crlf
+*.fxh eol=crlf
+*.inc eol=crlf
+*.inl eol=crlf
+*.ps1 eol=crlf
+*.sln eol=crlf
+*.vcxproj eol=crlf
+*.wxs eol=crlf
+*.wixproj eol=crlf
+*.xml eol=crlf
+Makefile eol=crlf

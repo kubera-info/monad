@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup
+    Condition="'$(FileCopyCreatorBeforeTargets)' == '' and '$(FileCopyCreatorAfterTargets)' == '' and '$(ConfigurationType)' != 'Makefile'">
+    <FileCopyCreatorBeforeTargets>Midl</FileCopyCreatorBeforeTargets>
+    <FileCopyCreatorAfterTargets>CustomBuild</FileCopyCreatorAfterTargets>
+  </PropertyGroup>
+  <PropertyGroup>
+    <FileCopyCreatorDependsOn
+      Condition="'$(ConfigurationType)' != 'Makefile'">_SelectedFiles;$(FileCopyCreatorDependsOn)</FileCopyCreatorDependsOn>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <FileCopyCreator>
+      <TargetPath>0</TargetPath>
+      <CommandLineTemplate>$(SolutionDir)CmdScripts\copy.cmd" "%(FullPath)" "[TargetPath]</CommandLineTemplate>
+      <Outputs>[TargetPath]\%(Filename).dll</Outputs>
+      <ExecutionDescription>Copying Files</ExecutionDescription>
+    </FileCopyCreator>
+  </ItemDefinitionGroup>
+</Project>
