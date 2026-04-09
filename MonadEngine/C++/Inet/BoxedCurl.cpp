@@ -106,8 +106,8 @@ namespace Monad::Internet
 		struct Easy final
 		{
 			Easy(const CurlINet::LocalLibraryCurl& libCurl)
-				: c_libCurl{ libCurl }
-				, m_curl{ c_libCurl.c_fn_curl_easy_init() }
+				: c_libCurl{ libCurl },
+				m_curl{ c_libCurl.c_fn_curl_easy_init() }
 			{
 				THROW_EXC_IFFALSE(Exceptions::NotInitialized, m_curl, L"Easy Init");
 			}
