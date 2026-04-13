@@ -21,11 +21,18 @@
 #	pragma comment( lib, "d3dx9.lib" )
 #endif
 
-#include <cstdint>
+// Platform
 #include <d3d12.h>
 #include <d3dx9.h>
-#include <memory>
 #include <wrl.h>
+// STD
+#include <cstdint>
+#include <memory>
+// External
+#include "../../../Modules/meshoptimizer/src/meshoptimizer.h"
+// Monad
+#include "../../C++/Kernel/BytesVector.h"
+#include "../../C++/Renderer/MeshOpt.h"
 
 using Microsoft::WRL::ComPtr;
 
@@ -169,33 +176,48 @@ INT WINAPI wWinMain(
 			vertexSize = mesh->GetNumBytesPerVertex();
 		if (SUCCEEDED(mesh->LockIndexBuffer(D3DLOCK_READONLY, &indexBuffer))) [[likely]]
 		{
-			std::unique_ptr<uint16_t[]> idxBuff2;
+			std::unique_ptr<uint16_t[]> indexBuffer2;
 			if (indicesCount <= D3D12_16BIT_INDEX_STRIP_CUT_VALUE) [[likely]]
 			{
-				idxBuff2 = std::make_unique_for_overwrite<WORD[]>(indicesCount);
+				indexBuffer2 = std::make_unique_for_overwrite<WORD[]>(indicesCount);
 				for (size_t index = 0; index < indicesCount; ++index)
-					idxBuff2[index] = LOWORD((reinterpret_cast<UINT*>(indexBuffer))[index]);
+					indexBuffer2[index] = LOWORD((reinterpret_cast<UINT*>(indexBuffer))[index]);
+			}
+			else
+			{
+				ReportError(L"Mesh has too many indices for 16-bit format");
+				return EXIT_FAILURE;
 			}
 			if (SUCCEEDED(mesh->LockVertexBuffer(D3DLOCK_READONLY, &vertexBuffer))) [[likely]]
 			{
+				Monad::Kernel::SpanIndices16 indexBuffer2Span{ indexBuffer2.get(), indicesCount };
+				const auto optimizedMesh = Monad::Renderer::OptimizeMesh(
+					indexBuffer2Span,
+					{ vertexBuffer, vertexSize, verticesCount }					
+				);
 				if (HANDLE f = CreateFile2(__wargv[2], GENERIC_WRITE, 0, CREATE_ALWAYS, nullptr);
 					f != INVALID_HANDLE_VALUE
 					&& WriteFile(f, &vertexSize, sizeof vertexSize, nullptr, nullptr)
 					&& WriteFile(f, &indicesCount, sizeof indicesCount, nullptr, nullptr)
 					&& WriteFile(f,
-						idxBuff2
-						? idxBuff2.get()
-						: indexBuffer,
-						indicesCount * (idxBuff2
+						/*indexBuffer2
+						 ? */optimizedMesh.m_indices.data(),
+						//: indexBuffer,
+						static_cast<uint32_t> (optimizedMesh.m_indices.size() * (indexBuffer2
 							?
 							sizeof(uint16_t)
 							:
 							sizeof(uint32_t)
-							),
+							)),
 						nullptr,
 						nullptr
 					)
-					&& WriteFile(f, vertexBuffer, verticesCount * vertexSize, nullptr, nullptr)) [[likely]]
+					&& WriteFile(
+						f,
+						optimizedMesh.m_vertices.data(),
+						static_cast<uint32_t> (optimizedMesh.m_vertices.size() * vertexSize),
+						nullptr,
+						nullptr)) [[likely]]
 				{
 					CloseHandle(f);
 					successAtExit = ERROR_SUCCESS;

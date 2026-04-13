@@ -249,4 +249,32 @@ namespace Monad::Kernel
 		)
 	{}
 #pragma endregion
+
+#pragma region VectorBlock
+	VectorBlock::VectorBlock(
+		size_t blockSize
+	) noexcept :
+		c_blockSize{ blockSize }
+	{}
+
+	void VectorBlock::resize(size_t blocks)
+	{
+		__super::resize(blocks * c_blockSize);
+	}
+
+	size_t VectorBlock::size() const noexcept
+	{
+		return __super::size() / c_blockSize;
+	}
+
+	void* VectorBlock::data() noexcept
+	{
+		return __super::data();
+	}
+
+	const void* VectorBlock::data() const noexcept
+	{
+		return __super::data();
+	}
+#pragma endregion
 }

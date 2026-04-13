@@ -36,7 +36,7 @@ namespace Monad
 			const I18NString
 				L1{ L"Software:"_us },
 				L2{ L"Audacity, BMFont, curl, GIMP, Inkscape"_us },
-				L3{ L"LZMA, noto-emoji"_us },
+				L3{ L"LZMA, meshoptimizer, noto-emoji"_us },
 				L4{ L"DirectX-Graphics-Samples, DirectXTex"_us },
 				L5{ L"Art:"_us },
 				L6{ L"„Wood” & „Marble” Textures by Vladimir Radetzki"_us },

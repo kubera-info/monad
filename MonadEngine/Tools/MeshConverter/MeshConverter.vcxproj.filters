@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\C++\Kernel\BytesVector.cpp" />
+    <ClCompile Include="..\..\C++\Renderer\MeshOpt.cpp" />
+    <ClCompile Include="MeshConverter.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\meshletutils.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\meshletcodec.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\allocator.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\clusterizer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\rasterizer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\opacitymap.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\overdrawoptimizer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\partition.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\quantization.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\indexgenerator.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\indexanalyzer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\indexcodec.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\simplifier.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\spatialorder.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\stripifier.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vcacheoptimizer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vertexcodec.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vertexfilter.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vfetchoptimizer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\C++\Kernel\BytesVector.h" />
+    <ClInclude Include="..\..\C++\Renderer\MeshOpt.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="..\..\..\Modules\meshoptimizer\src\meshoptimizer.h">
+      <Filter>meshoptimizer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="meshoptimizer">
+      <UniqueIdentifier>{51ec5da5-15e3-4e8a-beea-ef0c5f03e1d7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

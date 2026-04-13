@@ -116,7 +116,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(SolutionDir)MonadEngine\C++;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>EXC_TYPE_REPORT_EXE=0;EXC_TYPE_MESSAGE_BOX=1;EXC_TYPE_CONSOLE=2;MONAD_INLINE_EXCEPTION=EXC_TYPE_MESSAGE_BOX;WIN32;MONAD_INLINE_EXCEPTION=EXC_TYPE_CONSOLE;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;NTDDI_VERSION= 0x06030000;WINVER=0x0A00;_WIN32_WINNT=0x0A00;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -156,10 +156,37 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\allocator.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\clusterizer.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\indexanalyzer.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\indexcodec.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\indexgenerator.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\meshletcodec.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\meshletutils.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\opacitymap.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\overdrawoptimizer.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\partition.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\quantization.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\rasterizer.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\simplifier.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\spatialorder.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\stripifier.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vcacheoptimizer.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vertexcodec.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vertexfilter.cpp" />
+    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vfetchoptimizer.cpp" />
+    <ClCompile Include="..\..\C++\Kernel\BytesVector.cpp" />
+    <ClCompile Include="..\..\C++\Renderer\MeshOpt.cpp" />
     <ClCompile Include="MeshConverter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Modules\meshoptimizer\src\meshoptimizer.h" />
+    <ClInclude Include="..\..\C++\Kernel\BytesVector.h" />
+    <ClInclude Include="..\..\C++\Renderer\MeshOpt.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

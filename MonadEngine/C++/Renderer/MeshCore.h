@@ -140,8 +140,8 @@ namespace Monad::Renderer::InputLayout
 		/// Prevents reallocations during mesh construction.
 		/// </summary>
 		void ReserveMemoryForMesh(
-			size_t countOfVertices,
-			size_t countOfIndices
+			const size_t countOfVertices,
+			const size_t countOfIndices
 		)
 		{
 			m_vertices.reserve(countOfVertices);
@@ -188,17 +188,17 @@ namespace Monad::Renderer::InputLayout
 				auto& b = m_vertices[m_indices[i * 3 + 1]];
 				auto& c = m_vertices[m_indices[i * 3 + 2]];
 
-				const auto fn = ComputeFaceNormal(
+				const auto faceNormal = ComputeFaceNormal(
 					DirectX::XMLoadFloat3(&a.m_position),
 					DirectX::XMLoadFloat3(&b.m_position),
 					DirectX::XMLoadFloat3(&c.m_position));
 
 				DirectX::XMStoreFloat3(&a.m_normal,
-					DirectX::XMVectorAdd(XMLoadFloat3(&a.m_normal), fn));
+					DirectX::XMVectorAdd(XMLoadFloat3(&a.m_normal), faceNormal));
 				DirectX::XMStoreFloat3(&b.m_normal,
-					DirectX::XMVectorAdd(XMLoadFloat3(&b.m_normal), fn));
+					DirectX::XMVectorAdd(XMLoadFloat3(&b.m_normal), faceNormal));
 				DirectX::XMStoreFloat3(&c.m_normal,
-					DirectX::XMVectorAdd(XMLoadFloat3(&c.m_normal), fn));
+					DirectX::XMVectorAdd(XMLoadFloat3(&c.m_normal), faceNormal));
 			}
 
 			for (auto& v : m_vertices)
@@ -243,6 +243,9 @@ namespace Monad::Renderer::InputLayout
 			return { GetSettings(), release };
 		}
 
+		Kernel::VectorNoCtor<VERTEX_TYPE> m_vertices;
+		Kernel::VectorNoCtor<INDEX_TYPE>  m_indices;
+
 	protected:
 		void AddVertex(const VERTEX_TYPE& vertex)
 		{
@@ -258,10 +261,6 @@ namespace Monad::Renderer::InputLayout
 				m_indices.push_back(static_cast<INDEX_TYPE>(it->second));
 			}
 		}
-
-	protected:
-		Kernel::VectorNoCtor<VERTEX_TYPE> m_vertices;
-		Kernel::VectorNoCtor<INDEX_TYPE>  m_indices;
 	};
 
 	// =========================================================================

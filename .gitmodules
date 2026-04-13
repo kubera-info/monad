@@ -7,3 +7,6 @@
 [submodule "Modules/Xbox-ATG-Samples"]
 	path = Modules/Xbox-ATG-Samples
 	url = https://github.com/microsoft/Xbox-ATG-Samples.git
+[submodule "Modules/meshoptimizer"]
+	path = Modules/meshoptimizer
+	url = https://github.com/zeux/meshoptimizer.git

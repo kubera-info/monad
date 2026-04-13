@@ -11,6 +11,7 @@
 #include "Math/Math.h"
 #include "Renderer/MeshCore.h"
 #include "Repository/Repo.h"
+#include "Renderer/MeshOpt.h"
 
 using namespace DirectX;
 using namespace std::literals::string_literals;
@@ -221,11 +222,11 @@ namespace Monad::GUI
 		// There is no the short filename with ":" prefix, so it is safe to use it as a marker.
 		const std::string dialogRectName =
 			":"s.append(std::to_string(pipe.x)).
-			append(",").
+			append(","s).
 			append(std::to_string(pipe.y)).
-			append(",").
+			append(","s).
 			append(std::to_string(pipe.z)).
-			append(",").
+			append(","s).
 			append(std::to_string(pipe.w));
 		// try_emplace does not work here, because the value is a complete mesh and the leazy evaluation cannot be done
 
@@ -234,8 +235,21 @@ namespace Monad::GUI
 			)
 			return iterMsh->second;
 		else
+		{
+			MeshCreatorPipe frame{ pipe };
+			auto retMesh = Renderer::OptimizeMesh(
+				frame.m_indices,
+				{ 
+					frame.m_vertices.data(),
+					sizeof(MeshCreatorPipe::VERTEX_TYPE),
+					frame.m_vertices.size()
+				}
+			);	
+
 			return Repositories::g_repositoryGeneric->m_meshes.emplace(
 				dialogRectName,
-				MeshCreatorPipe{ pipe }.Commit()).first->second;
+				Renderer::Mesh::MeshHelper{ retMesh.m_indices, retMesh.m_vertices }
+			).first->second;
+		}
 	}
 }

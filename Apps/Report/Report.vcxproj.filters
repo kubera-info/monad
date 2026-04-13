@@ -119,6 +119,9 @@
     <Filter Include="Monad%28a%29 Engine\Dev">
       <UniqueIdentifier>{2657b2c0-5d1c-4817-ae81-efa34417c3e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="meshoptimizer">
+      <UniqueIdentifier>{5d47ddf4-4eca-4b08-8b97-f2edb75859c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -508,6 +511,12 @@
     <ClInclude Include="..\..\MonadEngine\C++\Wnd\Message.h">
       <Filter>Monad%28a%29 Engine\Wnd</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Modules\meshoptimizer\src\meshoptimizer.h">
+      <Filter>meshoptimizer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\MeshOpt.h">
+      <Filter>Monad%28a%29 Engine\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\MonadEngine\C++\Audio\__MonadAudio.cpp">
@@ -851,6 +860,66 @@
     </ClCompile>
     <ClCompile Include="HttpsAPI.cpp">
       <Filter>Inet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\allocator.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\clusterizer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\indexanalyzer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\indexcodec.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\indexgenerator.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\meshletcodec.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\meshletutils.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\opacitymap.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\overdrawoptimizer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\partition.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\quantization.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\rasterizer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\simplifier.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\spatialorder.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\stripifier.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\vcacheoptimizer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\vertexcodec.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\vertexfilter.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Modules\meshoptimizer\src\vfetchoptimizer.cpp">
+      <Filter>meshoptimizer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\MeshOpt.cpp">
+      <Filter>Monad%28a%29 Engine\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

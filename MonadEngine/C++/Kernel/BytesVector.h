@@ -9,10 +9,14 @@
 // STD
 #include <span>
 #include <vector>
+#include <string_view>
+#include <string>
 
 namespace Monad::Kernel
 {
 	using PtrIStream = Microsoft::WRL::ComPtr<IStream>;
+	using SpanIndices16 = std::span<uint16_t>;
+	using SpanIndices32 = std::span<uint32_t>;
 	using SpanBytes = std::span<uint8_t>;
 
 	/// <summary>
@@ -104,5 +108,26 @@ namespace Monad::Kernel
 		/// Constructs a byte buffer from a constant byte span.
 		/// </summary>
 		VectorBytes(const SpanConstBytes sourceBytes);
+	};
+
+	struct VectorBlock : protected VectorBytes
+	{
+		VectorBlock(size_t blockSize) noexcept;
+		template<typename B>
+		VectorBlock() noexcept :
+			VectorBlock(sizeof(B))
+		{}
+		void resize(size_t blocks);
+		size_t size() const noexcept;
+		void* data() noexcept;
+		const void* data() const noexcept;
+
+		const size_t c_blockSize;
+	};
+	
+	struct SpanBlock
+	{
+		const void* c_data;
+		const size_t c_blockSize, c_blocks;
 	};
 }

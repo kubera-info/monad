@@ -35,6 +35,26 @@ namespace Monad::Renderer
 				const Kernel::SpanConstBytes& file
 			) noexcept;
 
+			template<typename I>
+			inline MeshHelper(
+				const I& indices,
+				const Kernel::VectorBlock& vertices
+			) noexcept :
+				c_indexSize{ sizeof I::value_type },
+				c_vertexSize{ static_cast<uint32_t> (vertices.c_blockSize) },
+				c_indices(
+					reinterpret_cast<const uint8_t*>(indices.data()),
+					indices.size() * sizeof(I::value_type)),
+				c_vertices(
+					reinterpret_cast<const uint8_t*>(vertices.data()),
+					vertices.size() * vertices.c_blockSize)
+			{
+				static_assert(
+					std::is_same_v<typename I::value_type, uint16_t>
+					|| std::is_same_v<typename I::value_type, uint32_t>,
+					"Indices must be uint16_t or uint32_t");
+			}
+
 			/// <summary>
 			/// Constructs mesh data from index and vertex containers.
 			/// </summary>
