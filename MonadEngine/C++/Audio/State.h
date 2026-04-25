@@ -22,21 +22,25 @@ namespace Monad::Audio
 	struct XAudioState final : private IXAudio2EngineCallback
 	{
 		XAudioState() noexcept;
-		~XAudioState();
 		OPER_DEL_NO_DEF_CTOR(XAudioState);
 		HRESULT Initialize();
 		template<typename Self>
 		auto& operator [](
 			this Self&& self,
 			const string& queue
-			) noexcept
+			)
 		{
-			return self.m_voicesManagers.find(queue)->second;
+			auto voiceManager = self.m_voicesManagers.find(queue);
+			THROW_EXC_ONEND(self.m_voicesManagers, voiceManager, L"VoiceManager");
+			return voiceManager->second;
 		}
 		void Mute(InitializerListQueues list = {
 			STREAM,
 			JINGLE }
 			) noexcept;
+		void SetMasterVoiceVolume(
+			const float volume
+		) noexcept;
 
 	private:
 		COM_DECLSPEC_NOTHROW void STDMETHODCALLTYPE OnProcessingPassEnd() final;
@@ -47,6 +51,7 @@ namespace Monad::Audio
 
 		Microsoft::WRL::ComPtr<IXAudio2> m_xAudio2;
 		std::unique_ptr<IXAudio2MasteringVoice, FnDestroyVoice> m_masteringVoice;
+		
 		/// <summary>
 		/// Structure VoiceManagers aggregates all virtual voices for management and playback.
 		/// </summary>

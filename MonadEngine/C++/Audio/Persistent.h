@@ -90,6 +90,9 @@ namespace Monad::Audio
 			const std::string& filename,
 			IStream* stream
 		);
+		void SetMasterVoiceVolume(
+			const float volume
+		);	
 		/// <summary>
 		/// Applies the same volume level to every voice in the audio queue.
 		/// </summary>
@@ -189,7 +192,7 @@ namespace Monad::Audio
 
 	private:
 		const Kernel::Me<PersistentAudio> c_me;
-		Kernel::UnorderedMapString<float> m_voicesVolumesCache;
+		Kernel::FlatMapString<float> m_voicesVolumesCache;
 		ATG::CriticalSectionLockable m_lockAudio;
 		std::atomic_bool m_inRestart = false;
 
@@ -224,8 +227,8 @@ namespace Monad::Audio
 		/// A unique repository of WAVEFORMATEX structures for all audio formats discovered in assets.
 		/// </summary>
 		SetWaveFormatEx m_formatSignatures;
-		Kernel::UnorderedMapString<PtrWaveBuffer> m_waveBuffers;
-		Kernel::UnorderedMapString<MediaStreamer> m_streams;
+		Kernel::FlatMapString<PtrWaveBuffer> m_waveBuffers;
+		Kernel::FlatMapString<MediaStreamer> m_streams;
 		struct StreamWave final : IWaveCallback
 		{
 			using IWaveCallback::IWaveCallback;
@@ -250,6 +253,9 @@ namespace Monad::Audio
 			const float volume,
 			const std::string& queue
 		);
+		bool InternalContainsQueue(
+			const std::string& queue
+		) const noexcept;
 		void InternalSetVoiceVolumeXAudio2(
 			const float volume,
 			const std::string& queue

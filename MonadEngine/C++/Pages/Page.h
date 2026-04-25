@@ -107,7 +107,7 @@ namespace Monad::Pages
 
 		void SetFinish() noexcept;
 
-	private:
+	protected:
 		void OnFrameMove() noexcept override;
 	};
 
@@ -133,8 +133,8 @@ namespace Monad::Pages
 		bool IsWorking() const noexcept;
 
 	private:
+		void OnFrameMove() noexcept override;
 		void SetMorphedPage(const std::string& pageNo);
-		void OnStart() noexcept final;
 		void OnFlush() noexcept final;
 
 		const Kernel::Me<TimeLerpMorphingDecay> c_me;

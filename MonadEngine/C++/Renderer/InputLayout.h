@@ -44,9 +44,9 @@ namespace Monad::Renderer::InputLayout
 	/// Collection of named input layouts.
 	/// </summary>
 	struct MapInputLayouts : private
-		Kernel::UnorderedMapString<VectorInputElementsDesc>
+		Kernel::FlatMapString<VectorInputElementsDesc>
 	{
-		using Kernel::UnorderedMapString<VectorInputElementsDesc>::UnorderedMapString;
+		using Kernel::FlatMapString<VectorInputElementsDesc>::FlatMapString;
 
 		/// <summary>
 		/// Returns an input layout descriptor by name.

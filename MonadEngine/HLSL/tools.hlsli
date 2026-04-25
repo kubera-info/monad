@@ -18,8 +18,8 @@ static float3 FromFloat(
     const float lerpFactor
 )
 {
-    return lerp(float3(
-        0.0f, 0.0f, 0.0f), 
+    return lerp(
+        0.0f,
         brightColor, 
         lerpFactor
     );

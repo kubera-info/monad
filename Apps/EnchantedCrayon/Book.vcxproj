@@ -173,7 +173,7 @@
       <Optimization>Disabled</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\boost_1_91_0;$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MONAD_DROP_FILE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;_DEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;_XM_NO_INTRINSICS_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessKeepComments>false</PreprocessKeepComments>
       <MinimalRebuild>false</MinimalRebuild>
@@ -264,7 +264,7 @@
       <Optimization>Disabled</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\boost_1_91_0;$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MONAD_DROP_FILE;EXC_TYPE_REPORT_EXE=0;MONAD_HARDWARE_EXCEPTIONS=1;EXC_TYPE_MESSAGE_BOX=1;EXC_TYPE_CONSOLE=2;MONAD_INLINE_EXCEPTION=EXC_TYPE_REPORT_EXE;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;_DEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessKeepComments>false</PreprocessKeepComments>
       <MinimalRebuild>false</MinimalRebuild>
@@ -357,7 +357,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\boost_1_91_0;$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MONAD_DROP_FILE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;NDEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -458,7 +458,7 @@
       <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\local\boost_1_91_0;$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>MONAD_DROP_FILE;EXC_TYPE_REPORT_EXE=0;MONAD_HARDWARE_EXCEPTIONS=1;EXC_TYPE_MESSAGE_BOX=1;EXC_TYPE_CONSOLE=2;MONAD_INLINE_EXCEPTION=EXC_TYPE_REPORT_EXE;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;NDEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -894,9 +894,6 @@
     <ClCompile Include="..\..\MonadEngine\C++\Audio\WaveWithCallback.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Audio\__MonadAudio.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Core\Win32ApplicationGeneric.cpp" />
-    <ClCompile Include="..\..\MonadEngine\C++\Dev\Coding.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\MonadEngine\C++\Exceptions\Exceptions.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Files\Folder.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Files\Handle.cpp" />

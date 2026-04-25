@@ -25,8 +25,8 @@ namespace Monad::Renderer
 			g_groupOffset = 0;
 		}
 
-#pragma region CBTypeCtrlGeneric
-		CBTypeCtrlGeneric::CBTypeCtrlGeneric(
+#pragma region CBTypeCtrl
+		CBTypeCtrl::CBTypeCtrl(
 			size_t length,
 			uint32_t count
 		) :
@@ -38,15 +38,50 @@ namespace Monad::Renderer
 				+ (D3D12_CONSTANT_BUFFER_DATA_PLACEMENT_ALIGNMENT - 1))
 				& ~(D3D12_CONSTANT_BUFFER_DATA_PLACEMENT_ALIGNMENT - 1) },
 			c_heapStart{
-					m_resCounter.m_currentOnHeap.load()
-					+ m_resCounter.c_groupOffset
-				}
+					m_resCounter.m_currentOnHeap
+					+ m_resCounter.m_groupOffset
+				},
+			m_pCbvDataBegin(nullptr)
 		{
 			Register();
 			g_groupOffset += count;
 		}
+		
+		CBTypeCtrl::CBTypeCtrl() noexcept :
+			c_size256(256),
+			c_heapStart(0),
+			m_pCbvDataBegin(nullptr)
+		{
+		}
 
-		void CBTypeCtrlGeneric::Unmap() noexcept
+		CBTypeCtrl::CBTypeCtrl(
+			CBTypeCtrl&& source
+		) noexcept
+		{
+			Move(std::move(source));
+		}
+
+		CBTypeCtrl& CBTypeCtrl::operator=(
+			CBTypeCtrl&& source
+			) noexcept
+		{
+			Move(std::move(source));
+
+			return *this;
+		}
+
+		void CBTypeCtrl::Move(CBTypeCtrl&& source) noexcept
+		{
+			__super::MoveEvent(std::move(source));
+			m_resCounter = source.m_resCounter;
+			c_size256 = source.c_size256;
+			c_heapStart = source.c_heapStart;
+			m_pCbvDataBegin = source.m_pCbvDataBegin;
+			source.m_pCbvDataBegin = nullptr;
+			m_constantBuffer.Attach(source.m_constantBuffer.Detach());
+		}
+		
+		void CBTypeCtrl::Unmap() noexcept
 		{
 			assert(m_pCbvDataBegin);
 			assert(m_constantBuffer);
@@ -57,11 +92,11 @@ namespace Monad::Renderer
 			m_pCbvDataBegin = nullptr;
 		}
 
-		bool CBTypeCtrlGeneric::OnD3DCreateStub()
+		bool CBTypeCtrl::OnD3DCreateStub()
 		{
 			const auto buf = CD3DX12_RESOURCE_DESC::Buffer(
 				static_cast<size_t>(c_size256)
-				* static_cast<size_t>(m_resCounter.c_count)
+				* static_cast<size_t>(m_resCounter.m_count)
 			);
 			THROW_EXC_D3D(g_dxSample->m_device->CreateCommittedResource(
 				&HEAP_TYPE_UPLOAD,
@@ -80,10 +115,10 @@ namespace Monad::Renderer
 				c_size256
 			};
 			auto cpuHandle = g_dxSample->m_cbvSrvHeap->GetCPUDescriptorHandle(
-				m_resCounter.c_groupOffset
-				+ m_resCounter.m_currentOnHeap.load()
+				m_resCounter.m_groupOffset
+				+ m_resCounter.m_currentOnHeap
 			);
-			for (uint32_t n = 0; n < m_resCounter.c_count; ++n)
+			for (uint32_t n = 0; n < m_resCounter.m_count; ++n)
 			{
 				g_dxSample->m_device->CreateConstantBufferView(
 					&cbvDesc,
@@ -97,30 +132,30 @@ namespace Monad::Renderer
 			return true;
 		}
 
-		void CBTypeCtrlGeneric::Remap()
+		void CBTypeCtrl::Remap()
 		{
 			Unmap();
 			Map({
 				0,
-				m_resCounter.m_currentOnHeap.load() * c_size256 }
+				m_resCounter.m_currentOnHeap * c_size256 }
 				);
 		}
 
-		uint32_t CBTypeCtrlGeneric::GetCount() const noexcept
+		uint32_t CBTypeCtrl::GetCount() const noexcept
 		{
-			return m_resCounter.c_count;
+			return m_resCounter.m_count;
 		}
 
-		void CBTypeCtrlGeneric::Map(
+		void CBTypeCtrl::Map(
 			const D3D12_RANGE& range
 		)
 		{
-			assert(nullptr == m_pCbvDataBegin);
-			assert(m_constantBuffer);
-			THROW_EXC_D3D(m_constantBuffer->Map(0, &range, reinterpret_cast<void**>(&m_pCbvDataBegin)), L"Map CB");
+			THROW_EXC_IFFALSE(Exceptions::ThreeDFailed, nullptr == m_pCbvDataBegin, L"Map CB");
+			THROW_EXC_IFNULL(Exceptions::ThreeDFailed, m_constantBuffer, L"Map CB #2");
+			THROW_EXC_D3D(m_constantBuffer->Map(0, &range, reinterpret_cast<void**>(&m_pCbvDataBegin)), L"Map CB #3");
 		}
 
-		const uint32_t CBTypeCtrlGeneric::GetOffsetCB(
+		const uint32_t CBTypeCtrl::GetOffsetCB(
 			uint32_t onHeapID,
 			CB_STATES pair
 		) const noexcept
@@ -132,16 +167,16 @@ namespace Monad::Renderer
 					: 0u);
 		}
 
-		bool CBTypeCtrlGeneric::Count::IsFinished() const noexcept
+		bool CBTypeCtrl::Count::IsFinished() const noexcept
 		{
-			return c_count == m_counterOfUsages;
+			return m_count == m_counterOfUsages;
 		}
 
-		bool CBTypeCtrlGeneric::Count::IsFragmentedSwap() const noexcept
+		bool CBTypeCtrl::Count::IsFragmentedSwap() const noexcept
 		{
-			return c_count != m_currentOnHeap;
+			return m_count != m_currentOnHeap;
 		}
-		void CBTypeCtrlGeneric::SetMe(
+		void CBTypeCtrl::SetMe(
 			const ShaderConfigGeneric* shaderConfig,
 			uint32_t onHeapID,
 			Registers::CONSTANT_BUFFER baseShaderRegister,
@@ -162,7 +197,7 @@ namespace Monad::Renderer
 			Registers::CONSTANT_BUFFER baseShaderRegister
 		) :
 			m_typedCounter(
-				*g_dxSample->m_constantBufferManager.find(counter)->second),
+				g_dxSample->m_constantBufferManager.find(counter)->second),
 			c_baseShaderRegister(baseShaderRegister),
 			c_pair(pair),
 			c_onHeapID(GetMyHeap())
@@ -175,7 +210,7 @@ namespace Monad::Renderer
 		) noexcept
 		{
 			if (CB_STATES::CB_STATE_PAIR == pair)
-				m_typedCounter.m_resCounter.m_counterOfUsages.fetch_add(2);
+				m_typedCounter.m_resCounter.m_counterOfUsages += 2;
 			else
 				m_typedCounter.m_resCounter.m_counterOfUsages++;
 		}
@@ -183,10 +218,16 @@ namespace Monad::Renderer
 		inline uint32_t CBInstanceGeneric::GetMyHeap() const noexcept
 		{
 			auto& heapTypeDefault = m_typedCounter.m_resCounter;
-			return heapTypeDefault.c_groupOffset
-				+ (CB_STATES::CB_STATE_PAIR == c_pair
-					? heapTypeDefault.m_currentOnHeap.fetch_add(2) /* Swappable variables at the bottom */
-					: heapTypeDefault.m_currentOnTopHeap--); /* Consts at the top */
+			if (CB_STATES::CB_STATE_PAIR == c_pair)
+			{
+				/* Swappable variables at the bottom */
+				uint32_t ret = heapTypeDefault.m_groupOffset + heapTypeDefault.m_currentOnHeap;
+				heapTypeDefault.m_currentOnHeap += 2;
+				return ret;
+			}
+			else
+				/* Consts at the top */
+				return heapTypeDefault.m_groupOffset + heapTypeDefault.m_currentOnTopHeap--;
 		}
 
 		void CBInstanceGeneric::SetMe(
@@ -218,13 +259,42 @@ namespace Monad::Renderer
 
 		bool CBInstanceGeneric::IfOnlyConsts() const noexcept
 		{
-			return c_onHeapID == m_typedCounter.m_resCounter.c_groupOffset;
+			return c_onHeapID == m_typedCounter.m_resCounter.m_groupOffset;
 		}
 
 		bool CBInstanceGeneric::IsFragmentedSwap() const noexcept
 		{
 			return m_typedCounter.m_resCounter.IsFragmentedSwap();
 		}
-	}
+
+		MapConstantBufferManager::iterator MapConstantBufferManager::find(
+			const MapConstantBufferManager::key_type& _Key_val
+		)
+		{
+			auto manager = Kernel::FlatMapString<CBTypeCtrl>::find(_Key_val);
+			THROW_EXC_ONEND(*this, manager, L"CB Manager");
+			return manager;
+		}
+
+		MapConstantBufferManager::const_iterator MapConstantBufferManager::cbegin() const noexcept
+		{
+			return Kernel::FlatMapString<CBTypeCtrl>::cbegin();
+		}
+
+		MapConstantBufferManager::const_iterator MapConstantBufferManager::cend() const noexcept
+		{
+			return Kernel::FlatMapString<CBTypeCtrl>::cend();
+		}
+
+		MapConstantBufferManager::iterator MapConstantBufferManager::begin() noexcept
+		{
+			return Kernel::FlatMapString<CBTypeCtrl>::begin();
+		}
+
+		MapConstantBufferManager::iterator MapConstantBufferManager::end() noexcept
+		{
+			return Kernel::FlatMapString<CBTypeCtrl>::end();
+		}
 #pragma endregion
+	}
 }

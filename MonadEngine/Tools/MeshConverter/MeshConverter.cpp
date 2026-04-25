@@ -40,6 +40,21 @@ constexpr const wchar_t* g_wndClass = L"D3DClass";
 
 HRESULT g_hr = S_OK;
 
+BOOL WriteFile(
+	_In_ HANDLE hFile,
+	_In_reads_bytes_opt_(nNumberOfBytesToWrite) LPCVOID lpBuffer,
+	_In_ DWORD nNumberOfBytesToWrite
+)
+{
+	return WriteFile(
+		hFile,
+		lpBuffer,
+		nNumberOfBytesToWrite,
+		nullptr,
+		nullptr
+	);
+}
+
 void ReportError(
 	const wchar_t* errorDesc
 )
@@ -151,9 +166,14 @@ INT WINAPI wWinMain(
 	.Windowed = TRUE
 	};
 	ComPtr<IDirect3DDevice9> pD3DDevice;
-	if (FAILED((g_hr = pD3DEx->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
+	if (FAILED((g_hr = pD3DEx->CreateDevice(
+		D3DADAPTER_DEFAULT,
+		D3DDEVTYPE_HAL,
+		hWnd,
 		D3DCREATE_HARDWARE_VERTEXPROCESSING,
-		&d3dpp, &pD3DDevice))))
+		&d3dpp,
+		&pD3DDevice)))
+		)
 	{
 		ReportError(L"Device cannot be created");
 		return EXIT_FAILURE;
@@ -174,59 +194,83 @@ INT WINAPI wWinMain(
 			indicesCount(mesh->GetNumFaces() * 3),
 			verticesCount = mesh->GetNumVertices(),
 			vertexSize = mesh->GetNumBytesPerVertex();
-		if (SUCCEEDED(mesh->LockIndexBuffer(D3DLOCK_READONLY, &indexBuffer))) [[likely]]
+		if (SUCCEEDED(mesh->LockIndexBuffer(D3DLOCK_READONLY, &indexBuffer))
+			&& SUCCEEDED(mesh->LockVertexBuffer(D3DLOCK_READONLY, &vertexBuffer))) [[likely]]
 		{
-			std::unique_ptr<uint16_t[]> indexBuffer2;
 			if (indicesCount <= D3D12_16BIT_INDEX_STRIP_CUT_VALUE) [[likely]]
 			{
+				std::unique_ptr<uint16_t[]> indexBuffer2;
 				indexBuffer2 = std::make_unique_for_overwrite<WORD[]>(indicesCount);
 				for (size_t index = 0; index < indicesCount; ++index)
 					indexBuffer2[index] = LOWORD((reinterpret_cast<UINT*>(indexBuffer))[index]);
-			}
-			else
-			{
-				ReportError(L"Mesh has too many indices for 16-bit format");
-				return EXIT_FAILURE;
-			}
-			if (SUCCEEDED(mesh->LockVertexBuffer(D3DLOCK_READONLY, &vertexBuffer))) [[likely]]
-			{
 				Monad::Kernel::SpanIndices16 indexBuffer2Span{ indexBuffer2.get(), indicesCount };
 				const auto optimizedMesh = Monad::Renderer::OptimizeMesh(
 					indexBuffer2Span,
-					{ vertexBuffer, vertexSize, verticesCount }					
+					{ vertexBuffer, vertexSize, verticesCount }
 				);
 				if (HANDLE f = CreateFile2(__wargv[2], GENERIC_WRITE, 0, CREATE_ALWAYS, nullptr);
 					f != INVALID_HANDLE_VALUE
-					&& WriteFile(f, &vertexSize, sizeof vertexSize, nullptr, nullptr)
-					&& WriteFile(f, &indicesCount, sizeof indicesCount, nullptr, nullptr)
+					&& WriteFile(f, &vertexSize, sizeof vertexSize)
+					&& WriteFile(f, &indicesCount, sizeof indicesCount)
 					&& WriteFile(f,
-						/*indexBuffer2
-						 ? */optimizedMesh.m_indices.data(),
-						//: indexBuffer,
-						static_cast<uint32_t> (optimizedMesh.m_indices.size() * (indexBuffer2
-							?
-							sizeof(uint16_t)
-							:
-							sizeof(uint32_t)
-							)),
-						nullptr,
-						nullptr
+						optimizedMesh.m_indices.data(),
+						static_cast<uint32_t> (optimizedMesh.m_indices.size() * sizeof(uint16_t))
 					)
 					&& WriteFile(
 						f,
 						optimizedMesh.m_vertices.data(),
-						static_cast<uint32_t> (optimizedMesh.m_vertices.size() * vertexSize),
-						nullptr,
-						nullptr)) [[likely]]
+						static_cast<uint32_t> (optimizedMesh.m_vertices.size() * vertexSize)
+					)
+					&& CloseHandle(f)
+					) [[likely]]
 				{
-					CloseHandle(f);
 					successAtExit = ERROR_SUCCESS;
-					wprintf(L"Mesh has been created %u (indices), %u (verts), %u (size of vert.).\n", indicesCount, verticesCount, vertexSize);
+					wprintf(
+						L"Mesh(16bit) %s has been created %u (indices), %u (verts), %u (size of vert.).\n",
+						__wargv[2],
+						indicesCount,
+						verticesCount,
+						vertexSize
+					);
 				}
-				mesh->UnlockVertexBuffer();
 			}
-			mesh->UnlockIndexBuffer();
+			else
+			{
+				Monad::Kernel::SpanIndices32 indexBufferSpan{ static_cast<uint32_t*> (indexBuffer), indicesCount };
+				const auto optimizedMesh = Monad::Renderer::OptimizeMesh(
+					indexBufferSpan,
+					{ vertexBuffer, vertexSize, verticesCount }
+				);
+				if (HANDLE f = CreateFile2(__wargv[2], GENERIC_WRITE, 0, CREATE_ALWAYS, nullptr);
+					f != INVALID_HANDLE_VALUE
+					&& WriteFile(f, &vertexSize, sizeof vertexSize)
+					&& WriteFile(f, &indicesCount, sizeof indicesCount)
+					&& WriteFile(f,
+						optimizedMesh.m_indices.data(),
+						static_cast<uint32_t> (optimizedMesh.m_indices.size() * sizeof(uint32_t)
+							)
+					)
+					&& WriteFile(
+						f,
+						optimizedMesh.m_vertices.data(),
+						static_cast<uint32_t> (optimizedMesh.m_vertices.size() * vertexSize)
+					)
+					&& CloseHandle(f)
+					) [[likely]]
+				{
+					successAtExit = ERROR_SUCCESS;
+					wprintf(
+						L"Mesh(32bit) %s has been created %u (indices), %u (verts), %u (size of vert.).\n",
+						__wargv[2],
+						indicesCount,
+						verticesCount,
+						vertexSize
+					);
+				}
+			}
 		}
+		mesh->UnlockVertexBuffer();
+		mesh->UnlockIndexBuffer();
 	}
 	else [[unlikely]]
 	{

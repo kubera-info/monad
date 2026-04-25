@@ -30,6 +30,7 @@ namespace Monad::Audio
 		VOLUME_MAX = 1.0f;
 
 	extern FnDestroyVoice DestroyVoice;
+	extern FnDestroyVoice DestroySourceVoice;
 }
 
 constexpr std::string operator""_cue(const char* literal, std::size_t sizeOfString)

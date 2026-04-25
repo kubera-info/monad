@@ -4,8 +4,6 @@
 
 #pragma once
 
-// STD
-#include <atomic>
 // Monad
 #include "Threads/Thread.h"
 

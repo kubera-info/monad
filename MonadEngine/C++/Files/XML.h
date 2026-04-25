@@ -6,7 +6,6 @@
 
 // STD
 #include <filesystem>
-#include <sstream>
 #include <unordered_map>
 // Monad
 #include "Kernel/Del.h"

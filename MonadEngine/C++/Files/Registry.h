@@ -4,10 +4,6 @@
 
 #pragma once
 
-// Platform
-#include <Windows.h>
-// STD
-#include <string>
 // Monad
 #include "Globals/__MonadGlobals.h"
 #include "Kernel/Del.h"
@@ -65,6 +61,6 @@ namespace Monad::Files
 	private:
 		OPER_DEL(Registry);
 
-		const HKEY m_subKey = nullptr;
+		const HKEY m_subKey;
 	};
 }

@@ -149,12 +149,6 @@ namespace Monad
 			}
 		{}
 
-		void TimeLerpMorphingDecay::OnStart() noexcept
-		{
-			if ("exit"_pageNo == m_pageNo)
-				Audio::g_persistentAudio->Mute();
-		}
-
 		void TimeLerpMorphingDecay::OnFlush() noexcept
 		{
 			if (g_langChanged)
@@ -174,12 +168,20 @@ namespace Monad
 				System::Shutdown();
 		}
 
+		void TimeLerpMorphingDecay::OnFrameMove() noexcept
+		{
+			__super::OnFrameMove();
+			if(IsInExit() && Audio::g_persistentAudio)
+				Audio::g_persistentAudio->SetMasterVoiceVolume(GetCurrentValue());
+		}
+
 		inline void TimeLerpMorphingDecay::SetMorphedPage(
 			const string& pageNo
 		)
 		{
 			g_processingPages = true;
-			Audio::g_persistentAudio->ResetQueueDescribe();
+			if (Audio::g_persistentAudio)
+				Audio::g_persistentAudio->ResetQueueDescribe();
 			SetMyCursor();
 			m_pageNo = pageNo;
 

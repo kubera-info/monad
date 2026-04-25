@@ -172,9 +172,9 @@ public:
 	// Shader maps
 	// =========================================================================
 
-	struct MapFX : Kernel::UnorderedMapString<std::shared_ptr<ShaderConfigGeneric>>
+	struct MapFX : Kernel::FlatMapString<std::shared_ptr<ShaderConfigGeneric>>
 	{
-		using unordered_map::unordered_map;
+		using flat_map::flat_map;
 		using InitializerListFXes = std::initializer_list<value_type>;
 
 		ShaderConfigGeneric* GetPipeline(

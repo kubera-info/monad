@@ -37,16 +37,28 @@ namespace Monad::Renderer::CB
 	/// Generic controller for constant buffer types.
 	/// Manages allocation, mapping, and lifetime of GPU constant buffers.
 	/// </summary>
-	interface CBTypeCtrlGeneric abstract : Kernel::EventD3DCreateStub
+	struct CBTypeCtrl final : Kernel::EventD3DCreateStub
 	{
 		friend CBInstanceGeneric;
 
-	protected:
-		CBTypeCtrlGeneric(
+		CBTypeCtrl(
 			size_t length,
 			uint32_t count
 		);
-		OPER_DEL(CBTypeCtrlGeneric);
+		CBTypeCtrl() noexcept;
+		CBTypeCtrl(
+			const CBTypeCtrl& source
+		) = default;
+		CBTypeCtrl& operator=(
+			const CBTypeCtrl& source
+			) = default;
+		CBTypeCtrl(
+			CBTypeCtrl&& source
+		) noexcept;
+		CBTypeCtrl& operator=(
+			CBTypeCtrl&& source
+			) noexcept;
+		void Move(CBTypeCtrl&& source) noexcept;
 
 	public:
 		/// <summary>
@@ -65,7 +77,7 @@ namespace Monad::Renderer::CB
 			CB_STATES pair
 		) noexcept
 		{
-			assert(std::forward<Self>(self).m_pCbvDataBegin);
+			assert(std::forward<Self>(self).m_pCbvDataBegin && "Controller of Constant Buffer must not be nullptr.");
 			return std::forward<Self>(self).m_pCbvDataBegin
 				+ static_cast<size_t>(std::forward<Self>(self).GetOffsetCB(onHeapID, pair) - self.c_heapStart)
 				* static_cast<size_t>(std::forward<Self>(self).c_size256);
@@ -93,29 +105,19 @@ namespace Monad::Renderer::CB
 			bool IsFinished() const noexcept;
 			bool IsFragmentedSwap() const noexcept;
 
-			const uint32_t c_groupOffset, c_count;
-			std::atomic_uint32_t
+			uint32_t
+				m_groupOffset,
+				m_count,
 				m_currentOnHeap = 0u,
-				m_currentOnTopHeap = c_count - 1u,
+				m_currentOnTopHeap = m_count - 1u,
 				m_counterOfUsages = 0u;
 		} m_resCounter;
+		uint32_t c_size256;
 
 	private:
-		const uint32_t c_size256, c_heapStart;
+		uint32_t c_heapStart;
+		uint8_t* m_pCbvDataBegin;
 		PtrResource m_constantBuffer;
-		uint8_t* m_pCbvDataBegin = nullptr;
-	};
-
-	template<typename C>
-	struct CBTypeCtrl final : CBTypeCtrlGeneric
-	{
-		CBTypeCtrl(
-			uint32_t count
-		) noexcept :
-			CBTypeCtrlGeneric{
-				sizeof(C),
-				count }
-		{}
 	};
 
 	/// <summary>
@@ -131,10 +133,6 @@ namespace Monad::Renderer::CB
 		);
 		virtual ~CBInstanceGeneric() = default;
 		OPER_DEL(CBInstanceGeneric);
-		/// <summary>
-		/// Returns the size of the underlying constant buffer.
-		/// </summary>
-		virtual size_t SizeOfBuffer() const noexcept = 0;
 
 		template<typename Self>
 		decltype(auto) GetGPUMemory(this Self&& self) noexcept
@@ -173,7 +171,7 @@ namespace Monad::Renderer::CB
 				L"\nCBlocks modifiable: "
 				+ std::to_wstring(m_typedCounter.m_resCounter.m_currentOnHeap)
 				+ L" from: "
-				+ std::to_wstring(m_typedCounter.m_resCounter.c_count)
+				+ std::to_wstring(m_typedCounter.m_resCounter.m_count)
 				+ L"\n";
 			System::MndOutputDebugString(out);
 #endif
@@ -203,10 +201,10 @@ namespace Monad::Renderer::CB
 			}
 		}
 
-		CBTypeCtrlGeneric& m_typedCounter;
-		const CB_STATES c_pair;
-		const Registers::CONSTANT_BUFFER c_baseShaderRegister;
-		const uint32_t c_onHeapID;
+		CBTypeCtrl& m_typedCounter;
+		Registers::CONSTANT_BUFFER c_baseShaderRegister;
+		CB_STATES c_pair;
+		uint32_t c_onHeapID;
 	};
 
 	/// <summary>
@@ -244,6 +242,9 @@ namespace Monad::Renderer::CB
 			, m_counter(counter)
 #endif
 		{
+			assert(((sizeof(BUFFER_TYPE)
+				+ (D3D12_CONSTANT_BUFFER_DATA_PLACEMENT_ALIGNMENT - 1))
+				& ~(D3D12_CONSTANT_BUFFER_DATA_PLACEMENT_ALIGNMENT - 1)) == this->m_typedCounter.c_size256);
 			GetBufferInternal() = cbType;
 			IsFinishedAndAssigned();
 		}
@@ -263,11 +264,6 @@ namespace Monad::Renderer::CB
 #endif
 		{
 			IsFinishedAndNotAssigned();
-		}
-
-		size_t SizeOfBuffer() const noexcept final
-		{
-			return sizeof(BUFFER_TYPE);
 		}
 
 		template<typename Self>
@@ -327,34 +323,33 @@ namespace Monad::Renderer::CB
 		}
 	};
 
-	using MapPtrConstantBufferManager = Kernel::UnorderedMapString<std::shared_ptr<CBTypeCtrlGeneric>>;
+	struct MapConstantBufferManager final : private Kernel::FlatMapString<CBTypeCtrl>
+	{
+		using value_type = typename Kernel::FlatMapString<CBTypeCtrl>::value_type;
+		using InitializerListConstantBufferManager = std::initializer_list<value_type>;
+		using Kernel::FlatMapString<CBTypeCtrl>::FlatMapString;
 
-#define REG_CB(STRUCT_NAME) \
-	using STRUCT_NAME##Instance = Renderer::CB::CBInstance<STRUCT_NAME>;\
-	using STRUCT_NAME##Ctrl = Renderer::CB::CBTypeCtrl<STRUCT_NAME##Generic>;
+		// Map operations
+		[[nodiscard]] iterator find(const key_type& _Key_val);
+		[[nodiscard]] const_iterator cbegin() const noexcept;
+		[[nodiscard]] const_iterator cend() const noexcept;
+		[[nodiscard]] iterator begin() noexcept;
+		[[nodiscard]] iterator end() noexcept;
+	};
 
-#define REG_DEF_CB(STRUCT_NAME,REGISTER_ID) \
-	using STRUCT_NAME##Instance = Renderer::CB::CBBoundRegInstance<STRUCT_NAME,REGISTER_ID>;\
-	using STRUCT_NAME##Ctrl = Renderer::CB::CBTypeCtrl<STRUCT_NAME##Instance>;
+	using HDRInstance = CBBoundRegInstance<BOOL, Registers::CONSTANT_BUFFER::B0>;
 
-	using HDR = BOOL;
-	REG_DEF_CB(HDR, Registers::CONSTANT_BUFFER::B0);
+	using LightPosInstance = CBBoundRegInstance<DirectX::XMFLOAT4, Registers::CONSTANT_BUFFER::B1>;
 
-	using LightPos = DirectX::XMFLOAT4;
-	REG_DEF_CB(LightPos, Registers::CONSTANT_BUFFER::B1);
-
-	using Shadow = DirectX::XMFLOAT4X4;
-	REG_DEF_CB(Shadow, Registers::CONSTANT_BUFFER::B2);
+	using ShadowInstance = CBBoundRegInstance<DirectX::XMFLOAT4X4, Registers::CONSTANT_BUFFER::B2>;
 
 	struct Model
 	{
 		DirectX::XMFLOAT4X4 m_modelViewProj, m_model;
 	};
-	REG_DEF_CB(Model, Registers::CONSTANT_BUFFER::B3);
+	using ModelInstance = CBBoundRegInstance<Model, Registers::CONSTANT_BUFFER::B3>;;
 
-	REG_DEF_CB(PipeColor, Registers::CONSTANT_BUFFER::B4);
+	using PipeColorInstance = CBBoundRegInstance<PipeColor, Registers::CONSTANT_BUFFER::B4>;
 
-	using Forecolor = DirectX::XMFLOAT3;
-	REG_DEF_CB(Forecolor, Registers::CONSTANT_BUFFER::B5);
+	using ForecolorInstance = CBBoundRegInstance<DirectX::XMFLOAT3, Registers::CONSTANT_BUFFER::B5>;
 }
-#define MonadHDR "hdr"_constantBuffer, make_shared<Monad::Renderer::CB::HDRCtrl>(1u)

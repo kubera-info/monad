@@ -86,17 +86,6 @@ namespace Monad
 				);
 			}
 
-			ExpectedLResult ProcessWM_ERASEBKGND(
-				HWND,
-				UINT,
-				WPARAM,
-				LPARAM,
-				LPVOID&
-			)
-			{
-				return PROCESSING_OK;
-			}
-
 			ExpectedLResult ProcessWM_NCCREATE(
 				HWND hWnd,
 				UINT uMsg,
@@ -123,24 +112,11 @@ namespace Monad
 
 			MapForMessages g_forSatMessage
 			{
-				make_pair(
-					WM_APP_CLOSE,
-					ProcessWM_APP_CLOSE),
-				make_pair(
-					WM_CLOSE,
-					ProcessWM_CLOSE),
-				make_pair(
-					WM_ERASEBKGND,
-					ProcessWM_ERASEBKGND),
-				make_pair(
-					WM_NCCREATE,
-					ProcessWM_NCCREATE),
-				make_pair(
-					WM_PAINT,
-					ProcessWM_PAINT),
-				make_pair(
-					WM_SETCURSOR,
-					ProcessWM_SETCURSOR)
+				MONAD_MSG(WM_APP_CLOSE),
+				MONAD_MSG(WM_CLOSE),
+				MONAD_MSG(WM_NCCREATE),
+				MONAD_MSG(WM_PAINT),
+				MONAD_MSG(WM_SETCURSOR)
 			};
 
 #pragma region Satellite

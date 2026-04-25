@@ -9,6 +9,8 @@
 #include <deque>
 #include <vector>
 #include <ranges>
+// Monad
+#include "Exceptions/Exceptions.h"
 
 namespace Monad::Kernel
 {
@@ -51,31 +53,6 @@ namespace Monad::Kernel
 			SkillCollector() noexcept;
 		};
 
-		/// <summary>
-		/// Returns the global event registry.
-		/// </summary>
-		static SkillCollector& VariableRegistry() noexcept;
-
-		void RegisterEventGeneric(
-			const EVENT_IDS event,
-			void* const object)
-		{
-			VariableRegistry()
-				[static_cast<size_t>(event)]
-				.emplace_back(object);
-		}
-
-		void UnregisterEventGeneric(
-			SkilledObjects& objects,
-			void* const object)
-		{
-			if (const auto it = std::ranges::find(objects, object);
-				it != objects.cend())
-			{
-				objects.erase(it);
-			}
-		}
-
 		void SkilledObjects::ForEachFunctorOnCopy()
 		{
 			// Copy is required because callbacks may unregister themselves
@@ -83,35 +60,63 @@ namespace Monad::Kernel
 				m_functor(object);
 		}
 
-		SkillCollector& VariableRegistry() noexcept
-		{
-			static SkillCollector registry;
-			return registry;
-		}
+		SkillCollector g_registry;
 	}
 
 	// ---------------------------------------------------------------------
 
+	void RegisterEventGeneric(
+		const EVENT_IDS event,
+		void* const object)
+	{
+		g_registry
+			[static_cast<size_t>(event)]
+			.emplace_back(object);
+	}
+
+	void UnregisterEventGeneric(
+		SkilledObjects& objects,
+		void* const object)
+	{
+		if (const auto it = std::ranges::find(objects, object);
+			it != objects.cend())
+			objects.erase(it);
+	}
+
 	bool IsRegisteredEvent(
 		const EVENT_IDS event,
-		void* managerStub)
+		const void* managerStub)
 	{
 		const auto& container =
-			VariableRegistry()[static_cast<size_t>(event)];
+			g_registry[static_cast<size_t>(event)];
 
 		return std::ranges::find(container, managerStub) != container.cend();
 	}
 
+	void* RegisteredEventIterator(
+		const EVENT_IDS event,
+		const void* managerStub)
+	{
+		auto& container =
+			g_registry[static_cast<size_t>(event)];
+
+		for (size_t i = 0; i < container.size(); ++i)
+			if (managerStub == container[i])
+				return &container[i];
+
+		return nullptr;
+	}
+
 	void FireEvent(const EVENT_IDS event)
 	{
-		VariableRegistry()
+		g_registry
 			[static_cast<size_t>(event)]
 			.ForEachFunctor();
 	}
 
 	void FireEventOnCopy(const EVENT_IDS event)
 	{
-		VariableRegistry()
+		g_registry
 			[static_cast<size_t>(event)]
 			.ForEachFunctorOnCopy();
 	}
@@ -127,9 +132,9 @@ namespace Monad::Kernel
 		void* managerStub)
 	{
 		if (!IsRegisteredEvent(event, managerStub))
-		{
 			RegisterEventGeneric(event, managerStub);
-		}
+		else
+			THROW_EXC(Monad::Exceptions::ClassAlreadyExists, E_FAIL, L"Already registered for event");
 	}
 
 	void UnregisterEvent(
@@ -137,11 +142,16 @@ namespace Monad::Kernel
 		void* managerStub)
 	{
 		UnregisterEventGeneric(
-			VariableRegistry()[static_cast<size_t>(event)],
+			g_registry[static_cast<size_t>(event)],
 			managerStub
 		);
 	}
 
+	void ReplaceEvent(EVENT_IDS event, void* soourcePtrManagerStub, void* destinateManagerStub)
+	{
+		if (auto ptr = RegisteredEventIterator(event, soourcePtrManagerStub); ptr)
+			*static_cast<void**> (ptr) = destinateManagerStub;
+	}
 	// ---------------------------------------------------------------------
 
 	SkillCollector::SkillCollector() noexcept

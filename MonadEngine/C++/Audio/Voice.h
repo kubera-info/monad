@@ -46,11 +46,8 @@ namespace Monad::Audio
 		/// <summary>
 		/// Clears the specified voice interface and removes all buffers currently queued for playback.
 		/// </summary>
-		/// <param name="queue">Queue ID</param>
 		/// <returns>Should return S_OK</returns>
-		HRESULT FlushSourceBuffers(
-			const std::string& queue
-		) noexcept;
+		HRESULT FlushSourceBuffers() noexcept;
 		/// <summary>
 		/// Checks whether the current voice is playing or has buffers queued for playback.
 		/// </summary>
@@ -62,6 +59,6 @@ namespace Monad::Audio
 		void WaitForEndOfStreams() const noexcept;
 
 	private:
-		std::unique_ptr<IXAudio2SourceVoice, FnDestroyVoice> m_pSourceVoice;
+		std::unique_ptr<IXAudio2SourceVoice, FnDestroyVoice> m_sourceVoice;
 	};
 }

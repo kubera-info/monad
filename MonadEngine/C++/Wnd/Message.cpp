@@ -28,6 +28,17 @@ namespace Monad::Wnd
 			);
 		}
 
+		ExpectedLResult ProcessWM_ERASEBKGND(
+			HWND,
+			UINT,
+			WPARAM,
+			LPARAM,
+			LPVOID&
+		)
+		{
+			return PROCESSING_OK;
+		}
+
 		ExpectedLResult ProcessWM_SYSKEYDOWN_WM_SYSKEYUP(
 			HWND,
 			UINT,
@@ -97,6 +108,9 @@ namespace Monad::Wnd
 		make_pair(
 		WM_SYSKEYUP,
 		ProcessWM_SYSKEYDOWN_WM_SYSKEYUP
+	),
+	MONAD_MSG(
+		WM_ERASEBKGND
 	),
 	MONAD_MSG(
 		WM_SYSCOMMAND

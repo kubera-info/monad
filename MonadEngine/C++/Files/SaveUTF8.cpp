@@ -11,20 +11,6 @@ namespace fs = std::filesystem;
 
 namespace Monad::Files
 {
-	/*void SaveStringAs(
-		const fs::path& filename,
-		const string& utf8Buffer
-	)
-	{
-		RenameFileForBackup(path);
-		SmartHandleFile{ path,
-			GENERIC_WRITE,
-			0,
-			CREATE_ALWAYS,
-			&g_writeParameters
-		}.Write(utf8Buffer);
-	}*/
-
 	HANDLE SaveStringAsWithDACL(
 		const fs::path& path,
 		const string& utf8Buffer

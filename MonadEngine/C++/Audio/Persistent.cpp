@@ -29,7 +29,7 @@ namespace Monad
 			m_config{ config },
 			m_threadPoolStreams{ Threads::THREAD_NAME_AUDIO_STREAM_POOL },
 			m_voicesVolumesCache{
-				ranges::to<Kernel::UnorderedMapString<float>>(
+				ranges::to<Kernel::FlatMapString<float>>(
 					views::transform
 					(
 						queues,
@@ -175,13 +175,22 @@ namespace Monad
 			m_streamsNames.emplace_back(filename);
 		}
 
+		void PersistentAudio::SetMasterVoiceVolume(
+			const float volume
+		)
+		{
+			const lock_guard lg(m_lockAudio);
+			if (IsReady())
+				m_xAudioState->SetMasterVoiceVolume(volume);
+		}
+
 		void PersistentAudio::SetVoiceVolumeGeneric(
 			const float volume,
 			const string& queue
 		)
 		{
 			const lock_guard lg(m_lockAudio);
-			if (IsReady())
+			if (IsReady() && g_persistentAudio->InternalContainsQueue(STREAM))
 				m_xAudioState->operator[](queue).SetVoiceVolumeGeneric(volume);
 		}
 
@@ -312,10 +321,13 @@ namespace Monad
 			const string& queue
 		)
 		{
-			m_voicesVolumesCache[queue] = volume;
-			InternalSetVoiceVolumeXAudio2(
-				volume,
-				queue);
+			if (InternalContainsQueue(queue))
+			{
+				m_voicesVolumesCache[queue] = volume;
+				InternalSetVoiceVolumeXAudio2(
+					volume,
+					queue);
+			}
 		}
 
 		void PersistentAudio::InternalSetVoiceVolumeXAudio2(
@@ -323,15 +335,22 @@ namespace Monad
 			const string& queue
 		)
 		{
-			if (IsReady())
+			if (IsReady() && InternalContainsQueue(queue))
 				m_xAudioState->operator[](queue).SetVoiceVolume(volume);
+		}
+
+		bool PersistentAudio::InternalContainsQueue(
+			const string& queue
+		) const noexcept
+		{
+			return m_voicesVolumesCache.contains(queue);
 		}
 
 		void PersistentAudio::InternalResetQueue(
 			const string& queue
 		)
 		{
-			if (IsReady())
+			if (IsReady() && InternalContainsQueue(queue))
 				m_xAudioState->operator[](queue).ResetManager();
 		}
 
@@ -344,7 +363,7 @@ namespace Monad
 			auto snd = GetSound(filename);
 			if (!snd)
 				return;
-			if (IsReady())
+			if (IsReady() && InternalContainsQueue(queue))
 				m_xAudioState->operator[](queue).AudioEnqueueSound({
 				filename,
 				callback,
@@ -371,7 +390,10 @@ namespace Monad
 			const string& queue
 		) noexcept
 		{
-			return InternalIsPlaying(queue);
+			if (IsReady() && InternalContainsQueue(queue))
+				return InternalIsPlaying(queue);
+			else
+				return false;
 		}
 
 		void PersistentAudio::StreamWave::OnAfterWave() noexcept
@@ -387,7 +409,8 @@ namespace Monad
 		{
 			g_persistentAudio->SetVoiceVolumeGeneric(
 				VOLUME_MAX,
-				STREAM);
+				STREAM
+			);
 		}
 
 		void PersistentAudio::InternalClearCurrentStream()
@@ -447,7 +470,7 @@ namespace Monad
 
 		void PersistentAudio::OnDescVolumes()
 		{
-			if (IsReady())
+			if (IsReady() && g_persistentAudio->InternalContainsQueue(STREAM))
 				m_xAudioState->operator[](STREAM)
 				.SetVoiceVolumeGeneric(
 					m_xAudioState->operator[](DESCRIBE).IsPlaying()

@@ -7,9 +7,9 @@
 // Platform
 #include <Windows.h>
 // STD
+#include <unordered_map>
 #include <expected>
 #include <memory>
-#include <map>
 
 namespace Monad::Wnd
 {
@@ -51,7 +51,7 @@ namespace Monad::Wnd
 		LPVOID& context
 		);
 
-	using MapForMessages = std::map<uint32_t, MessageProcess>;
+	using MapForMessages = std::unordered_map<uint32_t, MessageProcess>;
 	extern MapForMessages g_forMessage;
 
 	/// <summary>

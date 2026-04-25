@@ -81,10 +81,10 @@ namespace Monad
 			};*/
 			void TransformToQuotedPrintable(
 				wstring& quoteString,
-				VectorTransform list
+				VectorTransform characterToQuotedPrintablePairs
 			)
 			{
-				for (auto const& quotedPair : list)
+				for (auto const& quotedPair : characterToQuotedPrintablePairs)
 				{
 					ReplaceAll(
 						quoteString,

@@ -24,11 +24,11 @@ namespace Monad::I18N
 	struct I18NType
 	{
 	protected:
-		Kernel::UnorderedMapString<V> m_translations;
+		Kernel::FlatMapString<V> m_translations;
 
 	public:
 		using InitializerListTranslations = std::initializer_list<
-			std::pair<const std::string, V>
+			std::pair<std::string, V>
 		>;
 
 		I18NType(
@@ -71,7 +71,7 @@ namespace Monad::I18N
 			const std::wstring& defaultText
 		);
 
-		const wchar_t* ToLPCWSTR() const noexcept; // he size() method is intentionally omitted, as separate calls would not be atomic and could lead to inconsistent results.
+		const wchar_t* ToLPCWSTR() const noexcept; // The size() method is intentionally omitted, as separate calls would not be atomic and could lead to inconsistent results.
 		std::string ToString() const;
 
 		template<typename... A>

@@ -28,7 +28,7 @@ function Copy-MonadReport([string]$pPlatform, [string]$pConfiguration)
 		@('.pdb', '.exe')|
 			ForEach-Object{ Copy-MonadFile "$pSrcFiles\Report$_" "$pDstFiles\Report$_" }
 	}
-	@('OldPolishClock', 'EnchantedCrayon')|
+	@('EnchantedCrayon')|
 		ForEach-Object{ Copy-ReportFiles $Target ((Split-Path -Path $PSScriptRoot -Parent) + "\$_\$Target") }
 }
 

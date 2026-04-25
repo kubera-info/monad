@@ -259,12 +259,12 @@ D3D12Core::D3D12Core() :
 		}
 	},
 	{
-		{ "forecolor"_constantBuffer, make_shared<CB::ForecolorCtrl>(76) },
-		{ MonadHDR },
-		{ "light_pos"_constantBuffer, make_shared<CB::LightPosCtrl>(1) },
-		{ "model"_constantBuffer, make_shared<CB::ModelCtrl>(240) },
-		{ "pipe_color"_constantBuffer, make_shared<CB::PipeColorCtrl>(25) },
-		{ "shadow"_constantBuffer, make_shared<CB::ShadowCtrl>(240) }
+		{ "forecolor"_constantBuffer, { sizeof DirectX::XMFLOAT3, 76 } },
+		{ "hdr"_constantBuffer, { sizeof BOOL, 1u } },	
+		{ "light_pos"_constantBuffer, { sizeof DirectX::XMFLOAT4, 1 } },
+		{ "model"_constantBuffer, { sizeof CB::Model, 240 } },
+		{ "pipe_color"_constantBuffer, { sizeof CB::PipeColor, 25 } },
+		{ "shadow"_constantBuffer, { sizeof DirectX::XMFLOAT4X4, 240 } }
 	} }
 {
 	LoadPipeline();

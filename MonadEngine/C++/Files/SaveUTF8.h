@@ -16,29 +16,35 @@ namespace Monad::Files
 {
 	/// <summary>
 	/// Save a UTF8 text to a clear file.
+	/// This subroutine uses DACL
 	/// </summary>
-	/*void SaveStringAs(
-		const std::filesystem::path& filename,
-		const std::string& utf8Buffer
-	);*/
+	/// <param name="path">Output file path</param>
+	/// <param name="utf8Buffer">UTF8 string</param>
+	/// <returns>File handle</returns>
 	HANDLE SaveStringAsWithDACL(
 		const std::filesystem::path& path,
 		const std::string& utf8Buffer
 	);
+
+	/// <summary>
+	/// Save a UTF8 text to a clear file.
+	/// </summary>
+	/// <param name="path">Output file path</param>
+	/// <param name="utf8Buffer">UTF8 string</param>
+	/// <returns>File handle</returns>
 	template<typename V>
 	void SaveStringAs(
 		const std::filesystem::path& path,
 		const V& buffer
 	)
 	{
-		Files::SmartHandleFile fileToWrite{
+		Files::SmartHandleFile{
 					path,
 					GENERIC_READ | GENERIC_WRITE,
 					0,
 					NULL,
 					CREATE_ALWAYS,
 					0
-		};
-		fileToWrite.Write(buffer);
+		}.Write(buffer);
 	}
 }

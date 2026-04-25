@@ -18,9 +18,9 @@ namespace Monad::Audio
 		float volume,
 		const WAVEFORMATEX* waveFormatEx
 	) :
-		m_pSourceVoice{
+		m_sourceVoice{
 			nullptr,
-			DestroyVoice
+			DestroySourceVoice
 	}
 	{
 		assert(nullptr != xAudio2);
@@ -32,7 +32,7 @@ namespace Monad::Audio
 			0,
 			XAUDIO2_DEFAULT_FREQ_RATIO,
 			callback), L"Create Source Voice");
-		m_pSourceVoice.reset(tmpSourceVoice);
+		m_sourceVoice.reset(tmpSourceVoice);
 		if (VOLUME_MAX != volume)
 			SetVolume(volume);
 	}
@@ -48,44 +48,39 @@ namespace Monad::Audio
 		// Enqueues WAV sample data for playback via an XAUDIO2_BUFFER structure.
 		const XAUDIO2_BUFFER buffer{ 0, static_cast<uint32_t>(wave->c_bufferCPU.size()), wave->c_bufferCPU.data(), 0, 0, 0, 0, 0, nullptr };
 
-		V_RETURN(m_pSourceVoice->SubmitSourceBuffer(&buffer));
-		return m_pSourceVoice->Start();
+		V_RETURN(m_sourceVoice->SubmitSourceBuffer(&buffer));
+		return m_sourceVoice->Start();
 	}
 
 	void Voice::SetVolume(
 		const float volume
 	) noexcept
 	{
-		m_pSourceVoice->SetVolume(volume);
+		m_sourceVoice->SetVolume(volume);
 	}
 
-	HRESULT Voice::FlushSourceBuffers(
-		const std::string& queue
-	) noexcept
+	HRESULT Voice::FlushSourceBuffers() noexcept
 	{
 		if (!g_persistentAudio->IsReady())
 			return S_OK;
-		assert(nullptr != m_pSourceVoice);
-		SetVolume(VOLUME_MUTED);
-		V_RETURN(m_pSourceVoice->Stop(0));
-		V_RETURN(m_pSourceVoice->FlushSourceBuffers());
+		assert(nullptr != m_sourceVoice);
+		V_RETURN(m_sourceVoice->Stop(0));
+		V_RETURN(m_sourceVoice->FlushSourceBuffers());
 		WaitForEndOfStreams();
-		SetVolume(g_persistentAudio->GetVolume(queue));
 		return S_OK;
 	}
 
 	bool Voice::IsPlaying() const noexcept
 	{
 		XAUDIO2_VOICE_STATE state{};
-		assert(m_pSourceVoice);
-		m_pSourceVoice->GetState(&state);
+		assert(m_sourceVoice);
+		m_sourceVoice->GetState(&state);
 		return 0 < state.BuffersQueued;
 	}
 
 	void Voice::WaitForEndOfStreams() const noexcept
 	{
-		while (g_persistentAudio->IsReady() && IsPlaying())
-			SwitchToThread();
+		while (g_persistentAudio->IsReady() && IsPlaying());
 	}
 #pragma endregion Voice
 }

@@ -70,7 +70,7 @@ namespace
 		BACK_AND_FRONT_BUFFERS = BACK_BUFFER + FRONT_BUFFER;
 
 	inline uint32_t CountCBuffers(
-		DXSample::InitializerListConstantBufferManager cbTypeGenerics
+		CB::MapConstantBufferManager::InitializerListConstantBufferManager cbTypeGenerics
 	) noexcept
 	{
 		return std::ranges::fold_left(
@@ -78,10 +78,9 @@ namespace
 			0u,
 			[](
 				const uint32_t prevValue,
-				const CB::MapPtrConstantBufferManager::value_type& currentConstantBufferManager) noexcept
+				const CB::MapConstantBufferManager::value_type& currentConstantBufferManager) noexcept
 			{
-				assert(currentConstantBufferManager.second);
-				return prevValue + currentConstantBufferManager.second->GetCount();
+				return prevValue + currentConstantBufferManager.second.GetCount();
 			});
 	}
 
@@ -114,7 +113,7 @@ DXSample::DXSample(
 	const uint32_t sampleCount,
 	MapFX::InitializerListFXes fxCollection,
 	InitializerListTechniques techniques,
-	InitializerListConstantBufferManager constantBufferManager
+	CB::MapConstantBufferManager::InitializerListConstantBufferManager constantBufferManager
 ) :
 	c_me(
 		this,
@@ -155,16 +154,15 @@ DXSample::~DXSample()
 	{
 		strm << L"\n\t\t{ \""s
 			<< Monad::Tools::UTF8ToUnicode(ctrl.first)
-			<< L"\"_constantBuffer, make_shared<CB::"s
+			<< L"\"_constantBuffer, { "s
 			<< ToPascalOrCamelCase(Monad::Tools::UTF8ToUnicode(ctrl.first))
-			<< L"Ctrl>("s
-			<< to_wstring(ctrl.second->m_resCounter.m_counterOfUsages.load())
-			<< L") },"s;
-		count += ctrl.second->m_resCounter.m_counterOfUsages.load();
+			<< L", "s
+			<< to_wstring(ctrl.second.m_resCounter.m_counterOfUsages)
+			<< L" } },"s;
+		count += ctrl.second.m_resCounter.m_counterOfUsages;
 	}
-	auto replaceHDR = strm.str().substr(0, strm.str().length() - 1);
-	ReplaceAll<wstring>(replaceHDR, L"{ \"hdr\"_constantBuffer, make_shared<CB::HdrCtrl>(1) }"s, L"{ MonadHDR }"s);
-	OutputDebugString(replaceHDR.c_str());
+	OutputDebugString(L"\nlist: ");
+	OutputDebugString(strm.str().c_str());
 	OutputDebugString(L"\ncount: ");
 	OutputDebugString(to_wstring(count).c_str());
 	OutputDebugString(L"\nConstant Buffers-End\n");
@@ -650,7 +648,7 @@ void DXSample::LoadPipeline()
 		swapChain.As(&m_swapChain),
 		L"As Swap Chain"
 	);
-	// Check display HDR support and initialize ST.2084 support to match the display's support.
+	// Check display Hdr support and initialize ST.2084 support to match the display's support.
 	EnsureSwapChainColorSpace(_10, m_enableST2084);
 	if (DXGI_COLOR_SPACE_RGB_FULL_G2084_NONE_P2020 == m_currentSwapChainColorSpace)
 		SetHDRMetaData();
@@ -838,7 +836,7 @@ void DXSample::SetHDRMetaData(float MaxOutputNits /*=1000.0f*/, float MinOutputN
 	if (!m_swapChain)
 		return;
 
-	// Clean the hdr metadata if the display doesn't support HDR
+	// Clean the hdr metadata if the display doesn't support Hdr
 	if (!m_hdrSupport)
 	{
 		THROW_EXC_D3D(m_swapChain->SetHDRMetaData(

@@ -155,12 +155,12 @@ D3D12Core::D3D12Core() :
 		}
 	},
 	{
-		{ "forecolor"_constantBuffer, make_shared<CB::ForecolorCtrl>(4) },
-		{ MonadHDR },
-		{ "shadow"_constantBuffer, make_shared<CB::ShadowCtrl>(12) },
-		{ "light_pos"_constantBuffer, make_shared<CB::LightPosCtrl>(1) },
-		{ "model"_constantBuffer, make_shared<CB::ModelCtrl>(12) },
-		{ "pipe_color"_constantBuffer, make_shared<CB::PipeColorCtrl>(2) }
+		{ "forecolor"_constantBuffer, { sizeof DirectX::XMFLOAT3, 4u } },
+		{ "hdr"_constantBuffer, { sizeof BOOL, 1u } },
+		{ "light_pos"_constantBuffer, { sizeof DirectX::XMFLOAT4, 1u } },
+		{ "model"_constantBuffer, { sizeof CB::Model, 12u } },
+		{ "pipe_color"_constantBuffer, { sizeof CB::PipeColor, 2u } },
+		{ "shadow"_constantBuffer, { sizeof DirectX::XMFLOAT4X4 , 12u } }
 	} }
 {
 	LoadPipeline();
@@ -182,8 +182,8 @@ void D3D12Core::OnUpdate()
 	{
 		g_singleton->InsertTaskSearcher2(LOAD_BOOT_DX);
 
-		if (static SingleCall initializedAudioOnce; !initializedAudioOnce.test_and_set())
-			Monad::Audio::g_persistentAudio->SetMuted();
+		//if (static SingleCall initializedAudioOnce; !initializedAudioOnce.test_and_set())
+			//Monad::Audio::g_persistentAudio->SetMuted();
 		break;
 	}
 	[[unlikely]]

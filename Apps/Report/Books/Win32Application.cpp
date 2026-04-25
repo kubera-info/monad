@@ -58,14 +58,17 @@ ExpectedLResult ProcessWM_CLOSE(
 	LPVOID&
 )
 {
-	Monad::Pages::SelectPage("exit"_pageNo);
-	if (!g_keyPressed && Monad::Files::FILE_MAN_STATE_READY == g_fileManagerState)
+	if (!g_keyPressed)
 	{
-		Monad::Audio::g_persistentAudio->PlayJingle("no"_cue);
 		g_keyPressed = true;
+		if (Monad::Files::FILE_MAN_STATE_READY == g_fileManagerState)
+		{
+			Monad::Audio::g_persistentAudio->PlayJingle("no"_cue);
+			Monad::Pages::SelectPage("exit"_pageNo);
+			return PROCESSING_OK;
+		}
 	}
-	else
-		DestroyMainWindow(hWnd);
+	DestroyMainWindow(hWnd);
 	return PROCESSING_OK;
 }
 

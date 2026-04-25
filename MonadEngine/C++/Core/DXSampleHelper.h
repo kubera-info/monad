@@ -25,12 +25,12 @@ using namespace std::string_literals;
 inline void SetName(
 	[[maybe_unused]] ID3D12Object* object,
 	[[maybe_unused]] const wchar_t* name
-)
+) noexcept
 {
 #if defined _DEBUG
 	assert(nullptr != object);
 	assert(nullptr != name);
-	object->SetName((L"-"s + name).c_str());
+	object->SetName(name);
 #endif
 }
 

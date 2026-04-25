@@ -44,10 +44,9 @@ interface DXSample abstract : DXSampleGeneric, Monad::Renderer::Combine
 {
 	const Monad::Kernel::Me<DXSample> c_me;
 	const Monad::Renderer::InputLayout::MapInputLayouts c_inputLayouts;
-	using MapTechniques = Monad::Kernel::UnorderedMapString<Monad::Renderer::Technique>;
+	using MapTechniques = Monad::Kernel::FlatMapString<Monad::Renderer::Technique>;
 	MapTechniques m_techniques;
 	using InitializerListTechniques = std::initializer_list<MapTechniques::value_type>;
-	using InitializerListConstantBufferManager = std::initializer_list<Monad::Renderer::CB::MapPtrConstantBufferManager::value_type>;
 
 	DXSample(
 		Monad::Renderer::InputLayout::MapInputLayouts inputLayouts,
@@ -55,7 +54,7 @@ interface DXSample abstract : DXSampleGeneric, Monad::Renderer::Combine
 		const uint32_t sampleCount,
 		Monad::Renderer::MapFX::InitializerListFXes fxCollection,
 		InitializerListTechniques techniques,
-		InitializerListConstantBufferManager cbTypeGenerics
+		Monad::Renderer::CB::MapConstantBufferManager::InitializerListConstantBufferManager cbTypeGenerics
 	);
 	OPER_DEL(DXSample);
 	~DXSample() override;
@@ -230,7 +229,7 @@ public:
 #if defined MONAD_SHADOW
 	Monad::Renderer::DepthStencil m_shadows;
 #endif
-	Monad::Renderer::CB::MapPtrConstantBufferManager m_constantBufferManager;
+	Monad::Renderer::CB::MapConstantBufferManager m_constantBufferManager;
 	Monad::Renderer::MapFX m_fxCollection;
 } extern* g_dxSample;
 

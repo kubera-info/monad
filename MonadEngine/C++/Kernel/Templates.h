@@ -8,6 +8,7 @@
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+#include "boost/container/flat_map.hpp"
 // Monad
 #include "__MonadKernel.h"
 #include "Renderer/__MonadRenderer.h"
@@ -84,6 +85,12 @@ namespace Monad::Kernel
 
 	template<typename V>
 	using UnorderedMapString = std::unordered_map<std::string, V>;
+
+	template<typename V>
+	using FlatMapWString = boost::container::flat_map<std::wstring, V>;
+
+	template<typename V>
+	using FlatMapString = boost::container::flat_map<std::string, V>;
 
 	/// <summary>
 	/// Replaces all occurrences of a substring in a string.

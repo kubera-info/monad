@@ -18,4 +18,10 @@ namespace Monad::Audio
 			assert(voice);
 			voice->DestroyVoice();
 		};
+	FnDestroyVoice DestroySourceVoice = [](IXAudio2Voice* const voice) noexcept
+		{
+			assert(voice);
+			static_cast<IXAudio2SourceVoice*> (voice)->Stop();
+			DestroyVoice(voice);
+		};
 }

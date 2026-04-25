@@ -9,7 +9,7 @@
 	<Identity
 	  Name="40715Hemtex-WodzimierzKub.TheEnchantedCrayonVirtua"
 	  Publisher="CN=2900FC6A-7E71-4893-9449-788546178C59"
-	  Version="5.0.1.0" />
+	  Version="5.0.2.0" />
 
 	<Properties>
 		<DisplayName>ms-resource:Resources/PackageDisplayName</DisplayName>

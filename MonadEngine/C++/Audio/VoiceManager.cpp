@@ -31,10 +31,13 @@ namespace Monad::Audio
 		const bool isQueueErased = m_isQueueErased;
 		m_isQueueErased = true;
 
-		while (!m_voiceCommandQueue.empty())
-			m_voiceCommandQueue.pop();
+		{
+			const std::lock_guard lg(m_lockSafeQueue);
+			while (!m_voiceCommandQueue.empty())
+				m_voiceCommandQueue.pop();
+		}
 		if (auto playingVoice(GetPlayingVoice()); playingVoice)
-			hr = playingVoice->FlushSourceBuffers(m_queue);
+			hr = playingVoice->FlushSourceBuffers();
 
 		m_isQueueErased = isQueueErased;
 		return hr;
@@ -45,7 +48,10 @@ namespace Monad::Audio
 	)
 	{
 		HRESULT hr = S_OK;
-		m_voiceCommandQueue.push(wave);
+		{
+			const std::lock_guard lg(m_lockSafeQueue);
+			m_voiceCommandQueue.push(wave);
+		}
 
 		if (!IsPlaying())
 			hr = AudioDequeueWave();
@@ -71,6 +77,7 @@ namespace Monad::Audio
 	{
 		HRESULT hr = S_OK;
 
+		const std::lock_guard lg(m_lockSafeQueue);
 		if (!m_voiceCommandQueue.empty())
 		{
 			m_currentWave = m_voiceCommandQueue.front();
@@ -78,7 +85,6 @@ namespace Monad::Audio
 			if (m_currentWave.IfPlay())
 			{
 				assert(!m_currentWave.empty());
-				//auto wave = ValidateBuffer();
 				hr = AudioPlayWave(m_currentWave);
 			}
 			if (SUCCEEDED(hr) && !m_voiceCommandQueue.empty() && !m_currentWave.empty() && m_voiceCommandQueue.front().IsCompatible(m_currentWave))
@@ -156,7 +162,6 @@ namespace Monad::Audio
 		HRESULT
 	) noexcept
 	{
-		//Audio::g_persistentAudio->ShutdownOnError();
 	}
 
 	bool VoiceManager::IsPlaying() const noexcept
@@ -199,12 +204,5 @@ namespace Monad::Audio
 			Start();
 		}
 	}
-
-	/*void VoiceManager::TimeLerpAudioDecayStream::OnFlush() noexcept
-	{
-		__super::OnFlush();
-
-		g_persistentAudio->InternalClearCurrentStream();
-	}*/
 #pragma endregion VoiceManager::TimeLerpAudioDecay
 }

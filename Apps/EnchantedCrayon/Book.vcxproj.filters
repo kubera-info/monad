@@ -869,9 +869,6 @@
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\HDR.cpp">
       <Filter>Monad%28a%29 Incudes\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\MonadEngine\C++\Dev\Coding.cpp">
-      <Filter>Monad%28a%29 Incudes\Dev</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\MonadEngine\C++\GUI\Frame.cpp">
       <Filter>Monad%28a%29 Incudes\GUI</Filter>
     </ClCompile>

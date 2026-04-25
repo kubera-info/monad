@@ -9,7 +9,6 @@
 #include <mdspan>
 // Monad
 #include "Pages/Page.h"
-
 using namespace std;
 
 namespace Monad

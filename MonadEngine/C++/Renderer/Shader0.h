@@ -44,7 +44,7 @@ namespace Monad::Renderer
 		/// Constructs shader from a mesh file.
 		/// </summary>
 		ShaderGeneric(
-			const std::string& technique,
+			const std::string & technique,
 			Mesh mesh
 		);
 

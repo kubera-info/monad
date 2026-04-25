@@ -46,40 +46,34 @@ namespace
 		const I18NString
 			QUESTION_EXCEPTION
 		{
+			L"This program needs a permission to send\nan anonymous bug report to the developers.\nCould {} post the report?"_us,
 			L"Program wymaga zgody na wysłanie\nanonimowego raportu błędu do twórców.\nCzy {} może przekazać raport ? "_pl,
-			L"Программа требует разрешения на отправку\nанонимного отчета об ошибке разработчикам.\nМожет ли {} отправить отчет?"_ru,
-			L"This program needs a permission to send\nan anonymous bug report to the developers.\nCould {} post the report?"_us
-		},
+			L"Программа требует разрешения на отправку\nанонимного отчета об ошибке разработчикам.\nМожет ли {} отправить отчет?"_ru },
 			STAGE
+			{
+				L"Stage: "_us,
+				L"Miejsce: "_pl,
+				L"Стадия: "_ru },
+				THREAD
+				{
+					L"Thread: "_us,
+					L"Wątek: "_pl,
+					L"Нить: "_ru },
+					ERROR_DESC
+					{
+						L"Error: "_us,
+						L"Błąd: "_pl,
+						L"Ошибка: "_ru },
+						WINE
+						{
+							L"Windows or Wine: "_us,
+							L"Windows czy Wine: "_pl,
+							L"Windows или Wine: "_ru },
+							PAGE
 		{
-			L"Miejsce: "_pl,
-			L"Стадия: "_ru,
-			L"Stage: "_us
-		},
-			THREAD
-		{
-			L"Wątek: "_pl,
-			L"Нить: "_ru,
-			L"Thread: "_us
-		},
-			ERROR_DESC
-		{
-			L"Błąd: "_pl,
-			L"Ошибка: "_ru,
-			L"Error: "_us
-		},
-			WINE
-		{
-			L"Windows czy Wine: "_pl,
-			L"Windows или Wine: "_ru,
-			L"Windows or Wine: "_us
-		},
-			PAGE
-		{
+			L"Page: "_us,
 			L"Strona: "_pl,
-			L"Страница: "_ru,
-			L"Page: "_us
-		};
+			L"Страница: "_ru };
 	}
 }
 
@@ -124,10 +118,10 @@ DialogReportGeneric::ButtonOneToolbar::ButtonOneToolbar(
 	const float horizontalOffset,
 	const Monad::GUI::IconicStyle& style
 ) :
-		ButtonOneToolbarGeneric(
+	ButtonOneToolbarGeneric(
 		"quick"_pageNo,
-			{ horizontalOffset, Monad::GUI::POS_Y },
-			style
+		{ horizontalOffset, Monad::GUI::POS_Y },
+		style
 	)
 {
 }
@@ -148,7 +142,7 @@ DialogReport::DialogReport() :
 	m_sendReportButton(
 		Monad::GUI::DISTANCE / 2.0f,
 		STYLE_OK_BUTTON
-)
+	)
 {
 	m_label = GetReportString() + nl0 + Report::GUI::THREAD.GetVal() + g_parameters->GetParameter(PAR_NAME_THREAD_NAME)
 		+ nl0 + Report::GUI::WINE.GetVal() + g_parameters->GetParameter(PAR_NAME_NATIVE)
@@ -160,8 +154,8 @@ DialogReport::DialogReport() :
 		VFormat(g_parameters->GetParameter(PAR_NAME_APP_TITLE)));
 	AddRenderedObjects({
 		&m_abortButton,
-		&m_sendReportButton }		
-	);
+		&m_sendReportButton }
+		);
 }
 
 void DialogReport::ButtonSendReport::OnClick()

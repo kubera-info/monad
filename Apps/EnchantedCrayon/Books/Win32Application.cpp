@@ -45,10 +45,22 @@ ExpectedLResult ProcessWM_CLOSE(
 	LPVOID&
 )
 {
-	RegisterWM_CLOSE();
-	g_singleton->OnDestroyDevice();
-	DestroyWindow(hWnd);
-	return PROCESSING_OK;
+	if (!Monad::Exceptions::InAnyCloseReason()
+		&& (STOP_BOOT_DX <= Monad::Files::g_fileManagerState
+		&& FILE_MAN_STATE_SYSTEM > Monad::Files::g_fileManagerState
+		|| FILE_MAN_STATE_READY == Monad::Files::g_fileManagerState)
+		&& "exit"_pageNo != Monad::Pages::g_currentPage)
+	{
+		Monad::Pages::SelectPage("exit"_pageNo);
+		return PROCESSING_ERROR;
+	}
+	else
+	{
+		RegisterWM_CLOSE();
+		g_singleton->OnDestroyDevice();
+		DestroyWindow(hWnd);
+		return PROCESSING_OK;
+	}
 }
 
 ExpectedLResult ProcessWM_APP_RELEASE(

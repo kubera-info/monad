@@ -108,13 +108,14 @@ namespace Monad::Wnd
 	MSG msg{};\
 	while (WM_QUIT != msg.message)\
 	{\
-		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))\
+		/* Process any messages in the queue.*/\
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))\
 		{\
 			TranslateMessage(&msg);\
 			DispatchMessage(&msg);\
 		}\
-		else\
-			OnBoth();\
+		/*else\
+			OnBoth();*/\
 	}\
 	\
 	/* Cleanup */\

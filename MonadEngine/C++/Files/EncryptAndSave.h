@@ -13,7 +13,7 @@ namespace Monad::Files
 	/// <summary>
 	/// Exports in-memory assets to compressed and encrypted files.
 	/// </summary>
-	/// <typeparameter name="V">A container of blocks, such as vector, wstring, etc./typeparameter>
+	/// <typeparameter name="V">A container of blocks, such as vector, wstring, etc.</typeparameter>
 	/// <param name="cipher">Cipher context</param>
 	/// <param name="buffer">Input clear buffer</param>
 	/// <param name="outputPath">Output path</param>

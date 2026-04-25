@@ -43,6 +43,7 @@ namespace Monad::Files
 	extern const std::filesystem::path WILDCARD;
 	extern std::filesystem::path g_profilePath;
 	constexpr size_t
+		FILE_MAN_STATE_SYSTEM = 2048,
 		FILE_MAN_STATE_FREE = 2048,
 		FILE_MAN_STATE_LOAD_BOOT = 4096,
 		FILE_MAN_STATE_EXCEPTION = 8192,

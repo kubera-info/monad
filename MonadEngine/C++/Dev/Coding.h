@@ -21,8 +21,26 @@ namespace Monad::Dev
 	/// <param name="name">Any snake case name</param>
 	/// <param name="called">'pascal case' or 'camel case'</param>
 	/// <returns>Transformed case</returns>	
-	const std::wstring ToPascalOrCamelCase(
-		const std::wstring& name,
+	template<typename C>
+	const std::basic_string<C> ToPascalOrCamelCase(
+		const std::basic_string<C>& name,
 		const DEV_ENCODE isPascal = DEV_ENCODE::PASCAL_CASE
-	);
+	)
+	{
+		std::basic_string<C> newCaseName;
+		bool capitalizeNext = isPascal;
+
+		for (const C ch : name)
+			if (uint32_t('_') == uint32_t(ch))
+				capitalizeNext = true;
+			else if (capitalizeNext)
+			{
+				capitalizeNext = false;
+				newCaseName += static_cast<C>(toupper(ch));
+			}
+			else
+				newCaseName += static_cast<C>(tolower(ch));
+
+		return newCaseName;
+	}
 }

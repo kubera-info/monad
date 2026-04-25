@@ -60,18 +60,21 @@ namespace Monad::Renderer
 				renderTarget->c_resourceState,
 				renderTarget->c_viewDesc.m_clearValue
 			);
-			g_dxSample->m_device->CreateRenderTargetView(
-				GetRtResource(),
-				&renderTarget->c_viewDesc.m_desc,
-				g_dxSample->m_rtvHeap->GetCPUDescriptorHandle(
-					renderTarget->c_typeID)
-			);
+			if (nullptr != GetRtResource())
+			{
+				g_dxSample->m_device->CreateRenderTargetView(
+					GetRtResource(),
+					&renderTarget->c_viewDesc.m_desc,
+					g_dxSample->m_rtvHeap->GetCPUDescriptorHandle(
+						renderTarget->c_typeID)
+				);
 #if defined _DEBUG
-			SetName(
-				GetRtResource(),
-				(name + L"-m_renderTarget").c_str()
-			);
+				SetName(
+					GetRtResource(),
+					(name + L"-m_renderTarget").c_str()
+				);
 #endif
+			}
 		}
 		if (depthStencil)
 		{
@@ -86,15 +89,20 @@ namespace Monad::Renderer
 				depthStencil->c_resourceState,
 				depthStencil->c_viewDesc.m_clearValue
 			);
-			g_dxSample->m_device->CreateDepthStencilView(
-				GetDsResource(),
-				&depthStencil->c_viewDesc.m_desc,
-				g_dxSample->m_dsvHeap->GetCPUDescriptorHandle(
-					depthStencil->c_typeID)
-			);
+			if (nullptr != GetDsResource())
+			{
+				g_dxSample->m_device->CreateDepthStencilView(
+					GetDsResource(),
+					&depthStencil->c_viewDesc.m_desc,
+					g_dxSample->m_dsvHeap->GetCPUDescriptorHandle(
+						depthStencil->c_typeID)
+				);
 #if defined _DEBUG
-			SetName(GetDsResource(), (name + L"m_depthStencil").c_str());
+				SetName(
+					GetDsResource(), (name + L"m_depthStencil").c_str()
+				);
 #endif
+			}
 		}
 	}
 

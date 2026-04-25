@@ -62,7 +62,8 @@ namespace Monad
 			m_fileSearcher{ fileSearcher },
 			c_path{ move(filePath) },
 			c_sizeOfBuffer{ fileSize }
-		{}
+		{
+		}
 
 		TaskFileHolderGeneric::TaskFileHolderGeneric(
 			TaskFileSearcherGeneric* const fileSearcher,
@@ -74,7 +75,8 @@ namespace Monad
 				0,
 				false
 			)
-		{}
+		{
+		}
 #define WITHOUT_META { m_archiveBuffer.cbegin() + sizeof VectorBytesArchive::FileMeta, m_archiveBuffer.cend() }
 
 		const SpanConstBytes TaskFileHolderGeneric::GetSpan() const noexcept
@@ -192,7 +194,8 @@ namespace Monad
 			c_interpreter{ interpreter },
 			m_cipher{ cipher },
 			m_threadPool{ threadPool }
-		{}
+		{
+		}
 
 		TaskFileSearcherGeneric::~TaskFileSearcherGeneric()
 		{
@@ -208,8 +211,9 @@ namespace Monad
 
 		bool TaskFileSearcherGeneric::IsNotReferenced() noexcept
 		{
-			assert(0 < m_stateRefsCount);
-			if (0 == InterlockedDecrement64(&m_stateRefsCount))
+			if (0 == m_stateRefsCount)
+				return true;
+			else if (0 == InterlockedDecrement64(&m_stateRefsCount))
 				if (InAnyCloseReason())
 					g_fileManagerState = FILE_MAN_STATE_EXCEPTION;
 				else
@@ -237,10 +241,11 @@ namespace Monad
 						TaskFileSearcherGeneric* const fileSearcher,
 						ThreadPool::ListPtrsTasks& listOfPointers
 					) :
-						FileHandle{ move(searchPaths) },
+						FileHandle{ searchPaths },
 						m_fileSearcher{ fileSearcher },
 						m_listOfPtrs{ listOfPointers }
-					{}
+					{
+					}
 					void OnFindFile(
 						const filesystem::path& selectedFolder
 					) final
@@ -266,17 +271,21 @@ namespace Monad
 				} handleLoader{ searchPaths, this, listOfPtrsHolders };
 				handleLoader.Run();
 			}
-			m_threadPool.InsertTasks(listOfPtrsHolders | views::transform
-			(
-				[](const auto& holder) noexcept
-				{
-					return holder.Get();
-				}
-			));
-			for (auto& holder : listOfPtrsHolders)
-				holder.Detach(); // Must be after insert, not before, because of RAII.
+			if (!listOfPtrsHolders.empty())
+			{
+				m_threadPool.InsertTasks(listOfPtrsHolders | views::transform
+				(
+					[](const auto& holder) noexcept
+					{
+						return holder.Get();
+					}
+				));
+				for (auto& holder : listOfPtrsHolders)
+					holder.Detach(); // Must be after insert, not before, because of RAII.
+			}
+			else
+				IsNotReferenced();
 		}
-
 		void TaskFileSearcherGeneric::IncrementRefCount() noexcept
 		{
 			InterlockedIncrement64(&m_stateRefsCount);
@@ -318,7 +327,8 @@ namespace Monad
 			fileSize,
 			true
 		}
-		{}
+		{
+		}
 
 		FileRefHolder::~FileRefHolder()
 		{

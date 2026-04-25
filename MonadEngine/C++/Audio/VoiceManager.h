@@ -4,6 +4,8 @@
 
 #pragma once
 
+// Platform
+#include "Modules/Xbox-ATG-Samples/Kits/CPUTK/OSLockable.h"
 // STD
 #include <queue>
 // Monad
@@ -23,6 +25,10 @@ namespace Monad::Audio
 			IXAudio2* const xAudio2,
 			const std::string& queue
 		);
+		VoiceManager(const VoiceManager& source) = delete;
+		VoiceManager(VoiceManager&& source) = default;
+		VoiceManager& operator=(const VoiceManager& source) = delete;
+		VoiceManager& operator=(VoiceManager&& source) = default;
 
 		void OnFrameMove() noexcept final;
 		void OnFlush() noexcept override;
@@ -94,6 +100,7 @@ namespace Monad::Audio
 			return ifFound != self.m_distinctVoices.cend() ? &ifFound->second : nullptr;
 		}
 
+		ATG::CriticalSectionLockable m_lockSafeQueue;
 		IXAudio2* m_xAudio2 = nullptr;
 		std::queue<WaveToPlayWithCallback> m_voiceCommandQueue;
 		WaveToPlayWithCallback m_currentWave;

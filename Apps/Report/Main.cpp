@@ -51,7 +51,7 @@ int32_t WINAPI MiniMain(
 
 	// Application identifiers
 	Globals::g_whoAmI = L"ER";
-	
+
 	// Copyright text
 	Globals::g_copyright =
 	{
@@ -77,14 +77,14 @@ int32_t WINAPI MiniMain(
 		Files::EXT_FONT,
 		Files::EXT_TEX
 	};
-
+	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_WNDW);
 	Monad::Globals::g_exceptionReportingMethod = Monad::Exceptions::EXCEPTION_PRESENTATION::MESSAGE_BOX;
 	std::set_terminate(Monad::Exceptions::ReportAndTerminate);
 #if defined _DEBUG
 	if (System::GetParameter(System::FILENAME_REPORT).empty())
 	{
 		// Mocked call
-		const std::string xmlForDebug{ "<monad I18N=\"en-GB\" Thread=\"singleton_pool\" Class=\"struct Monad::Exceptions::IOError\" Exception=\"Failure to access the data disk\" HRESULT=\"0x80070003\" Stage=\"FS Cannot Find Files: *.monad-???\" Page=\"boot\" Type=\"Report\" GPU=\"NVIDIA GeForce RTX 5070 Ti Laptop GPU\" Version=\"4.8.3 X64\" Title=\"The Enchanted Crayon Colouring Book\" Salt=\"0AFFC219D06D4F89\" ShortName=\"#emoji_u1f3a8#The Enchanted Crayon\" Path=\"C:\\Users\\wlodz\\source\\repos\\monad_solution\\Apps\\EnchantedCrayon\\Debug\\Book.exe\" WhoAmI=\"ZC\" NativeOrWine=\"Native Windows\" Arch=\"X64\" Ico=\"101\"/>" };
+		const std::string xmlForDebug{ "<monad I18N=\"pl-PL\" Thread=\"Monad Anonymous\" Class=\"struct Monad::Exceptions::AudioFailed\" Exception=\"Karta dĹşwiÄ™kowa lub jej sterowniki nie speĹ‚niajÄ… minimalnych wymagaĹ„\" HRESULT=\"0x80004005\" Stage=\"Moj test\" Page=\"unknown\" Type=\"Report\" GPU=\"\" Version=\"5.0.2 (Debug)X64\" Title=\"Kolorowanka â€žZaczarowana Kredkaâ€ť\" Salt=\"0AFFC219D06D4F89\" ShortName=\"Zaczarowana Kredka\" Path=\"C:\\Users\\wlodz\\source\\repos\\monad_solution\\Apps\\EnchantedCrayon\\Debug\\Book.exe\" WhoAmI=\"ZC\" NativeOrWine=\"Native Windows\" Arch=\"X64\" Ico=\"101\"/>" };
 		g_parameters = std::make_unique<XMLManagerErrorDesc>(Kernel::SpanConstBytes(xmlForDebug).GetComIStreamTemp().Get());
 	}
 	else

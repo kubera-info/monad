@@ -37,7 +37,7 @@ namespace Monad
 						DWORD flags
 					);
 
-				const std::atomic<BCRYPT_ALG_HANDLE> m_algorithm;
+				const BCRYPT_ALG_HANDLE m_algorithm;
 
 				struct SafetyProperty final
 				{

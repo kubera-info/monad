@@ -16,10 +16,12 @@ namespace Monad::Audio
 	using namespace Exceptions;
 
 	void XAudioState::OnProcessingPassEnd() noexcept
-	{}
+	{
+	}
 
 	void XAudioState::OnProcessingPassStart() noexcept
-	{}
+	{
+	}
 
 	void XAudioState::OnCriticalError(
 		HRESULT
@@ -29,16 +31,24 @@ namespace Monad::Audio
 	}
 
 	void XAudioState::Mute(
-		InitializerListQueues list
+		InitializerListQueues listOfQueues
 	) noexcept
 	{
 		if (g_persistentAudio->IsReady())
-			for (const auto& queue : list)
+			for (const auto& queue : listOfQueues)
+				if(m_voicesManagers.contains(queue))
 #if defined _DEBUG
-				m_voicesManagers.at(queue).Mute();
+					m_voicesManagers.at(queue).Mute();
 #else
-				m_voicesManagers.find(queue)->second.Mute();
+					m_voicesManagers.find(queue)->second.Mute();
 #endif
+	}
+
+	void XAudioState::SetMasterVoiceVolume(
+		const float volume
+	) noexcept
+	{
+		m_masteringVoice->SetVolume(volume);
 	}
 
 #pragma region XAudioState
@@ -78,19 +88,7 @@ namespace Monad::Audio
 
 	XAudioState::XAudioState() noexcept :
 		m_masteringVoice{ nullptr, DestroyVoice }
-	{}
-
-	XAudioState::~XAudioState()
 	{
-		if (!g_persistentAudio->m_inRestart && IsValid())
-		{
-			for (const auto& voiceManager : m_voicesManagers)
-				voiceManager.second.WaitForEndOfStreams();
-			if (m_masteringVoice)
-				m_masteringVoice->SetVolume(VOLUME_MUTED);
-		}
-		if (m_xAudio2)
-			m_xAudio2->StopEngine();
 	}
 #pragma endregion XAudioState
 }

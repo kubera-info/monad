@@ -13,6 +13,8 @@ all: Init clean data_setter
 data_setter:
 	@echo Preparing timestamped monads
 	@xcopy /s/y/i "..\..\Res\*.monad-???" "..\Res"
+	"$(MND_BIN_DIR)\DateSetter.exe" "..\Res"
+#	"$(MND_BIN_DIR)\PathSetterRes.exe" "..\Res"
 
 clean:
 	@del /s "..\Res\*.monad-???" >nul 2>&1
