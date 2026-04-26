@@ -188,6 +188,9 @@ MapForMessages g_forMainMessage{
 		WM_APP_CLICK
 	),
 	MONAD_MSG(
+		WM_POINTERUP
+	),
+	MONAD_MSG(
 		WM_POINTERDOWN
 	),
 	MONAD_MSG(

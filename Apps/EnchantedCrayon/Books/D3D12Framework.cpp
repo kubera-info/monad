@@ -495,7 +495,7 @@ void D3D12Core::PopulateCommandLists()
 		m_shadows.SetMe();
 		OnFrameRenderAll(STAGE_MODES::SHADOW);
 	}
-	else
+	else 
 		CenterCursor();
 #pragma endregion
 

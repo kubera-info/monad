@@ -30,7 +30,7 @@ namespace Monad
 			CURSOR_ARROW = LoadCursor(NULL, IDC_ARROW);
 
 		void CenterCursor() noexcept
-		{/*
+		{
 			if (g_active && !Monad::Exceptions::InAnyCloseReason())
 			{
 				const long long rightUInt = DXSample::GetWidth() / 2, bottomUInt = DXSample::GetHeight() / 2;
@@ -41,7 +41,6 @@ namespace Monad
 					::SetCursorPos(static_cast<int>(rightUInt), static_cast<int>(bottomUInt));
 				SetCursorPosGeneric(static_cast<int>(rightUInt), static_cast<int>(bottomUInt));
 			}
-		*/
 		}
 
 		namespace

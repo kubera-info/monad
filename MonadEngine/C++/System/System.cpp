@@ -136,23 +136,18 @@ namespace Monad::System
 	/// </returns>
 	bool GetArchitecture()
 	{
-		USHORT processMachine = 0;
-		USHORT nativeMachine = 0;
+		USHORT
+			processMachine = 0,
+			nativeMachine = 0;
 
 		// Use IsWow64Process2 dynamically for compatibility with older systems
 		using LPFN_ISWOW64PROCESS2 = BOOL(WINAPI*)(HANDLE, USHORT*, USHORT*);
 
-		auto fnIsWow64Process2 =
+		if (auto fnIsWow64Process2 =
 			reinterpret_cast<LPFN_ISWOW64PROCESS2>(
-				GetProcAddress(GetModuleHandle(TEXT("kernel32")), "IsWow64Process2"));
-
-		if (fnIsWow64Process2)
-		{
+				GetProcAddress(GetModuleHandle(L"kernel32"), "IsWow64Process2")); fnIsWow64Process2)
 			if (fnIsWow64Process2(GetCurrentProcess(), &processMachine, &nativeMachine))
-			{
 				return (nativeMachine == IMAGE_FILE_MACHINE_ARM64);
-			}
-		}
 
 		return false;
 	}

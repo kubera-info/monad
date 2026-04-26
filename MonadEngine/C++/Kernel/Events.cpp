@@ -133,8 +133,6 @@ namespace Monad::Kernel
 	{
 		if (!IsRegisteredEvent(event, managerStub))
 			RegisterEventGeneric(event, managerStub);
-		else
-			THROW_EXC(Monad::Exceptions::ClassAlreadyExists, E_FAIL, L"Already registered for event");
 	}
 
 	void UnregisterEvent(
