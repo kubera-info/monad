@@ -53,7 +53,7 @@ function Update-MonadCURL(
 	Remove-Item -Path $File
 
 	# Found all available versions in the folder
-	$Folders = Get-ChildItem -Path "$Release\curl*" -Directory
+	$Folders = Get-ChildItem -Path (Join-Path $Release 'curl*') -Directory
 	$CurrentName = $Folders| 
 	    Sort-Object -Property Name -Descending| 
 	    Select-Object -First 1 -ExpandProperty Name
@@ -62,10 +62,10 @@ function Update-MonadCURL(
 		Remove-Item -Recurse -Force
 
 	# Prepare for the new libCurl content
-	$Target = "$Release\libCurl"
+	$Target = Join-Path $Release 'libCurl'
 	Remove-Item -Path $Target -Recurse -Force -ErrorAction Ignore
-	Move-Item -Path "$Release\$CurrentName" -Destination $Target
-	$SourceProject = "$Target\bin\$DynamicLinkLibrary"
+	Move-Item -Path (Join-Path $Release $CurrentName) -Destination $Target
+	$SourceProject = Join-Path (Join-Path $Target bin) $DynamicLinkLibrary
 
 	# Status of the process
 	if ($CookieRead -ne $CurrentName)
@@ -77,8 +77,8 @@ function Update-MonadCURL(
 	}
 
 	# Populate to projects
-	@('Report', 'EnchantedCrayon')|
-		ForEach-Object{ Copy-MonadFile $SourceProject "..\..\Apps\$_\$Output$Configuration\$DynamicLinkLibrary" }
+	@('Report', 'OldPolishClock', 'EnchantedCrayon')|
+		ForEach-Object{ Copy-MonadFile $SourceProject (Join-Path (Join-Path (Join-Path '..\..\Apps' $_) ($Output + $Configuration)) $DynamicLinkLibrary) }
 }
 
 # args[0] = Platform - x64 | ARM64

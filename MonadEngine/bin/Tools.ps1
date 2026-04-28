@@ -56,7 +56,7 @@ function Create-MonadEncryptedFile(
 	Create-MonadIfMissed (Split-Path -Path $DestinateFile -Parent)
 	if (Test-MonadFileOutdated $SourceFile $DestinateFile)
 	{
-		& ($PSScriptRoot + '\Encryption.exe') $Salt $SourceFile $DestinateFile
+		& (Join-Path $PSScriptRoot 'Encryption.exe') $Salt $SourceFile $DestinateFile
 	}
 }
 
@@ -72,7 +72,7 @@ function Create-MonadEncryptedFiles(
 	Get-ChildItem $SourceFolder -File -Filter $SourceWildcard
 	| ForEach-Object {
 		$Name = $_.FullName
-		$Dest = $DestinateFolder + '\' + [System.IO.Path]::GetFileNameWithoutExtension($_.Name) + '.' + $DestinateExtension
+		$Dest = Join-Path $DestinateFolder ([System.IO.Path]::GetFileNameWithoutExtension($_.Name) + '.' + $DestinateExtension)
 		Create-MonadEncryptedFile $Salt $Name $Dest		
 	}
 }

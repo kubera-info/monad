@@ -1,6 +1,6 @@
-############################################################################
-### Copyright © 2016–2025 by Włodzimierz O. Kubera. All rights reserved. ###
-############################################################################
+##########################################################################
+### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+##########################################################################
 
 # Simple Text-To-Speech helper script.
 # Uses Microsoft SAPI (Speech API) to speak text passed as arguments.
