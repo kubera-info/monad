@@ -154,7 +154,8 @@ namespace Monad
 				"boot"_pageNo,
 				Globals::g_shortAppName,
 				WAIT }
-		{}
+		{
+		}
 #pragma endregion
 
 #pragma region CombineWorld::CombineFullRequirements
@@ -263,7 +264,8 @@ namespace Monad
 				"printing"_pageNo,
 				Globals::g_shortAppName,
 				PRINTING)
-		{}
+		{
+		}
 #pragma endregion
 	}
 }

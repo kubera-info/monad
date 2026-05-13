@@ -24,7 +24,8 @@ namespace Monad::Print
 			this,
 			g_shaderSketchGeneric
 		)
-	{}
+	{
+	}
 
 	bool ShaderSketchGeneric::IsSystem() const noexcept
 	{

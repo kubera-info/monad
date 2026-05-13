@@ -10,6 +10,8 @@
 #include <d3dx12.h>
 // STD
 #include <memory>
+// Boost
+#include <flat_map>
 // Monad
 #include "__MonadRenderer.h"
 #include "Kernel/Templates.h"
@@ -17,31 +19,12 @@
 namespace Monad::Renderer
 {
 	// =========================================================================
-	// Technique
+	// FlatMapTechnique
 	// =========================================================================
 
-	struct Technique
-	{
-		std::string m_worldState;
-
-#if MONAD_SHADOW
-		Technique(
-			const std::string worldState,
-			const OptionalString& shadowState = std::nullopt
-		) noexcept :
-			m_worldState(worldState),
-			m_shadowState(shadowState)
-		{}
-		OptionalString m_shadowState;
-#else
-		Technique(
-			const std::string& worldState
-		) :
-			m_worldState(worldState)
-		{}
-#endif
-	};
-
+	using FlatMapTechnique = std::flat_map<size_t, std::string>;
+	using ParamListStates = std::initializer_list<std::pair<size_t, std::string>>;
+	
 	// =========================================================================
 	// Shader Configuration
 	// =========================================================================

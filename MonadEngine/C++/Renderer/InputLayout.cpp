@@ -102,7 +102,7 @@ namespace Monad::Renderer::InputLayout
 		const MapInputLayouts& source
 		)
 	{
-		merge(MapInputLayouts(source));
+		insert(source.cbegin(), source.cend());
 		return *this;
 	}
 

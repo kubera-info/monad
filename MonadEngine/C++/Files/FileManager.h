@@ -156,12 +156,13 @@ namespace Monad::Files
 					sourceSpan.subspan(c_stringView.length() + 1,
 						sourceSpan.size() - c_stringView.length() - 1)
 				}
-			{}
-			std::wstring UTF8ToUnicode() const;
+			{
+}
+std::wstring UTF8ToUnicode() const;
 
-			const std::string_view c_stringView;
-			const Kernel::SpanConstBytes c_span;
-		};
+const std::string_view c_stringView;
+const Kernel::SpanConstBytes c_span;
+};
 		/// <summary>
 		/// Splits the file’s data vector into two parts: a string from the beginning and a binary blob from the end.
 		/// </summary>

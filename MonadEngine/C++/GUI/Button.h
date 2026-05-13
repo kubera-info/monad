@@ -16,7 +16,9 @@
 namespace Monad::GUI
 {
 	struct ForceConstForecolorType
-	{} extern ForceConstForecolor;
+	{
+	}
+	extern ForceConstForecolor;
 
 	/// <summary>
 	/// Abstract base class representing a generic button.

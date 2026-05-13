@@ -138,14 +138,16 @@ namespace Monad
 			XMLElement root
 		) :
 			m_rootOfDoc{ root }
-		{}
+		{
+		}
 
 		XMLManager::XMLManager(
 			XMLElement::InitializerListAttrs attrs,
 			XMLElement::VectorNestedElements nestedElements
 		) :
 			XMLManager{ { MONAD_TAG, attrs, nestedElements } }
-		{}
+		{
+		}
 
 		bool XMLManager::HasNoNestedElements() const noexcept
 		{
@@ -249,7 +251,8 @@ namespace Monad
 			m_elementName{ elementName },
 			m_attrs{ attrs },
 			m_nestedElements{ nestedElements }
-		{}
+		{
+		}
 
 		XMLManager::XMLElement::XMLElement(
 			IXmlReader* reader

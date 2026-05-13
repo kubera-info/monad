@@ -23,7 +23,8 @@ namespace Monad::Audio
 		VOLUME_MUTED },
 		m_xAudio2(xAudio2),
 		m_queue(queue)
-	{}
+	{
+	}
 
 	HRESULT VoiceManager::ResetManager() noexcept
 	{
@@ -132,18 +133,22 @@ namespace Monad::Audio
 	void VoiceManager::OnVoiceProcessingPassStart(
 		uint32_t
 	) noexcept
-	{}
+	{
+	}
 
 	void VoiceManager::OnVoiceProcessingPassEnd() noexcept
-	{}
+	{
+	}
 
 	void VoiceManager::OnStreamEnd() noexcept
-	{}
+	{
+	}
 
 	void VoiceManager::OnBufferStart(
 		void*
 	) noexcept
-	{}
+	{
+	}
 
 	void VoiceManager::OnBufferEnd(
 		void*
@@ -155,7 +160,8 @@ namespace Monad::Audio
 	void VoiceManager::OnLoopEnd(
 		void*
 	) noexcept
-	{}
+	{
+	}
 
 	void VoiceManager::OnVoiceError(
 		void*,

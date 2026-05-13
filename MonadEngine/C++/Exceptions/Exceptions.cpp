@@ -142,7 +142,8 @@ namespace Monad
 						{
 							ScopedString(PWSTR& name) :
 								m_threadName(name)
-							{}
+							{
+							}
 
 							~ScopedString()
 							{
@@ -350,6 +351,7 @@ namespace Monad
 				UTF8ToUnicode(stdException.what()),
 				typeid(stdException).name()
 		}
-		{}
+		{
+		}
 	}
 }

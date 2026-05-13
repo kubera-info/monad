@@ -144,7 +144,8 @@ namespace Monad
 			m_parent{
 			parent
 		}
-		{}
+		{
+		}
 
 		void CombineCursorCrayon::TimeLerpColorChange::OnFlush() noexcept
 		{
@@ -169,7 +170,8 @@ namespace Monad
 			ShaderMetallic2{
 			"crayon"_technique,
 			"crayon"_mesh }
-		{}
+		{
+		}
 
 		void CombineCursorCrayon::ShaderCrayon::SetColor(
 			const XMFLOAT3& cursorColor
@@ -200,7 +202,8 @@ namespace Monad
 				"paper"_technique,
 				"paper"_mesh },
 				m_forecolor{ "forecolor"_constantBuffer }
-		{}
+		{
+		}
 
 		void CombineCursorCrayon::ShaderPaper::SetColor(
 			const XMFLOAT3& cursorColor
@@ -230,7 +233,8 @@ namespace Monad
 			"torus"_mesh,
 			TORUS_COLORS
 		}
-		{}
+		{
+		}
 
 		void ShaderCursorTorus::OnNewMatrix(XMFLOAT4X4& matrixToAlter) const noexcept
 		{

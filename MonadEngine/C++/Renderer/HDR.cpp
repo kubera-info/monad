@@ -16,7 +16,8 @@ namespace Monad::Renderer::HDR
 		const XMFLOAT4& float4Value
 	) noexcept :
 		c_float4Value{ float4Value }
-	{}
+	{
+	}
 
 	PowerFloat4::PowerFloat4(
 		const XMFLOAT3& float3Value
@@ -27,7 +28,8 @@ namespace Monad::Renderer::HDR
 			float3Value.z,
 			1.0f }
 			)
-	{}
+	{
+	}
 
 	XMFLOAT4 PowerFloat4::GetFloatSRGBA() const noexcept
 	{

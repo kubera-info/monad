@@ -125,7 +125,8 @@ namespace Monad
 			D3D12_DESCRIPTOR_RANGE_TYPE_SRV,
 			static_cast<uint32_t>(baseShaderRegister)
 		}
-		{}
+		{
+		}
 
 		ShaderConfigGeneric::InitD3D12Ranges1::InitD3D12Range1::InitD3D12Range1(
 			const D3D12_SHADER_VISIBILITY shaderVisibility,
@@ -136,7 +137,8 @@ namespace Monad
 			D3D12_DESCRIPTOR_RANGE_TYPE_CBV,
 			static_cast<uint32_t>(baseShaderRegister)
 		}
-		{}
+		{
+		}
 
 		ShaderConfigGeneric::InitD3D12Ranges1::InitD3D12Range1::InitD3D12Range1(
 			const D3D12_SHADER_VISIBILITY shaderVisibility,
@@ -147,7 +149,8 @@ namespace Monad
 			m_rangeType(rangeType),
 			m_baseShaderRegister(baseShaderRegister),
 			m_rangeFlags(D3D12_DESCRIPTOR_RANGE_FLAG_NONE)
-		{}
+		{
+		}
 #pragma endregion
 
 #pragma region ShaderConfigGeneric
@@ -159,7 +162,8 @@ namespace Monad
 			m_vs{ vs },
 			m_ps{ ps },
 			m_alphaBlending{ alphaBlending }
-		{}
+		{
+		}
 
 		void ShaderConfigGeneric::insert(
 			const string& leadingTechID,

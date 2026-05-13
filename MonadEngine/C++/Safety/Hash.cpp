@@ -19,7 +19,8 @@ namespace Monad::Safety::SafetyCore
 		BCRYPT_HASH_REUSABLE_FLAG,
 		BCRYPT_HASH_LENGTH
 	}
-	{}
+	{
+	}
 
 	ArrayKey256Bits SHA256Manager::HashSource(
 		InitializerListArgHash buffers

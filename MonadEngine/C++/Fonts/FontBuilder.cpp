@@ -188,7 +188,8 @@ namespace Monad
 			CB::ForecolorInstance(counter),
 			c_me(this, g_forecolorFontGeneric
 			)
-		{}
+		{
+		}
 		ForecolorGeneric* g_forecolorFontGeneric = nullptr;
 #pragma endregion
 	}

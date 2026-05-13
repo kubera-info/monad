@@ -88,7 +88,8 @@ namespace Monad
 			TexturePrinter::TexturePrinter(DirectX::ScratchImage&& outputImage) noexcept :
 				m_outputImage{ std::move(outputImage) },
 				m_devMode{ nullptr, LambdaDestroyDevMode }
-			{}
+			{
+			}
 
 			TexturePrinter::~TexturePrinter()
 			{
@@ -464,7 +465,8 @@ namespace Monad
 
 		TaskTexturePrinter::TaskTexturePrinter(Renderer::PtrResource rtResource) noexcept :
 			m_rtResource(rtResource)
-		{}
+		{
+		}
 
 		void TaskTexturePrinter::Run()
 		{

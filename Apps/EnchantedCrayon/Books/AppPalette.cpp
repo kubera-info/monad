@@ -75,7 +75,8 @@ namespace Monad
 						{}
 				}
 				}
-				{}
+				{
+				}
 
 			private:
 				void OnClick()

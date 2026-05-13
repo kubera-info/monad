@@ -44,7 +44,7 @@ interface DXSample abstract : DXSampleGeneric, Monad::Renderer::Combine
 {
 	const Monad::Kernel::Me<DXSample> c_me;
 	const Monad::Renderer::InputLayout::MapInputLayouts c_inputLayouts;
-	using MapTechniques = Monad::Kernel::FlatMapString<Monad::Renderer::Technique>;
+	using MapTechniques = Monad::Kernel::FlatMapString<Monad::Renderer::FlatMapTechnique>;
 	MapTechniques m_techniques;
 	using InitializerListTechniques = std::initializer_list<MapTechniques::value_type>;
 
@@ -224,7 +224,9 @@ public:
 		bool requestHighPerformanceAdapter = true
 	);
 
-	virtual void Repo() {}
+	virtual void Repo()
+	{
+	}
 
 #if defined MONAD_SHADOW
 	Monad::Renderer::DepthStencil m_shadows;

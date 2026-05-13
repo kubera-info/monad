@@ -184,7 +184,8 @@ namespace Monad::Files
 			options,
 			subKey.c_str())
 	}
-	{}
+	{
+	}
 
 	Registry::~Registry()
 	{

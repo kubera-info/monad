@@ -14,7 +14,8 @@ namespace Monad::Renderer
 		VectorBytes&& Source
 	) noexcept :
 		VectorBytes{ move(Source) }
-	{}
+	{
+	}
 
 	VectorBytesBytecode::operator const D3D12_SHADER_BYTECODE() const noexcept
 	{

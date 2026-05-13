@@ -70,7 +70,8 @@ namespace Monad
 				Renderer::Registers::INPUT_RESOURCE::T2,
 				meshFilename },
 				m_positionOfCenter{ positionOfCenter }
-		{}
+		{
+		}
 
 		const DirectX::XMFLOAT2 Pane::GetPos() const noexcept
 		{

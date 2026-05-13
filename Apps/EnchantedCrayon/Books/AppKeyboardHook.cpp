@@ -38,6 +38,7 @@ namespace Monad
 				WH_KEYBOARD_LL,
 				LowLevelKeyboardProc
 			)
-		{}
+		{
+		}
 	}
 }

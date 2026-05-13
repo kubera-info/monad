@@ -47,7 +47,8 @@ namespace Monad::Wnd
 	/// </summary>
 	WindowClassMain::WindowClassMain(WNDPROC wndProc) :
 		WindowClass{ L"WndClassMain", wndProc }
-	{}
+	{
+	}
 
 	/// <summary>
 	/// Creates the main application window.

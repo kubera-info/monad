@@ -13,5 +13,6 @@ namespace Monad::Kernel
 	/// is not allowed to throw exceptions or must be avoided.
 	/// </summary>
 	struct DummyParameter final
-	{};
+	{
+	};
 }

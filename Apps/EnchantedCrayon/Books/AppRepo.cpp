@@ -49,7 +49,8 @@ namespace Monad
 			m_currentArtProfile{
 			m_memArts.end()
 		}
-		{}
+		{
+		}
 
 		void Repository::WriteXMLProfile()
 		{
@@ -225,7 +226,8 @@ namespace Monad
 #pragma region Repository::CurrentArtProfile
 		Repository::CurrentArtProfile::CurrentArtProfile(ArtIterator end) noexcept :
 			m_currentArt(end)
-		{}
+		{
+		}
 
 		void Repository::CurrentArtProfile::ReadForCurrent()
 		{

@@ -83,7 +83,8 @@ namespace Monad
 					abs(dialogFrame.x - dialogFrame.z)
 		}
 		}
-		{}
+		{
+		}
 
 		DialogGeneric::Border::Border(
 			const XMFLOAT4& dialogFrame
@@ -94,7 +95,8 @@ namespace Monad
 			Globals::g_borderColors,
 			dialogFrame
 		}
-		{}
+		{
+		}
 
 		XMFLOAT4 DialogGeneric::GetInternalRect() const noexcept
 		{
@@ -114,7 +116,8 @@ namespace Monad
 					{ 1.275f, 1.4f },
 					{ color }
 			}
-			{}
+			{
+			}
 		} const FONT_STYLE_CHECKBOX{
 			{ .04f, .1f, .3f } },
 			FONT_STYLE_RADIO_BUTTON{ { .28f, .1f, .17f }
@@ -183,7 +186,8 @@ namespace Monad
 				MAX_DIALOG,
 				title
 			}
-		{}
+		{
+		}
 
 		DialogFullScreenGeneric::DialogFullScreenGeneric(
 			const std::string& pageNo,

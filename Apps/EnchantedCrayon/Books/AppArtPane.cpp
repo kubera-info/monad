@@ -49,7 +49,8 @@ namespace Monad
 					m_colors{ colors },
 					m_paletteName{ palette },
 					c_paneRect{ paneRect }
-		{}
+		{
+		}
 
 		void ShaderArtGeneric::SetArt(const Repository::ConstArtIterator art) noexcept
 		{
@@ -83,7 +84,8 @@ namespace Monad
 					PREVIEW_HEIGHT
 				}
 		}
-		{}
+		{
+		}
 
 		void ShaderArtPreview::SetHorizontalRange(
 			const double start,

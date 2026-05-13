@@ -17,7 +17,8 @@ namespace Monad::Print
 		m_connectionPoint{},
 		m_isInitialized{ false },
 		m_documentPackageStatus{}
-	{}
+	{
+	}
 
 	D2DPrintJobChecker::~D2DPrintJobChecker()
 	{

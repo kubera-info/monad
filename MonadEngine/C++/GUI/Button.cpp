@@ -48,7 +48,8 @@ namespace Monad
 			Clickable{ pageNo, style.c_clicksSounds },
 			m_forecolor{ "forecolor"_constantBuffer, style.c_rgb.GetFloatSRGB() },
 			c_fnOnRegion{ style.c_style.c_onRegionFun }
-		{}
+		{
+		}
 
 		bool Button::OnRegion() const noexcept
 		{
@@ -69,7 +70,8 @@ namespace Monad
 		) :
 			Button{ pageNo, { positionOfCenter.x, positionOfCenter.y, ICON_RADIUS, ICON_RADIUS }, style },
 			c_rgbBackup{ style.c_rgb.GetFloatSRGB() }
-		{}
+		{
+		}
 
 		void TwoStateButton::OnComputePerWorldFrame(
 			const XMFLOAT4X4& modelSpaceMatrix
@@ -103,7 +105,8 @@ namespace Monad
 			positionOfCenter,
 			style },
 			m_isSelected{ isSelected }
-		{}
+		{
+		}
 
 		bool Checkbox::IsSelected() const noexcept
 		{
@@ -155,7 +158,8 @@ namespace Monad
 		) noexcept :
 			m_parent{ parent },
 			m_radioSelected{ radioSelected }
-		{}
+		{
+		}
 
 		void ManagerRadioButton::SetSelected(
 			const RadioButton* radioButton
@@ -218,6 +222,7 @@ namespace Monad
 				pageNo,
 				{ positionOfCenter.x, positionOfCenter.y, ICON_RADIUS, ICON_RADIUS },
 				style }
-		{}
+		{
+		}
 	}
 }

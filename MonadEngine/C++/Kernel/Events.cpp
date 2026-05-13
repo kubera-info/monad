@@ -85,7 +85,8 @@ namespace Monad::Kernel
 
 	bool IsRegisteredEvent(
 		const EVENT_IDS event,
-		const void* managerStub)
+		const void* managerStub
+	)
 	{
 		const auto& container =
 			g_registry[static_cast<size_t>(event)];
@@ -95,7 +96,8 @@ namespace Monad::Kernel
 
 	void* RegisteredEventIterator(
 		const EVENT_IDS event,
-		const void* managerStub)
+		const void* managerStub
+	)
 	{
 		auto& container =
 			g_registry[static_cast<size_t>(event)];
@@ -107,14 +109,18 @@ namespace Monad::Kernel
 		return nullptr;
 	}
 
-	void FireEvent(const EVENT_IDS event)
+	void FireEvent(
+		const EVENT_IDS event
+	)
 	{
 		g_registry
 			[static_cast<size_t>(event)]
 			.ForEachFunctor();
 	}
 
-	void FireEventOnCopy(const EVENT_IDS event)
+	void FireEventOnCopy(
+		const EVENT_IDS event
+	)
 	{
 		g_registry
 			[static_cast<size_t>(event)]
@@ -145,7 +151,11 @@ namespace Monad::Kernel
 		);
 	}
 
-	void ReplaceEvent(EVENT_IDS event, void* soourcePtrManagerStub, void* destinateManagerStub)
+	void ReplaceEvent(
+		EVENT_IDS event,
+		void* soourcePtrManagerStub,
+		void* destinateManagerStub
+	)
 	{
 		if (auto ptr = RegisteredEventIterator(event, soourcePtrManagerStub); ptr)
 			*static_cast<void**> (ptr) = destinateManagerStub;
@@ -163,9 +173,12 @@ namespace Monad::Kernel
 			SkilledObjects{ [](void* o) noexcept { return static_cast<EventLanguageChangeEmojiStub*>(o)->OnLanguageChangeEmojiStub(); } },
 			SkilledObjects{ [](void* o) noexcept { return static_cast<EventLanguageChangeFontStub*>(o)->OnLanguageChangeFontStub(); } }
 		}
-	{}
+	{
+	}
 
-	SkilledObjects::SkilledObjects(FnExecuteEvent functor) noexcept
+	SkilledObjects::SkilledObjects(
+		FnExecuteEvent functor
+	) noexcept
 		: m_functor(functor)
 	{
 		assert(m_functor != nullptr);

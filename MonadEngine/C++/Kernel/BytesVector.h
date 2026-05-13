@@ -35,7 +35,8 @@ namespace Monad::Kernel
 				reinterpret_cast<const uint8_t*>(buffer.data()),
 				buffer.size() * sizeof(typename V::value_type)
 			}
-		{}
+		{
+		}
 
 		/// <summary>
 		/// Creates a temporary COM IStream backed by this data.
@@ -116,7 +117,8 @@ namespace Monad::Kernel
 		template<typename B>
 		VectorBlock() noexcept :
 			VectorBlock(sizeof(B))
-		{}
+		{
+		}
 		void resize(size_t blocks);
 		size_t size() const noexcept;
 		void* data() noexcept;
@@ -124,7 +126,7 @@ namespace Monad::Kernel
 
 		const size_t c_blockSize;
 	};
-	
+
 	struct SpanBlock
 	{
 		const void* c_data;

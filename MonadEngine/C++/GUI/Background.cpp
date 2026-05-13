@@ -39,5 +39,6 @@ namespace Monad::GUI
 			InitializerListTextures{ "wallpaper"_shaderResource },
 			T2_ART,
 			"pane"_mesh }
-	{}
+	{
+	}
 }

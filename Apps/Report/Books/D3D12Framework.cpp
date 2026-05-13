@@ -135,32 +135,46 @@ D3D12Core::D3D12Core() :
 	{
 		{
 			"emoji"_technique,
-			"emoji"_fx
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "emoji"_fx },
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_emoji"_fx }
+			}
 		},
 		{
 			"font"_technique,
-			"font"_fx
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "font"_fx },
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_font"_fx }
+			}
 		},
 		{
 			"iconic"_technique,
-			"iconic"_fx
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "iconic"_fx }
+			}
 		},
 		{
 			"metallic_border"_technique,
-			"metallic_border"_fx
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "metallic_border"_fx },
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_border"_fx }
+			}
 		},
 		{
 			"metallic_hr"_technique,
-			"metallic_hr"_fx
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "metallic_hr"_fx },
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_hr"_fx }
+			}
 		}
 	},
 	{
 		{ "forecolor"_constantBuffer, { sizeof DirectX::XMFLOAT3, 4u } },
 		{ "hdr"_constantBuffer, { sizeof BOOL, 1u } },
+		{ "shadow"_constantBuffer, { sizeof DirectX::XMFLOAT4X4 , 12u } },
 		{ "light_pos"_constantBuffer, { sizeof DirectX::XMFLOAT4, 1u } },
 		{ "model"_constantBuffer, { sizeof CB::Model, 12u } },
-		{ "pipe_color"_constantBuffer, { sizeof CB::PipeColor, 2u } },
-		{ "shadow"_constantBuffer, { sizeof DirectX::XMFLOAT4X4 , 12u } }
+		{ "pipe_color"_constantBuffer, { sizeof CB::PipeColor, 2u } }
 	} }
 {
 	LoadPipeline();
@@ -298,14 +312,14 @@ void D3D12Core::PopulateCommandLists()
 			D3D12_RESOURCE_STATE_DEPTH_WRITE } }
 			);
 		m_shadows.SetMe();
-		OnFrameRenderAll(STAGE_MODES::SHADOW);
+		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_SHADOW);
 	}
 	else
 		CenterCursor();
 #pragma endregion
 
 #pragma region Temporary monads
-	OnFrameRenderAll(STAGE_MODES::CUSTOM);
+	OnFrameRenderAll(STAGE_MODES::STAGE_MODE_CUSTOM);
 #pragma endregion
 
 #pragma region World			
@@ -316,11 +330,11 @@ void D3D12Core::PopulateCommandLists()
 			D3D12_RESOURCE_STATE_RENDER_TARGET } }
 			);
 		m_msaaTargets.SetMe();
-		OnFrameRenderAll(STAGE_MODES::WORLD);
+		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_WORLD);
 #pragma endregion
 
 #pragma region Alpha blending
-		OnFrameRenderAll(STAGE_MODES::ALPHA_BLENDING);
+		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_ALPHA_BLENDING);
 #pragma endregion
 	}
 	OnBackBuffer();

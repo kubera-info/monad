@@ -79,7 +79,8 @@ namespace Monad
 				"game"_pageNo,
 				positionOfCenter,
 				style }
-		{}
+		{
+		}
 
 		void DialogToolbox::ButtonBlank::OnClick()
 		{

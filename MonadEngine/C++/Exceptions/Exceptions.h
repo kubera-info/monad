@@ -152,7 +152,8 @@ namespace Monad::Exceptions
 	{
 		SystemLibraryDXGI() :
 			SystemLibrary{ L"dxgidebug.dll" }
-		{}
+		{
+		}
 
 		using LPDXGIGETDEBUGINTERFACE = HRESULT(WINAPI*)(REFIID, void**);
 		const LPDXGIGETDEBUGINTERFACE c_fnDXGIGetDebugInterface = reinterpret_cast<LPDXGIGETDEBUGINTERFACE>(GetProcAddress("DXGIGetDebugInterface"));

@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © 2016–2026 by Wlodzimierz O. Kubera. All rights reserved. ###
+// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 #pragma once
@@ -8,7 +8,7 @@
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
-#include "boost/container/flat_map.hpp"
+#include <flat_map>
 // Monad
 #include "__MonadKernel.h"
 #include "Renderer/__MonadRenderer.h"
@@ -26,7 +26,8 @@ namespace Monad::Kernel
 	/// </summary>
 	template<typename T>
 	struct HasMethodGet<T, decltype(static_cast<void>(T::Get), 0)>
-		: std::true_type {};
+		: std::true_type {
+	};
 
 	/// <summary>
 	/// Checks whether a value lies within a given range (inclusive).
@@ -62,7 +63,8 @@ namespace Monad::Kernel
 		{
 			return std::_Hash_array_representation(
 				reinterpret_cast<const uint8_t*>(&v),
-				sizeof(POD));
+				sizeof(POD)
+			);
 		}
 
 		/// <summary>
@@ -87,10 +89,10 @@ namespace Monad::Kernel
 	using UnorderedMapString = std::unordered_map<std::string, V>;
 
 	template<typename V>
-	using FlatMapWString = boost::container::flat_map<std::wstring, V>;
+	using FlatMapWString = std::flat_map<std::wstring, V>;
 
 	template<typename V>
-	using FlatMapString = boost::container::flat_map<std::string, V>;
+	using FlatMapString = std::flat_map<std::string, V>;
 
 	/// <summary>
 	/// Replaces all occurrences of a substring in a string.
@@ -134,7 +136,8 @@ namespace Monad::Kernel
 
 		explicit Me(T*& globalPtr) noexcept
 			: Me(nullptr, globalPtr)
-		{}
+		{
+		}
 
 		void operator=(T* parentThis) noexcept
 		{

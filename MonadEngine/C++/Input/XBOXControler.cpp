@@ -60,7 +60,8 @@ namespace Monad::Input
 
 	ThreadXboxController::ThreadXboxController() noexcept :
 		Thread(Threads::THREAD_NAME_XBOX_CONTROLLER)
-	{}
+	{
+	}
 
 	void ThreadXboxController::Routine()
 	{

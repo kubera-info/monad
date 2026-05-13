@@ -206,7 +206,8 @@ namespace Monad
 				"main_menu"_pageNo,
 				positionOfCenter,
 				style }
-		{}
+		{
+		}
 
 		void DialogArtSelection::ButtonLeft::OnClick()
 		{
@@ -253,7 +254,8 @@ namespace Monad
 					style,
 					isSelected
 		}
-		{}
+		{
+		}
 
 		bool DialogArtSelection::CheckboxAudioButton::IsVisible() const noexcept
 		{
@@ -270,7 +272,8 @@ namespace Monad
 			CheckboxAudioGeneric(
 				STYLE_SPEAKER_ERROR_BUTTON,
 				s_true)
-		{}
+		{
+		}
 
 		bool DialogArtSelection::CheckboxAudioError::IsVisible() const noexcept
 		{
@@ -278,7 +281,8 @@ namespace Monad
 		}
 
 		void DialogArtSelection::CheckboxAudioError::OnClick() noexcept
-		{}
+		{
+		}
 
 		void DialogArtSelection::ButtonSetup::OnClick()
 		{
@@ -317,7 +321,8 @@ namespace Monad
 				"app_exit"_pageNo,
 				positionOfCenter,
 				style }
-		{}
+		{
+		}
 
 		void DialogExitApp::ButtonExitApp::OnClick()
 		{

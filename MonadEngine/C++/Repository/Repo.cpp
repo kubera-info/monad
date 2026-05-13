@@ -19,7 +19,8 @@ namespace Monad::Repositories
 			this,
 			g_repositoryGeneric
 		)
-	{}
+	{
+	}
 
 	void RepositoryGeneric::AddGhostTexture()
 	{

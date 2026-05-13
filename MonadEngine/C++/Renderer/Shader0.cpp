@@ -31,7 +31,8 @@ namespace Monad
 				this,
 				g_dataHDRGeneric
 			)
-		{}
+		{
+		}
 
 		DirectX::XMFLOAT4X4* g_dataMorphingMatrix = nullptr;
 
@@ -60,7 +61,8 @@ namespace Monad
 				this,
 				g_dataLightPosMatrixGeneric
 			)
-		{}
+		{
+		}
 
 		STAGE_MODES g_stageOfRendering;
 		uint32_t g_texDepthHeight = 1024, g_texDepthWidth = 2048;
@@ -78,13 +80,11 @@ namespace Monad
 				L"Technique"
 			);
 			m_shadersWorld = g_dxSample->m_fxCollection.GetPipeline(
-				thisTechnique->second.m_worldState);
-#if defined MONAD_SHADOW
-			if (thisTechnique->second.m_shadowState)
+				thisTechnique->second[STAGE_MODE_WORLD]);
+			if (auto sh = thisTechnique->second.find(STAGE_MODE_SHADOW); thisTechnique->second.cend() != sh)
 				m_shadersShadow.emplace(
 					g_dxSample->m_fxCollection.GetPipeline(
-						thisTechnique->second.m_shadowState.value()));
-#endif
+						sh->second));
 		}
 
 		void ShaderGeneric::OnFrameRender(const XMFLOAT4X4& modelSpaceMatrix)
@@ -92,9 +92,9 @@ namespace Monad
 			switch (g_stageOfRendering)
 			{
 				using enum STAGE_MODES;
-			case ALPHA_BLENDING:
-			case WORLD:
-				if ((ALPHA_BLENDING == g_stageOfRendering) != m_shadersWorld->m_alphaBlending)
+			case STAGE_MODE_ALPHA_BLENDING:
+			case STAGE_MODE_WORLD:
+				if ((STAGE_MODE_ALPHA_BLENDING == g_stageOfRendering) != m_shadersWorld->m_alphaBlending)
 					return;
 				if (IsSystem())
 					return;
@@ -109,7 +109,7 @@ namespace Monad
 #endif
 				break;
 #if MONAD_SHADOW
-			case SHADOW:
+			case STAGE_MODE_SHADOW:
 				if (!m_shadersShadow)
 					return;
 				m_shadersShadow.value()->SetMe();
@@ -117,7 +117,7 @@ namespace Monad
 				break;
 #endif
 			default:
-				assert(CUSTOM == g_stageOfRendering);
+				assert(STAGE_MODE_CUSTOM == g_stageOfRendering);
 				if (!IsSystem())
 					return;
 				m_shadersWorld->SetMe();
@@ -129,19 +129,21 @@ namespace Monad
 		void ShaderGeneric::OnComputePerShadowFrame(
 			const XMFLOAT4X4&
 		)
-		{}
+		{
+		}
 
 		void ShaderGeneric::OnComputePerWorldFrame(
 			const XMFLOAT4X4&
 		)
-		{}
+		{
+		}
 
 		ShaderConfigGeneric* ShaderGeneric::GetCurrentConfig() const noexcept
 		{
 #if defined MONAD_SHADOW
 			switch (g_stageOfRendering)
 			{
-			case STAGE_MODES::SHADOW:
+			case STAGE_MODES::STAGE_MODE_SHADOW:
 				return m_shadersShadow.value();
 			default:
 				return m_shadersWorld;

@@ -18,14 +18,12 @@ namespace Monad::Renderer
 	// Rendering stage
 	// =========================================================================
 
-	enum class STAGE_MODES
+	enum STAGE_MODES
 	{
-		WORLD,
-#if defined MONAD_SHADOW
-		SHADOW,
-#endif
-		CUSTOM,
-		ALPHA_BLENDING
+		STAGE_MODE_WORLD,
+		STAGE_MODE_SHADOW,
+		STAGE_MODE_CUSTOM,
+		STAGE_MODE_ALPHA_BLENDING
 	};
 
 	extern STAGE_MODES g_stageOfRendering;
@@ -80,10 +78,7 @@ namespace Monad::Renderer
 
 	private:
 		ShaderConfigGeneric* m_shadersWorld = nullptr;
-
-#if defined MONAD_SHADOW
 		OptionalShaderConfig m_shadersShadow;
-#endif
 	};
 
 	// =========================================================================

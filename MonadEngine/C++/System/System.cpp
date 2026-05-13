@@ -147,7 +147,7 @@ namespace Monad::System
 			reinterpret_cast<LPFN_ISWOW64PROCESS2>(
 				GetProcAddress(GetModuleHandle(L"kernel32"), "IsWow64Process2")); fnIsWow64Process2)
 			if (fnIsWow64Process2(GetCurrentProcess(), &processMachine, &nativeMachine))
-				return (nativeMachine == IMAGE_FILE_MACHINE_ARM64);
+				return IMAGE_FILE_MACHINE_ARM64 == nativeMachine;
 
 		return false;
 	}

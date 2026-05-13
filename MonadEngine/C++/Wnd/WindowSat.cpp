@@ -143,7 +143,8 @@ namespace Monad
 					nullptr
 				},
 					Thread{ L"Satellite" }
-				{}
+				{
+				}
 
 				~ThreadSatellite()
 				{
@@ -386,7 +387,8 @@ namespace Monad
 		}
 
 		ManagerSatellites::~ManagerSatellites()
-		{}
+		{
+		}
 
 		extern ManagerSatellites* g_managerSatellites = nullptr;
 #pragma endregion
@@ -394,7 +396,8 @@ namespace Monad
 #pragma region ManagerSatellites::WindowClassSatellite
 		ManagerSatellites::WindowClassSatellite::WindowClassSatellite() :
 			WindowClass{ L"WndClassSat", ThreadSatellite::WindowProc }
-		{}
+		{
+		}
 
 		HWND ManagerSatellites::WindowClassSatellite::WindowFactory(
 			const RECT& wndRect,
@@ -406,7 +409,8 @@ namespace Monad
 				wndRect,
 				createWindowParameter,
 				/* WS_MAXIMIZE | */ WS_POPUP | WS_VISIBLE,
-				appTitle);
+				appTitle
+			);
 		}
 #pragma endregion
 

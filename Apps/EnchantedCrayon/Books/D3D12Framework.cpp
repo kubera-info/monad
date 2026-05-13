@@ -208,54 +208,87 @@ D3D12Core::D3D12Core() :
 	{
 		{
 			"blank_tex"_technique,
-			"blank_tex"_fx
+			{ 
+				{ STAGE_MODES::STAGE_MODE_WORLD, "blank_tex"_fx }
+			}
 		},
 		{
 			"color_button"_technique,
-			"color_button"_fx
+			{ 
+				{ STAGE_MODES::STAGE_MODE_WORLD, "color_button"_fx }
+			}
 		},
 		{
 			"crayon"_technique,
-			{ "crayon"_fx, "shadow"_fx }
+			{ 
+				{ STAGE_MODES::STAGE_MODE_WORLD, "crayon"_fx },
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow"_fx } 
+			}
 		},
 		{
 			"emoji"_technique,
-			{ "emoji"_fx, "shadow_emoji"_fx }
+			{ 
+				{ STAGE_MODES::STAGE_MODE_WORLD, "emoji"_fx },
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_emoji"_fx } 
+			}
 		},
 		{
 			"flag"_technique,
-			"flag"_fx },
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "flag"_fx }
+			}
+		},
 		{
 			"font"_technique,
-			{ "font"_fx, "shadow_font"_fx }
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "font"_fx },
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_font"_fx }
+			}
 		},
 		{
 			"iconic"_technique,
-			"iconic"_fx
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "iconic"_fx }
+			}
 		},
 		{
 			"logo"_technique,
-			"logo"_fx
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "logo"_fx }
+			}
 		},
 		{
 			"metallic_border"_technique,
-			{ "metallic_border"_fx, "shadow_border"_fx }
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "metallic_border"_fx },
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_border"_fx }
+			}
 		},
 		{
 			"metallic_hr"_technique,
-			{ "metallic_hr"_fx, "shadow_hr"_fx }
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "metallic_hr"_fx },
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_hr"_fx }
+			}
 		},
 		{
 			"paper"_technique,
-			{ "paper"_fx, "shadow"_fx }
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "paper"_fx },
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow"_fx }
+			}
 		},
 		{
 			"raw_tex"_technique,
-			"raw_tex"_fx
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "raw_tex"_fx }
+			},
 		},
 		{
 			"wallpaper"_technique,
-			"wallpaper"_fx
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "wallpaper"_fx }
+			}
 		}
 	},
 	{
@@ -493,14 +526,14 @@ void D3D12Core::PopulateCommandLists()
 			D3D12_RESOURCE_STATE_DEPTH_WRITE } }
 			);
 		m_shadows.SetMe();
-		OnFrameRenderAll(STAGE_MODES::SHADOW);
+		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_SHADOW);
 	}
-	else 
+	else
 		CenterCursor();
 #pragma endregion
 
 #pragma region Temporary monads
-	OnFrameRenderAll(STAGE_MODES::CUSTOM);
+	OnFrameRenderAll(STAGE_MODES::STAGE_MODE_CUSTOM);
 	if (!g_setArtStubs.test_and_set())
 		g_combineFullRequirements->SetArt(
 			g_repository->m_currentArtProfile.m_currentArt
@@ -515,11 +548,11 @@ void D3D12Core::PopulateCommandLists()
 			D3D12_RESOURCE_STATE_RENDER_TARGET } }
 			);
 		m_msaaTargets.SetMe();
-		OnFrameRenderAll(STAGE_MODES::WORLD);
+		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_WORLD);
 #pragma endregion
 
 #pragma region Alpha blending
-		OnFrameRenderAll(STAGE_MODES::ALPHA_BLENDING);
+		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_ALPHA_BLENDING);
 #pragma endregion
 	}
 	OnBackBuffer();

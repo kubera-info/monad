@@ -112,7 +112,8 @@ namespace Monad
 			stopValue
 		},
 			c_isMe{ isMe }
-		{}
+		{
+		}
 
 		void TimeLerpMorphing::SetMorphing(float lerp) noexcept
 		{
@@ -147,7 +148,8 @@ namespace Monad
 				1.0,
 				GET_LERPS::RAISE
 			}
-		{}
+		{
+		}
 
 		void TimeLerpMorphingDecay::OnFlush() noexcept
 		{
@@ -171,7 +173,7 @@ namespace Monad
 		void TimeLerpMorphingDecay::OnFrameMove() noexcept
 		{
 			__super::OnFrameMove();
-			if(IsInExit() && Audio::g_persistentAudio)
+			if (IsInExit() && Audio::g_persistentAudio)
 				Audio::g_persistentAudio->SetMasterVoiceVolume(GetCurrentValue());
 		}
 

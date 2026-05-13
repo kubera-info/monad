@@ -36,7 +36,8 @@ namespace Monad::Internet
 				L"libcurl-x64.dll"
 #endif
 			)
-		{}
+		{
+		}
 
 #define DLL_TO_APP(FUN_NAME,RES,ARGS)\
 		using LP##FUN_NAME = RES(WINAPI*)ARGS;\
@@ -237,7 +238,8 @@ namespace Monad::Internet
 				struct OutputStr
 				{
 					OutputStr(const CurlINet::LocalLibraryCurl& libCurl, char* str) noexcept
-						: c_libCurl(libCurl), m_str(str) {}
+						: c_libCurl(libCurl), m_str(str) {
+					}
 					~OutputStr() { c_libCurl.c_fn_curl_free(m_str); }
 
 					const CurlINet::LocalLibraryCurl& c_libCurl;

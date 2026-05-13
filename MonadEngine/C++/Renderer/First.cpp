@@ -32,7 +32,8 @@ namespace Monad::Renderer
 	void First::OnNewMatrix(
 		[[maybe_unused]] DirectX::XMFLOAT4X4& matrixToAlter
 	) const noexcept
-	{}
+	{
+	}
 
 	bool First::IsSystem() const noexcept
 	{

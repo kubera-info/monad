@@ -35,7 +35,8 @@ namespace Monad
 			m_renderTargetID(
 				g_dxSample->m_rtCurrentID++
 			)
-		{}
+		{
+		}
 
 		void ShaderSketch::OnComputePerWorldFrame(
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix

@@ -105,6 +105,9 @@
     <PostBuildEvent>
       <Command>PwSh.exe "..\..\Bin\end.ps1" 1 "$(ProjectName)"</Command>
     </PostBuildEvent>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
@@ -154,6 +157,9 @@
     <PostBuildEvent>
       <Command>PwSh.exe "..\..\Bin\end.ps1" 1 "$(ProjectName)"</Command>
     </PostBuildEvent>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Modules\meshoptimizer\src\allocator.cpp" />

@@ -26,7 +26,8 @@ namespace Monad
 				{}
 		},
 			m_emojiName{ emojiName }
-		{}
+		{
+		}
 
 		void ShaderEmoji::AddEmoji(
 			const DirectX::XMFLOAT4& rect

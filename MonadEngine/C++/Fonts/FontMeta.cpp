@@ -32,7 +32,8 @@ namespace Monad
 			c_chunk{ chunk },
 			c_offset{ offset },
 			c_advance{ advance }
-		{}
+		{
+		}
 
 		float Font::Char::CalculateDistance(
 			wchar_t char2
@@ -41,7 +42,7 @@ namespace Monad
 			const auto kerning = m_kernings.find(char2);
 			return c_advance + (m_kernings.cend() != kerning ? kerning->second : 0.0f);
 		}
-	
+
 		void Font::SetFontScale(
 			float lineHeight
 		) noexcept

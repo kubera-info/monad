@@ -313,7 +313,8 @@ namespace Monad
 			Texture{
 			Repositories::g_repositoryGeneric->m_shaderResources[filename]
 		}
-		{}
+		{
+		}
 
 		Texture::Texture(
 			const SpanConstBytes sourceDDS
@@ -322,7 +323,8 @@ namespace Monad
 			sourceDDS.data(),
 			sourceDDS.size()
 		}
-		{}
+		{
+		}
 
 		void Texture::UpdateTextureInternal(
 			const D3D12_SUBRESOURCE_DATA& textureData,

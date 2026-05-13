@@ -16,7 +16,8 @@ namespace Monad::System
 		HANDLE handle
 	) noexcept :
 		m_handle(handle)
-	{}
+	{
+	}
 
 	/// <summary>
 	/// Destructor automatically releases the owned HANDLE.

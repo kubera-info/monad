@@ -82,6 +82,9 @@
     <PostBuildEvent>
       <Command>PwSh.exe "..\..\Bin\end.ps1" 1 "$(ProjectName)"</Command>
     </PostBuildEvent>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -118,6 +121,9 @@
       <Message>
       </Message>
     </PostBuildEvent>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C++\Audio\MediaStreamer.h" />

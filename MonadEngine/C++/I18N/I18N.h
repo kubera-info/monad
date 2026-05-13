@@ -35,7 +35,8 @@ namespace Monad::I18N
 			InitializerListTranslations translations
 		) :
 			m_translations(translations)
-		{}
+		{
+		}
 
 		OPER_DEF(I18NType);
 		~I18NType() = default;

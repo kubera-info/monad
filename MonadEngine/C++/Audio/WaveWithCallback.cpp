@@ -11,7 +11,8 @@ namespace Monad::Audio
 	WaveToPlayWithCallback::WaveToPlayWithCallback() noexcept :
 		m_callback{ nullptr },
 		m_ifEnqueAndInvalidate{ true }
-	{}
+	{
+	}
 
 	WaveToPlayWithCallback::WaveToPlayWithCallback(
 		const std::string& filename,
@@ -22,7 +23,8 @@ namespace Monad::Audio
 		m_callback{ callback },
 		m_waveBuffer{ waveBuffer },
 		m_ifEnqueAndInvalidate{ true }
-	{}
+	{
+	}
 
 	bool WaveToPlayWithCallback::IsCallback() const noexcept
 	{

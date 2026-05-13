@@ -219,11 +219,13 @@ namespace Monad
 			const std::string& meshFilename
 		) :
 			Mesh{ Repositories::g_repositoryGeneric->m_meshes.GetMember(meshFilename) }
-		{}
+		{
+		}
 
 		Mesh::Mesh() :
 			m_interfaces{ std::make_shared<MeshInterfaces>(0) }
-		{}
+		{
+		}
 
 		Mesh::Mesh(
 			const MeshHelper& meshDef,

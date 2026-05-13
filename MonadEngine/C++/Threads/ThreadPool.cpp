@@ -25,7 +25,8 @@ namespace Monad
 			bool ifDelete
 		) noexcept :
 			c_ifDelete{ ifDelete }
-		{}
+		{
+		}
 
 		/// <summary>
 		/// Deletes the task if it was created with ownership enabled.
@@ -49,7 +50,8 @@ namespace Monad
 			ThreadPool* const threadPool
 		) noexcept :
 			m_threads(threadPool)
-		{}
+		{
+		}
 
 		/// <summary>
 		/// Entry point for worker thread execution.

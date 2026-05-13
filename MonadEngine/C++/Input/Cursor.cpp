@@ -20,7 +20,7 @@ namespace Monad
 	namespace Input
 	{
 		std::atomic<CURSOR_TYPES> g_cursorType = CURSOR_TYPES::HOUR_GLASS;
-		::DirectX::XMFLOAT2 g_cursorPos;
+		XMFLOAT2 g_cursorPos;
 
 		std::atomic_bool g_active = true;
 

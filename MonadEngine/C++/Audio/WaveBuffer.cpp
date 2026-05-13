@@ -21,7 +21,8 @@ namespace Monad
 				waveFornatEx,
 				formats) },
 			c_bufferCPU{ std::move(buffer) }
-		{}
+		{
+		}
 
 		const WAVEFORMATEX* WaveBuffer::GetWaveFormatEx(
 			const WAVEFORMATEX& possiblyNewFormat,

@@ -80,7 +80,8 @@ namespace Monad::Renderer
 		) :
 			R(args...),
 			m_staticSpace{ staticSpace }
-		{}
+		{
+		}
 
 		/// <summary>
 				/// Multiplies the current transformation matrix

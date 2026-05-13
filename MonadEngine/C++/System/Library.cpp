@@ -40,7 +40,8 @@ namespace Monad::System
 		const wchar_t* fileName
 	) :
 		m_lib(Validate((folder / fileName)))
-	{}
+	{
+	}
 
 	LibraryGeneric::~LibraryGeneric()
 	{
@@ -62,7 +63,8 @@ namespace Monad::System
 		LibraryGeneric(
 			Files::GetFolderSystem(),
 			fileName)
-	{}
+	{
+	}
 #pragma endregion
 
 #pragma region LocalLibrary
@@ -73,6 +75,7 @@ namespace Monad::System
 			Files::GetFolderBin(),
 			fileName
 		)
-	{}
+	{
+	}
 #pragma endregion
 }

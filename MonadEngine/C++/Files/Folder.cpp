@@ -99,7 +99,8 @@ namespace Monad::Files
 		const fs::path& source
 	) :
 		path{ Files::GetFolderRes() / source }
-	{}
+	{
+	}
 
 	Path& Path::operator=(
 		const fs::path& source

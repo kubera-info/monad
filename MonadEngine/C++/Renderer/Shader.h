@@ -35,7 +35,8 @@ namespace Monad::Renderer
 		},
 				c_startTexSlot{ startTexSlot },
 			 m_textures{ std::from_range, textureFilenames }
-		{}
+		{
+}
 
 		/// <summary>
 		/// Constructs shader with textures already loaded,
@@ -58,21 +59,22 @@ namespace Monad::Renderer
 		},
 				c_startTexSlot{ startTexSlot },
 				m_textures{ textures }
-		{}
-
-		void OnComputePerWorldFrame(
-			const DirectX::XMFLOAT4X4 & modelSpaceMatrix
-		) override
 		{
-			__super::OnComputePerWorldFrame(modelSpaceMatrix);
+}
 
-			if (!m_textures.empty())
-				GetCurrentTexture().SetMe(this->GetCurrentConfig(), c_startTexSlot);
-		}
-		virtual size_t GetCurrentTextureID() const noexcept { return 0; }
-		Texture & GetCurrentTexture() noexcept { return m_textures[GetCurrentTextureID()]; }
+void OnComputePerWorldFrame(
+	const DirectX::XMFLOAT4X4 & modelSpaceMatrix
+) override
+{
+	__super::OnComputePerWorldFrame(modelSpaceMatrix);
 
-		std::vector<Texture> m_textures;
-		const Registers::INPUT_RESOURCE c_startTexSlot;
+	if (!m_textures.empty())
+		GetCurrentTexture().SetMe(this->GetCurrentConfig(), c_startTexSlot);
+}
+virtual size_t GetCurrentTextureID() const noexcept { return 0; }
+Texture & GetCurrentTexture() noexcept { return m_textures[GetCurrentTextureID()]; }
+
+std::vector<Texture> m_textures;
+const Registers::INPUT_RESOURCE c_startTexSlot;
 	};
 }

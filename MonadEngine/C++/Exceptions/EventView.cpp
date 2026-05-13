@@ -67,7 +67,8 @@ namespace Monad::Exceptions
 			nullptr,
 			fullAppName.data())
 	}
-	{}
+	{
+	}
 
 	EventLog::~EventLog()
 	{

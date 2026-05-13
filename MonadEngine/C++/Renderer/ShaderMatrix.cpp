@@ -27,7 +27,8 @@ namespace Monad::Renderer
 #if defined MONAD_SHADOW
 		, m_cBufferShadow{ "shadow"_constantBuffer }
 #endif
-	{}
+	{
+	}
 
 	void ShaderNoLight::OnComputePerWorldFrame(
 		const XMFLOAT4X4& modelSpaceMatrix
@@ -102,5 +103,6 @@ namespace Monad::Renderer
 			technique,
 			mesh
 		)
-	{}
+	{
+	}
 }

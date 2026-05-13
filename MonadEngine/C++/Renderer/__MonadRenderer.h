@@ -53,7 +53,8 @@ namespace Monad::Renderer
 		) noexcept :
 			FormatAndClear{ {.Format = format, .Color{ color.x, color.y, color.z, color.w } } },
 			m_desc{ .Format = format, .ViewDimension = viewDimension }
-		{}
+		{
+		}
 		OPER_DEF_NO_DEF_CTOR(FormatAndClearRenderTarget);
 		FormatAndClearRenderTarget() noexcept = default;
 		~FormatAndClearRenderTarget() = default;
@@ -68,7 +69,8 @@ namespace Monad::Renderer
 		) noexcept :
 			FormatAndClear{ {.Format = DXGI_FORMAT_D32_FLOAT, .DepthStencil{.Depth = 1.0f, .Stencil = 0 } } },
 			m_desc{ .Format = DXGI_FORMAT_D32_FLOAT, .ViewDimension = viewDimension }
-		{}
+		{
+		}
 
 		const D3D12_DEPTH_STENCIL_VIEW_DESC m_desc;
 	} constexpr

@@ -33,12 +33,14 @@ namespace Monad
 		// Initializes the color with the default GUI color (white).
 		ColorIndexGeneric::ColorIndexGeneric() noexcept :
 			ColorIndexGeneric{ GUI_WHITE }
-		{}
+		{
+		}
 
 		// Constructor initializing the color with a specific value.
 		ColorIndexGeneric::ColorIndexGeneric(const XMFLOAT3& newColor) noexcept :
 			m_newColor{ newColor }
-		{}
+		{
+		}
 
 		// Directly sets a new color value.
 		// No interpolation or animation is performed.
@@ -68,7 +70,8 @@ namespace Monad
 		// Initializes the color using the default GUI color.
 		ColorIndex::ColorIndex() noexcept :
 			ColorIndex{ GUI_WHITE }
-		{}
+		{
+		}
 
 		// Constructor initializing color and interpolation parameters.
 		ColorIndex::ColorIndex(
@@ -81,7 +84,8 @@ namespace Monad
 				1.0     // end value
 			},
 			m_oldColor{ newColor }
-		{}
+		{
+		}
 
 		// Immediately changes the color without interpolation.
 		// Also updates the stored previous color.

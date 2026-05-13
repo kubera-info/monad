@@ -39,7 +39,8 @@ namespace Monad::Renderer
 			}
 		}
 	}
-	{}
+	{
+	}
 
 	ShaderMetallicGeneric::ShaderMetallicGeneric(
 		const string& technique,
@@ -50,7 +51,8 @@ namespace Monad::Renderer
 			mesh
 	},
 		m_cBufferMetallic{ "pipe_color"_constantBuffer }
-	{}
+	{
+	}
 
 	ShaderMetallicGeneric::ShaderMetallicGeneric(
 		const string& technique,
@@ -62,7 +64,8 @@ namespace Monad::Renderer
 			mesh
 	},
 		m_cBufferMetallic{ "pipe_color"_constantBuffer, metallic }
-	{}
+	{
+	}
 
 	void ShaderMetallic2::OnComputePerWorldFrame(
 		const XMFLOAT4X4& modelSpaceMatrix
