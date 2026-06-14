@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 #pragma once
@@ -39,7 +39,6 @@ namespace Monad::Print
 		void ReleasePrintingLock() noexcept;
 
 	private:
-		bool IsSystem() const noexcept final;
 		bool IsVisible() const noexcept final;
 
 		Kernel::Me<ShaderSketchGeneric> m_me;

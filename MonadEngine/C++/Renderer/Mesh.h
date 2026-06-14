@@ -44,7 +44,7 @@ namespace Monad::Renderer
 				c_vertexSize{ static_cast<uint32_t> (vertices.c_blockSize) },
 				c_indices(
 					reinterpret_cast<const uint8_t*>(indices.data()),
-					indices.size() * sizeof(I::value_type)),
+					indices.size() * sizeof I::value_type),
 				c_vertices(
 					reinterpret_cast<const uint8_t*>(vertices.data()),
 					vertices.size() * vertices.c_blockSize)

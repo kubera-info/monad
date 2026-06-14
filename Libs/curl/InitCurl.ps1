@@ -14,6 +14,13 @@ if ($args.length -ne 2)
 	exit 1
 }
 
+if ((Test-Connection -ComputerName 'curl.se' -Quiet) -eq $False)
+{
+	Write-Warning "${MyInvocation.MyCommand.Name}: No connection to curl.se"
+	[System.Console]::Beep()
+	exit 0
+}
+
 . "..\..\MonadEngine\bin\Tools.ps1"
 
 function Update-MonadCURL(

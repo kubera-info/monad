@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 // Me
@@ -35,7 +35,7 @@ namespace Monad::System
 
 	/// <summary>
 	/// Sets the application exit code.
-	/// The value is written only once – subsequent calls do not overwrite it.
+	/// The value is written only once ï¿½ subsequent calls do not overwrite it.
 	/// </summary>
 	/// <param name="exitCode">
 	/// Exit code to be stored.

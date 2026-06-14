@@ -44,8 +44,7 @@ namespace Monad::Renderer::InputLayout
 		) noexcept :
 			m_position{ position.x, position.y, GUI::ART_PANE_Z },
 			m_texture{ uv }
-		{
-		}
+		{}
 
 		DirectX::XMFLOAT3 m_position;
 		DirectX::XMFLOAT2 m_texture;
@@ -169,10 +168,12 @@ namespace Monad::Renderer::InputLayout
 			DirectX::XMVECTOR v2
 		)
 		{
-			const auto edge1 = DirectX::XMVectorSubtract(v1, v0);
-			const auto edge2 = DirectX::XMVectorSubtract(v2, v0);
-			return DirectX::XMVector3Normalize(
-				DirectX::XMVector3Cross(edge1, edge2));
+			return
+				DirectX::XMVector3Normalize(
+					DirectX::XMVector3Cross(
+						DirectX::XMVectorSubtract(v1, v0),
+						DirectX::XMVectorSubtract(v2, v0))
+				);
 		}
 
 		/// <summary>
@@ -182,8 +183,7 @@ namespace Monad::Renderer::InputLayout
 		{
 			for (auto& v : m_vertices)
 				v.m_normal = { 0.0f, 0.0f, 0.0f };
-
-			for (size_t i = 0; i < GetFacesCount(); ++i)
+			for (size_t i = 0, facesCount = GetFacesCount(); i < facesCount; ++i)
 			{
 				auto& a = m_vertices[m_indices[i * 3 + 0]];
 				auto& b = m_vertices[m_indices[i * 3 + 1]];
@@ -192,21 +192,26 @@ namespace Monad::Renderer::InputLayout
 				const auto faceNormal = ComputeFaceNormal(
 					DirectX::XMLoadFloat3(&a.m_position),
 					DirectX::XMLoadFloat3(&b.m_position),
-					DirectX::XMLoadFloat3(&c.m_position));
+					DirectX::XMLoadFloat3(&c.m_position)
+				);
 
 				DirectX::XMStoreFloat3(&a.m_normal,
-					DirectX::XMVectorAdd(XMLoadFloat3(&a.m_normal), faceNormal));
+					DirectX::XMVectorAdd(XMLoadFloat3(&a.m_normal), faceNormal)
+				);
 				DirectX::XMStoreFloat3(&b.m_normal,
-					DirectX::XMVectorAdd(XMLoadFloat3(&b.m_normal), faceNormal));
+					DirectX::XMVectorAdd(XMLoadFloat3(&b.m_normal), faceNormal)
+				);
 				DirectX::XMStoreFloat3(&c.m_normal,
-					DirectX::XMVectorAdd(XMLoadFloat3(&c.m_normal), faceNormal));
+					DirectX::XMVectorAdd(XMLoadFloat3(&c.m_normal), faceNormal)
+				);
 			}
 
 			for (auto& v : m_vertices)
 				DirectX::XMStoreFloat3(
 					&v.m_normal,
 					DirectX::XMVector3Normalize(
-						DirectX::XMLoadFloat3(&v.m_normal)));
+						DirectX::XMLoadFloat3(&v.m_normal))
+				);
 		}
 
 		/// <summary>
@@ -258,9 +263,7 @@ namespace Monad::Renderer::InputLayout
 				m_indices.push_back(static_cast<INDEX_TYPE>(index));
 			}
 			else
-			{
 				m_indices.push_back(static_cast<INDEX_TYPE>(it->second));
-			}
 		}
 	};
 

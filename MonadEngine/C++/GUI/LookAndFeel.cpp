@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 // Me
@@ -101,7 +101,7 @@ namespace Monad::GUI
 	};
 
 	// ---------------------------------------------------------------------
-	// IconicStyle – base style for icon-based GUI buttons
+	// IconicStyle ï¿½ base style for icon-based GUI buttons
 	// ---------------------------------------------------------------------
 
 	IconicStyle::IconicStyle(

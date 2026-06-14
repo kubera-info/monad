@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 #pragma once
@@ -37,7 +37,7 @@ namespace Monad::App
 		/// Per-frame rendering callback used to render the artwork
 		/// into an off-screen texture.
 		/// </summary>
-		void OnComputePerWorldFrame(
+		void OnComputePerSystemFrame(
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		) final;
 

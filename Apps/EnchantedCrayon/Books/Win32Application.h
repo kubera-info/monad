@@ -10,7 +10,7 @@
 //*********************************************************
 
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 #pragma once

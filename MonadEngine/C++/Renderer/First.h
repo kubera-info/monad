@@ -62,7 +62,6 @@ namespace Monad::Renderer
 		const DirectX::XMFLOAT4X4& modelSpaceMatrix
 	) = 0;
 	// virtual bool IsTemporary() const noexcept;
-	virtual bool IsSystem() const noexcept;
 	};
 
 	/// <summary>
@@ -80,8 +79,7 @@ namespace Monad::Renderer
 		) :
 			R(args...),
 			m_staticSpace{ staticSpace }
-		{
-		}
+		{}
 
 		/// <summary>
 				/// Multiplies the current transformation matrix

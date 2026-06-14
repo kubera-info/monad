@@ -24,8 +24,7 @@ namespace Monad::GUI
 		{
 			inline MeshCreatorPipe(
 				const XMFLOAT4& pipe
-			) :
-				c_pipe(pipe)
+			)
 			{
 				VERTEX_TYPE buildLeftUpper, buildRightUpper;
 				VERTEX_TYPE buildRightLower, buildLeftLower;
@@ -46,21 +45,21 @@ namespace Monad::GUI
 					buildLeftUpper.m_position.z = buildRightUpper.m_position.z = -pipeEllipse[static_cast<size_t>(iR)].y;
 					buildLeftLower.m_position.z = buildRightLower.m_position.z = -pipeEllipse[static_cast<size_t>(iR) + 1].y;
 
-					buildLeftUpper.m_position.x = c_pipe.x + move;
-					buildRightUpper.m_position.x = c_pipe.z - move;
-					buildLeftUpper.m_position.y = buildRightUpper.m_position.y = c_pipe.w * Kernel::LANDSCAPE_RATIO - move;
+					buildLeftUpper.m_position.x = pipe.x + move;
+					buildRightUpper.m_position.x = pipe.z - move;
+					buildLeftUpper.m_position.y = buildRightUpper.m_position.y = pipe.w * Kernel::LANDSCAPE_RATIO - move;
 
-					buildLeftLower.m_position.x = c_pipe.x + move2;
-					buildRightLower.m_position.x = c_pipe.z - move2;
-					buildLeftLower.m_position.y = buildRightLower.m_position.y = c_pipe.w * Kernel::LANDSCAPE_RATIO - move2;
+					buildLeftLower.m_position.x = pipe.x + move2;
+					buildRightLower.m_position.x = pipe.z - move2;
+					buildLeftLower.m_position.y = buildRightLower.m_position.y = pipe.w * Kernel::LANDSCAPE_RATIO - move2;
 
 					Up(buildLeftUpper, buildLeftLower, buildRightUpper, buildRightLower);
 
 					buildLeftUpper2 = buildLeftUpper; buildRightUpper2 = buildRightUpper;
 					buildRightLower2 = buildRightLower; buildLeftLower2 = buildLeftLower;
 
-					buildLeftUpper2.m_position.y = buildRightUpper2.m_position.y = c_pipe.y * Kernel::LANDSCAPE_RATIO + move;
-					buildLeftLower2.m_position.y = buildRightLower2.m_position.y = c_pipe.y * Kernel::LANDSCAPE_RATIO + move2;
+					buildLeftUpper2.m_position.y = buildRightUpper2.m_position.y = pipe.y * Kernel::LANDSCAPE_RATIO + move;
+					buildLeftLower2.m_position.y = buildRightLower2.m_position.y = pipe.y * Kernel::LANDSCAPE_RATIO + move2;
 
 					Down(buildLeftUpper2, buildRightUpper2, buildLeftLower2, buildRightLower2);
 
@@ -97,13 +96,13 @@ namespace Monad::GUI
 				const VERTEX_TYPE& rightLower
 			)
 			{
-				for (float lerpVert = .0f; lerpVert < 1.0f; lerpVert += c_lerpStep)
+				for (float lerpVert = .0f; lerpVert < 2.0f; lerpVert += c_lerpStep)
 				{
 					VERTEX_TYPE buildLeftUpper(leftUpper), buildLeftLower(leftLower), buildRightUpper(rightUpper), buildRightLower(rightLower);
-					buildLeftUpper.m_position.x = std::lerp(leftUpper.m_position.x, rightUpper.m_position.x, lerpVert);
-					buildRightUpper.m_position.x = std::lerp(leftUpper.m_position.x, rightUpper.m_position.x, lerpVert + c_lerpStep);
-					buildLeftLower.m_position.x = std::lerp(leftLower.m_position.x, rightLower.m_position.x, lerpVert);
-					buildRightLower.m_position.x = std::lerp(leftLower.m_position.x, rightLower.m_position.x, lerpVert + c_lerpStep);
+					buildLeftUpper.m_position.x = std::lerp(leftUpper.m_position.x, rightUpper.m_position.x, lerpVert / 2.0f);
+					buildRightUpper.m_position.x = std::lerp(leftUpper.m_position.x, rightUpper.m_position.x, (lerpVert + c_lerpStep) / 2.0f);
+					buildLeftLower.m_position.x = std::lerp(leftLower.m_position.x, rightLower.m_position.x, lerpVert / 2.0f);
+					buildRightLower.m_position.x = std::lerp(leftLower.m_position.x, rightLower.m_position.x, (lerpVert + c_lerpStep) / 2.0f);
 					AddTriangleMetallic(
 						buildLeftUpper,
 						buildLeftLower,
@@ -126,13 +125,13 @@ namespace Monad::GUI
 				const VERTEX_TYPE& rightLower2
 			)
 			{
-				for (float lerpVert = .0f; lerpVert < 1.0f; lerpVert += c_lerpStep)
+				for (float lerpVert = .0f; lerpVert < 2.0f; lerpVert += c_lerpStep)
 				{
 					VERTEX_TYPE buildLeftUpper2(leftUpper2), buildRightUpper2(rightUpper2), buildLeftLower2(leftLower2), buildRightLower2(rightLower2);
-					buildLeftUpper2.m_position.x = std::lerp(leftUpper2.m_position.x, rightUpper2.m_position.x, lerpVert);
-					buildRightUpper2.m_position.x = std::lerp(leftUpper2.m_position.x, rightUpper2.m_position.x, lerpVert + c_lerpStep);
-					buildLeftLower2.m_position.x = std::lerp(leftLower2.m_position.x, rightLower2.m_position.x, lerpVert);
-					buildRightLower2.m_position.x = std::lerp(leftLower2.m_position.x, rightLower2.m_position.x, lerpVert + c_lerpStep);
+					buildLeftUpper2.m_position.x = std::lerp(leftUpper2.m_position.x, rightUpper2.m_position.x, lerpVert / 2.0f);
+					buildRightUpper2.m_position.x = std::lerp(leftUpper2.m_position.x, rightUpper2.m_position.x, (lerpVert + c_lerpStep) / 2.0f);
+					buildLeftLower2.m_position.x = std::lerp(leftLower2.m_position.x, rightLower2.m_position.x, lerpVert / 2.0f);
+					buildRightLower2.m_position.x = std::lerp(leftLower2.m_position.x, rightLower2.m_position.x, (lerpVert + c_lerpStep) / 2.0f);
 					AddTriangleMetallic(
 						buildLeftUpper2,
 						buildRightUpper2,
@@ -154,13 +153,13 @@ namespace Monad::GUI
 				const VERTEX_TYPE& leftUpper2
 			)
 			{
-				for (float lerpVert = .0f; lerpVert < 1.0f; lerpVert += c_lerpStep)
+				for (float lerpVert = .0f; lerpVert < .5f; lerpVert += c_lerpStep)
 				{
 					VERTEX_TYPE buildLeftUpper(leftUpper), buildLeftLower2(leftLower2), buildLeftLower(leftLower), buildLeftUpper2(leftUpper2);
-					buildLeftUpper.m_position.y = std::lerp(leftUpper.m_position.y, leftLower.m_position.y, lerpVert);
-					buildLeftLower.m_position.y = std::lerp(leftUpper.m_position.y, leftLower.m_position.y, lerpVert + c_lerpStep);
-					buildLeftUpper2.m_position.y = std::lerp(leftUpper2.m_position.y, leftLower2.m_position.y, lerpVert);
-					buildLeftLower2.m_position.y = std::lerp(leftUpper2.m_position.y, leftLower2.m_position.y, lerpVert + c_lerpStep);
+					buildLeftUpper.m_position.y = std::lerp(leftUpper.m_position.y, leftLower.m_position.y, lerpVert / 2.0f);
+					buildLeftLower.m_position.y = std::lerp(leftUpper.m_position.y, leftLower.m_position.y, (lerpVert + c_lerpStep) / 2.0f);
+					buildLeftUpper2.m_position.y = std::lerp(leftUpper2.m_position.y, leftLower2.m_position.y, lerpVert / 2.0f);
+					buildLeftLower2.m_position.y = std::lerp(leftUpper2.m_position.y, leftLower2.m_position.y, (lerpVert + c_lerpStep) / 2.0f);
 					AddTriangleMetallic(
 						buildLeftUpper,
 						buildLeftLower2,
@@ -183,13 +182,13 @@ namespace Monad::GUI
 				const VERTEX_TYPE& rightUpper2
 			)
 			{
-				for (float lerpVert = .0f; lerpVert < 1.0f; lerpVert += c_lerpStep)
+				for (float lerpVert = .0f; lerpVert < .5f; lerpVert += c_lerpStep)
 				{
 					VERTEX_TYPE buildRightUpper(rightUpper), buildRightLower(rightLower), buildRightLower2(rightLower2), buildRightUpper2(rightUpper2);
-					buildRightUpper.m_position.y = std::lerp(buildRightUpper.m_position.y, rightLower.m_position.y, lerpVert);
-					buildRightLower.m_position.y = std::lerp(buildRightLower.m_position.y, rightLower.m_position.y, lerpVert + c_lerpStep);
-					buildRightUpper2.m_position.y = std::lerp(buildRightUpper2.m_position.y, rightLower2.m_position.y, lerpVert);
-					buildRightLower2.m_position.y = std::lerp(buildRightLower2.m_position.y, rightLower2.m_position.y, lerpVert + c_lerpStep);
+					buildRightUpper.m_position.y = std::lerp(buildRightUpper.m_position.y, rightLower.m_position.y, lerpVert / 2.0f);
+					buildRightLower.m_position.y = std::lerp(buildRightLower.m_position.y, rightLower.m_position.y, (lerpVert + c_lerpStep) / 2.0f);
+					buildRightUpper2.m_position.y = std::lerp(buildRightUpper2.m_position.y, rightLower2.m_position.y, lerpVert / 2.0f);
+					buildRightLower2.m_position.y = std::lerp(buildRightLower2.m_position.y, rightLower2.m_position.y, (lerpVert + c_lerpStep) / 2.0f);
 					AddTriangleMetallic(
 						buildRightUpper,
 						buildRightLower,
@@ -205,10 +204,9 @@ namespace Monad::GUI
 				}
 			}
 
-			const DirectX::XMFLOAT4 c_pipe;
 			static constexpr float
 				c_scale = 0.065f,
-				c_lerpStep = 0.0625f;
+				c_lerpStep = 0.0625f / 2.0f;
 		};
 	}
 
@@ -230,18 +228,18 @@ namespace Monad::GUI
 			append(std::to_string(pipe.w));
 		// try_emplace does not work here, because the value is a complete mesh and the leazy evaluation cannot be done
 
-		if (auto iterMsh = Repositories::g_repositoryGeneric->m_meshes.find(dialogRectName);
+		if (const auto iterMsh = Repositories::g_repositoryGeneric->m_meshes.find(dialogRectName);
 			Repositories::g_repositoryGeneric->m_meshes.cend() != iterMsh
 			)
 			return iterMsh->second;
 		else
 		{
 			MeshCreatorPipe frame{ pipe };
-			auto retMesh = Renderer::OptimizeMesh(
+			const auto retMesh = Renderer::OptimizeMesh(
 				frame.m_indices,
 				{ 
 					frame.m_vertices.data(),
-					sizeof(MeshCreatorPipe::VERTEX_TYPE),
+					sizeof MeshCreatorPipe::VERTEX_TYPE,
 					frame.m_vertices.size()
 				}
 			);	

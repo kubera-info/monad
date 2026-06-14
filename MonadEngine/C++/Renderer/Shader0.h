@@ -4,6 +4,8 @@
 
 #pragma once
 
+// STD
+#include <flat_map>
 // Monad
 #include "Kernel/Templates.h"
 #include "ConstantBuffers.h"
@@ -18,7 +20,7 @@ namespace Monad::Renderer
 	// Rendering stage
 	// =========================================================================
 
-	enum STAGE_MODES
+	enum STAGE_MODES : size_t
 	{
 		STAGE_MODE_WORLD,
 		STAGE_MODE_SHADOW,
@@ -68,6 +70,10 @@ namespace Monad::Renderer
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		);
 
+		virtual void OnComputePerSystemFrame(
+			const DirectX::XMFLOAT4X4& modelSpaceMatrix
+		);
+
 		/// <summary>
 		/// Returns currently active shader configuration.
 		/// </summary>
@@ -77,8 +83,8 @@ namespace Monad::Renderer
 		Mesh m_mesh;
 
 	private:
-		ShaderConfigGeneric* m_shadersWorld = nullptr;
-		OptionalShaderConfig m_shadersShadow;
+		using MapShaders = std::flat_map<size_t, ShaderConfigGeneric*>;
+		MapShaders m_shaderConfig;
 	};
 
 	// =========================================================================

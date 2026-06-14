@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 // Me
@@ -32,11 +32,5 @@ namespace Monad::Renderer
 	void First::OnNewMatrix(
 		[[maybe_unused]] DirectX::XMFLOAT4X4& matrixToAlter
 	) const noexcept
-	{
-	}
-
-	bool First::IsSystem() const noexcept
-	{
-		return false;
-	}
+	{}
 }

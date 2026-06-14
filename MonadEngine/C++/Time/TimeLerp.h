@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 #pragma once
@@ -12,7 +12,7 @@ namespace Monad::Time
 	/// <summary>
 	/// TimeLerp
 	/// 
-	/// A time–based linear interpolator.
+	/// A timeï¿½based linear interpolator.
 	/// Moves its internal value from startValue to stopValue
 	/// during a specified time interval.
 	///

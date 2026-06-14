@@ -17,10 +17,10 @@ namespace Monad::Renderer
 	{
 		Kernel::VectorNoCtor<I> m_indices;
 		Kernel::VectorBlock m_vertices;
-		};
+	};
 
 	OptimizedMesh<uint16_t> OptimizeMesh(
-		const Kernel::SpanIndices16& sourceIndices, 
+		const Kernel::SpanIndices16& sourceIndices,
 		const Kernel::SpanBlock& sourceVertices,
 		const bool omitPosition3 = false
 	);

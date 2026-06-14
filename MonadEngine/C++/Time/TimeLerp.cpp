@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 // Me
@@ -19,8 +19,8 @@ namespace Monad::Time
 	{
 		/// <summary>
 		/// Special values describing the internal state of the interpolation.
-		/// START_STATE  – interpolation has not been started yet
-		/// STOP_STATE   – interpolation has finished
+		/// START_STATE  ï¿½ interpolation has not been started yet
+		/// STOP_STATE   ï¿½ interpolation has finished
 		/// </summary>
 		constexpr double START_STATE(0.0), STOP_STATE(-1.0);
 	}

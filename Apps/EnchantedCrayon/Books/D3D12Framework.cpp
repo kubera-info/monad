@@ -209,7 +209,7 @@ D3D12Core::D3D12Core() :
 		{
 			"blank_tex"_technique,
 			{ 
-				{ STAGE_MODES::STAGE_MODE_WORLD, "blank_tex"_fx }
+				{ STAGE_MODES::STAGE_MODE_CUSTOM, "blank_tex"_fx }
 			}
 		},
 		{

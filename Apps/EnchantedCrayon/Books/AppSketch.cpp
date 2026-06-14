@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 // Me
@@ -38,11 +38,11 @@ namespace Monad
 		{
 		}
 
-		void ShaderSketch::OnComputePerWorldFrame(
+		void ShaderSketch::OnComputePerSystemFrame(
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
-			__super::OnComputePerWorldFrame(modelSpaceMatrix);
+			__super::OnComputePerSystemFrame(modelSpaceMatrix);
 
 			if (PRINT_STATUSES::START == m_printOnce)
 			{

@@ -149,7 +149,6 @@ public:
 
 		InitD3D12Ranges1* m_parametersDef = nullptr;
 	};
-	using OptionalShaderConfig = std::optional<ShaderConfigGeneric*>;
 
 	// =========================================================================
 	// Shader maps
@@ -157,7 +156,7 @@ public:
 
 	struct MapFX : Kernel::FlatMapString<std::shared_ptr<ShaderConfigGeneric>>
 	{
-		using flat_map::flat_map;
+		using Kernel::FlatMapString<std::shared_ptr<ShaderConfigGeneric>>::FlatMapString;
 		using InitializerListFXes = std::initializer_list<value_type>;
 
 		ShaderConfigGeneric* GetPipeline(

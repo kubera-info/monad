@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 #pragma once
@@ -15,9 +15,9 @@ namespace Monad::System
 	/// Lightweight RAII wrapper for Windows HANDLE.
 	///
 	/// Purpose:
-	///  • Owns a Windows HANDLE
-	///  • Ensures proper release via CloseHandle()
-	///  • Designed mainly for global / system objects (mutexes, semaphores, etc.)
+	///  ï¿½ Owns a Windows HANDLE
+	///  ï¿½ Ensures proper release via CloseHandle()
+	///  ï¿½ Designed mainly for global / system objects (mutexes, semaphores, etc.)
 	/// </summary>
 	struct SmartHandle
 	{
@@ -48,8 +48,8 @@ namespace Monad::System
 		/// Checks whether handle is valid.
 		/// </summary>
 		/// <returns>
-		/// true  – handle is non-null  
-		/// false – handle is null
+		/// true  ï¿½ handle is non-null  
+		/// false ï¿½ handle is null
 		/// </returns>
 		operator bool() const noexcept;
 

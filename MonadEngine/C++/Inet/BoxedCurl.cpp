@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 // Me
@@ -75,7 +75,7 @@ namespace Monad::Internet
 		};
 
 		/// <summary>
-		/// CURL write callback – appends incoming bytes to std::string.
+		/// CURL write callback ï¿½ appends incoming bytes to std::string.
 		/// </summary>
 		size_t CallbackWriteToString(
 			void* contents,

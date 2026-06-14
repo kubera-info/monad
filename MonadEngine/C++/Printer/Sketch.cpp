@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 // Me
@@ -25,11 +25,6 @@ namespace Monad::Print
 			g_shaderSketchGeneric
 		)
 	{
-	}
-
-	bool ShaderSketchGeneric::IsSystem() const noexcept
-	{
-		return true;
 	}
 
 	void ShaderSketchGeneric::PrintOnce() noexcept

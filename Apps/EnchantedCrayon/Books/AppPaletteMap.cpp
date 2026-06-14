@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 // Me
@@ -58,7 +58,7 @@ namespace Monad
 			/// for subtle animation of palette colors.
 			/// </summary>
 			/// <param name="speed">Speed multiplier of oscillation.</param>
-			/// <returns>Animated scalar in range ~[0.0–0.25]</returns>
+			/// <returns>Animated scalar in range ~[0.0ï¿½0.25]</returns>
 			float GetColorScalar(const double speed) noexcept
 			{
 				return static_cast<float>(
@@ -113,24 +113,22 @@ namespace Monad
 			const DirectX::XMFLOAT4X4&
 		)
 		{
-			// Animate first palette entry slightly
-			m_paletteContainer[0].AlterColor({
-				GetColorScalar(2.0),
-				GetColorScalar(1.0),
-				GetColorScalar(0.5)
-				});
+			if (STAGE_MODE_CUSTOM == g_stageOfRendering)
+			{
+				// Animate first palette entry slightly
+				m_paletteContainer[0].AlterColor({
+					GetColorScalar(2.0),
+					GetColorScalar(1.0),
+					GetColorScalar(0.5)
+					}
+				);
 
-			// Upload palette to GPU
-			m_tex.UpdateTexture1D(
-				ArrayTexelsConverter{ m_paletteContainer },
-				m_textureUploadHeap
-			);
-		}
-
-		// Marks this resource as system-level (always active)
-		bool PaletteMap::IsSystem() const noexcept
-		{
-			return true;
+				// Upload palette to GPU
+				m_tex.UpdateTexture1D(
+					ArrayTexelsConverter{ m_paletteContainer },
+					m_textureUploadHeap
+				);
+			}
 		}
 
 		// Applies a new color to the selected palette index
@@ -149,18 +147,14 @@ namespace Monad
 			for (size_t index = FIRST_ENABLED;
 				index < m_paletteContainer.size();
 				++index)
-			{
 				m_paletteContainer[index].ResetColor();
-			}
 		}
 		void PaletteMap::FlushColors()
 		{
 			for (size_t index = FIRST_ENABLED;
 				index < m_paletteContainer.size();
 				++index)
-			{
 				m_paletteContainer[index].FlushColor();
-			}
 		}
 	}
 }

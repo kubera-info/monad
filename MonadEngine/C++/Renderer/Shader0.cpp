@@ -1,10 +1,12 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 // Me
 #include "stdafx.h"
 #include "Shader0.h"
+// STD
+#include <ranges>
 // Monad
 #include "Repository/Repo.h"
 #include "Core/DXSample.h"
@@ -31,8 +33,7 @@ namespace Monad
 				this,
 				g_dataHDRGeneric
 			)
-		{
-		}
+		{}
 
 		DirectX::XMFLOAT4X4* g_dataMorphingMatrix = nullptr;
 
@@ -61,8 +62,7 @@ namespace Monad
 				this,
 				g_dataLightPosMatrixGeneric
 			)
-		{
-		}
+		{}
 
 		STAGE_MODES g_stageOfRendering;
 		uint32_t g_texDepthHeight = 1024, g_texDepthWidth = 2048;
@@ -71,20 +71,29 @@ namespace Monad
 			const std::string& technique,
 			Mesh mesh
 		) :
-			m_mesh{ mesh }
+			m_mesh{ mesh },
+			m_shaderConfig
+			{
+				std::ranges::to<MapShaders>(
+					std::views::transform
+					(
+						g_dxSample->m_techniques.find(technique)->second,
+						[](const auto& art)
+						{
+							return std::make_pair(art.first, g_dxSample->m_fxCollection.GetPipeline(art.second));
+						}
+					)
+				)
+			}
 		{
+#if defined _DEBUG
 			const auto& thisTechnique = g_dxSample->m_techniques.find(technique);
 			THROW_EXC_ONEND(
 				g_dxSample->m_techniques,
 				thisTechnique,
 				L"Technique"
 			);
-			m_shadersWorld = g_dxSample->m_fxCollection.GetPipeline(
-				thisTechnique->second[STAGE_MODE_WORLD]);
-			if (auto sh = thisTechnique->second.find(STAGE_MODE_SHADOW); thisTechnique->second.cend() != sh)
-				m_shadersShadow.emplace(
-					g_dxSample->m_fxCollection.GetPipeline(
-						sh->second));
+#endif
 		}
 
 		void ShaderGeneric::OnFrameRender(const XMFLOAT4X4& modelSpaceMatrix)
@@ -94,34 +103,34 @@ namespace Monad
 				using enum STAGE_MODES;
 			case STAGE_MODE_ALPHA_BLENDING:
 			case STAGE_MODE_WORLD:
-				if ((STAGE_MODE_ALPHA_BLENDING == g_stageOfRendering) != m_shadersWorld->m_alphaBlending)
+				if (!m_shaderConfig.contains(STAGE_MODE_WORLD) && !m_shaderConfig.contains(STAGE_MODE_ALPHA_BLENDING))
 					return;
-				if (IsSystem())
+				if ((STAGE_MODE_ALPHA_BLENDING == g_stageOfRendering) != m_shaderConfig.at(STAGE_MODE_WORLD)->m_alphaBlending)
 					return;
-				m_shadersWorld->SetMe();
+				m_shaderConfig.at(STAGE_MODE_WORLD)->SetMe();
 				OnComputePerWorldFrame(modelSpaceMatrix);
-				g_dataHDRGeneric->SetMe(m_shadersWorld);
+				g_dataHDRGeneric->SetMe(m_shaderConfig.at(STAGE_MODE_WORLD));
 #if MONAD_SHADOW
 				g_dxSample->m_shadows.GetDsTexture().SetMe(
-					m_shadersWorld,
+					m_shaderConfig.at(STAGE_MODE_WORLD),
 					T0_SHADOW_MAP
 				);
 #endif
 				break;
 #if MONAD_SHADOW
 			case STAGE_MODE_SHADOW:
-				if (!m_shadersShadow)
+				if (!m_shaderConfig.contains(STAGE_MODE_SHADOW))
 					return;
-				m_shadersShadow.value()->SetMe();
+				m_shaderConfig.at(STAGE_MODE_SHADOW)->SetMe();
 				OnComputePerShadowFrame(modelSpaceMatrix);
 				break;
 #endif
-			default:
-				assert(STAGE_MODE_CUSTOM == g_stageOfRendering);
-				if (!IsSystem())
+			case STAGE_MODE_CUSTOM:
+				if (!m_shaderConfig.contains(STAGE_MODE_CUSTOM))
 					return;
-				m_shadersWorld->SetMe();
-				OnComputePerWorldFrame(modelSpaceMatrix);
+				m_shaderConfig.at(STAGE_MODE_CUSTOM)->SetMe();
+				OnComputePerSystemFrame(modelSpaceMatrix);
+				break;
 			}
 			m_mesh.Render();
 		}
@@ -129,14 +138,17 @@ namespace Monad
 		void ShaderGeneric::OnComputePerShadowFrame(
 			const XMFLOAT4X4&
 		)
-		{
-		}
+		{}
 
 		void ShaderGeneric::OnComputePerWorldFrame(
 			const XMFLOAT4X4&
 		)
-		{
-		}
+		{}
+
+		void ShaderGeneric::OnComputePerSystemFrame(
+			const DirectX::XMFLOAT4X4&
+		)
+		{}
 
 		ShaderConfigGeneric* ShaderGeneric::GetCurrentConfig() const noexcept
 		{
@@ -144,12 +156,14 @@ namespace Monad
 			switch (g_stageOfRendering)
 			{
 			case STAGE_MODES::STAGE_MODE_SHADOW:
-				return m_shadersShadow.value();
+				return m_shaderConfig.at(STAGE_MODE_SHADOW);
+			case STAGE_MODES::STAGE_MODE_CUSTOM:
+				return m_shaderConfig.at(STAGE_MODE_CUSTOM);
 			default:
-				return m_shadersWorld;
+				return m_shaderConfig.at(STAGE_MODE_WORLD);
 			}
 #else
-			return m_shadersWorld;
+			return m_shaderConfig.at(STAGE_MODE_WORLD);
 #endif			
 		}
 	}

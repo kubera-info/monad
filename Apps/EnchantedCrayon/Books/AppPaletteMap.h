@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 #pragma once
@@ -58,12 +58,6 @@ namespace Monad::App
 		void OnFrameRender(
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		) final;
-
-		/// <summary>
-		/// Indicates that this resource is system-level
-		/// and always active.
-		/// </summary>
-		bool IsSystem() const noexcept final;
 
 		/// <summary>
 		/// GPU texture storing palette colors.
