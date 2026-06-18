@@ -193,7 +193,7 @@
       <Filter>PS\Medium</Filter>
     </FxCompile>
     <FxCompile Include="PS\blank_tex.hlsl">
-      <Filter>PS\Medium</Filter>
+      <Filter>PS</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

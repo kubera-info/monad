@@ -1,11 +1,12 @@
 // ##########################################################################
-// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 #ifndef __LOOKUP_HLSLI__
 #define __LOOKUP_HLSLI__
 
 #include "../../../../MonadEngine/HLSL/struct.hlsli"
+#include "../../../../MonadEngine/HLSL/color_space.hlsli"
 #include "params.hlsli"
 
 static float4 GetColorFromTexel(
@@ -36,9 +37,9 @@ static float4 GetColorFromTexel2(
             g_samplerPoint, 
             textureCoord + g_PoissonTable32[i].xy).x;
         if (x > 0.0)
-            color += g_texPalette.Sample(g_samplerPoint, x).rgb;
+            color += LinearToSRGB(g_texPalette.Sample(g_samplerPoint, x).rgb);
     }
     color /= g_poissonCount32;
-    return float4(color, 1.0);
+    return LinearToSRGBA(float4(color, 1.0));
 }
 #endif
