@@ -37,9 +37,9 @@ static float4 GetColorFromTexel2(
             g_samplerPoint, 
             textureCoord + g_PoissonTable32[i].xy).x;
         if (x > 0.0)
-            color += LinearToSRGB(g_texPalette.Sample(g_samplerPoint, x).rgb);
+            color += g_texPalette.Sample(g_samplerPoint, x).rgb;
     }
     color /= g_poissonCount32;
-    return LinearToSRGBA(float4(color, 1.0));
+    return float4(LinearToSRGB(color), 1.0);
 }
 #endif
