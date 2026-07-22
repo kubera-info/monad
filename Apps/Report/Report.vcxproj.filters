@@ -971,6 +971,5 @@
     <None Include="..\..\MonadEngine\C++\Renderer2D\README.md">
       <Filter>Monad%28a%29 Engine\Renderer2D\Doc</Filter>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>

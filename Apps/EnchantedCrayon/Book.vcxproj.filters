@@ -1125,6 +1125,5 @@
     <None Include="..\..\MonadEngine\C++\Globals\README.md">
       <Filter>Monad%28a%29 Incudes\Globals\Doc</Filter>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>

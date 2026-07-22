@@ -67,3 +67,17 @@ desktop.ini
 /Libs/curl/win64a-mingw.zip
 /Libs/curl/Current Name ARM64.txt
 /Libs/curl/Current Name x64.txt
+
+# vcpkg generated files
+x64vcpkg_installed
+arm64vcpkg_installed
+vcpkg_installed/
+vcpkg_installed*/
+installed/
+packages/
+buildtrees/
+downloads/
+
+# Keep the manifest and configuration
+!vcpkg.json
+!vcpkg-configuration.json
