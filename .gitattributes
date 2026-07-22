@@ -8,12 +8,10 @@
 *.hlsl eol=crlf
 *.hlsli eol=crlf
 *.filters eol=crlf
-*.fx eol=crlf
-*.fxh eol=crlf
 *.inc eol=crlf
 *.inl eol=crlf
 *.ps1 eol=crlf
-*.sln eol=crlf
+*.slnx eol=crlf
 *.vcxproj eol=crlf
 *.wxs eol=crlf
 *.wixproj eol=crlf
