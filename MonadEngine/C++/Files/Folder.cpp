@@ -49,19 +49,24 @@ namespace Monad::Files
 		return GetFolderGeneric(FOLDERID_System);
 	}
 
-	fs::path GetModulePath()
+	namespace
 	{
-		wchar_t pathModule[SHORT_MAX] = { L"" };
-		static fs::path pathModuleStatic;
-		if (!*pathModule)
+		fs::path GetModulePathInternal()
 		{
+			wchar_t pathModule[SHORT_MAX] = { L"" };
 			THROW_EXC_IFFALSE(Monad::Exceptions::IOError, GetModuleFileName(
 				nullptr,
 				pathModule,
 				SHORT_MAX
 			), L"FS Path");
-			pathModuleStatic = pathModule;
+			return pathModule;
 		}
+	}
+
+	fs::path GetModulePath()
+	{
+		static fs::path pathModuleStatic = GetModulePathInternal();
+
 		return pathModuleStatic;
 	}
 
