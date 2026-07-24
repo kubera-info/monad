@@ -7,6 +7,7 @@
 #include "__MonadGlobals.h"
 // Monad
 #include "Kernel/__MonadKernel.h"
+#include "Files/Folder.h"
 
 using namespace std;
 
@@ -22,8 +23,8 @@ namespace Monad::Globals
 	{ regex{ R"(^en\-GB$)" }, "en-GB" }
 	};
 	I18N::I18NString
-		g_shortAppName{ std::wstring(*__wargv) },
-		g_fullAppName{ std::wstring(*__wargv) },
+		g_shortAppName{ Files::GetModulePath().filename().wstring() },
+		g_fullAppName{ Files::GetModulePath().filename().wstring() },
 		g_copyright{ L"Place your copyrignt/copyleft"_us };
 	std::wstring
 		g_whoAmI,
