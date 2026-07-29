@@ -19,7 +19,7 @@ namespace Monad::Files
 		WILDCARD_ANY(L"*");
 	namespace
 	{
-		const wregex REGEX_MONAD_EXT(L"^\\.monad\\-[a-z]{3}$");
+		const wregex REGEX_MONAD_EXT(L"^\\.monad\\-[a-z]{3}$", std::regex_constants::icase);
 	}
 
 	bool IsMonadExt(

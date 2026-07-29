@@ -69,14 +69,8 @@ desktop.ini
 /Libs/curl/Current Name x64.txt
 
 # vcpkg generated files
-x64vcpkg_installed
-arm64vcpkg_installed
-vcpkg_installed/
-vcpkg_installed*/
-installed/
-packages/
-buildtrees/
-downloads/
+
+vcpkg/
 
 # Keep the manifest and configuration
 !vcpkg.json

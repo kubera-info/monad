@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="MeshBuilder.cpp" />
+    <ClCompile Include="Kredka.cpp" />
+    <ClCompile Include="PaintingCore.cpp" />
+    <ClCompile Include="FVF.cpp" />
+    <ClCompile Include="HRCore.cpp" />
+    <ClCompile Include="Wallpaper.cpp" />
+    <ClCompile Include="..\..\C++\Math\Math.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MeshCore.h" />
+    <ClInclude Include="Kredka.h" />
+    <ClInclude Include="PaintingCore.h" />
+    <ClInclude Include="FVF.h" />
+    <ClInclude Include="HRCore.h" />
+    <ClInclude Include="Wallpaper.h" />
+    <ClInclude Include="..\..\C++\Kernel\__MonadKernel.h" />
+    <ClInclude Include="..\..\C++\Kernel\Templates.h" />
+    <ClInclude Include="..\..\C++\Math\Math.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+</Project>

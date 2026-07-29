@@ -60,7 +60,7 @@
     <IntDir>$(ProjectDir)</IntDir>
     <SourcePath>$(ProjectDir)</SourcePath>
     <ReferencePath>$(VC_ReferencesPath_x64);c:\Program Files (x86)\Post-Process\</ReferencePath>
-    <NMakeBuildCommandLine>nmake monad_clean &amp; nmake all &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1"  2 "$(ProjectName)" Book &amp; PwSh "$(SolutionDir)\MonadEngine\bin\Say.ps1" "Noarch finieshed"</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>nmake clean &amp; nmake all &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1"  2 "$(ProjectName)" Book &amp; PwSh "$(SolutionDir)\MonadEngine\bin\Say.ps1" "Noarch finieshed"</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>nmake /NOLOGO clean</NMakeCleanCommandLine>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

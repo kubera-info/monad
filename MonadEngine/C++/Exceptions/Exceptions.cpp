@@ -249,7 +249,7 @@ namespace Monad
 						append(_com_error(hr).ErrorMessage());
 					OutputDebugString(L"\nError: ");
 					OutputDebugString(errStr.c_str());
-					OutputDebugString(GetModulePath().c_str());
+					OutputDebugString(L"noname");
 					OutputDebugString(L"\n");
 				}
 				break;

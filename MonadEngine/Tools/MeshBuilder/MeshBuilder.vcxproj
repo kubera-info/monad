@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{67E0F043-F363-4C69-AAAA-A4E03C85CB2C}</ProjectGuid>
+    <RootNamespace>EmptyProject</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>MeshBuilder</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfAtl>Static</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfAtl>Static</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.26430.15</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\Bin\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\..\Bin\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(SolutionDir)MonadEngine\C++;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EXC_TYPE_REPORT_EXE=0;EXC_TYPE_MESSAGE_BOX=1;EXC_TYPE_CONSOLE=2;MONAD_INLINE_EXCEPTION=EXC_TYPE_CONSOLE;WIN32;MONAD_INLINE_EXCEPTION=EXC_TYPE_CONSOLE;_DEBUG;PROFILE;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <OpenMPSupport>false</OpenMPSupport>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <DisableSpecificWarnings>26495</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <SDLCheck>true</SDLCheck>
+      <BuildStlModules>false</BuildStlModules>
+      <EnableModules>false</EnableModules>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeaderOutputFile />
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <LargeAddressAware>true</LargeAddressAware>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <TargetMachine>MachineX64</TargetMachine>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <ProgramDatabaseFile>$(ProjectDir)..\pdb\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>PwSh.exe "..\..\Bin\end.ps1" 1 "$(ProjectName)"</Command>
+    </PostBuildEvent>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(SolutionDir)MonadEngine\C++;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EXC_TYPE_REPORT_EXE=0;EXC_TYPE_MESSAGE_BOX=1;EXC_TYPE_CONSOLE=2;MONAD_INLINE_EXCEPTION=EXC_TYPE_MESSAGE_BOX;WIN32;MONAD_INLINE_EXCEPTION=EXC_TYPE_CONSOLE;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <OpenMPSupport>false</OpenMPSupport>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <DisableSpecificWarnings>26495</DisableSpecificWarnings>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <SDLCheck>true</SDLCheck>
+      <BuildStlModules>false</BuildStlModules>
+      <EnableModules>false</EnableModules>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <PrecompiledHeaderOutputFile />
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <TargetMachine>MachineX64</TargetMachine>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <ProgramDatabaseFile>$(ProjectDir)..\pdb\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>PwSh.exe "..\..\Bin\end.ps1" 1 "$(ProjectName)"</Command>
+    </PostBuildEvent>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\C++\Math\Math.cpp" />
+    <ClCompile Include="FVF.cpp" />
+    <ClCompile Include="HRCore.cpp" />
+    <ClCompile Include="Kredka.cpp" />
+    <ClCompile Include="MeshBuilder.cpp" />
+    <ClCompile Include="PaintingCore.cpp" />
+    <ClCompile Include="Wallpaper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\C++\Kernel\Templates.h" />
+    <ClInclude Include="..\..\C++\Kernel\__MonadKernel.h" />
+    <ClInclude Include="..\..\C++\Math\Math.h" />
+    <ClInclude Include="FVF.h" />
+    <ClInclude Include="HRCore.h" />
+    <ClInclude Include="Kredka.h" />
+    <ClInclude Include="MeshCore.h" />
+    <ClInclude Include="PaintingCore.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Wallpaper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

@@ -154,8 +154,8 @@ namespace Monad::Audio
 		/// <summary>
 		/// Checks whether the audio subsystem is ready and enabled for playback.
 		/// </summary>
-		/// <returns>true if audio subsystem is ready and enabled./returns>
-		inline bool IsReady() const noexcept;
+		/// <returns>true if audio subsystem is ready and enabled.</returns>
+		bool IsReady() const noexcept;
 		/// <summary>
 		/// Closes and deinitializes the audio subsystem.
 		/// </summary>
@@ -256,6 +256,9 @@ namespace Monad::Audio
 		bool InternalContainsQueue(
 			const std::string& queue
 		) const noexcept;
+		bool InternalReadyContainsQueue(
+			const std::string& queue
+		) const noexcept;
 		void InternalSetVoiceVolumeXAudio2(
 			const float volume,
 			const std::string& queue
@@ -276,6 +279,7 @@ namespace Monad::Audio
 		);
 		void InternalSetMuted();
 		void InternalClearCurrentStream();
+		inline bool InternalIsReadyAndIsEnabled() const noexcept;
 		void InternalStartStream();
 #pragma endregion
 

@@ -190,7 +190,7 @@ namespace Monad
 		)
 		{
 			const lock_guard lg(m_lockAudio);
-			if (IsReady() && g_persistentAudio->InternalContainsQueue(STREAM))
+			if (InternalReadyContainsQueue(STREAM))
 				m_xAudioState->operator[](queue).SetVoiceVolumeGeneric(volume);
 		}
 
@@ -335,7 +335,7 @@ namespace Monad
 			const string& queue
 		)
 		{
-			if (IsReady() && InternalContainsQueue(queue))
+			if (InternalReadyContainsQueue(queue))
 				m_xAudioState->operator[](queue).SetVoiceVolume(volume);
 		}
 
@@ -346,11 +346,18 @@ namespace Monad
 			return m_voicesVolumesCache.contains(queue);
 		}
 
+		bool PersistentAudio::InternalReadyContainsQueue(
+			const std::string& queue
+		) const noexcept
+		{
+			return IsReady() && InternalContainsQueue(queue);
+		}
+
 		void PersistentAudio::InternalResetQueue(
 			const string& queue
 		)
 		{
-			if (IsReady() && InternalContainsQueue(queue))
+			if (InternalReadyContainsQueue(queue))
 				m_xAudioState->operator[](queue).ResetManager();
 		}
 
@@ -360,14 +367,12 @@ namespace Monad
 			IWaveCallback* const callback
 		)
 		{
-			auto snd = GetSound(filename);
-			if (!snd)
-				return;
-			if (IsReady() && InternalContainsQueue(queue))
-				m_xAudioState->operator[](queue).AudioEnqueueSound({
-				filename,
-				callback,
-				snd });
+			if (InternalReadyContainsQueue(queue))
+				if (auto snd = GetSound(filename); snd)
+					m_xAudioState->operator[](queue).AudioEnqueueSound({
+					filename,
+					callback,
+					snd });
 		}
 
 		void PersistentAudio::InternalEnqueueStream(
@@ -390,7 +395,7 @@ namespace Monad
 			const string& queue
 		) noexcept
 		{
-			if (IsReady() && InternalContainsQueue(queue))
+			if (InternalReadyContainsQueue(queue))
 				return InternalIsPlaying(queue);
 			else
 				return false;
@@ -426,6 +431,11 @@ namespace Monad
 			);
 		}
 
+		bool PersistentAudio::InternalIsReadyAndIsEnabled() const noexcept
+		{
+			return IsReady() && IsEnabled();
+		}
+
 		void PersistentAudio::InternalStartStream()
 		{
 			if (!m_xAudioState || m_streamsNames.empty())
@@ -433,7 +443,7 @@ namespace Monad
 			OnDescVolumes();
 			auto& audioState = m_xAudioState->operator[](STREAM);
 			audioState.ResetManager();
-			if (IsReady() && IsEnabled() && !audioState.m_isQueueErased)
+			if (InternalIsReadyAndIsEnabled())
 			{
 				const auto& mediaStreamer = m_streams.find(
 					m_streamsNames.GetRandomString());
@@ -442,7 +452,7 @@ namespace Monad
 					mediaStreamer,
 					L"Find Stream");
 				auto newWaveBuf = mediaStreamer->second.ReadAll();
-				if (IsReady() && IsEnabled() && !audioState.m_isQueueErased)
+				if (InternalIsReadyAndIsEnabled())
 				{
 					const lock_guard lg(m_lockAudio);
 					InternalClearCurrentStream();
@@ -470,7 +480,7 @@ namespace Monad
 
 		void PersistentAudio::OnDescVolumes()
 		{
-			if (IsReady() && g_persistentAudio->InternalContainsQueue(STREAM))
+			if (InternalReadyContainsQueue(STREAM))
 				m_xAudioState->operator[](STREAM)
 				.SetVoiceVolumeGeneric(
 					m_xAudioState->operator[](DESCRIBE).IsPlaying()
@@ -511,7 +521,7 @@ namespace Monad
 			InternalSetMuted();
 		}
 
-		inline bool PersistentAudio::IsReady() const noexcept
+		bool PersistentAudio::IsReady() const noexcept
 		{
 			return !InAnyCloseReason() && m_xAudioState && !m_inRestart;
 		}

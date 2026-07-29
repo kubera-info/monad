@@ -22,7 +22,7 @@ namespace Monad::Files
 		);
 		FileHandle(
 			Kernel::VectorPath&& searchFolders
-		);
+		) noexcept;
 		OPER_DEL(FileHandle);
 		void Run();
 
@@ -30,17 +30,15 @@ namespace Monad::Files
 		virtual void OnFindFile(
 			[[maybe_unused]] const std::filesystem::path& selectedFolder
 		)
-		{
-}
-virtual void OnFindDirectory(
-	[[maybe_unused]] const std::filesystem::path& selectedFolder
-)
-{
-}
-const WIN32_FIND_DATA& FindFileData() const noexcept;
+		{}
+		virtual void OnFindDirectory(
+			[[maybe_unused]] const std::filesystem::path& selectedFolder
+		)
+		{}
+		const WIN32_FIND_DATA& FindFileData() const noexcept;
 
-private:
-	const Kernel::VectorPath c_searchFolders;
-	WIN32_FIND_DATA m_findFileData{};
+	private:
+		const Kernel::VectorPath c_searchFolders;
+		WIN32_FIND_DATA m_findFileData{};
 	};
 }

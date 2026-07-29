@@ -572,7 +572,7 @@ void DXSample::LoadPipeline()
 
 	THROW_EXC_IFFAILED(CapsFailed, D3D12CreateDevice(
 		hardwareAdapter.Get(),
-		D3D_FEATURE_LEVEL_12_0,
+		D3D_FEATURE_LEVEL_11_0,
 		IID_PPV_ARGS(&m_device)
 	),
 		L"3D Create D3D12 Device"

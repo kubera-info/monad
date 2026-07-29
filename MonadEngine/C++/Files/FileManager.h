@@ -141,7 +141,7 @@ namespace Monad::Files
 		const Kernel::SpanConstBytes GetSpan() const noexcept;
 		Kernel::VectorBytes GetVector();
 		/// <summary>
-		/// Gets LPSTRZ + blob
+		/// Gets LPSTR + blob
 		/// Returns std::string_view + blob's span
 		/// Warning: temporary storage
 		/// </summary>

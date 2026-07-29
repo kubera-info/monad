@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © 2016–2026 by Wlodzimierz O. Kubera. All rights reserved. ###
+// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 #pragma once

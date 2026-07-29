@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © 2015-2023 by W³odzimierz O. Kubera. All rights reserved. ###
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 // Me

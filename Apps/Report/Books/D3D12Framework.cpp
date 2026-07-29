@@ -98,53 +98,19 @@ D3D12Core::D3D12Core() :
 				"metal"_pixelShader,
 				false
 			)
-		},
-		{
-			"shadow_border"_fx,
-			make_shared<ShaderConfig>(
-				"shadow_border"_vertexShader,
-				"shadow"_pixelShader,
-				false
-			)
-		},
-		{
-			"shadow_emoji"_fx,
-			make_shared<ShaderConfig>(
-				"shadow_emoji"_vertexShader,
-				"shadow_emoji"_pixelShader,
-				false
-			)
-		},
-		{
-			"shadow_font"_fx,
-			make_shared<ShaderConfig>(
-				"shadow_font"_vertexShader,
-				"shadow_font"_pixelShader,
-				false
-			)
-		},
-		{
-			"shadow_hr"_fx,
-			make_shared<ShaderConfig>(
-				"shadow_hr"_vertexShader,
-				"shadow"_pixelShader,
-				false
-			)
-		},
+		}
 	},
 	{
 		{
 			"emoji"_technique,
 			{
-				{ STAGE_MODES::STAGE_MODE_WORLD, "emoji"_fx },
-				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_emoji"_fx }
+				{ STAGE_MODES::STAGE_MODE_WORLD, "emoji"_fx }
 			}
 		},
 		{
 			"font"_technique,
 			{
-				{ STAGE_MODES::STAGE_MODE_WORLD, "font"_fx },
-				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_font"_fx }
+				{ STAGE_MODES::STAGE_MODE_WORLD, "font"_fx }
 			}
 		},
 		{
@@ -156,15 +122,13 @@ D3D12Core::D3D12Core() :
 		{
 			"metallic_border"_technique,
 			{
-				{ STAGE_MODES::STAGE_MODE_WORLD, "metallic_border"_fx },
-				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_border"_fx }
+				{ STAGE_MODES::STAGE_MODE_WORLD, "metallic_border"_fx }
 			}
 		},
 		{
 			"metallic_hr"_technique,
 			{
-				{ STAGE_MODES::STAGE_MODE_WORLD, "metallic_hr"_fx },
-				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_hr"_fx }
+				{ STAGE_MODES::STAGE_MODE_WORLD, "metallic_hr"_fx }
 			}
 		}
 	},

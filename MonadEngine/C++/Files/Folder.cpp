@@ -49,25 +49,15 @@ namespace Monad::Files
 		return GetFolderGeneric(FOLDERID_System);
 	}
 
-	namespace
-	{
-		fs::path GetModulePathInternal()
-		{
-			wchar_t pathModule[SHORT_MAX] = { L"" };
-			THROW_EXC_IFFALSE(Monad::Exceptions::IOError, GetModuleFileName(
-				nullptr,
-				pathModule,
-				SHORT_MAX
-			), L"FS Path");
-			return pathModule;
-		}
-	}
-
 	fs::path GetModulePath()
 	{
-		static fs::path pathModuleStatic = GetModulePathInternal();
-
-		return pathModuleStatic;
+		wchar_t pathModule[32767ul];
+		THROW_EXC_IFFALSE(Monad::Exceptions::IOError, GetModuleFileName(
+			nullptr,
+			pathModule,
+			32767ul
+		), L"FS Path");
+		return pathModule;
 	}
 
 	fs::path GetFolderAppDocumentsSettingsGeneric(
@@ -109,7 +99,8 @@ namespace Monad::Files
 		const fs::path& source
 	) :
 		path{ Files::GetFolderRes() / source }
-	{}
+	{
+	}
 
 	Path& Path::operator=(
 		const fs::path& source

@@ -109,22 +109,22 @@
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <VcpkgInstalledDir>$(SolutionDir)$(Platform)vcpkg_installed</VcpkgInstalledDir>
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg\$(Platform)</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <VcpkgInstalledDir>$(SolutionDir)$(Platform)vcpkg_installed</VcpkgInstalledDir>
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg\$(Platform)\$(Configuration)</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <VcpkgInstalledDir>$(SolutionDir)$(Platform)vcpkg_installed</VcpkgInstalledDir>
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg\$(Platform)</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <VcpkgInstalledDir>$(SolutionDir)$(Platform)vcpkg_installed</VcpkgInstalledDir>
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg\$(Platform)\$(Configuration)</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
   </PropertyGroup>
@@ -140,7 +140,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdclatest</LanguageStandard_C>
-      <AdditionalIncludeDirectories>C:\local\boost_1_91_0;$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -191,7 +191,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdclatest</LanguageStandard_C>
-      <AdditionalIncludeDirectories>C:\local\boost_1_91_0;$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv81</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -240,7 +240,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdclatest</LanguageStandard_C>
-      <AdditionalIncludeDirectories>C:\local\boost_1_91_0;$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -289,7 +289,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdclatest</LanguageStandard_C>
-      <AdditionalIncludeDirectories>C:\local\boost_1_91_0;$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv80</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Sync</ExceptionHandling>

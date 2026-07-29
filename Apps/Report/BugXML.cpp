@@ -29,12 +29,6 @@ LoadXMLStatus::LoadXMLStatus(
 		[](const XMLElement& tag, XMLManager*)
 		{
 			g_IsXMLValid = tag.GetAttr(L"log_id").c_str();
-			/*const auto wnd = theApp.GetMainWnd();
-			wnd->GetDlgItem(IDC_LABEL_REP_ID)->ShowWindow(TRUE);
-			wnd->GetDlgItem(IDI_CPY)->ShowWindow(TRUE);
-			const auto logID = wnd->GetDlgItem(IDC_REP_ID);
-			logID->SetWindowText(tag.GetAttr(L"log_id").c_str());
-			logID->ShowWindow(TRUE);*/
 		}} }
 	)
 {
