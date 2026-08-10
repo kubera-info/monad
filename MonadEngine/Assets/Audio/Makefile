@@ -1,5 +1,5 @@
 ##########################################################################
-### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 ##########################################################################
 
 MND_TITLE=The Wave Object Builder

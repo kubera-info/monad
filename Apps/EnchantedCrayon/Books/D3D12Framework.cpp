@@ -208,28 +208,28 @@ D3D12Core::D3D12Core() :
 	{
 		{
 			"blank_tex"_technique,
-			{ 
+			{
 				{ STAGE_MODES::STAGE_MODE_CUSTOM, "blank_tex"_fx }
 			}
 		},
 		{
 			"color_button"_technique,
-			{ 
+			{
 				{ STAGE_MODES::STAGE_MODE_WORLD, "color_button"_fx }
 			}
 		},
 		{
 			"crayon"_technique,
-			{ 
+			{
 				{ STAGE_MODES::STAGE_MODE_WORLD, "crayon"_fx },
-				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow"_fx } 
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow"_fx }
 			}
 		},
 		{
 			"emoji"_technique,
-			{ 
+			{
 				{ STAGE_MODES::STAGE_MODE_WORLD, "emoji"_fx },
-				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_emoji"_fx } 
+				{ STAGE_MODES::STAGE_MODE_SHADOW, "shadow_emoji"_fx }
 			}
 		},
 		{
@@ -293,7 +293,7 @@ D3D12Core::D3D12Core() :
 	},
 	{
 		{ "forecolor"_constantBuffer, { sizeof DirectX::XMFLOAT3, 76 } },
-		{ "hdr"_constantBuffer, { sizeof BOOL, 1u } },	
+		{ "hdr"_constantBuffer, { sizeof BOOL, 1u } },
 		{ "light_pos"_constantBuffer, { sizeof DirectX::XMFLOAT4, 1 } },
 		{ "model"_constantBuffer, { sizeof CB::Model, 240 } },
 		{ "pipe_color"_constantBuffer, { sizeof CB::PipeColor, 25 } },
@@ -349,7 +349,7 @@ void D3D12Core::OnUpdate()
 					{1200U, 2048U}
 				},
 				m_width,
-				1024U	
+				1024U
 			);
 			shadowHeight = GetOptimalMapSize({
 					{1920U, 4096U},
@@ -390,7 +390,7 @@ void D3D12Core::OnUpdate()
 			},
 			shadowWidth,
 			shadowHeight
-			);
+		);
 		g_singleton->InsertTaskSearcher2(LOAD_ALL);
 		ResetCurrentPage();
 		break;

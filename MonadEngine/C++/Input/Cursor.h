@@ -42,7 +42,7 @@ namespace Monad::Input
 	/// <summary>
 	/// System cursor handles.
 	/// </summary>
-	extern const HCURSOR 
+	extern const HCURSOR
 		CURSOR_WAIT,
 		CURSOR_NO,
 		CURSOR_ARROW;

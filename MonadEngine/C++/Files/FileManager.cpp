@@ -62,8 +62,7 @@ namespace Monad
 			m_fileSearcher{ fileSearcher },
 			c_path{ move(filePath) },
 			c_sizeOfBuffer{ fileSize }
-		{
-		}
+		{}
 
 		TaskFileHolderGeneric::TaskFileHolderGeneric(
 			TaskFileSearcherGeneric* const fileSearcher,
@@ -75,8 +74,7 @@ namespace Monad
 				0,
 				false
 			)
-		{
-		}
+		{}
 #define WITHOUT_META { m_archiveBuffer.cbegin() + sizeof VectorBytesArchive::FileMeta, m_archiveBuffer.cend() }
 
 		const SpanConstBytes TaskFileHolderGeneric::GetSpan() const noexcept
@@ -194,8 +192,7 @@ namespace Monad
 			c_interpreter{ interpreter },
 			m_cipher{ cipher },
 			m_threadPool{ threadPool }
-		{
-		}
+		{}
 
 		TaskFileSearcherGeneric::~TaskFileSearcherGeneric()
 		{
@@ -244,8 +241,7 @@ namespace Monad
 						FileHandle{ searchPaths },
 						m_fileSearcher{ fileSearcher },
 						m_listOfPtrs{ listOfPointers }
-					{
-					}
+					{}
 					void OnFindFile(
 						const filesystem::path& selectedFolder
 					) final
@@ -327,8 +323,7 @@ namespace Monad
 			fileSize,
 			true
 		}
-		{
-		}
+		{}
 
 		FileRefHolder::~FileRefHolder()
 		{

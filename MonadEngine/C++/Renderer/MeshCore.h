@@ -44,7 +44,8 @@ namespace Monad::Renderer::InputLayout
 		) noexcept :
 			m_position{ position.x, position.y, GUI::ART_PANE_Z },
 			m_texture{ uv }
-		{}
+		{
+		}
 
 		DirectX::XMFLOAT3 m_position;
 		DirectX::XMFLOAT2 m_texture;

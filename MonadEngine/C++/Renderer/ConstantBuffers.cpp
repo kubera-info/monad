@@ -46,13 +46,12 @@ namespace Monad::Renderer
 			Register();
 			g_groupOffset += count;
 		}
-		
+
 		CBTypeCtrl::CBTypeCtrl() noexcept :
 			c_size256(256),
 			c_heapStart(0),
 			m_pCbvDataBegin(nullptr)
-		{
-		}
+		{}
 
 		CBTypeCtrl::CBTypeCtrl(
 			CBTypeCtrl&& source
@@ -80,7 +79,7 @@ namespace Monad::Renderer
 			source.m_pCbvDataBegin = nullptr;
 			m_constantBuffer.Attach(source.m_constantBuffer.Detach());
 		}
-		
+
 		void CBTypeCtrl::Unmap() noexcept
 		{
 			assert(m_pCbvDataBegin);

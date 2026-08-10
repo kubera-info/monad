@@ -31,13 +31,15 @@ namespace Monad::Files
 		const Kernel::VectorPath& searchFolders
 	) :
 		c_searchFolders{ searchFolders }
-	{}
+	{
+	}
 
 	FileHandle::FileHandle(
 		Kernel::VectorPath&& searchFolders
 	) noexcept :
 		c_searchFolders{ move(searchFolders) }
-	{}
+	{
+	}
 
 	void FileHandle::Run()
 	{
@@ -49,7 +51,8 @@ namespace Monad::Files
 					const HANDLE findFile
 				) noexcept :
 					c_findFile{ findFile }
-				{}
+				{
+				}
 				inline ~HandleHolder()
 				{
 					if (INVALID_HANDLE_VALUE != c_findFile)
@@ -80,7 +83,7 @@ namespace Monad::Files
 
 				if (const auto dwError = GetLastError();
 					ERROR_NO_MORE_FILES != dwError
-					&& ERROR_FILE_NOT_FOUND != dwError)
+					/* && ERROR_FILE_NOT_FOUND != dwError*/)
 					THROW_EXC_IFFAILED(Exceptions::IOError, HRESULT_FROM_WIN32(dwError), L"Cannot Find Files: " + folder.wstring());
 		}
 	}

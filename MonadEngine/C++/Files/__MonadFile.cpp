@@ -23,9 +23,9 @@ namespace Monad::Files
 	}
 
 	bool IsMonadExt(
-		const wstring& fileExt
+		const fs::path& fileExt
 	)
 	{
-		return regex_match(fileExt, REGEX_MONAD_EXT);
+		return regex_match(fileExt.c_str(), REGEX_MONAD_EXT);
 	}
-}
+}	

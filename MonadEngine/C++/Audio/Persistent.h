@@ -92,7 +92,7 @@ namespace Monad::Audio
 		);
 		void SetMasterVoiceVolume(
 			const float volume
-		);	
+		);
 		/// <summary>
 		/// Applies the same volume level to every voice in the audio queue.
 		/// </summary>

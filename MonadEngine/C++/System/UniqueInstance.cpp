@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "System/UniqueInstance.h"
+#include "Globals/__MonadGlobals.h"
 
 namespace Monad::System
 {
@@ -19,7 +20,7 @@ namespace Monad::System
 		SmartHandle(
 			CreateMutexEx(
 				nullptr,                      // default security
-				L"Info.Kubera.App.DirectX",   // unique global mutex name
+				(L"Info.Kubera.App.DirectX." + Globals::g_whoAmI).c_str(),   // unique global mutex name
 				0,                            // no special flags
 				0                             // default access
 			)

@@ -16,12 +16,10 @@ namespace Monad::Audio
 	using namespace Exceptions;
 
 	void XAudioState::OnProcessingPassEnd() noexcept
-	{
-	}
+	{}
 
 	void XAudioState::OnProcessingPassStart() noexcept
-	{
-	}
+	{}
 
 	void XAudioState::OnCriticalError(
 		HRESULT
@@ -36,7 +34,7 @@ namespace Monad::Audio
 	{
 		if (g_persistentAudio->IsReady())
 			for (const auto& queue : listOfQueues)
-				if(m_voicesManagers.contains(queue))
+				if (m_voicesManagers.contains(queue))
 #if defined _DEBUG
 					m_voicesManagers.at(queue).Mute();
 #else
@@ -88,7 +86,6 @@ namespace Monad::Audio
 
 	XAudioState::XAudioState() noexcept :
 		m_masteringVoice{ nullptr, DestroyVoice }
-	{
-	}
+	{}
 #pragma endregion XAudioState
 }

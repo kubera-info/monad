@@ -46,8 +46,7 @@ void IterateFiles(
 			const std::filesystem::path& selectedFolder
 		) final
 		{
-			FileHandleTime inner{ { selectedFolder / FindFileData().cFileName } };
-			inner.Run();
+			FileHandleTime{ { selectedFolder / FindFileData().cFileName } }.Run();
 		}
 
 	} handle{ { folder } };

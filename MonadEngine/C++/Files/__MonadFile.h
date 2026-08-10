@@ -22,6 +22,6 @@ namespace Monad::Files
 	/// <param name="fileExt">A file extension with a preceding dot</param>
 	/// <returns>Is it Monad(a) File?</returns>
 	bool IsMonadExt(
-		const std::wstring& fileExt
+		const std::filesystem::path& fileExt
 	);
 }

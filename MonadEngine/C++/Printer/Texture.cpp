@@ -133,7 +133,7 @@ namespace Monad
 				HRESULT hr = CreateDeviceContext();
 				if (SUCCEEDED(hr))
 				{
-					size_t failuresCount = 5;
+					size_t failuresCount = 4;
 					do
 					{
 						hr = OnPrint();

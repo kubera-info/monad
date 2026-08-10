@@ -15,102 +15,105 @@
 namespace fs = std::filesystem;
 using namespace Monad::Kernel;
 
-void IterateFiles(
-	const fs::path& folder
-)
+namespace
 {
-	struct FileHandleTime : Monad::Files::FileHandle
+	void IterateFiles(
+		const fs::path& folder
+	)
 	{
-		using FileHandle::FileHandle;
-
-		void OnFindFile(
-			const std::filesystem::path& selectedFolder
-		) final
+		struct FileHandleTime : Monad::Files::FileHandle
 		{
-			fs::path currentFolder = selectedFolder / FindFileData().cFileName, relPath = FindFileData().cFileName;
-			if (Monad::Files::IsMonadExt(relPath.extension()))
+			using FileHandle::FileHandle;
+
+			void OnFindFile(
+				const std::filesystem::path& selectedFolder
+			) final
 			{
-				do
+				fs::path currentFolder = selectedFolder / FindFileData().cFileName, relPath = FindFileData().cFileName;
+				if (Monad::Files::IsMonadExt(relPath.extension()))
 				{
-					currentFolder = currentFolder.parent_path();
-					relPath = currentFolder.filename() / relPath;
-				} while (Monad::Tools::ToLower(currentFolder.filename()) != L"res");
+					do
+					{
+						currentFolder = currentFolder.parent_path();
+						relPath = currentFolder.filename() / relPath;
+					} while (Monad::Tools::ToLower(currentFolder.filename()) != L"res");
 
-				wprintf(L"\n  <Content Include=\"..\\%s\">", relPath.c_str());
-				wprintf(L"\n    <Link>%s</Link>", relPath.c_str());
-				wprintf(L"\n  </Content>");
+					wprintf(L"\n  <Content Include=\"..\\%s\">", relPath.c_str());
+					wprintf(L"\n    <Link>%s</Link>", relPath.c_str());
+					wprintf(L"\n  </Content>");
+				}
 			}
-		}
 
-		void OnFindDirectory(
-			const std::filesystem::path& selectedFolder
-		) final
-		{
-			FileHandleTime inner{ { selectedFolder / FindFileData().cFileName } };
-			inner.Run();
-		}
+			void OnFindDirectory(
+				const std::filesystem::path& selectedFolder
+			) final
+			{
+				FileHandleTime{ { selectedFolder / FindFileData().cFileName } }.Run();
+			}
 
-	} handle{ { folder } };
-	handle.Run();
-}
+		} handle{ { folder } };
+		handle.Run();
+	}
 
-constexpr std::wstring_view replaceRes = L"Res\\", replaceID = L"\\", replaceMinus = L"-", replaceDots = L"..", replaceAp = L"'";
-constexpr std::wstring_view replaceMinus2 = L"_";
+	constexpr std::wstring_view replaceRes = L"Res\\", replaceID = L"\\", replaceMinus = L"-", replaceDots = L"..", replaceAp = L"'";
+	constexpr std::wstring_view replaceMinus2 = L"_";
 
-std::map<std::wstring, std::set<std::wstring>> g_Paths;
+	std::map<std::wstring, std::set<std::wstring>> g_Paths;
 
-void IterateFilesMSI(
-	const fs::path& folder
-)
-{
-	struct FileHandleTime : Monad::Files::FileHandle
+	void IterateFilesMSI(
+		const fs::path& folder
+	)
 	{
-		using FileHandle::FileHandle;
-		void OnFindFile(
-			const std::filesystem::path& selectedFolder
-		) final
+		struct FileHandleTime : Monad::Files::FileHandle
 		{
-			std::wstring filename = FindFileData().cFileName;
-			filename[0] = towupper(filename[0]);
-			filename = L"__" + filename;
-			fs::path currentFolder = selectedFolder / FindFileData().cFileName, relPath = FindFileData().cFileName, relPath2 = filename;
-			if (Monad::Files::IsMonadExt(relPath.extension()))
+			using FileHandle::FileHandle;
+			void OnFindFile(
+				const std::filesystem::path& selectedFolder
+			) final
 			{
-				do
+				std::wstring filename = FindFileData().cFileName;
+				filename[0] = towupper(filename[0]);
+				filename = L"__" + filename;
+				fs::path currentFolder = selectedFolder / FindFileData().cFileName, relPath = FindFileData().cFileName, relPath2 = filename;
+				if (Monad::Files::IsMonadExt(relPath.extension()))
 				{
-					currentFolder = currentFolder.parent_path();
-					relPath = currentFolder.filename() / relPath;
-					relPath2 = currentFolder.filename() / relPath2;
-				} while (Monad::Tools::ToLower(currentFolder.filename()) != L"res");
-				std::wstring tagID = relPath2.wstring();
-				ReplaceAll(tagID, replaceRes);
-				ReplaceAll(tagID, replaceID);
-				ReplaceAll(tagID, replaceMinus, replaceMinus2);
-				ReplaceAll(tagID, replaceAp, replaceMinus2);
-				std::wstring buf = L"\n			<File ID=\"";
-				buf += tagID;
-				buf += L"\" Source=\"..\\";
-				buf += relPath;
-				buf += L"\" />";
-				g_Paths[selectedFolder].emplace(buf);
+					do
+					{
+						currentFolder = currentFolder.parent_path();
+						relPath = currentFolder.filename() / relPath;
+						relPath2 = currentFolder.filename() / relPath2;
+					} while (Monad::Tools::ToLower(currentFolder.filename()) != L"res");
+					std::wstring tagID = relPath2.wstring();
+					ReplaceAll(tagID, replaceRes);
+					ReplaceAll(tagID, replaceID);
+					ReplaceAll(tagID, replaceMinus, replaceMinus2);
+					ReplaceAll(tagID, replaceAp, replaceMinus2);
+					std::wstring buf = L"\n			<File ID=\"";
+					buf += tagID;
+					buf += L"\" Source=\"..\\";
+					buf += relPath;
+					buf += L"\" />";
+					g_Paths[selectedFolder].emplace(buf);
+				}
 			}
-		}
-		void OnFindDirectory(
-			const std::filesystem::path& selectedFolder
-		) final
-		{
-			FileHandleTime inner{ { selectedFolder / FindFileData().cFileName } };
-			inner.Run();
-		}
-	} handle{ { folder } };
-	handle.Run();
+			void OnFindDirectory(
+				const std::filesystem::path& selectedFolder
+			) final
+			{
+				FileHandleTime{ { selectedFolder / FindFileData().cFileName } }.Run();
+			}
+		} handle{ { folder } };
+		handle.Run();
+	}
+
+	void Scis()
+	{
+		wprintf(L"\n\n 8X========\n\n");
+		wprintf(L"\n\n 8X========\n\n");
+		wprintf(L"\n\n 8X========\n\n");
+	}
 }
-void Scis()
-{
-	wprintf(L"\n\n 8X========\n\n");
-	wprintf(L"\n\n 8X========\n\n");
-	wprintf(L"\n\n 8X========\n\n");
-}
+
 int wmain(
 	int argc,
 	wchar_t* wargv[]

@@ -225,8 +225,6 @@ namespace Monad
 
 			const auto& vsil =
 				Repositories::g_repositoryGeneric->m_vs.GetMember(m_vs);
-			const auto& ps =
-				Repositories::g_repositoryGeneric->m_ps.GetMember(m_ps);
 
 			const bool isShadow = m_vs.starts_with("shadow"_vertexShader);
 			const bool isBlank = ("blank_tex"_fx == id);
@@ -234,7 +232,7 @@ namespace Monad
 			return {
 				.pRootSignature = m_parametersDef->m_rootSignature.Get(),
 				.VS = static_cast<const D3D12_SHADER_BYTECODE>(vsil.m_vs),
-				.PS = static_cast<const D3D12_SHADER_BYTECODE>(ps),
+				.PS = static_cast<const D3D12_SHADER_BYTECODE>(Repositories::g_repositoryGeneric->m_ps.GetMember(m_ps)),
 				.BlendState = m_alphaBlending ? BLEND_DESC_ALPHA : BLEND_DESC_OPAQUE,
 				.SampleMask = UINT_MAX,
 				.RasterizerState = RASTERIZER_DESC,
@@ -253,7 +251,6 @@ namespace Monad
 				.SampleDesc = { isShadow || isBlank ? 1u : g_d3d12Core->c_sampleCount, 0u }
 			};
 		}
-
 #pragma endregion
 	}
 }

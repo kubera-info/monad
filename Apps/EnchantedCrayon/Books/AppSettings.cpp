@@ -42,7 +42,13 @@ namespace Monad
 				L6{ L"„Wood” & „Marble” Textures by Vladimir Radetzki"_us },
 				L7{ L"AI: "_us, L"SI: "_pl, L"ИИ: "_ru },
 				L8{ L"ChatGPT, Claude, DeepSeek, GitHub Copilot"_us },
-				V_SYNC{ L"V-sync"_us };
+				V_SYNC{ L"V-sync"_us },
+				MIT_LICENSE_NOTICE
+			{
+				L"Since version 5.0.0 the application is\nOpen Source under the MIT license.\nIt is available on GitHub."_us,
+				L"Od wersji 5.0.0 aplikacja jest dostępna na\nlicencji Open Source, zgodnie z licencją MIT.\nZnajduje się ona w serwisie GitHub"_pl,
+				L"Начиная с версии 5.0.0,\nприложение являетсяоткрытым исходным кодом\nи распространяется под лицензией MIT.\nОно доступно на GitHub."_ru
+			};
 
 			/*const I18NFloat
 				LEFT_COLUMN{

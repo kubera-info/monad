@@ -225,8 +225,7 @@ public:
 	);
 
 	virtual void Repo()
-	{
-	}
+	{}
 
 #if defined MONAD_SHADOW
 	Monad::Renderer::DepthStencil m_shadows;

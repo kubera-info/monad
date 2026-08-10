@@ -47,7 +47,7 @@ namespace Monad::Renderer
 					indices.size() * sizeof I::value_type),
 				c_vertices(
 					reinterpret_cast<const uint8_t*>(vertices.data()),
-					vertices.size() * vertices.c_blockSize)
+					vertices.size()* vertices.c_blockSize)
 			{
 				static_assert(
 					std::is_same_v<typename I::value_type, uint16_t>

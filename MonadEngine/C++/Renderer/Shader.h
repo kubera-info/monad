@@ -35,8 +35,7 @@ namespace Monad::Renderer
 		},
 				c_startTexSlot{ startTexSlot },
 			 m_textures{ std::from_range, textureFilenames }
-		{
-}
+		{}
 
 		/// <summary>
 		/// Constructs shader with textures already loaded,
@@ -59,8 +58,7 @@ namespace Monad::Renderer
 		},
 				c_startTexSlot{ startTexSlot },
 				m_textures{ textures }
-		{
-}
+		{}
 
 void OnComputePerWorldFrame(
 	const DirectX::XMFLOAT4X4 & modelSpaceMatrix

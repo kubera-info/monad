@@ -55,8 +55,7 @@ namespace Monad::Audio
 		void SetVoiceVolume(
 			const float volume
 		);
-		void Flush() noexcept;
-
+		
 		// Internals
 		HRESULT AudioPlayWave(
 			WaveToPlayWithCallback& pendingWave

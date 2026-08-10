@@ -441,8 +441,6 @@ namespace Monad
 			if (!m_xAudioState || m_streamsNames.empty())
 				return;
 			OnDescVolumes();
-			auto& audioState = m_xAudioState->operator[](STREAM);
-			audioState.ResetManager();
 			if (InternalIsReadyAndIsEnabled())
 			{
 				const auto& mediaStreamer = m_streams.find(

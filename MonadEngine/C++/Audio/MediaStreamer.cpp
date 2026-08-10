@@ -128,56 +128,56 @@ namespace Monad
 			ComPtr<IMFAttributes> lowLatencyAttribute;
 			THROW_EXC_AUDIO(
 				MFCreateAttributes(&lowLatencyAttribute, 1),
-				L"Create Attributes")
+				L"Create Attributes");
 
-				THROW_EXC_AUDIO(
-					lowLatencyAttribute->SetUINT32(MF_LOW_LATENCY, TRUE),
-					L"Low Latency Attribute"
-				)
+			THROW_EXC_AUDIO(
+				lowLatencyAttribute->SetUINT32(MF_LOW_LATENCY, TRUE),
+				L"Low Latency Attribute"
+			);
 
-				//
-				// Creates a source reader for the file with low-latency attributes.
-				//
-				ComPtr<IMFByteStream> IPByteStream;
+			//
+			// Creates a source reader for the file with low-latency attributes.
+			//
+			ComPtr<IMFByteStream> IPByteStream;
 			THROW_EXC_AUDIO(MFCreateMFByteStreamOnStream(
 				audioFileHolder,
 				&IPByteStream
-			), L"Create Byte Stream On Stream")
+			), L"Create Byte Stream On Stream");
 
-				THROW_EXC_AUDIO(
-					MFCreateSourceReaderFromByteStream(IPByteStream.Get(), lowLatencyAttribute.Get(), &m_reader),
-					L"Create Source Reader From Byte Stream"
-				)
-				// Set the decoded output format as PCM
-				// XAudio2 on Windows can process PCM and ADPCM-encoded buffers.
-				// When using MF, this sample always decodes into PCM.
+			THROW_EXC_AUDIO(
+				MFCreateSourceReaderFromByteStream(IPByteStream.Get(), lowLatencyAttribute.Get(), &m_reader),
+				L"Create Source Reader From Byte Stream"
+			);
+			// Set the decoded output format as PCM
+			// XAudio2 on Windows can process PCM and ADPCM-encoded buffers.
+			// When using MF, this sample always decodes into PCM.
 
-				// Set the decoded output format as PCM
-				// XAudio2 on Windows can process PCM and ADPCM-encoded buffers.
-				// When using MF, this sample always decodes into PCM.
+			// Set the decoded output format as PCM
+			// XAudio2 on Windows can process PCM and ADPCM-encoded buffers.
+			// When using MF, this sample always decodes into PCM.
 
-				THROW_EXC_AUDIO(
-					MFCreateMediaType(&mediaType),
-					L"Create Media Type"
-				)
+			THROW_EXC_AUDIO(
+				MFCreateMediaType(&mediaType),
+				L"Create Media Type"
+			);
 
-				THROW_EXC_AUDIO(
-					mediaType->SetGUID(MF_MT_MAJOR_TYPE, MFMediaType_Audio),
-					L"Set Major Type Audio GUID"
-				)
+			THROW_EXC_AUDIO(
+				mediaType->SetGUID(MF_MT_MAJOR_TYPE, MFMediaType_Audio),
+				L"Set Major Type Audio GUID"
+			);
 
-				THROW_EXC_AUDIO(
-					mediaType->SetGUID(MF_MT_SUBTYPE, MFAudioFormat_PCM),
-					L"Set PCM"
-				)
+			THROW_EXC_AUDIO(
+				mediaType->SetGUID(MF_MT_SUBTYPE, MFAudioFormat_PCM),
+				L"Set PCM"
+			);
 
-				THROW_EXC_AUDIO(
-					m_reader->SetCurrentMediaType(static_cast<unsigned long>(MF_SOURCE_READER_FIRST_AUDIO_STREAM), 0, mediaType.Get()),
-					L"Set Current Media Type"
-				)
+			THROW_EXC_AUDIO(
+				m_reader->SetCurrentMediaType(static_cast<unsigned long>(MF_SOURCE_READER_FIRST_AUDIO_STREAM), 0, mediaType.Get()),
+				L"Set Current Media Type"
+			);
 
-				// Get the complete WAVEFORMAT from the Media PODType
-				ComPtr<IMFMediaType> outputMediaType;
+			// Get the complete WAVEFORMAT from the Media PODType
+			ComPtr<IMFMediaType> outputMediaType;
 			THROW_EXC_AUDIO(
 				m_reader->GetCurrentMediaType(static_cast<unsigned long>(MF_SOURCE_READER_FIRST_AUDIO_STREAM), &outputMediaType),
 				L"Get Current Media Type"
@@ -188,8 +188,8 @@ namespace Monad
 			THROW_EXC_AUDIO(
 				MFCreateWaveFormatExFromMFMediaType(outputMediaType.Get(), &waveFormat, &formatByteCount),
 				L"Create Wave FormatEx From Media Type"
-			)
-				m_waveFornatEx = *waveFormat;
+			);
+			m_waveFornatEx = *waveFormat;
 			CoTaskMemFree(waveFormat);
 
 			// Get the total length of the stream in bytes.
@@ -197,8 +197,8 @@ namespace Monad
 			THROW_EXC_AUDIO(
 				m_reader->GetPresentationAttribute(static_cast<unsigned long>(MF_SOURCE_READER_MEDIASOURCE), MF_PD_DURATION, &var),
 				L"Get Presentation Attribute"
-			)
-				m_maxStreamLengthInBytes = static_cast<uint32_t>(var.uhVal.QuadPart / (10000.0 * 1000.0) * m_waveFornatEx.nAvgBytesPerSec);
+			);
+			m_maxStreamLengthInBytes = static_cast<uint32_t>(var.uhVal.QuadPart / (10000.0 * 1000.0) * m_waveFornatEx.nAvgBytesPerSec);
 		}
 
 		VectorBytes MediaStreamer::ReadAll()

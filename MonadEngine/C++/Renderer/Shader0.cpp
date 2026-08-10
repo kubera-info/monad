@@ -33,7 +33,8 @@ namespace Monad
 				this,
 				g_dataHDRGeneric
 			)
-		{}
+		{
+		}
 
 		DirectX::XMFLOAT4X4* g_dataMorphingMatrix = nullptr;
 
@@ -62,7 +63,8 @@ namespace Monad
 				this,
 				g_dataLightPosMatrixGeneric
 			)
-		{}
+		{
+		}
 
 		STAGE_MODES g_stageOfRendering;
 		uint32_t g_texDepthHeight = 1024, g_texDepthWidth = 2048;
@@ -138,12 +140,14 @@ namespace Monad
 		void ShaderGeneric::OnComputePerShadowFrame(
 			const XMFLOAT4X4&
 		)
-		{}
+		{
+		}
 
 		void ShaderGeneric::OnComputePerWorldFrame(
 			const XMFLOAT4X4&
 		)
-		{}
+		{
+		}
 
 		void ShaderGeneric::OnComputePerSystemFrame(
 			const DirectX::XMFLOAT4X4&

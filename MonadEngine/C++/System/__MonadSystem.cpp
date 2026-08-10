@@ -61,5 +61,4 @@ namespace Monad::System
 		m_handle = nullptr;
 		return handle;
 	}
-
 }

@@ -29,8 +29,7 @@ void IterateFiles(
 			const std::filesystem::path& selectedFolder
 		) final
 		{
-			FileHandleTime inner{ { selectedFolder / FindFileData().cFileName / Monad::Files::WILDCARD_ANY } };
-			inner.Run();
+			FileHandleTime{ { selectedFolder / FindFileData().cFileName / Monad::Files::WILDCARD_ANY } }.Run();
 		}
 
 	} handle{ { folder } };

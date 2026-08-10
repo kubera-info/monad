@@ -51,7 +51,7 @@ namespace Monad::Audio
 
 		Microsoft::WRL::ComPtr<IXAudio2> m_xAudio2;
 		std::unique_ptr<IXAudio2MasteringVoice, FnDestroyVoice> m_masteringVoice;
-		
+
 		/// <summary>
 		/// Structure VoiceManagers aggregates all virtual voices for management and playback.
 		/// </summary>

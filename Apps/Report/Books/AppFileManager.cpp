@@ -66,7 +66,7 @@ namespace Monad::App
 			{ L".monad-fnt"s, LOADER_FONT },
 			{ L".monad-tex"s, LOADER_TEX },
 			{ L".monad-vsi"s, LOADER_VS_IL },
-			{ L".monad-psh"s, LOADER_PS }
+			{ L".monad-pxs"s, LOADER_PS }
 		},
 		g_singleton->m_cipher,
 		g_singleton->m_threadPool
@@ -93,7 +93,6 @@ namespace Monad::App
 				FOLDER_BOOT2 / "*emoji*",
 				FOLDER_BOOT2 / "*hr*",
 				FOLDER_BOOT2 / "*border*",
-				FOLDER_BOOT2 / "shadow.monad-psh",
 				FOLDER_BOOT2_QUALITY / "*font*",
 				FOLDER_BOOT2_QUALITY / "*emoji*",
 				FOLDER_BOOT2_QUALITY / "*metal*",
@@ -101,7 +100,7 @@ namespace Monad::App
 				FOLDER_AUTO / "no.monad-tex",
 				FOLDER_AUTO / "ok.monad-tex",
 				FOLDER_AUTO / "iconic.monad-vsi",
-				FOLDER_AUTO_QUALITY / "iconic.monad-psh",
+				FOLDER_AUTO_QUALITY / "iconic.monad-pxs",
 				FOLDER_STREAM / "yes.monad-snd",
 				FOLDER_STREAM / "no.monad-snd",
 				}

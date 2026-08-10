@@ -9,6 +9,10 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Setup|x64">
+      <Configuration>Setup</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>MeshConverter</ProjectName>
@@ -19,6 +23,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <UseOfAtl>Static</UseOfAtl>
+    <CharacterSet>Unicode</CharacterSet>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v145</PlatformToolset>
     <UseOfAtl>Static</UseOfAtl>
@@ -36,6 +47,9 @@
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
@@ -56,6 +70,30 @@
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
+    <OutDir>..\..\Bin\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
@@ -161,26 +199,60 @@
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(SolutionDir)MonadEngine\C++;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EXC_TYPE_REPORT_EXE=0;EXC_TYPE_MESSAGE_BOX=1;EXC_TYPE_CONSOLE=2;MONAD_INLINE_EXCEPTION=EXC_TYPE_MESSAGE_BOX;WIN32;MONAD_INLINE_EXCEPTION=EXC_TYPE_CONSOLE;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;NTDDI_VERSION= 0x06030000;WINVER=0x0A00;_WIN32_WINNT=0x0A00;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
+      <OpenMPSupport>false</OpenMPSupport>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <SDLCheck>true</SDLCheck>
+      <BuildStlModules>false</BuildStlModules>
+      <EnableModules>false</EnableModules>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>AsInvoker</UACExecutionLevel>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <LargeAddressAware>true</LargeAddressAware>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <TargetMachine>MachineX64</TargetMachine>
+      <OutputFile>$(TargetPath)</OutputFile>
+      <ProgramDatabaseFile>$(ProjectDir)..\pdb\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>PwSh.exe "..\..\Bin\end.ps1" 1 "$(ProjectName)"</Command>
+    </PostBuildEvent>
+    <Manifest>
+      <EnableSegmentHeap>true</EnableSegmentHeap>
+    </Manifest>
+  </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\allocator.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\clusterizer.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\indexanalyzer.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\indexcodec.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\indexgenerator.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\meshletcodec.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\meshletutils.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\opacitymap.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\overdrawoptimizer.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\partition.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\quantization.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\rasterizer.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\simplifier.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\spatialorder.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\stripifier.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vcacheoptimizer.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vertexcodec.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vertexfilter.cpp" />
-    <ClCompile Include="..\..\..\Modules\meshoptimizer\src\vfetchoptimizer.cpp" />
     <ClCompile Include="..\..\C++\Kernel\BytesVector.cpp" />
     <ClCompile Include="..\..\C++\Renderer\MeshOpt.cpp" />
     <ClCompile Include="MeshConverter.cpp" />
@@ -189,7 +261,6 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Modules\meshoptimizer\src\meshoptimizer.h" />
     <ClInclude Include="..\..\C++\Kernel\BytesVector.h" />
     <ClInclude Include="..\..\C++\Renderer\MeshOpt.h" />
     <ClInclude Include="stdafx.h" />

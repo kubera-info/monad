@@ -26,11 +26,6 @@ namespace Monad
 
 	namespace App
 	{
-		namespace
-		{
-			const Renderer::FormatAndClearRenderTarget g_renderTargetPrinterViewDesc{ DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, Renderer::FLOAT_4_ONES, D3D12_RTV_DIMENSION_TEXTURE2D };
-		}
-
 		ShaderSketch::ShaderSketch() :
 			m_renderTargetID(
 				g_dxSample->m_rtCurrentID++
@@ -64,7 +59,7 @@ namespace Monad
 #endif
 					{
 						static_cast<int32_t>(m_renderTargetID),
-						g_renderTargetPrinterViewDesc,
+						{ DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, Renderer::FLOAT_4_ONES, D3D12_RTV_DIMENSION_TEXTURE2D },
 						m_texID
 					},
 					art->second.GetWidth(),

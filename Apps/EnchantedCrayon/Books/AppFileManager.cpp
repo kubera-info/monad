@@ -103,7 +103,7 @@ namespace Monad::App
 				}
 			},
 			{ L".monad-vsi"s, LOADER_VS_IL },
-			{ L".monad-psh"s, LOADER_PS },
+			{ L".monad-pxs"s, LOADER_PS },
 			{ L".monad-lob"s, LOADER_DUMMY }
 		},
 		g_singleton->m_cipher,

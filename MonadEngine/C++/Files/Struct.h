@@ -74,7 +74,9 @@ namespace Monad::Files
 		bool IsCompressed() const noexcept;
 		constexpr static inline FOURCC Flag(
 			uint8_t ch3
-		) noexcept { return (static_cast<FOURCC>(static_cast<uint8_t>(ch3) << 24)); }
+		) noexcept {
+			return (static_cast<FOURCC>(static_cast<uint8_t>(ch3) << 24));
+		}
 		void ValidateBufferIn();
 		void ValidateBufferOut(
 			Safety::SafetyState& cipher,

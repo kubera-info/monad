@@ -205,7 +205,7 @@ namespace Monad
 			} postMessageThreadDone;
 
 			if (const auto httpsResponse = Monad::Internet::GetBugReportOnServer(); httpsResponse.has_value())
-				const LoadXMLStatus xmlParseResponse(Monad::Kernel::SpanConstBytes(*httpsResponse).GetComIStreamTemp().Get());
+				const LoaderXMLStatus xmlParseResponse(Monad::Kernel::SpanConstBytes(*httpsResponse).GetComIStreamTemp().Get());
 		}
 	
 		void PersistentSingleton::SetProgressState(

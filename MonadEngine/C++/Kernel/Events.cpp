@@ -173,8 +173,7 @@ namespace Monad::Kernel
 			SkilledObjects{ [](void* o) noexcept { return static_cast<EventLanguageChangeEmojiStub*>(o)->OnLanguageChangeEmojiStub(); } },
 			SkilledObjects{ [](void* o) noexcept { return static_cast<EventLanguageChangeFontStub*>(o)->OnLanguageChangeFontStub(); } }
 		}
-	{
-	}
+	{}
 
 	SkilledObjects::SkilledObjects(
 		FnExecuteEvent functor

@@ -26,10 +26,10 @@ namespace Monad::Files
 		/// <param name="source">Subdirectories located within the application’s assets folder.</param>
 		Path(
 			Kernel::DummyParameter,
-			const std::filesystem::path& source
+			const path& source
 		);
 		Path& operator=(
-			const std::filesystem::path& source
+			const path& source
 			);
 	};
 

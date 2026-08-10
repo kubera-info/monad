@@ -14,10 +14,8 @@ namespace Monad::GUI
 	/// <summary>
 	/// Monad encapsulating background rendering logic.
 	/// </summary>
-	struct Background : 
-		Renderer::CalculatePosition<
-		Renderer::ShaderTextured<
-		Renderer::ShaderNoLight>>
+	struct Background :
+		Renderer::CalculatePosition<Renderer::ShaderTextured<Renderer::ShaderNoLight>>
 	{
 		Background();
 	};

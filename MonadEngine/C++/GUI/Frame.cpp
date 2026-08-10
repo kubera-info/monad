@@ -237,12 +237,12 @@ namespace Monad::GUI
 			MeshCreatorPipe frame{ pipe };
 			const auto retMesh = Renderer::OptimizeMesh(
 				frame.m_indices,
-				{ 
+				{
 					frame.m_vertices.data(),
 					sizeof MeshCreatorPipe::VERTEX_TYPE,
 					frame.m_vertices.size()
 				}
-			);	
+			);
 
 			return Repositories::g_repositoryGeneric->m_meshes.emplace(
 				dialogRectName,

@@ -37,7 +37,7 @@ namespace Monad
 #if defined _DEBUG
 			const wstring& name,
 #endif
-			InitD3D12Ranges1::InitializerListInitRanges ranges
+			InitializerListInitRanges ranges
 		)
 #if defined _DEBUG
 			: m_name(name)

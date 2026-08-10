@@ -6,7 +6,7 @@
 
 // Platform
 #include <DirectXMath.h>
-#include "../../../Modules/meshoptimizer/src/meshoptimizer.h"
+#include <meshoptimizer.h>
 // Monad
 #include "Kernel/BytesVector.h"
 

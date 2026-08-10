@@ -22,7 +22,7 @@ namespace Monad::Files
 		Safety::SafetyState& cipher,
 		const std::filesystem::path& outputPath,
 		const V& buffer
-		)
+	)
 	{
 		const auto key = outputPath.filename();
 		VectorBytesArchive compressed(

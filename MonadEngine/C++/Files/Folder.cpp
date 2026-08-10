@@ -96,14 +96,14 @@ namespace Monad::Files
 
 	Path::Path(
 		Kernel::DummyParameter,
-		const fs::path& source
+		const path& source
 	) :
 		path{ Files::GetFolderRes() / source }
 	{
 	}
 
 	Path& Path::operator=(
-		const fs::path& source
+		const path& source
 		)
 	{
 		path::operator=(source);

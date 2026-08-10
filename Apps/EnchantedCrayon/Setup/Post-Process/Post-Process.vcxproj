@@ -9,6 +9,10 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Setup|x64">
+      <Configuration>Setup</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -27,6 +31,11 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -38,12 +47,25 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakeOutput>
     </NMakeOutput>
     <NMakePreprocessorDefinitions>
     </NMakePreprocessorDefinitions>
+    <OutDir>$(ProjectDir)</OutDir>
+    <IntDir>$(ProjectDir)</IntDir>
+    <SourcePath>$(ProjectDir)</SourcePath>
+    <ReferencePath>$(VC_ReferencesPath_x64);c:\Program Files (x86)\Post-Process\</ReferencePath>
+    <NMakeBuildCommandLine>nmake clean &amp; nmake all &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1"  2 "$(ProjectName)" Book &amp; PwSh "$(SolutionDir)\MonadEngine\bin\Say.ps1" "Noarch finieshed"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>nmake /NOLOGO clean</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
+    <NMakeOutput />
+    <NMakePreprocessorDefinitions />
     <OutDir>$(ProjectDir)</OutDir>
     <IntDir>$(ProjectDir)</IntDir>
     <SourcePath>$(ProjectDir)</SourcePath>
@@ -69,6 +91,11 @@
     </BuildLog>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <BuildLog>
+      <Path>CreatePost-Process.log</Path>
+    </BuildLog>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
     <BuildLog>
       <Path>CreatePost-Process.log</Path>
     </BuildLog>

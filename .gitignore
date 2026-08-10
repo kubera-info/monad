@@ -59,19 +59,12 @@ net10.0
 /Apps/Name2Date/Debug/
 /MonadEngine/bin/net*/
 /Apps/EXT2ext/Debug
-/PrivateApps
 desktop.ini
 *.msix*
 /Apps/EnchantedCrayon/Setup/SetupBook/AppPackages
-/Libs/curl/win64-mingw.zip
-/Libs/curl/win64a-mingw.zip
-/Libs/curl/Current Name ARM64.txt
-/Libs/curl/Current Name x64.txt
 
 # vcpkg generated files
-
-vcpkg/
-
+/vcpkg_installed/
 # Keep the manifest and configuration
 !vcpkg.json
 !vcpkg-configuration.json

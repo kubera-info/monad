@@ -53,7 +53,7 @@ namespace Monad::System
 		{
 			THROW_EXC_GETLASTERROR(
 				Exceptions::FileDamaged,
-				L"Create Process"
+				L"Create Process: " + path.wstring()
 			);
 		}
 

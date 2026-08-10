@@ -13,8 +13,9 @@
 #include "Dev/Coding.h"
 #include "Exceptions/Exceptions.h"
 #include "System/Exit.h"
+// #include "System/System.h"
+// #include "System/UniqueInstance.h"
 #include "Threads/__MonadThread.h"
-#include "System/UniqueInstance.h"
 
 namespace Monad::Kernel
 {
@@ -29,6 +30,14 @@ namespace Monad::Kernel
 	{
 		try
 		{
+			/// <summary>
+			/// Initialize COM runtime for multi-threaded usage.
+			/// </summary>
+			Microsoft::WRL::Wrappers::RoInitializeWrapper initialize(
+				RO_INIT_MULTITHREADED
+			);
+			THROW_EXC_IFFAILED_RO(initialize);
+
 			Globals::g_sourceIconHandle = LoadIcon(
 				nullptr != Globals::g_sourceModuleHandle
 				? Globals::g_sourceModuleHandle
@@ -36,51 +45,38 @@ namespace Monad::Kernel
 				MAKEINTRESOURCE(Globals::g_sourceIcon)
 			);
 
-			/*
 			// Optional: enforce single instance
-			if (System::SmartHandleAmIUnique amIUnique; !amIUnique)
+			/*if (System::SmartHandleAmIUnique amIUnique; !amIUnique)
 			{
 				MessageBeep(MB_ICONERROR);
 				System::SetExitCode(EXIT_FAILURE);
 			}
-			else
-			*/
+			else*/
+			// Enable modern pointer input (mouse / touch / pen)
+			if (FALSE != EnableMouseInPointer(TRUE))
 			{
-				// Enable modern pointer input (mouse / touch / pen)
-				if (FALSE != EnableMouseInPointer(TRUE))
-				{
-					/// <summary>
-					/// Initialize COM runtime for multi-threaded usage.
-					/// </summary>
-					Microsoft::WRL::Wrappers::RoInitializeWrapper initialize(
-						RO_INIT_MULTITHREADED
-					);
-					THROW_EXC_IFFAILED_RO(initialize);
+				// Update render size
+				DXSample::UpdateForSizeChange(
+					rect.right,
+					rect.bottom
+				);
 
-					// Update render size
-					DXSample::UpdateForSizeChange(
-						rect.right,
-						rect.bottom
-					);
+				// Application singleton
+				S singleton;
 
-					// Application singleton
-					S singleton;
+				// Enable DXGI adapter removal support
+				DXGIDeclareAdapterRemovalSupport();
 
-					// Enable DXGI adapter removal support
-					DXGIDeclareAdapterRemovalSupport();
-
-					// Run application
-					System::SetExitCode(W::Run());
-				}
-				else
-				{
-					THROW_EXC_GETLASTERROR(
-						Monad::Exceptions::NotInitialized,
-						L"Mouse"
-					);
-				}
+				// Run application
+				System::SetExitCode(W::Run());
 			}
-
+			else
+			{
+				THROW_EXC_GETLASTERROR(
+					Monad::Exceptions::NotInitialized,
+					L"Mouse"
+				);
+			}
 #if defined(_DEBUG)
 			D3D12Core::ReportLiveObjects();
 #endif

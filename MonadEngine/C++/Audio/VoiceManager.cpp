@@ -113,7 +113,7 @@ namespace Monad::Audio
 		SetVoiceVolumeGeneric(volume);
 	}
 
-	void VoiceManager::Flush() noexcept
+	void VoiceManager::OnFlush() noexcept
 	{
 		SetVoiceVolumeGeneric(VOLUME_MUTED);
 		ResetManager();
@@ -167,8 +167,7 @@ namespace Monad::Audio
 		void*,
 		HRESULT
 	) noexcept
-	{
-	}
+	{}
 
 	bool VoiceManager::IsPlaying() const noexcept
 	{
@@ -195,11 +194,6 @@ namespace Monad::Audio
 	{
 		if (IsRunning())
 			SetVoiceVolumeGeneric(GetCurrentValue());
-	}
-
-	void VoiceManager::OnFlush() noexcept
-	{
-		Flush();
 	}
 
 	void VoiceManager::Mute() noexcept

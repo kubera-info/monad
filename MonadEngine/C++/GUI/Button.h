@@ -16,8 +16,7 @@
 namespace Monad::GUI
 {
 	struct ForceConstForecolorType
-	{
-	}
+	{}
 	extern ForceConstForecolor;
 
 	/// <summary>

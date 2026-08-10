@@ -90,7 +90,7 @@ namespace Monad
 			const string& pageNo
 		)
 		{
-			if (g_MorphingDecay && pageNo != g_currentPage)
+			if (g_MorphingDecay)
 			{
 				if ("boot"_pageNo != pageNo)
 					g_resetPageBackup = pageNo;

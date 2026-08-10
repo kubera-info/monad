@@ -302,7 +302,10 @@ namespace Monad
 			const bool audioChanged = m_before.m_audio != g_applied.m_audio;
 			m_before = g_applied;
 			if (audioChanged)
+			{
 				Audio::g_persistentAudio->SetMuted();
+				return;
+			}
 			if (lang)
 			{
 				I18N::SetLocaleName(

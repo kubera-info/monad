@@ -117,32 +117,30 @@ namespace Monad
 
 			const auto& vsil =
 				Repositories::g_repositoryGeneric->m_vs.GetMember(m_vs);
-			const auto& ps =
-				Repositories::g_repositoryGeneric->m_ps.GetMember(m_ps);
 
-			const bool isShadow = m_vs.starts_with("shadow"_vertexShader);
+			//const bool isShadow = m_vs.starts_with("shadow"_vertexShader);
 			const bool isBlank = ("blank_tex"_fx == id);
 
 			return {
 				.pRootSignature = m_parametersDef->m_rootSignature.Get(),
 				.VS = static_cast<const D3D12_SHADER_BYTECODE>(vsil.m_vs),
-				.PS = static_cast<const D3D12_SHADER_BYTECODE>(ps),
+				.PS = static_cast<const D3D12_SHADER_BYTECODE>(Repositories::g_repositoryGeneric->m_ps.GetMember(m_ps)),
 				.BlendState = m_alphaBlending ? BLEND_DESC_ALPHA : BLEND_DESC_OPAQUE,
 				.SampleMask = UINT_MAX,
 				.RasterizerState = RASTERIZER_DESC,
 				.DepthStencilState = isBlank ? DEPTH_STENCIL_DESC_NULL : DEPTH_STENCIL_DESC,
 				.InputLayout = g_d3d12Core->c_inputLayouts.GetInputLayoutDesc(vsil.c_il),
 				.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE,
-				.NumRenderTargets = isShadow ? 0u : 1u,
+				.NumRenderTargets = /*isShadow ? 0u :*/ 1u,
 				.RTVFormats = {
-					isShadow
+					/*isShadow
 						? DXGI_FORMAT_UNKNOWN
-						: (isBlank
+						:*/ (isBlank
 							? DXGI_FORMAT_R8G8B8A8_UNORM
 							: g_d3d12Core->GetCurrentHDRConfig().m_hdrFormat)
 				},
 				.DSVFormat = isBlank ? DXGI_FORMAT_UNKNOWN : DXGI_FORMAT_D32_FLOAT,
-				.SampleDesc = { isShadow || isBlank ? 1u : g_d3d12Core->c_sampleCount, 0u }
+				.SampleDesc = { /*isShadow ||*/ isBlank ? 1u : g_d3d12Core->c_sampleCount, 0u }
 			};
 		}
 

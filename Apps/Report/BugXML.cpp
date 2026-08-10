@@ -19,7 +19,7 @@ const std::wstring& IsReturnedXMLStatus() noexcept
 	return g_IsXMLValid;
 }
 
-LoadXMLStatus::LoadXMLStatus(
+LoaderXMLStatus::LoaderXMLStatus(
 	IStream* const resultXMLStream
 ) :
 	XMLManager(

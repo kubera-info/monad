@@ -20,6 +20,14 @@
       <Configuration>Release</Configuration>
       <Platform>ARM64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Setup|ARM64">
+      <Configuration>Setup</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Setup|x64">
+      <Configuration>Setup</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Configuration">
     <OutputPath>bin\Release\</OutputPath>
@@ -58,7 +66,13 @@
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutputPath>bin\Release</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'" Label="Configuration">
+    <OutputPath>bin\Release</OutputPath>
+  </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <OutputPath>bin\ARM64Release</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'" Label="Configuration">
     <OutputPath>bin\ARM64Release</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
@@ -89,7 +103,15 @@
     <DefaultLanguage>en</DefaultLanguage>
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
+    <DefaultLanguage>en</DefaultLanguage>
+    <AppxBundle>Always</AppxBundle>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <DefaultLanguage>en</DefaultLanguage>
+    <AppxBundle>Always</AppxBundle>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'">
     <DefaultLanguage>en</DefaultLanguage>
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
@@ -113,16 +135,20 @@
     <Content Include="..\..\Release\Report.exe">
       <Link>Book\Report.exe</Link>
     </Content>
-    <Content Include="..\..\Release\libcurl-x64.dll">
-      <Link>Book\libcurl-x64.dll</Link>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
+    <Content Include="..\..\Release\Report.exe">
+      <Link>Book\Report.exe</Link>
     </Content>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <Content Include="..\..\ARM64Release\Report.exe">
       <Link>Book\Report.exe</Link>
     </Content>
-    <Content Include="..\..\ARM64Release\libcurl-arm64.dll">
-      <Link>Book\libcurl-arm64.dll</Link>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'">
+    <Content Include="..\..\ARM64Release\Report.exe">
+      <Link>Book\Report.exe</Link>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "mysolution",
+  "version-string": "1.0.0",
+  "dependencies": [
+    {
+      "name": "directxtex",
+      "features": [
+        "dx12"
+      ]
+    },
+    {
+      "name": "curl",
+      "default-features": false,
+      "features": [
+        "http3",
+        "brotli"
+      ]
+    },
+    {
+      "name": "7zip"
+    },
+    {
+      "name": "meshoptimizer"
+    }
+  ],
+  "supports": "windows & (x64 | arm64)"
+}

@@ -15,9 +15,9 @@ const std::wstring& IsReturnedXMLStatus() noexcept;
 /// <summary>
 /// Parses XML from www.kubera.info/api/rep and retrieves reference id on success
 /// </summary>
-struct LoadXMLStatus final : private Monad::Files::XMLManager
+struct LoaderXMLStatus final : private Monad::Files::XMLManager
 {
-	LoadXMLStatus(
+	LoaderXMLStatus(
 		IStream* const resultXMLStream
 	);
 };

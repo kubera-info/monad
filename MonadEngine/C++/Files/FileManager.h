@@ -156,8 +156,7 @@ namespace Monad::Files
 					sourceSpan.subspan(c_stringView.length() + 1,
 						sourceSpan.size() - c_stringView.length() - 1)
 				}
-			{
-}
+			{}
 std::wstring UTF8ToUnicode() const;
 
 const std::string_view c_stringView;

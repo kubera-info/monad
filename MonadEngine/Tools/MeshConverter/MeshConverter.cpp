@@ -29,7 +29,7 @@
 #include <cstdint>
 #include <memory>
 // External
-#include "../../../Modules/meshoptimizer/src/meshoptimizer.h"
+#include "meshoptimizer.h"
 // Monad
 #include "../../C++/Kernel/BytesVector.h"
 #include "../../C++/Renderer/MeshOpt.h"

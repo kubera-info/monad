@@ -7,14 +7,6 @@
 // STD
 #include <expected>
 #include <string>
-#include <memory>
-
-// Platform
-#if defined(_M_ARM64)
-#	include "../Libs/curl/ARM64Release/libCurl/include/curl/curl.h"
-#else
-#	include "../Libs/curl/Release/libCurl/include/curl/curl.h"
-#endif
 
 // Monad
 #include "Kernel/Del.h"
@@ -27,9 +19,6 @@ namespace Monad::Internet
 	/// This class provides a safe and minimal abstraction layer over
 	/// dynamically loaded libcurl, exposing only what is required
 	/// for HTTP-based communication.
-	///
-	/// The implementation relies on official libcurl binaries and
-	/// avoids static linkage to keep deployment flexible.
 	/// </summary>
 	struct CurlINet final
 	{
@@ -84,17 +73,5 @@ namespace Monad::Internet
 			const std::string& functionName,
 			InitializerListQueryParameters parameters
 		) const;
-
-		/// <summary>
-		/// Forward declaration of internal libcurl loader.
-		/// </summary>
-		struct LocalLibraryCurl;
-
-	private:
-		/// <summary>
-		/// Dynamically loaded libcurl library wrapper.
-		/// Lifetime is bound to CurlINet instance.
-		/// </summary>
-		const std::unique_ptr<LocalLibraryCurl> c_libCurl;
 	};
 }

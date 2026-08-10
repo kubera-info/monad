@@ -24,7 +24,7 @@ namespace Monad::Renderer
 
 	using FlatMapTechnique = std::flat_map<size_t, std::string>;
 	using ParamListStates = std::initializer_list<std::pair<size_t, std::string>>;
-	
+
 	// =========================================================================
 	// Shader Configuration
 	// =========================================================================

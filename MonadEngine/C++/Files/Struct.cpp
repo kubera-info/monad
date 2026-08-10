@@ -12,9 +12,9 @@
 #include "Exceptions/Exceptions.h"
 #include "Kernel/Templates.h"
 // Library
-#include "Modules/7zip/C/Alloc.h"
-#include "Modules/7zip/C/Lzma2Dec.h"
-#include "Modules/7zip/C/Lzma2Enc.h"
+#include "7zip/C/Alloc.h"
+#include "7zip/C/Lzma2Dec.h"
+#include "7zip/C/Lzma2Enc.h"
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -100,7 +100,7 @@ namespace Monad
 				L".monad-stm",
 				L".monad-lob",
 				L".monad-vsi",
-				L".monad-psh" };
+				L".monad-pxs" };
 			return ranges::find(
 				notCompressed,
 				key.extension()) == notCompressed.cend();

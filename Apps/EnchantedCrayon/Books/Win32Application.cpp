@@ -24,6 +24,7 @@
 #include "Exceptions/Exceptions.h"
 #include "Globals/__MonadGlobals.h"
 #include "Input/Cursor.h"
+#include "System/System.h"
 #include "Time/Timer.h"
 #include "Wnd/WindowMain.h"
 #include "Wnd/Message.h"
@@ -45,10 +46,10 @@ ExpectedLResult ProcessWM_CLOSE(
 	LPVOID&
 )
 {
-	if (!Monad::Exceptions::InAnyCloseReason()
+	if (!InAnyCloseReason()
 		&& (STOP_BOOT_DX <= Monad::Files::g_fileManagerState
-		&& FILE_MAN_STATE_SYSTEM > Monad::Files::g_fileManagerState
-		|| FILE_MAN_STATE_READY == Monad::Files::g_fileManagerState)
+			&& FILE_MAN_STATE_SYSTEM > Monad::Files::g_fileManagerState
+			|| FILE_MAN_STATE_READY == Monad::Files::g_fileManagerState)
 		&& "exit"_pageNo != Monad::Pages::g_currentPage)
 	{
 		Monad::Pages::SelectPage("exit"_pageNo);
@@ -57,7 +58,6 @@ ExpectedLResult ProcessWM_CLOSE(
 	else
 	{
 		RegisterWM_CLOSE();
-		g_singleton->OnDestroyDevice();
 		DestroyWindow(hWnd);
 		return PROCESSING_OK;
 	}
