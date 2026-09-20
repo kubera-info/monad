@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <flat_map>
+
 // Monad
 #include "__MonadKernel.h"
 #include "Renderer/__MonadRenderer.h"
@@ -88,8 +89,8 @@ namespace Monad::Kernel
 	template<typename V>
 	using UnorderedMapString = std::unordered_map<std::string, V>;
 
-	template<typename V>
-	using FlatMapWString = std::flat_map<std::wstring, V>;
+	/*template<typename V>
+	using FlatMapWString = std::flat_map<std::wstring, V>;*/
 
 	template<typename V>
 	using FlatMapString = std::flat_map<std::string, V>;

@@ -8,10 +8,13 @@
 #define D3DX12_NO_STATE_OBJECT_HELPERS
 #define D3DX12_NO_CHECK_FEATURE_SUPPORT_CLASS
 #include <d3dx12.h>
+
 // STD
 #include <memory>
+
 // Boost
 #include <flat_map>
+
 // Monad
 #include "__MonadRenderer.h"
 #include "Kernel/Templates.h"

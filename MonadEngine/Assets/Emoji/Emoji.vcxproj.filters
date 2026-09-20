@@ -4,7 +4,7 @@
     <None Include="Makefile" />
     <None Include="..\..\bin\Tools.ps1" />
     <None Include="..\NMake\Header.mk" />
-    <None Include="..\..\bin\BulkTex.ps1" />
     <None Include="..\..\bin\ArrayTex.ps1" />
+    <None Include="..\..\bin\BulkTex+.ps1" />
   </ItemGroup>
 </Project>

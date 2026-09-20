@@ -6,6 +6,7 @@
 
 // Platform
 #include <DirectXMath.h>
+
 // Monad
 #include "I18N/I18N.h"
 

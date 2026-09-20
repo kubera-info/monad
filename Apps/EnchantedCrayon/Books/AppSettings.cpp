@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "AppSettings.h"
+
 // STD
 #include <numeric>
+
 // Monad
 #include "Renderer/__MonadRenderer.h"
 #include "AppDict.h"
@@ -23,33 +25,19 @@ using namespace std;
 namespace Monad
 {
 	using namespace Fonts;
+	using namespace Globals;
 	using namespace GUI;
 	using namespace I18N;
 	using namespace Kernel;
+	using namespace Pages;
 	using namespace Renderer;
+	using namespace System;
 	using namespace Time;
 
 	namespace App
 	{
 		namespace
 		{
-			const I18NString
-				L1{ L"Software:"_us },
-				L2{ L"Audacity, BMFont, curl, GIMP, Inkscape"_us },
-				L3{ L"LZMA, meshoptimizer, noto-emoji"_us },
-				L4{ L"DirectX-Graphics-Samples, DirectXTex"_us },
-				L5{ L"Art:"_us },
-				L6{ L"„Wood” & „Marble” Textures by Vladimir Radetzki"_us },
-				L7{ L"AI: "_us, L"SI: "_pl, L"ИИ: "_ru },
-				L8{ L"ChatGPT, Claude, DeepSeek, GitHub Copilot"_us },
-				V_SYNC{ L"V-sync"_us },
-				MIT_LICENSE_NOTICE
-			{
-				L"Since version 5.0.0 the application is\nOpen Source under the MIT license.\nIt is available on GitHub."_us,
-				L"Od wersji 5.0.0 aplikacja jest dostępna na\nlicencji Open Source, zgodnie z licencją MIT.\nZnajduje się ona w serwisie GitHub"_pl,
-				L"Начиная с версии 5.0.0,\nприложение являетсяоткрытым исходным кодом\nи распространяется под лицензией MIT.\nОно доступно на GitHub."_ru
-			};
-
 			/*const I18NFloat
 				LEFT_COLUMN{
 				make_pair("pl-PL"s, 0.82f),
@@ -127,7 +115,7 @@ namespace Monad
 				&m_descButton,
 				&m_openSourceButton });
 
-			LabelCheckbox(m_ifVSyncButton, V_SYNC);
+			LabelCheckbox(m_ifVSyncButton, { L"V-sync"_us });
 			LabelCheckbox(m_ifPrivPrintButton, IF_PRINT_BUTTON);
 			LabelCheckbox(m_ifPrivExitButton, IF_EXIT_BUTTON);
 		}
@@ -136,7 +124,7 @@ namespace Monad
 #pragma region DialogSettings::*
 		DialogSettings::ButtonOneToolbar::ButtonOneToolbar(
 			const XMFLOAT2& positionOfCenter,
-			const GUI::IconicStyle& style
+			const IconicStyle& style
 		) :
 			ButtonOneToolbarGeneric{
 				"settings"_pageNo,
@@ -177,7 +165,7 @@ namespace Monad
 
 		void DialogSettings::ButtonAbout::OnClick()
 		{
-			Pages::SelectPage("about"_pageNo);
+			SelectPage("about"_pageNo);
 		}
 
 		DialogSettings::ButtonDesc::ButtonDesc() :
@@ -186,7 +174,7 @@ namespace Monad
 
 		void DialogSettings::ButtonDesc::OnClick()
 		{
-			Pages::SelectPage("desc"_pageNo);
+			SelectPage("desc"_pageNo);
 		}
 
 		DialogSettings::ButtonOpenSource::ButtonOpenSource() :
@@ -195,7 +183,7 @@ namespace Monad
 
 		void DialogSettings::ButtonOpenSource::OnClick()
 		{
-			Pages::SelectPage("opensource"_pageNo);
+			SelectPage("opensource"_pageNo);
 		}
 
 		bool DialogSettings::ButtonOK::IsVisible() const noexcept
@@ -360,7 +348,7 @@ namespace Monad
 		}
 
 		void DialogAboutGeneric::DrawDialogText(
-			const I18N::I18NString& text,
+			const I18NString& text,
 			PosPlusColor& pos,
 			const wstring& parameters)
 		{
@@ -399,7 +387,7 @@ namespace Monad
 
 		void DialogAboutGeneric::ButtonOK::OnClick()
 		{
-			Pages::SelectPage("settings"_pageNo);
+			SelectPage("settings"_pageNo);
 		}
 #pragma endregion
 
@@ -410,19 +398,58 @@ namespace Monad
 			AUTHORS_TITLE
 		}
 		{
-			constexpr float top = 0.48f;
+			constexpr float top = 0.55f;
 			DrawDialogTexts({
-				AUTHORS5,
-				AUTHORS0,
-				AUTHORS7,
-				AUTHORS1 }, {
+					{
+		L"Developer\nWłodzimierz O.Kubera"_us,
+		L"Oprogramowanie\nWłodzimierz O. Kubera"_pl,
+		L"Автор и программист\nWłodzimierz O. Kubera"_ru
+	},
+				{
+		L"#emoji_u1f46c_1f3fb#Tested by children\nOla and Mateusz Kowalczyk\nBianka Rodowska\nOtylka Mirecka"_us,
+		L"#emoji_u1f46c_1f3fb#Dzieci testujące\nOla i Mateusz Kowalczykowie\nBianka Rodowska\nOtylka Mirecka"_pl,
+		L"#emoji_u1f46c_1f3fb#Бета - тестеры\nOla и Mateusz Kowalczykowie\nBianka Rodowska\nOtylka Mirecka"_ru
+	},
+				{
+		L"Quality Assurance\nJerzy Ziembiński"_us,
+		L"Test techniczny\nJerzy Ziembiński"_pl,
+		L"Взрослый бета - тестер\nJerzy Ziembiński"_ru
+	},
+				{
+		L"Pictures\nMalwina De Brade"_us,
+		L"Rysunki\nMalwina De Brade"_pl,
+		L"Художник\nMalwina De Brade"_ru
+	},
+				{
+		L"Polish Lector\nBianka Rodowska"_gb,
+		L"Polish Narration\nBianka Rodowska"_us,
+		L"Lektorka polskiego\nBianka Rodowska"_pl,
+		L"Диктор (польский язык)\nBianka Rodowska"_ru
+	} }, {
 					-.85f, top }
 					);
 			DrawDialogTexts(
-				{ AUTHORS2,
-				AUTHORS3,
-				AUTHORS4,
-				AUTHORS6 }, {
+				{ {
+		L"Professional review\nElżbieta Jalowiecka\n(Karwowska)"_us,
+		L"Wskazówki merytoryczne\nElżbieta Jałowiecka\n(Karwowska)"_pl,
+		L"Помощь и консультирование\nElżbieta Jalowiecka\n(Karwowska)"_ru
+	},
+				{
+		L"English Translation\nIzabela Błaszczyk"_us,
+		L"Angielskie tłumaczenie\nIzabela Błaszczyk"_pl,
+		L"Перевод на английский\nIzabela Błaszczyk"_ru
+	},
+				{
+		L"Music, lector\nand Russian translation\nKirill Ponomarev"_gb,
+		L"Music, narration\nand Russian translation\nKirill Ponomarev"_us,
+		L"Muzyka, lektor\ni rosyjskie tłumaczenie\nKirill Ponomarev"_pl,
+		L"Музыка, звук\nи перевод на русский\nKirill Ponomarev"_ru
+	},
+				{
+		L"Legal support\nR.pr. Szymon Marzęcki"_us,
+		L"Wsparcie prawne\nR.Pr. Szymon Marzęcki"_pl,
+		L"Юридическое сопровождение\nR.pr. Szymon Marzęcki"_ru
+	} }, {
 					0.0f, top }
 					);
 		}
@@ -435,13 +462,17 @@ namespace Monad
 			DESC_TITLE }
 		{
 			DrawDialogTexts({
-				Globals::g_fullAppName,
+				g_fullAppName,
 				AGE,
 				APP_VER_LABEL,
 				DEVELOPED_IN_PL,
 				Globals::g_copyright,
 				ALL_RIGHTS_RESERVED,
-				MIT_LICENSE_NOTICE },
+				{
+				L"Since version 5.0.0 the application is\nOpen Source under the MIT license.\nIt is available on GitHub."_us,
+				L"Od wersji 5.0.0 aplikacja jest dostępna na\nlicencji Open Source, zgodnie z licencją MIT.\nZnajduje się ona w serwisie GitHub"_pl,
+				L"Начиная с версии 5.0.0,\nприложение являетсяоткрытым исходным кодом\nи распространяется под лицензией MIT.\nОно доступно на GitHub."_ru
+			} },
 				{ -0.65f, 0.45f },
 				System::GetAppVersionAndArch());
 			AddRenderedObject(
@@ -456,7 +487,7 @@ namespace Monad
 				"logo"_pageNo,
 				{ "logo"_shaderResource },
 				T2_ART,
-				Renderer::InputLayout::MeshBuilderArtPane{ {
+				InputLayout::MeshBuilderArtPane{ {
 					-g_size,
 					-g_size,
 					g_size,
@@ -468,17 +499,15 @@ namespace Monad
 			XMFLOAT4X4& matrixToAlter
 		) const noexcept
 		{
-			constexpr float fYPos = -0.2f;
-			const double scale0 = sin(g_fTime * 1.75) * 0.5 + 0.5;
-			const auto scaleDouble = (scale0 * .25 + .75) * (scale0 * .25 + .75);
-			const auto scale = static_cast<float> (scaleDouble);
+			const auto scale0 = static_cast<float>((sin(g_fTime * 1.75) * 0.5 + 0.5) * .25 + .75);
+			const auto scale = scale0 * scale0;
 			XMStoreFloat4x4(&matrixToAlter,
 				XMMatrixMultiply(
 					XMMatrixMultiply(
 						XMMatrixMultiply(
 							XMMatrixScaling(scale, scale, 1.0f),
 							XMMatrixRotationZ(static_cast<float> (g_fTime * .25))),
-						XMMatrixTranslation(0.0f, -fYPos, 0.0f)),
+						XMMatrixTranslation(0.0f, 0.2f, 0.0f)),
 					XMLoadFloat4x4(&matrixToAlter)));
 		}
 #pragma endregion
@@ -490,14 +519,14 @@ namespace Monad
 			OPEN_SOURCE_TITLE }
 		{
 			DrawDialogTexts({
-				L1,
-				L2,
-				L3,
-				L4,
-				L5,
-				L6,
-				L7,
-				L8
+				{ L"Software:"_us, L"Oprogramowanie"_pl, L"Программное обеспечение"_ru },
+				{ L"Audacity, BMFont, curl, GIMP, Inkscape"_us },
+				{ L"LZMA, meshoptimizer, noto-emoji"_us },
+				{ L"DirectX-Graphics-Samples, DirectXTex"_us },
+				{ L"Art:"_us },
+				{ L"„Wood” & „Marble” Textures by Vladimir Radetzki"_us },
+				{ L"AI: "_us, L"SI: "_pl, L"ИИ: "_ru },
+				{ L"ChatGPT, Claude, DeepSeek, GitHub Copilot"_us }
 				}, {
 					-.762f, .5f });
 		}

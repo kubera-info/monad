@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "AppGesture.h"
+
 // Monad
 #include "AppSingleton.h"
 #include "Input/Cursor.h"

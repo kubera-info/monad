@@ -270,37 +270,40 @@ void D3D12Core::PopulateCommandLists()
 	if (STOP_BOOT_DX < g_fileManagerState)
 	{
 		DequeuePage();
-		const auto scopedTransition = m_commandList.ScopedTransition({ {
-			m_shadows.GetDsResource(),
-			D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE,
-			D3D12_RESOURCE_STATE_DEPTH_WRITE } }
-			);
-		m_shadows.SetMe();
-		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_SHADOW);
-	}
-	else
-		CenterCursor();
+		{
+			const auto scopedTransition = m_commandList.ScopedTransition({ {
+				m_shadows.GetDsResource(),
+				D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE,
+				D3D12_RESOURCE_STATE_DEPTH_WRITE } }
+				);
+			m_shadows.SetMe();
+			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_SHADOW);
+		}
 #pragma endregion
 
 #pragma region Temporary monads
-	OnFrameRenderAll(STAGE_MODES::STAGE_MODE_CUSTOM);
+		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_CUSTOM);
 #pragma endregion
 
 #pragma region World			
-	{
-		const auto scopedTransition = m_commandList.ScopedTransition({ {
-			m_msaaTargets.GetRtResource(),
-			D3D12_RESOURCE_STATE_RESOLVE_SOURCE,
-			D3D12_RESOURCE_STATE_RENDER_TARGET } }
-			);
-		m_msaaTargets.SetMe();
-		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_WORLD);
+		{
+			const auto scopedTransition = m_commandList.ScopedTransition({ {
+				m_msaaTargets.GetRtResource(),
+				D3D12_RESOURCE_STATE_RESOLVE_SOURCE,
+				D3D12_RESOURCE_STATE_RENDER_TARGET } }
+				);
+			m_msaaTargets.SetMe();
+			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_WORLD);
 #pragma endregion
 
 #pragma region Alpha blending
-		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_ALPHA_BLENDING);
+			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_ALPHA_BLENDING);
 #pragma endregion
+		}
 	}
+	else
+		CenterCursor();
+
 	OnBackBuffer();
 	m_commandList.Get()->Close();
 }

@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "VoiceManager.h"
+
 // Monad
 #include "Persistent.h"
 

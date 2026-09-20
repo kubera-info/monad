@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Console.h"
+
 // Platform
 #include <Windows.h>
 

@@ -14,7 +14,7 @@ float4 main(
 	VS_OUTPUT_EMOJI input
 ) : SV_TARGET
 {
-	const float4 output = g_texFont.Sample(g_samplerAnisotropic, input.m_texture);
+	const float4 output = SRGBAToLinear(g_texFont.Sample(g_samplerAnisotropic, input.m_texture));
 	if (0.0f == output.a)
 		clip(-1);
 	const float shadow = CalculateShadowBlur(input.m_projectedCoord);

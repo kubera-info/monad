@@ -14,5 +14,5 @@ float4 main_tex(
 {
 	const float shadow = CalculateShadowBlur(input.m_projectedCoord);
     const float3 ambient = CB::g_forecolor.m_forecolor * g_ambientpower;
-    return ConvertToOutput(float4(input.m_color * shadow + ambient, 1.0) * g_texArt.Sample(g_samplerAnisotropic, input.m_texture));
+    return ConvertToOutput(float4(input.m_color * shadow + ambient, 1.0) * SRGBAToLinear(g_texArt.Sample(g_samplerAnisotropic, input.m_texture)));
 }

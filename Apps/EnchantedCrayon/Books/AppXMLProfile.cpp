@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "AppXMLProfile.h"
+
 // Monad
 #include "AppSingleton.h"
 #include "Files/XML.h"
@@ -13,11 +14,11 @@
 namespace Monad::App
 {
 	const std::wstring
-		ART = L"Art"s,
+		ART = L"art"s,
 		XML_ATTR_R = L"r"s,
 		XML_ATTR_G = L"g"s,
 		XML_ATTR_B = L"b"s,
-		COL = L"Col"s;
+		COL = L"col"s;
 
 	namespace
 	{

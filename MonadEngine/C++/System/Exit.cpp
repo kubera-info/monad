@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "Exit.h"
+
 // STD
 #include <atomic>
+
 // Monad
 #include "Globals/__MonadGlobals.h"
 #include "Exceptions/Exceptions.h"

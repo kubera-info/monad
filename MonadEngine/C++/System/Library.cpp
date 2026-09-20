@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "Library.h"
+
 // STD
 #include <assert.h>
+
 // Monad
 #include "Exceptions/Exceptions.h"
 #include "Files/Folder.h"

@@ -6,6 +6,7 @@
 
 // Platform
 #include <wrl.h>
+
 // STD
 #include <span>
 #include <vector>

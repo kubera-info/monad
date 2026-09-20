@@ -6,6 +6,7 @@
 
 // Platform
 #include <xaudio2.h>
+
 // STD
 #include <string>
 

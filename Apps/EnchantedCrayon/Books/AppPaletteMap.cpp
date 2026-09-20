@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "AppPaletteMap.h"
+
 // Monad
 #include "AppSingleton.h"
 #include "Core/DXSampleHelper.h"

@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "AppColorIndex.h"
+
 // Monad
 #include "GUI/__MonadGUI.h"
 #include "Kernel/Templates.h"

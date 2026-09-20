@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net10.0</TargetFramework>
+    <TargetFramework>$(MyTargetFramework)</TargetFramework>
     <Version>2.0.0</Version>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -21,10 +21,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|AnyCPU'">
     <OutputPath>..\..\Bin\</OutputPath>
   </PropertyGroup>
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="PwSh.exe &quot;..\..\Bin\end.ps1&quot; 1 &quot;$(ProjectName)&quot;" />
-  </Target>
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="10.0.10" />
+    <PackageReference Include="System.Drawing.Common" />
   </ItemGroup>
 </Project>

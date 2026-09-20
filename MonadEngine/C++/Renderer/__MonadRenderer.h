@@ -9,10 +9,12 @@
 #include <dxgi1_6.h>
 #include <DirectXMath.h>
 #include <wrl.h>
+
 // STD
 #include <optional>
 #include <string>
 #include <stdint.h>
+
 // Monad
 #include "Kernel/Del.h"
 #include "Kernel/BytesVector.h"
@@ -37,7 +39,9 @@ namespace Monad::Renderer
 #endif
 
 	constexpr float MAX_BYTE(0xff);
-	inline constexpr DirectX::XMFLOAT4 FLOAT_4_ONES{ 1.0f, 1.0f, 1.0f, 1.0f };
+	inline constexpr DirectX::XMFLOAT4 
+		FLOAT_4_ONES{ 1.0f, 1.0f, 1.0f, 1.0f },
+		FLOAT_4_ZEROS{ .0f, .0f, .0f, .0f };
 
 	interface FormatAndClear abstract
 	{

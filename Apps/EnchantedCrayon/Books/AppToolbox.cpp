@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "AppToolbox.h"
+
 // Monad
 #include "AppGUILookAndFeel.h"
 #include "AppSingleton.h"

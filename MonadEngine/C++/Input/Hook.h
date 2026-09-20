@@ -6,8 +6,10 @@
 
 // Platform
 #include <Windows.h>
+
 // STD
 #include <stdint.h>
+
 // Monad
 #include "Kernel/Del.h"
 

@@ -6,8 +6,10 @@
 
 // Platform
 #include <xaudio2.h>
+
 // STD
 #include <unordered_map>
+
 // Monad
 #include "Kernel/Del.h"
 #include "VoiceManager.h"

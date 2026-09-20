@@ -6,6 +6,7 @@
 
 // STD
 #include <string>
+
 // Monad
 #include "Exceptions/__MonadException.h"
 #include "Renderer/__MonadRenderer.h"

@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "Cursor.h"
+
 // Platform
 #include <windowsx.h>
+
 // Monad
 #include "Core/DXSample.h"
 #include "Exceptions/Exceptions.h"

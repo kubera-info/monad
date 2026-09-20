@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "System/ResourceLoader.h"
+
 // Monad
 #include "Exceptions/Exceptions.h"
 #include "Files/Op.h"

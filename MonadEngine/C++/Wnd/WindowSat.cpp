@@ -316,7 +316,7 @@ namespace Monad
 						Files::TaskFileHolder loader(
 							Files::g_fileSearcherGeneric,
 							g_managerSatellites->m_folderSat / (
-								Tools::UTF8ToUnicode(g_managerSatellites->m_blobJpgNames.GetRandomString() + ".monad-lob")));
+								Tools::UTF8ToUnicode(g_managerSatellites->m_blobJpgNames.GetRandomString() + ".monad$lob")));
 						loader.Run();
 						g_managerSatellites->m_2D.CreateWICBitmap(loader.GetComIStreamTemp().Get(), m_wicBitmap);
 					}

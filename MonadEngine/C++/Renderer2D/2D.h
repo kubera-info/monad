@@ -6,8 +6,10 @@
 
 // Platform
 #include <d2d1_3.h>
+
 // STD
 #include <filesystem>
+
 // Monad
 #include "__Monad2D.h"
 #include "Kernel/Templates.h"

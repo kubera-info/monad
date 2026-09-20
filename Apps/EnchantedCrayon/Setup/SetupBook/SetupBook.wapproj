@@ -208,7 +208,7 @@
     <Content Include="Images\Wide310x150Logo.scale-150.png" />
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
     <Content Include="Images\Wide310x150Logo.scale-400.png" />
-    <Content Include="..\Res\**\*.monad-???">
+    <Content Include="..\Res\**\*.monad$???">
       <Link>Res\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
     <PRIResource Include="Resources.language-en-gb.resw" />
@@ -227,4 +227,80 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
+  <!-- Include DirectX Agility runtime DLLs from vcpkg so they are packaged into MSIX -->
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <!-- Prefer dynamic triplet path (x64-windows) where DLLs exist -->
+    <Content Include="..\..\vcpkg_installed\x64-windows\bin\D3D12Agility*.dll">
+      <Link>Book\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>Book\</PackagePath>
+    </Content>
+    <Content Include="..\..\vcpkg_installed\**\bin\*agility*.dll">
+      <Link>Book\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>Book\</PackagePath>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
+    <Content Include="..\..\vcpkg_installed\x64-windows\bin\D3D12Agility*.dll">
+      <Link>Book\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>Book\</PackagePath>
+    </Content>
+    <Content Include="..\..\vcpkg_installed\**\bin\*agility*.dll">
+      <Link>Book\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>Book\</PackagePath>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <Content Include="..\..\vcpkg_installed\arm64-windows\bin\D3D12Agility*.dll">
+      <Link>Book\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>Book\</PackagePath>
+    </Content>
+    <Content Include="..\..\vcpkg_installed\**\bin\*agility*.dll">
+      <Link>Book\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>Book\</PackagePath>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'">
+    <Content Include="..\..\vcpkg_installed\arm64-windows\bin\D3D12Agility*.dll">
+      <Link>Book\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>Book\</PackagePath>
+    </Content>
+    <Content Include="..\..\vcpkg_installed\**\bin\*agility*.dll">
+      <Link>Book\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>Book\</PackagePath>
+    </Content>
+  </ItemGroup>
+  <!-- Include any DirectX Agility DLLs found in vcpkg build output directories -->
+  <!-- Include only architecture-appropriate Agility DLLs to avoid duplicate target names -->
+  <ItemGroup Condition="'$(Platform)'=='x64'">
+    <Content Include="..\..\..\..\vcpkg_installed\x64\vcpkg\pkgs\directx12-agility_x64-windows-static-md\bin\*.dll">
+      <Link>Book\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>Book\</PackagePath>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Platform)'=='ARM64'">
+    <Content Include="..\..\..\..\vcpkg_installed\ARM64\vcpkg\pkgs\directx12-agility_arm64-windows-static-md\bin\*.dll">
+      <Link>Book\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>Book\</PackagePath>
+    </Content>
+  </ItemGroup>
 </Project>

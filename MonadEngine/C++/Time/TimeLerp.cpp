@@ -5,9 +5,11 @@
 // Me
 #include "stdafx.h"
 #include "TimeLerp.h"
+
 // STD
 #include <assert.h>
 #include <cmath>
+
 // Monad
 #include "__MonadTime.h"
 

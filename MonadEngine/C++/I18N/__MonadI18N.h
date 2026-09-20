@@ -87,5 +87,50 @@ namespace Monad::I18N
 		L"Software developed in #flag-pl##flag-pl"_us,
 		L"Oprogramowano w #flag-pl##flag-pl"_pl,
 		L"Программное обеспечение разработано в #flag-pl##flag-pl"_ru
+	},
+		AGE
+	{
+		L"Application for children age 3 and above"_gb,
+		L"Программа для детей от 3 - х лет"_ru,
+		L"Aplikacja dla dzieci w wieku od lat trzech."_pl,
+		L"Application for children aged 3 and above"_us
+	},
+		/*g_configSite(
+			L"Strona WWW",
+			L"Сайт WWW",
+			L"Website"),
+		g_voice(
+			L"Dźwięk",
+			L"Звук",
+			L"Sound"),*/
+		IF_PRINT_BUTTON
+	{
+		L"Available printing"_us,
+		L"Drukowanie dostępne"_pl,
+		L"Доступная печать"_ru
+	},
+		IF_EXIT_BUTTON
+	{
+		L"Leave the application"_us,
+		L"Wyjście z programu"_pl,
+		L"Выход"_ru
+	},
+		PRINTING
+	{
+		L"#emoji_u1f5a8#Printing"_us,
+		L"#emoji_u1f5a8#Drukowanie"_pl,
+		L"#emoji_u1f5a8#Печать"_ru
+	},
+		IF_EXIT
+	{
+		L"#emoji_u1f6aa#Leave the application"_us,
+		L"#emoji_u1f6aa#Wyjście z programu"_pl,
+		L"#emoji_u1f6aa#Выход"_ru
+	},
+		IF_EXIT_QUESTION
+	{
+		L"#emoji_u1f6aa#Are you sure?"_us,
+		L"#emoji_u1f6aa#Czy jesteś pewna(y)?"_pl,
+		L"#emoji_u1f6aa#Вы уверены?"_ru
 	};
 }

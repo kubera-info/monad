@@ -5,10 +5,12 @@
 // Me
 #include "stdafx.h"
 #include "XML.h"
+
 // Platform
 #include <wrl.h>
 #include <xmllite.h>
 #pragma comment (lib, "XmlLite.lib")
+
 // Monad
 #include "Exceptions/Exceptions.h"
 #include "Tools/Convert.h"

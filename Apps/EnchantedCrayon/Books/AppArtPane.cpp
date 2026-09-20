@@ -5,12 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "AppArtPane.h"
+
 // Monad
 #include "AppSingleton.h"
 #include "AppConstantBuffers.h"
-#include "Exceptions/Exceptions.h"
-#include "Input/Cursor.h"
-#include "Kernel/__MonadKernel.h"
 #include "Kernel/Format.h"
 
 using namespace DirectX;
@@ -18,7 +16,6 @@ using namespace std;
 
 namespace Monad
 {
-	using namespace Exceptions;
 	using namespace Input;
 	using namespace Kernel;
 	using namespace Renderer;

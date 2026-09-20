@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Cipher.h"
+
 // Monad
 #include "Exceptions/Exceptions.h"
 #include "Files/Struct.h"

@@ -28,19 +28,17 @@ int32_t WINAPI MiniMain(
 	_In_ HINSTANCE hInstance
 )
 {
-	MONAD_RAW_INIT;
-
 	// Application display names (localized)
 	Globals::g_shortAppName =
 	{
-		L"#emoji_u1f3a8#Zaczarowana Kredka"_pl,
+		L"#emoji_u1f3a8#Magiczna Kredka"_pl,
 		L"#emoji_u1f3a8#Волшебные Краски"_ru,
 		L"#emoji_u1f3a8#The Enchanted Crayon"_us
 	};
 
 	Globals::g_fullAppName =
 	{
-		L"Kolorowanka „Zaczarowana Kredka”"_pl,
+		L"Kolorowanka „Magiczna Kredka”"_pl,
 		L"Раскраска «Волшебные Краски»"_ru,
 		L"The Enchanted Crayon Colouring Book"_gb,
 		L"The Enchanted Crayon Coloring Book"_us
@@ -84,7 +82,8 @@ int32_t WINAPI MiniMain(
 	return Kernel::MonadWinMain<
 		App::PersistentSingleton,
 		Win32Application>(
-			Wnd::GetMonitorRect()
+			Wnd::GetMonitorRect(),
+			hInstance
 		);
 }
 

@@ -16,10 +16,13 @@
 // Me
 #include "stdafx.h"
 #include "Win32Application.h"
+
 // Platform
 #include <Dbt.h>
+
 // Monad
 #include "AppSingleton.h"
+#include "Audio/Persistent.h"
 #include "Core/Win32ApplicationGeneric.h"
 #include "Exceptions/Exceptions.h"
 #include "Globals/__MonadGlobals.h"
@@ -54,6 +57,12 @@ ExpectedLResult ProcessWM_CLOSE(
 	{
 		Monad::Pages::SelectPage("exit"_pageNo);
 		return PROCESSING_ERROR;
+	}
+	else if (Monad::System::IsOSWine())
+	{
+		g_singleton->OnDestroyDevice();
+		Monad::Audio::g_persistentAudio->Shutdown();
+		ExitProcess(0);
 	}
 	else
 	{

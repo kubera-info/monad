@@ -6,6 +6,7 @@
 
 // Platform
 #include <DirectXMath.h>
+
 // Monad
 #include "GUI/GUIMath.h"
 

@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Window.h"
+
 // Monad
 #include "Globals/__MonadGlobals.h"
 #include "resource.h"

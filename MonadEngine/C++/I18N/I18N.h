@@ -6,6 +6,7 @@
 
 // STD
 #include <format>
+
 // Monad
 #include "Kernel/Del.h"
 #include "I18NLocale.h"

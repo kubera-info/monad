@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Folder.h"
+
 // Platform
 #pragma comment(lib, "OneCore.Lib")
 
@@ -107,6 +108,14 @@ namespace Monad::Files
 		)
 	{
 		path::operator=(source);
+		return *this;
+	}
+
+	Path& Path::operator=(
+		path&& source
+		) noexcept
+	{
+		path::operator=(std::move(source));
 		return *this;
 	}
 

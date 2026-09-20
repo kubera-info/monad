@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "Pipeline.h"
+
 // STD
 #include <ranges>
+
 // Monad
 #include "Core/DXSample.h"
 #include "Core/DXSampleHelper.h"

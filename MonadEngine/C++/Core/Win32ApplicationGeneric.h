@@ -17,8 +17,10 @@
 
 // Platform
 #include <Windows.h>
+
 // STD
 #include <cstdint>
+
 // Monad
 #include "Globals/__MonadGlobals.h"
 #include "Wnd/Message.h"

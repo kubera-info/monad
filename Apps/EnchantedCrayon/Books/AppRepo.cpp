@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "AppRepo.h"
+
 // STD
 #include <ranges>
+
 // Monad
 #include "AppSingleton.h"
 #include "Globals/__MonadGlobals.h"

@@ -6,8 +6,10 @@
 
 // Platform
 #include <Shlobj.h>
+
 // STD
 #include <filesystem>
+
 // Monad
 #include "Kernel/Dummy.h"
 
@@ -31,6 +33,9 @@ namespace Monad::Files
 		Path& operator=(
 			const path& source
 			);
+		Path& operator=(
+			path&& source
+			) noexcept;
 	};
 
 	/// <summary>

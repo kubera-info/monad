@@ -3,11 +3,11 @@
   <ItemGroup>
     <None Include="Makefile" />
     <None Include="..\NMake\Header.mk" />
-    <None Include="..\..\bin\BulkTex.ps1" />
     <None Include="README.md">
       <Filter>Doc</Filter>
     </None>
     <None Include="..\..\bin\Tools.ps1" />
+    <None Include="..\..\bin\BulkTex+.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Doc">

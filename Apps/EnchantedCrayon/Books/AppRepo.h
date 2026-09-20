@@ -7,6 +7,7 @@
 // STD
 #include <map>
 #include <string>
+
 // Monad
 #include "AppArtTex.h"
 #include "Repository/Repo.h"

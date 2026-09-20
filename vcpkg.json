@@ -6,7 +6,8 @@
     {
       "name": "directxtex",
       "features": [
-        "dx12"
+        "dx12",
+        "tools"
       ]
     },
     {
@@ -17,12 +18,8 @@
         "brotli"
       ]
     },
-    {
-      "name": "7zip"
-    },
-    {
-      "name": "meshoptimizer"
-    }
+    "7zip",
+    "meshoptimizer"
   ],
   "supports": "windows & (x64 | arm64)"
 }

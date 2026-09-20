@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "__MonadFile.h"
+
 // STD
 #include <regex>
 
@@ -14,12 +15,12 @@ namespace fs = std::filesystem;
 namespace Monad::Files
 {
 	const fs::path
-		PROFILE_FILENAME(L"profile.monad-dbf"),
-		WILDCARD(L"*.monad-???"),
+		PROFILE_FILENAME(L"profile.monad$dbf"),
+		WILDCARD(L"*.monad$???"),
 		WILDCARD_ANY(L"*");
 	namespace
 	{
-		const wregex REGEX_MONAD_EXT(L"^\\.monad\\-[a-z]{3}$", std::regex_constants::icase);
+		const wregex REGEX_MONAD_EXT(L"^\\.monad\\$[a-z]{3}$", std::regex_constants::icase);
 	}
 
 	bool IsMonadExt(

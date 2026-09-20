@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "Shader0.h"
+
 // STD
 #include <ranges>
+
 // Monad
 #include "Repository/Repo.h"
 #include "Core/DXSample.h"

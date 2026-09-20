@@ -6,6 +6,7 @@
 
 // Platform
 #include <DirectXMath.h>
+
 // STD
 #include <algorithm>
 #include <limits>

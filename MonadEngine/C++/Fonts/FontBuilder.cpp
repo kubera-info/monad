@@ -151,8 +151,11 @@ namespace Monad
 		{
 			for (const auto& rec : m_recorders)
 				RenderText(rec);
-			m_mesh = m_textToRender.Commit();
-			m_textToRender.ClearAndShrink();
+			if (!m_textToRender.m_vertices.empty())
+			{
+				m_mesh = m_textToRender.Commit();
+				m_textToRender.ClearAndShrink();
+			}
 		}
 
 		bool Text2Mesh::OnLanguageChangeFontStub()

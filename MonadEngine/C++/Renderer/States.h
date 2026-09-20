@@ -6,6 +6,7 @@
 
 // Platform
 #include <d3d12.h>
+
 // STD
 #include <array>
 

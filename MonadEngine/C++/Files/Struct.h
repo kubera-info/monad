@@ -7,6 +7,7 @@
 // Platform
 #include <Windows.h>
 #include <mmsystem.h>
+
 // Monad
 #include "Safety/SafetyManager.h"
 

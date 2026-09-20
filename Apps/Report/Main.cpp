@@ -4,6 +4,7 @@
 
 // Me
 #include "stdafx.h"
+
 // Monad
 #include "AppMain.h"
 #include "Globals/__MonadGlobals.h"
@@ -45,8 +46,6 @@ int32_t WINAPI MiniMain(
 	_In_ HINSTANCE hInstance
 )
 {
-	MONAD_RAW_INIT;
-
 	Globals::g_exceptionReportingMethod = Exceptions::EXCEPTION_PRESENTATION::MESSAGE_BOX;
 
 	// Application identifiers
@@ -84,7 +83,7 @@ int32_t WINAPI MiniMain(
 	if (System::GetParameter(System::FILENAME_REPORT).empty())
 	{
 		// Mocked call
-		const std::string xmlForDebug{ "<monad I18N=\"pl-PL\" Thread=\"Monad Anonymous\" Class=\"struct Monad::Exceptions::AudioFailed\" Exception=\"Karta dĹşwiÄ™kowa lub jej sterowniki nie speĹ‚niajÄ… minimalnych wymagaĹ„\" HRESULT=\"0x80004005\" Stage=\"Moj test\" Page=\"unknown\" Type=\"Report\" GPU=\"\" Version=\"5.0.2 (Debug)X64\" Title=\"Kolorowanka â€žZaczarowana Kredkaâ€ť\" Salt=\"0AFFC219D06D4F89\" ShortName=\"Zaczarowana Kredka\" Path=\"C:\\Users\\wlodz\\source\\repos\\monad_solution\\Apps\\EnchantedCrayon\\Debug\\Book.exe\" WhoAmI=\"ZC\" NativeOrWine=\"Native Windows\" Arch=\"X64\" Ico=\"101\"/>" };
+		const std::string xmlForDebug{ "<monad I18N=\"pl-PL\" Thread=\"Monad Anonymous\" Class=\"struct Monad::Exceptions::AudioFailed\" Exception=\"Karta dĹşwiÄ™kowa lub jej sterowniki nie speĹ‚niajÄ… minimalnych wymagaĹ„\" HRESULT=\"0x80004005\" Stage=\"Moj test\" Page=\"unknown\" Type=\"Report\" GPU=\"\" Version=\"5.0.2 (Debug)X64\" Title=\"Kolorowanka â€žMagiczna Kredkaâ€ť\" Salt=\"0AFFC219D06D4F89\" ShortName=\"Magiczna Kredka\" Path=\"C:\\Users\\wlodz\\source\\repos\\monad_solution\\Apps\\EnchantedCrayon\\Debug\\Book.exe\" WhoAmI=\"ZC\" NativeOrWine=\"Native Windows\" Arch=\"X64\" Ico=\"101\"/>" };
 		g_parameters = std::make_unique<XMLManagerErrorDesc>(Kernel::SpanConstBytes(xmlForDebug).GetComIStreamTemp().Get());
 	}
 	else
@@ -103,7 +102,8 @@ int32_t WINAPI MiniMain(
 	return Kernel::MonadWinMain<
 		App::PersistentSingleton,
 		Win32Application>(
-			Wnd::GetMonitorRect()
+			Wnd::GetMonitorRect(),
+			hInstance
 		);
 }
 

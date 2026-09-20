@@ -106,27 +106,27 @@ int wmain(
 
 #pragma region Encrypted g_filesWaves
 	for (const auto& currentFile : g_filesWaves)
-		std::println("{}", Monad::Tools::UnicodeToUTF8(L"$(MND_DEST)\\Boot\\"s + currentFile.stem().wstring() + L".monad-snd: Release\\" + currentFile.stem().wstring() + L".pcm"
+		std::println("{}", Monad::Tools::UnicodeToUTF8(L"$(MND_DEST)\\Boot\\"s + currentFile.stem().wstring() + L".monad$snd: Release\\" + currentFile.stem().wstring() + L".pcm"
 			L"\n\t$(MND_ENCRYPT) $? $@"s));
 	std::println();
 	std::print("waves:");
 	for (const auto& currentFile : g_filesWaves)
 		std::print(" {}", Monad::Tools::UnicodeToUTF8(
-			L"$(MND_DEST)\\Boot\\"s + currentFile.stem().wstring() + L".monad-snd"s));
+			L"$(MND_DEST)\\Boot\\"s + currentFile.stem().wstring() + L".monad$snd"s));
 	std::println();
 	std::println();
 #pragma endregion
 
 #pragma region Encrypted g_filesMP3s
 	for (const auto& currentFile : g_filesMP3s)
-		std::println("{}", Monad::Tools::UnicodeToUTF8(L"$(MND_DEST)\\Boot\\" + currentFile.stem().wstring() + L".monad-stm: $(MND_VOICE)\\" + currentFile.stem().wstring() + L".mp3"
+		std::println("{}", Monad::Tools::UnicodeToUTF8(L"$(MND_DEST)\\Boot\\" + currentFile.stem().wstring() + L".monad$stm: $(MND_VOICE)\\" + currentFile.stem().wstring() + L".mp3"
 			L"\n\t$(MND_ENCRYPT) $? $@"s));
 	std::println();
 	std::println();
 	std::print("streams:");
 	for (const auto& currentFile : g_filesMP3s)
 		std::print(" {}", Monad::Tools::UnicodeToUTF8(
-			L"$(MND_DEST)\\Boot\\"s + currentFile.stem().wstring() + L".monad-stm"s));
+			L"$(MND_DEST)\\Boot\\"s + currentFile.stem().wstring() + L".monad$stm"s));
 	std::println();
 #pragma endregion
 
@@ -151,13 +151,13 @@ int wmain(
 
 #pragma region Encrypted g_filesMeshes
 	for (const auto& currentFile : g_filesMeshes)
-		std::println("{}", Monad::Tools::UnicodeToUTF8(L"$(MND_DEST)\\Boot2\\"s + currentFile.stem().wstring() + L".monad-msh: $(MND_MESH)\\" + currentFile.stem().wstring() + L".x.m12"
+		std::println("{}", Monad::Tools::UnicodeToUTF8(L"$(MND_DEST)\\Boot2\\"s + currentFile.stem().wstring() + L".monad$msh: $(MND_MESH)\\" + currentFile.stem().wstring() + L".x.m12"
 			L"\n\t$(MND_ENCRYPT) $? $@"s));
 	std::println();
 	std::print("meshes:");
 	for (const auto& currentFile : g_filesMeshes)
 		std::print(" {}", Monad::Tools::UnicodeToUTF8(
-			L"$(MND_DEST)\\Boot2\\"s + currentFile.stem().wstring() + L".monad-msh"s));
+			L"$(MND_DEST)\\Boot2\\"s + currentFile.stem().wstring() + L".monad$msh"s));
 	std::println();
 	std::println();
 #pragma endregion
@@ -167,14 +167,14 @@ int wmain(
 	std::println("{}", "\t$(MND_TEXCONV) BC7_UNORM 4 Release ..\\Textures"s);
 	std::println();
 	for (const auto& currentFile : g_textures)
-		std::println("{}", Monad::Tools::UnicodeToUTF8(L"$(MND_DEST)\\Boot2\\"s + currentFile.stem().wstring() + L".monad-tex: Release\\" + currentFile.stem().wstring() + L".dds"
+		std::println("{}", Monad::Tools::UnicodeToUTF8(L"$(MND_DEST)\\Boot2\\"s + currentFile.stem().wstring() + L".monad$tex: Release\\" + currentFile.stem().wstring() + L".dds"
 			L"\n\t$(MND_ENCRYPT) $? $@"s));
 	std::println();
 
 	std::print("textures:");
 	for (const auto& currentFile : g_textures)
 		std::print(" {}", Monad::Tools::UnicodeToUTF8(
-			L"$(MND_DEST)\\Boot2\\"s + currentFile.stem().wstring() + L".monad-tex"s));
+			L"$(MND_DEST)\\Boot2\\"s + currentFile.stem().wstring() + L".monad$tex"s));
 	std::println();
 	std::println();
 #pragma endregion
@@ -185,11 +185,11 @@ int wmain(
 		"\n\t@del $(MND_DEST)\\*.$$$$$$ >nul 2>&1"
 		"\n\t@del $(MND_VOICE)\\*.pcm >nul 2>&1"
 		"\n\t@del /s $(MND_DEST)\\*.bak >nul 2>&1"
-		"\n\t@del /s $(MND_DEST)\\*.monad-lob >nul 2>&1"
-		"\n\t@del /s $(MND_DEST)\\*.monad-snd >nul 2>&1"
-		"\n\t@del /s $(MND_DEST)\\*.monad-stm >nul 2>&1"
-		"\n\t@del /s $(MND_DEST)\\*.monad-tex >nul 2>&1"
-		"\n\t@del /s $(MND_DEST)\\*.monad-msh >nul 2>&1");
+		"\n\t@del /s $(MND_DEST)\\*.monad$lob >nul 2>&1"
+		"\n\t@del /s $(MND_DEST)\\*.monad$snd >nul 2>&1"
+		"\n\t@del /s $(MND_DEST)\\*.monad$stm >nul 2>&1"
+		"\n\t@del /s $(MND_DEST)\\*.monad$tex >nul 2>&1"
+		"\n\t@del /s $(MND_DEST)\\*.monad$msh >nul 2>&1");
 #pragma endregion
 	Scis();
 	return ERROR_SUCCESS;

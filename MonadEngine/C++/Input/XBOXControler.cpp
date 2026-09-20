@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "XBOXControler.h"
+
 // Platform
 #include <windows.gaming.input.h>
+
 // Monad
 #include "Core/DXSample.h"
 #include "Core/Win32ApplicationGeneric.h"

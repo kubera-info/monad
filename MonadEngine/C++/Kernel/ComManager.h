@@ -6,6 +6,7 @@
 
 // STD
 #include <assert.h>
+
 // Monad
 #include "Kernel/Del.h"
 

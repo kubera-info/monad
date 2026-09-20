@@ -862,11 +862,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\MonadEngine\Assets\Icons\cpy.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Report.rc2">
       <Filter>Resource Files</Filter>
     </None>

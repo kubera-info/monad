@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "Tex.h"
+
 // Platform
 #include <DirectXTex.h>
+
 // Monad
 #include "Core/DXSample.h"
 #include "Core/DXSampleHelper.h"

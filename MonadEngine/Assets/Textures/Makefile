@@ -3,7 +3,7 @@
 ##########################################################################
 
 MND_TITLE=The DDS Textures Object Builder
-MND_TEXCONV=@pwsh.exe ..\..\Bin\BulkTex.ps1
+MND_TEXCONV=@pwsh.exe ..\..\Bin\BulkTex+.ps1
 
 include "..\NMake\Header.mk"
 
@@ -21,7 +21,7 @@ tex7_obj:
 	$(MND_TEXCONV) BC7_UNORM_SRGB 3 DDS Images Flags
 
 say:
-	@pwsh.exe ..\..\Bin\Say.ps1 "DDS Textures Object Builder is done."
+	@pwsh.exe ..\..\Bin\Say.ps1 "DDS Textures done."
 
 clean:
 	@del DDS\*.dds >nul 2>&1

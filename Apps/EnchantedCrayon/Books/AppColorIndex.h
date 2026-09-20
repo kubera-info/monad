@@ -6,8 +6,10 @@
 
 // Platform
 #include <DirectXMath.h>
+
 // STD
 #include <array>
+
 // Monad
 #include "Kernel/Del.h"
 #include "Renderer/__MonadRenderer.h"

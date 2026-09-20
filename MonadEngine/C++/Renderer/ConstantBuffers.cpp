@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "ConstantBuffers.h"
+
 // Monad
 #include "Core/DXSample.h"
 #include "Core/DXSampleHelper.h"

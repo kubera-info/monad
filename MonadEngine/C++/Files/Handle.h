@@ -6,6 +6,7 @@
 
 // Platform
 #include <shlwapi.h>
+
 // Monad
 #include "Kernel/Del.h"
 #include "Kernel/Patterns.h"

@@ -16,26 +16,19 @@
 // Me
 #include "stdafx.h"
 #include "DXSample.h"
+
 // Platform
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "DXGI.lib")
 #pragma comment(lib, "d3d12.lib")
-// STD
-#include <numeric>
-#include <sstream>
-#include <utility>
+
 // Monad
 #include "Core/DXSampleHelper.h"
 #include "Dev/Coding.h"
-#include "Files/FileManager.h"
-#include "Globals/__MonadGlobals.h"
-#include "Kernel/Events.h"
 #include "Renderer/__MonadRenderer.h"
 #include "Time/__MonadTime.h"
 #include "Time/Timer.h"
-#include "Tools/Convert.h"
 #include "Win32ApplicationGeneric.h"
-#include "Wnd/Monitor.h"
 #include "Repository/Repo.h"
 
 // Indicates to hybrid graphics systems to prefer the discrete part by default.
@@ -44,8 +37,8 @@ extern "C"
 	__declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
 	__declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;
 }
-// extern "C" { __declspec(dllexport) extern const UINT D3D12SDKVersion = 618; }
-// extern "C" { __declspec(dllexport) extern const char* D3D12SDKPath = reinterpret_cast<const char*>(u8".\\D3D12\\"); }
+//extern "C" { __declspec(dllexport) extern const UINT D3D12SDKVersion = 619; }
+//extern "C" { __declspec(dllexport) extern const char* D3D12SDKPath = reinterpret_cast<const char*>(u8".\\"); }
 
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
@@ -595,7 +588,7 @@ void DXSample::LoadPipeline()
 	//m_enableST2084 = m_hdrSupport;
 	m_renderTargetViewDesc = {
 		GetCurrentHDRConfig().m_hdrFormat,
-		FLOAT_4_ONES,
+		FLOAT_4_ZEROS,
 		D3D12_RTV_DIMENSION_TEXTURE2D
 	};
 	m_renderTargetMSAAViewDesc = {

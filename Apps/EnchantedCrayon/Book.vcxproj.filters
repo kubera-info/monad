@@ -145,7 +145,7 @@
     <Filter Include="Monad%28a%29 Incudes\Globals\Doc">
       <UniqueIdentifier>{d9a602e6-278b-4f0e-b9b4-4f225f0b9149}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Monad%28a%29 Incudes\pch">
+    <Filter Include="pch">
       <UniqueIdentifier>{cbae8259-1563-473b-893c-acfed7c83374}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -193,7 +193,7 @@
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>Monad%28a%29 Incudes\pch</Filter>
+      <Filter>pch</Filter>
     </ClInclude>
     <ClInclude Include="..\..\MonadEngine\C++\Core\DXSample.h">
       <Filter>Core</Filter>
@@ -663,10 +663,10 @@
       <Filter>Monad%28a%29 Incudes\Input</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>Monad%28a%29 Incudes\pch</Filter>
+      <Filter>pch</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Monad%28a%29 Incudes\pch</Filter>
+      <Filter>pch</Filter>
     </ClCompile>
     <ClCompile Include="..\..\MonadEngine\C++\Core\DXSample.cpp">
       <Filter>Core</Filter>

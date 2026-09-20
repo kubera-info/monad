@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Changed.h"
+
 // Monad
 #include "Exceptions/Exceptions.h"
 #include "Persistent.h"

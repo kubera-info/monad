@@ -6,9 +6,11 @@
 
 // Platform
 #include "Modules/Xbox-ATG-Samples/Kits/CPUTK/OSLockable.h"
+
 // STD
 #include <mutex>
 #include <string>
+
 // Monad
 #include "Exceptions/Exceptions.h"
 #include "Fonts/FontMeta.h"

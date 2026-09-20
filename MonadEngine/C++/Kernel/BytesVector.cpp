@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "BytesVector.h"
+
 // Platform
 #include <shlwapi.h>
 #pragma comment(lib, "Shlwapi.lib")

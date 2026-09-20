@@ -14,15 +14,17 @@ static float4 GetColorFromTexel(
 )
 {
     float3 color = 0.0;
-    for (uint i = 0u; i < g_poissonCount32; ++i)
-        color += g_texPalette.Sample(
+    for (uint i = 0u; i < g_poissonCount16; ++i)
+        color += g_texPalette.SampleLevel(
             g_samplerPoint, 
-            g_texArt.Sample(
+            g_texArt.SampleLevel(
                 g_samplerPoint, 
-                textureCoord + g_PoissonTable32[i].xy
-            ).x
+                textureCoord + g_PoissonTable16[i].xy,
+                0
+            ).x,
+        0
         ).rgb;
-    color /= g_poissonCount32;
+    color /= g_poissonCount16;
     return float4(color, 1.0);
 }
 
@@ -31,15 +33,20 @@ static float4 GetColorFromTexel2(
 )
 {
     float3 color = 0.0;
-    for (uint i = 0u; i < g_poissonCount32; ++i)
+    for (uint i = 0u; i < g_poissonCount16; ++i)
     {
-        const float x = g_texArt.Sample(
+        const float x = g_texArt.SampleLevel(
             g_samplerPoint, 
-            textureCoord + g_PoissonTable32[i].xy).x;
+            textureCoord + g_PoissonTable16[i].xy, 0).x;
         if (x > 0.0)
-            color += g_texPalette.Sample(g_samplerPoint, x).rgb;
+        {
+            color += g_texPalette.SampleLevel(
+            g_samplerPoint, 
+            x, 
+            0).rgb;
+        }
     }
-    color /= g_poissonCount32;
+    color /= g_poissonCount16;
     return float4(LinearToSRGB(color), 1.0);
 }
 #endif

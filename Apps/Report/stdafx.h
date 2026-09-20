@@ -43,6 +43,20 @@
 #include <string>
 #include <memory>
 
+// Common STL headers added to PCH to speed compilation
+#include <vector>
+#include <array>
+#include <algorithm>
+#include <functional>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <mutex>
+#include <thread>
+#include <atomic>
+#include <optional>
+#include <filesystem>
+
 #define V_RETURN(x)		{ if (const HRESULT hr = (x); FAILED(hr)) return hr; }
 
 #define SAFE_RELEASE(p)	{ if (p) { (p)->Release(); (p) = nullptr; } }

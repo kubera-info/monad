@@ -7,6 +7,7 @@
 // Platform
 #include <Windows.h>
 #include <bcrypt.h>
+
 // Monad
 #include "__MonadException.h"
 #include "Kernel/Del.h"

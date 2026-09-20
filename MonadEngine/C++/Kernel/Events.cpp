@@ -5,10 +5,12 @@
 // Me
 #include "stdafx.h"
 #include "Events.h"
+
 // STD
 #include <deque>
 #include <vector>
 #include <ranges>
+
 // Monad
 #include "Exceptions/Exceptions.h"
 

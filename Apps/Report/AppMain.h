@@ -6,6 +6,7 @@
 
 // Platform
 #include <shobjidl.h>
+
 // Monad
 #include "System/System.h"
 #include "Threads/ThreadPool.h"

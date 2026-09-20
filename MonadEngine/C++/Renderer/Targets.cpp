@@ -5,9 +5,11 @@
 // Me
 #include "stdafx.h"
 #include "Targets.h"
+
 // STD
 #include <cstdint>
 #include <string>
+
 // Monad
 #include "Core/DXSample.h"
 #include "Core/DXSampleHelper.h"

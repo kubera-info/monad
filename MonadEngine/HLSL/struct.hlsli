@@ -29,13 +29,13 @@ static float CalculateShadowBlur(
 		countShadowPoints += g_texShadowMap.SampleCmpLevelZero(g_samplerCmp, position.xy + g_PoissonTable4[i].xy, depth);
 	return countShadowPoints / g_poissonCount4;
 #   elif defined(SINGLE_SHADOW)
-	for (uint i = 0u; i < g_poissonCount16; ++i)
-		countShadowPoints += g_texShadowMap.SampleCmpLevelZero(g_samplerCmp, position.xy + g_PoissonTable16[i].xy, depth);
-	return countShadowPoints / g_poissonCount16;
+	for (uint i = 0u; i < g_poissonCount4; ++i)
+		countShadowPoints += g_texShadowMap.SampleCmpLevelZero(g_samplerCmp, position.xy + g_PoissonTable4[i].xy, depth);
+	return countShadowPoints / g_poissonCount4;
 #   else
-    for (uint i = 0u; i < g_poissonCount32; ++i)
-        countShadowPoints += g_texShadowMap.SampleCmpLevelZero(g_samplerCmp, position.xy + g_PoissonTable32[i].xy, depth);
-    return countShadowPoints / g_poissonCount32;
+    for (uint i = 0u; i < g_poissonCount16; ++i)
+        countShadowPoints += g_texShadowMap.SampleCmpLevelZero(g_samplerCmp, position.xy + g_PoissonTable16[i].xy, depth);
+    return countShadowPoints / g_poissonCount16;
 #   endif
 }
 #endif

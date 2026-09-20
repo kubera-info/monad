@@ -6,6 +6,7 @@
 
 // STD
 #include <memory>
+
 // Monad
 #include "Kernel/Del.h"
 #include "Kernel/Events.h"

@@ -6,8 +6,10 @@
 
 // Platform
 #include <Windows.h>
+
 // STD
 #include <atomic>
+
 // Monad
 #include "GUI/GUIMath.h"
 

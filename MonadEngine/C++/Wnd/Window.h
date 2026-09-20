@@ -6,8 +6,10 @@
 
 // Platform
 #include <Windows.h>
+
 // STD
 #include <expected>
+
 // Monad
 #include "I18N/I18N.h"
 #include "Input/Cursor.h"

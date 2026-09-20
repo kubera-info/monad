@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Heap.h"
+
 // Monad
 #include "Core/DXSampleHelper.h"
 #include "Exceptions/Exceptions.h"

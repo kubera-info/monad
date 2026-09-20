@@ -11,6 +11,7 @@
 
 // STD
 #include <ranges>
+
 // Monad
 #include "GUI/__MonadGUI.h"
 #include "Exceptions/Exceptions.h"

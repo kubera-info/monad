@@ -5,12 +5,15 @@
 // Me
 #include "stdafx.h"
 #include "Struct.h"
+
 // STD
 #include <mutex>
+
 // Monad
 #include "__MonadFile.h"
 #include "Exceptions/Exceptions.h"
 #include "Kernel/Templates.h"
+
 // Library
 #include "7zip/C/Alloc.h"
 #include "7zip/C/Lzma2Dec.h"
@@ -97,10 +100,10 @@ namespace Monad
 		) noexcept
 		{
 			constexpr array notCompressed{
-				L".monad-stm",
-				L".monad-lob",
-				L".monad-vsi",
-				L".monad-pxs" };
+				L".monad$stm",
+				L".monad$lob",
+				L".monad$vsi",
+				L".monad$pxs" };
 			return ranges::find(
 				notCompressed,
 				key.extension()) == notCompressed.cend();

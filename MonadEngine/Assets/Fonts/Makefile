@@ -4,7 +4,8 @@
 
 MND_TITLE=The Fonts Object Builder
 MND_FONTCONV=@..\..\bin\Font.cmd
-MND_DDSCONV=@..\..\bin\texconv.exe -nologo -y -gpu 0 -f BC4_UNORM -m 5 -o Release $?
+
+MND_DDSCONV=@..\..\..\vcpkg_installed\x64\x64-windows-static-md\tools\directxtex\texconv.exe -nologo -y -gpu 0 -f BC4_UNORM -m 5 -o Release $?
 
 include "..\NMake\Header.mk"
 

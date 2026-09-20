@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "AppFileManager.h"
+
 // Monad
 #include "__App.h"
 #include "AppSingleton.h"
@@ -61,12 +62,12 @@ namespace Monad::App
 	TaskFileSearcher::TaskFileSearcher() :
 		TaskFileSearcherGeneric{
 		{
-			{ L".monad-snd"s, LOADER_PCM },
-			{ L".monad-msh"s, LOADER_MESH },
-			{ L".monad-fnt"s, LOADER_FONT },
-			{ L".monad-tex"s, LOADER_TEX },
-			{ L".monad-vsi"s, LOADER_VS_IL },
-			{ L".monad-pxs"s, LOADER_PS }
+			{ L".monad$snd"s, LOADER_PCM },
+			{ L".monad$msh"s, LOADER_MESH },
+			{ L".monad$fnt"s, LOADER_FONT },
+			{ L".monad$tex"s, LOADER_TEX },
+			{ L".monad$vsi"s, LOADER_VS_IL },
+			{ L".monad$pxs"s, LOADER_PS }
 		},
 		g_singleton->m_cipher,
 		g_singleton->m_threadPool
@@ -97,12 +98,12 @@ namespace Monad::App
 				FOLDER_BOOT2_QUALITY / "*emoji*",
 				FOLDER_BOOT2_QUALITY / "*metal*",
 				FOLDER_AUTO / "*button*",
-				FOLDER_AUTO / "no.monad-tex",
-				FOLDER_AUTO / "ok.monad-tex",
-				FOLDER_AUTO / "iconic.monad-vsi",
-				FOLDER_AUTO_QUALITY / "iconic.monad-pxs",
-				FOLDER_STREAM / "yes.monad-snd",
-				FOLDER_STREAM / "no.monad-snd",
+				FOLDER_AUTO / "no.monad$tex",
+				FOLDER_AUTO / "ok.monad$tex",
+				FOLDER_AUTO / "iconic.monad$vsi",
+				FOLDER_AUTO_QUALITY / "iconic.monad$pxs",
+				FOLDER_STREAM / "yes.monad$snd",
+				FOLDER_STREAM / "no.monad$snd",
 				}
 				);
 			break;

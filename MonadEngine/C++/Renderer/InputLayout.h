@@ -6,9 +6,11 @@
 
 // Platform
 #include <d3d12.h>
+
 // STD
 #include <string>
 #include <vector>
+
 // Monad
 #include "Renderer/__MonadRenderer.h"
 #include "Kernel/Templates.h"

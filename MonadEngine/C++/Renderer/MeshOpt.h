@@ -7,6 +7,7 @@
 // Platform
 #include <DirectXMath.h>
 #include <meshoptimizer.h>
+
 // Monad
 #include "Kernel/BytesVector.h"
 

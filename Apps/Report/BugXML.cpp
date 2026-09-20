@@ -11,12 +11,12 @@
 
 namespace
 {
-	std::wstring g_IsXMLValid;
+	std::wstring g_isXMLValid;
 }
 
 const std::wstring& IsReturnedXMLStatus() noexcept
 {
-	return g_IsXMLValid;
+	return g_isXMLValid;
 }
 
 LoaderXMLStatus::LoaderXMLStatus(
@@ -25,10 +25,10 @@ LoaderXMLStatus::LoaderXMLStatus(
 	XMLManager(
 		resultXMLStream,
 		{
-		{ L"Log",
+		{ L"status",
 		[](const XMLElement& tag, XMLManager*)
 		{
-			g_IsXMLValid = tag.GetAttr(L"log_id").c_str();
+			g_isXMLValid = tag.GetAttr(L"code").c_str();
 		}} }
 	)
 {

@@ -6,6 +6,7 @@
 
 // Platform
 #include <Windows.h>
+
 // Monad
 #include "Kernel/Del.h"
 

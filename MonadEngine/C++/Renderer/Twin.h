@@ -6,6 +6,7 @@
 
 // STD
 #include <memory>
+
 // Monad
 #include "Combine.h"
 #include "First.h"

@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "AppMain.h"
+
 // Monad
 #include "Globals/__MonadGlobals.h"
 #include "Win32Application.h"
@@ -86,7 +87,7 @@ DialogReportGeneric::DialogReportGeneric()
 {
 }
 
-std::wstring DialogReportGeneric::GetReportString()
+wstring DialogReportGeneric::GetReportString()
 {
 	return Monad::I18N::Errors::EXCEPTION_TITLE.GetVal()
 		+ nl0 + Monad::I18N::APP_VER_LABEL.VFormat(g_parameters->GetParameter(PAR_NAME_VERSION))
@@ -97,12 +98,12 @@ std::wstring DialogReportGeneric::GetReportString()
 }
 
 void DialogReportGeneric::AddRenderedText(
-	const std::wstring& text
+	const wstring& text
 )
 {
 	GetFont(Monad::Fonts::FONT_CENTURY_GOTHIC).AddRenderedText(
 		Monad::Fonts::REPORT_FONT_STYLE,
-		std::make_optional<DirectX::XMFLOAT2>(
+		make_optional<DirectX::XMFLOAT2>(
 			-.9f,
 			.7125f
 		),
@@ -169,7 +170,7 @@ void DialogReport::ButtonSendReport::OnClick()
 	}
 }
 
-std::wstring DialogReport::GetReportStringUI()
+wstring DialogReport::GetReportStringUI()
 {
 	return Monad::I18N::Errors::EXCEPTION_TITLE.GetVal() + nl0 + Report::GUI::ERROR_DESC.GetVal()
 		+ g_parameters->GetParameter(PAR_NAME_EXCEPTION)

@@ -5,11 +5,13 @@
 // Me
 #include "stdafx.h"
 #include "MediaStreamer.h"
+
 // Platform
 #include <mfapi.h>
 #pragma comment(lib, "Mfuuid.lib")
 #pragma comment(lib, "Mfplat.lib")
 #pragma comment(lib, "Mfreadwrite.lib")
+
 // Me
 #include "Exceptions/Exceptions.h"
 

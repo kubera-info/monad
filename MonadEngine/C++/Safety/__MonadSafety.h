@@ -7,9 +7,11 @@
 // Platform
 #include <bcrypt.h>
 #include <Windows.h>
+
 // STD
 #include <array>
 #include <atomic>
+
 // Monad
 #include "Kernel/Del.h"
 

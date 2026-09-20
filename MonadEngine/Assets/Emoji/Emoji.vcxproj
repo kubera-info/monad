@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -91,7 +91,7 @@
     <NMakeOutput>
     </NMakeOutput>
     <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>nmake all &amp; PwSh "..\..\Bin\end.ps1" 2 "$(ProjectName)"</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>nmake all</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>nmake /NOLOGO clean</NMakeCleanCommandLine>
     <OutDir>$(ProjectDir)Release</OutDir>
     <IntDir>$(ProjectDir)Release</IntDir>
@@ -100,27 +100,27 @@
     <NMakeOutput>
     </NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>nmake all &amp; PwSh "..\..\Bin\end.ps1" 2 "$(ProjectName)"</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>nmake all &amp; PwSh "$(SolutionDir)BuildScripts\\aggregate-end.ps1" 2 "$(ProjectName)"</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>nmake /NOLOGO clean</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeOutput>
     </NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>nmake all &amp; PwSh "..\..\Bin\end.ps1" 2 "$(ProjectName)"</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>nmake all &amp; PwSh "$(SolutionDir)BuildScripts\\aggregate-end.ps1" 2 "$(ProjectName)"</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>nmake /NOLOGO clean</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|Win32'">
     <NMakeOutput />
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>nmake all &amp; PwSh "..\..\Bin\end.ps1" 2 "$(ProjectName)"</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>nmake all &amp; PwSh "$(SolutionDir)BuildScripts\\aggregate-end.ps1" 2 "$(ProjectName)"</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>nmake /NOLOGO clean</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakeOutput>
     </NMakeOutput>
     <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>nmake all &amp; PwSh "..\..\Bin\end.ps1" 2 "$(ProjectName)"</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>nmake all</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>nmake /NOLOGO clean</NMakeCleanCommandLine>
     <OutDir>$(ProjectDir)Release</OutDir>
     <IntDir>$(ProjectDir)Release</IntDir>
@@ -128,7 +128,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
     <NMakeOutput />
     <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>nmake all &amp; PwSh "..\..\Bin\end.ps1" 2 "$(ProjectName)"</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>nmake all</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>nmake /NOLOGO clean</NMakeCleanCommandLine>
     <OutDir>$(ProjectDir)Release</OutDir>
     <IntDir>$(ProjectDir)Release</IntDir>
@@ -137,7 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\..\bin\ArrayTex.ps1" />
-    <None Include="..\..\bin\BulkTex.ps1" />
+    <None Include="..\..\bin\BulkTex+.ps1" />
     <None Include="..\..\bin\Tools.ps1" />
     <None Include="..\NMake\Header.mk" />
     <None Include="Makefile" />

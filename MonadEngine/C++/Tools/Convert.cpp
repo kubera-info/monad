@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Convert.h"
+
 // STD
 #include <assert.h>
 #include <algorithm>

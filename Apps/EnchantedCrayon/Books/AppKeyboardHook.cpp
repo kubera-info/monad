@@ -5,13 +5,9 @@
 // Me
 #include "stdafx.h"
 #include "AppKeyboardHook.h"
-// Monad
-#include "Exceptions/Exceptions.h"
 
 namespace Monad
 {
-	using namespace Input;
-
 	namespace App
 	{
 		namespace

@@ -6,6 +6,7 @@
 
 // Platform
 #include <windows.h>
+
 // STD
 #include <iomanip>
 #include <sstream>

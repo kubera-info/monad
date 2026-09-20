@@ -2,8 +2,10 @@
 
 // Platform
 #include <DirectXPackedVector.h>
+
 // STD
 #include <array>
+
 // Monad
 #include "__MonadRenderer.h"
 

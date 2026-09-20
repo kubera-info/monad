@@ -16,6 +16,7 @@
 // Me
 #include "stdafx.h"
 #include "D3D12Framework.h"
+
 // Monad
 #include "__App.h"
 #include "AppSingleton.h"
@@ -376,7 +377,6 @@ void D3D12Core::OnUpdate()
 				},
 				m_height,
 				1024U);
-			break;
 		}
 
 		m_shadows.CreateDepthStencil(
@@ -520,41 +520,44 @@ void D3D12Core::PopulateCommandLists()
 	if (STOP_BOOT_DX < g_fileManagerState)
 	{
 		DequeuePage();
-		const auto scopedTransition = m_commandList.ScopedTransition({ {
-			m_shadows.GetDsResource(),
-			D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE,
-			D3D12_RESOURCE_STATE_DEPTH_WRITE } }
-			);
-		m_shadows.SetMe();
-		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_SHADOW);
-	}
-	else
-		CenterCursor();
+		{
+			const auto scopedTransition = m_commandList.ScopedTransition({ {
+				m_shadows.GetDsResource(),
+				D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE,
+				D3D12_RESOURCE_STATE_DEPTH_WRITE } }
+				);
+			m_shadows.SetMe();
+			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_SHADOW);
+		}
 #pragma endregion
 
 #pragma region Temporary monads
-	OnFrameRenderAll(STAGE_MODES::STAGE_MODE_CUSTOM);
-	if (!g_setArtStubs.test_and_set())
-		g_combineFullRequirements->SetArt(
-			g_repository->m_currentArtProfile.m_currentArt
-		);
+		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_CUSTOM);
+		if (!g_setArtStubs.test_and_set())
+			g_combineFullRequirements->SetArt(
+				g_repository->m_currentArtProfile.m_currentArt
+			);
 #pragma endregion
 
 #pragma region World			
-	{
-		const auto scopedTransition = m_commandList.ScopedTransition({ {
-			m_msaaTargets.GetRtResource(),
-			D3D12_RESOURCE_STATE_RESOLVE_SOURCE,
-			D3D12_RESOURCE_STATE_RENDER_TARGET } }
-			);
-		m_msaaTargets.SetMe();
-		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_WORLD);
+		{
+			const auto scopedTransition = m_commandList.ScopedTransition({ {
+				m_msaaTargets.GetRtResource(),
+				D3D12_RESOURCE_STATE_RESOLVE_SOURCE,
+				D3D12_RESOURCE_STATE_RENDER_TARGET } }
+				);
+			m_msaaTargets.SetMe();
+			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_WORLD);
 #pragma endregion
 
 #pragma region Alpha blending
-		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_ALPHA_BLENDING);
+			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_ALPHA_BLENDING);
 #pragma endregion
+		}
 	}
+	else
+		if(!Monad::Exceptions::InAnyCloseReason())
+			CenterCursor();
 	OnBackBuffer();
 	m_commandList.Get()->Close();
 }

@@ -6,8 +6,10 @@
 
 // Platform
 #include "Modules/Xbox-ATG-Samples/Kits/CPUTK/OSLockable.h"
+
 // STD
 #include <queue>
+
 // Monad
 #include "Voice.h"
 #include "WaveWithCallback.h"

@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "AppStartMenu.h"
+
 // Monad
 #include "AppDict.h"
 #include "AppGUILookAndFeel.h"

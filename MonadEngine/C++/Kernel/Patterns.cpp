@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Patterns.h"
+
 // Monad
 #include "Exceptions/Exceptions.h"
 #include "Kernel/Del.h"

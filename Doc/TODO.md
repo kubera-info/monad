@@ -21,7 +21,14 @@ _16.01.2025_ [STANDBY] OnStartBuffer
 _12.03.2026_ [HIGH] Przetestować xbox controller po zmianie algorytmu w wątku
 
 [HIGH] Przed wydaniem: vcpkg x-update-baseline
-
 [HIGH] Przed wydaniem: git submodule update --recursive --remote
+[MED] Przed wydaniem: Zaktualizować NuGet-y
+[HIGH] signtool.exe sign /n "Open Source Developer Wlodzimierz O. Kubera" /tr http://time.certum.pl /td SHA256 /fd SHA256 Book.exe
 
-[HIGH] Przed wydaniem: Zaktualizować NuGet-y
+[STANDBY] rejestrowac monadowe rozszerzenia plikow w kontenerze
+
+[STANDBY] Zamiast monad-art, flaga na kasowanie arch
+
+[STANDBY] NEW_LOOKUP inline static float4 NewLookup(float2 pTex), template nie makro
+
+[HIGH] AI w steam do wywalenia, jeśli Bianka przeczyta :)

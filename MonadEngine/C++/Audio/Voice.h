@@ -6,8 +6,10 @@
 
 // Platform
 #include <xaudio2.h>
+
 // STD
 #include <memory>
+
 // Monad
 #include "__MonadAudio.h"
 #include "WaveBuffer.h"

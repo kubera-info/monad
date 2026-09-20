@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Registry.h"
+
 // Monad
 #include "Tools/Convert.h"
 #include "Exceptions/Exceptions.h"

@@ -10,8 +10,10 @@
 #if defined _DEBUG
 #	include <dxgidebug.h>
 #endif
+
 // STD
 #include <initializer_list>
+
 // Monad
 #include "__MonadCore.h"
 #include "Modules/Xbox-ATG-Samples/Kits/CPUTK/OSLockable.h"

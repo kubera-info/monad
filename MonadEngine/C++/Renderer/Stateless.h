@@ -6,6 +6,7 @@
 
 // Platform
 #include <D3D12.h>
+
 // Monad
 #include "Kernel/Del.h"
 #include "CommandList.h"

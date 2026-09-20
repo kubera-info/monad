@@ -6,9 +6,6 @@
 #include "stdafx.h"
 #include "HttpsAPI.h"
 
-// STD
-#include <string>
-
 // Monad
 #include "AppParameter.h"
 #include "Fonts/__MonadFont.h"
@@ -39,7 +36,7 @@ namespace Monad::Internet
 
 		// Perform HTTP request with collected diagnostic parameters
 		return internetByCurl.Get(
-			"https://www.kubera.info/api/"s,
+			"https://api.kubera.info/"s,
 			"rep"s,
 			{
 				g_parameters->QueryParameter(PAR_NAME_WHO_AM_I),

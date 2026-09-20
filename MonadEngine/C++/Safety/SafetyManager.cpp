@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "SafetyManager.h"
+
 // Monad
 #include "Files/Struct.h"
 #include "Globals/__MonadGlobals.h"

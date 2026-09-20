@@ -9,7 +9,7 @@
 *.iobj
 *.lib
 *.log
-*.monad-*
+*.monad$*
 *.obj
 *.pch
 *.pdb
@@ -68,3 +68,7 @@ desktop.ini
 # Keep the manifest and configuration
 !vcpkg.json
 !vcpkg-configuration.json
+
+# Ignore MSBuild binary logs and generated backup files
+*.binlog
+BuildScripts/*.txt

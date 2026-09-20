@@ -23,9 +23,9 @@ namespace Monad::Files
 	/// These represent encrypted or packed texture formats.
 	/// </summary>
 	inline constexpr const wchar_t
-		* EXT_ART = L".monad-art",
-		* EXT_FONT = L".monad-fnt",
-		* EXT_TEX = L".monad-tex",
+		* EXT_ART = L".monad$art",
+		* EXT_FONT = L".monad$fnt",
+		* EXT_TEX = L".monad$tex",
 		* EXT_DDS = L".dds",
 		* EXT_JPG = L".jpg",
 		* EXT_PNG = L".png";

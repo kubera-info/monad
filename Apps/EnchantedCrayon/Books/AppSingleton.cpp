@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "AppSingleton.h"
+
 // Monad
 #include "Globals/__MonadGlobals.h"
 #include "Core/DXSample.h"

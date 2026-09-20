@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Exceptions.h"
+
 // Platform
 #if defined _DEBUG
 #	pragma comment(lib, "comsuppwd.lib")
@@ -12,10 +13,12 @@
 #	pragma comment(lib, "comsuppw.lib")
 #endif
 #include <comdef.h>
+
 // STD
 #include <atomic>
 #include <mutex>
 #include <xcall_once.h>
+
 // Monad
 #include "System/__MonadSystem.h"
 #include "System/Console.h"

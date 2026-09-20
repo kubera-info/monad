@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "AppArtTex.h"
+
 // STD
 #include <mdspan>
+
 // Monad
 #include "Pages/Page.h"
 using namespace std;

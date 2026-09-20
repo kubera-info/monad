@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Thread.h"
+
 // Monad
 #include "Exceptions/Exceptions.h"
 

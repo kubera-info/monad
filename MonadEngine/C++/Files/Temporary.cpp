@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "Temporary.h"
+
 // Monad
 #include "Tools/Convert.h"
 

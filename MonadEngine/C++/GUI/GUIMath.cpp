@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "GUIMath.h"
+
 // Monad
 #include "Core/DXSample.h"
 #include "Kernel/Format.h"

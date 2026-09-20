@@ -42,7 +42,7 @@
     <NMakeOutput>
     </NMakeOutput>
     <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>nmake all &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" Book</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>nmake all</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>
     </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>nmake /NOLOGO clean</NMakeCleanCommandLine>
@@ -52,7 +52,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
     <NMakeOutput />
     <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>nmake all &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" Book</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>nmake all</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine />
     <NMakeCleanCommandLine>nmake /NOLOGO clean</NMakeCleanCommandLine>
     <OutDir>$(ProjectDir)Release</OutDir>

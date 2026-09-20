@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "AppSketch.h"
+
 // Platform
 #include <DirectXTex.h>
+
 // Monad
 #include "AppConstantBuffers.h"
 #include "Files/__MonadFile.h"

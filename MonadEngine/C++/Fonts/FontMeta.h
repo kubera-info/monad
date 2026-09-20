@@ -6,9 +6,11 @@
 
 // Platform
 #include <DirectXMath.h>
+
 // STD
 #include <array>
 #include <unordered_map>
+
 // Monad
 #include "Fonts/__MonadFont.h"
 

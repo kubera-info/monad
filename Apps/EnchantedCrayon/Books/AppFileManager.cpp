@@ -5,6 +5,7 @@
 // Me
 #include "stdafx.h"
 #include "AppFileManager.h"
+
 // Monad
 #include "__App.h"
 #include "AppSingleton.h"
@@ -83,16 +84,16 @@ namespace Monad::App
 	TaskFileSearcher::TaskFileSearcher() :
 		TaskFileSearcherGeneric{
 		{
-			{ L".monad-snd"s, LOADER_PCM },
-			{ L".monad-stm"s, LOADER_MP3 },
-			{ L".monad-msh"s, LOADER_MESH },
-			{ L".monad-dbf"s, [](TaskFileHolderGeneric& file)
+			{ L".monad$snd"s, LOADER_PCM },
+			{ L".monad$stm"s, LOADER_MP3 },
+			{ L".monad$msh"s, LOADER_MESH },
+			{ L".monad$dbf"s, [](TaskFileHolderGeneric& file)
 				{
 					LoadXMLProfile(file.GetComIStreamTemp().Get());
 				}
 			},
-			{ L".monad-fnt"s, LOADER_FONT },
-			{ L".monad-tex"s, LOADER_TEX },
+			{ L".monad$fnt"s, LOADER_FONT },
+			{ L".monad$tex"s, LOADER_TEX },
 			{ EXT_ART, [](TaskFileHolderGeneric& file)
 				{
 					assert(file.HasArchive());
@@ -102,9 +103,9 @@ namespace Monad::App
 					);
 				}
 			},
-			{ L".monad-vsi"s, LOADER_VS_IL },
-			{ L".monad-pxs"s, LOADER_PS },
-			{ L".monad-lob"s, LOADER_DUMMY }
+			{ L".monad$vsi"s, LOADER_VS_IL },
+			{ L".monad$pxs"s, LOADER_PS },
+			{ L".monad$lob"s, LOADER_DUMMY }
 		},
 		g_singleton->m_cipher,
 		g_singleton->m_threadPool
@@ -130,13 +131,20 @@ namespace Monad::App
 				"4.6.5"
 			);
 
+	
 			const auto ver4_8_2 = GetFolderAppDocumentsSettings(
 				Globals::g_userFolder,
 				"4.8.2"
 			);
+
 			const auto ver4_8_3 = GetFolderAppDocumentsSettings(
 				Globals::g_userFolder,
 				"4.8.3"
+			);
+
+			const auto ver5_0_0 = GetFolderAppDocumentsSettings(
+				Globals::g_userFolder,
+				"5.0.0"
 			);
 
 			Remove(ver1_0 / "profile.monad-db");
@@ -145,6 +153,7 @@ namespace Monad::App
 			RemoveModernPack(ver4_6_5);
 			RemoveModernPack(ver4_8_2);
 			RemoveModernPack(ver4_8_3);
+			RemoveModernPack(ver5_0_0);
 		}
 
 		g_profilePath = GET_FOLDER_DOCUMENT / PROFILE_FILENAME;

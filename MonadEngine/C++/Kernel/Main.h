@@ -7,8 +7,10 @@
 // Platform
 #include <Windows.h>
 #include <roapi.h>
+
 // STD
 #include <stdint.h>
+
 // Monad
 #include "Dev/Coding.h"
 #include "Exceptions/Exceptions.h"
@@ -25,10 +27,20 @@ namespace Monad::Kernel
 	/// </summary>
 	template<typename S, typename W>
 	inline int32_t MonadWinMain(
-		const RECT& rect
+		const RECT& rect,
+		HINSTANCE hInstance
 	) noexcept
 	{
-		try
+		g_hInstance = hInstance;
+		std::set_terminate(Exceptions::ReportAndTerminate);
+		/* Enable heap corruption termination */
+		HeapSetInformation(nullptr, HeapEnableTerminationOnCorruption, nullptr, 0);
+		/* Enable per-monitor DPI awareness */
+		SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2); \
+		/* Optional debugging helpers */
+		/* _crtBreakAlloc = 1528424; */
+		/* _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); */
+	try
 		{
 			/// <summary>
 			/// Initialize COM runtime for multi-threaded usage.
@@ -85,18 +97,4 @@ namespace Monad::Kernel
 
 		return System::GetExitCode();
 	}
-
-	/// <summary>
-	/// Common initialization macro for Windows applications.
-	/// </summary>
-#define MONAD_RAW_INIT \
-	g_hInstance = hInstance; \
-	std::set_terminate(Exceptions::ReportAndTerminate); \
-	/* Enable heap corruption termination */ \
-	HeapSetInformation(nullptr, HeapEnableTerminationOnCorruption, nullptr, 0); \
-	/* Enable per-monitor DPI awareness */ \
-	SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2); \
-	/* Optional debugging helpers */ \
-	/* _crtBreakAlloc = 1528424; */ \
-	/* _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); */
 }

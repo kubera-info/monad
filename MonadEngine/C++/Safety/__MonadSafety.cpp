@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "__MonadSafety.h"
+
 // Platform
 #pragma comment(lib, "bcrypt.lib")
+
 // Monad
 #include "Exceptions/Exceptions.h"
 

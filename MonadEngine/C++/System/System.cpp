@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "System.h"
+
 // Platform
 #pragma comment(lib, "version.lib")
+
 // Monad
 #include "Exceptions/Exceptions.h"
 #include "Files/Folder.h"

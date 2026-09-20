@@ -5,8 +5,10 @@
 // Me
 #include "stdafx.h"
 #include "FileManager.h"
+
 // STD
 #include <ranges>
+
 // Monad
 #include "Core/DXSample.h"
 #include "Op.h"
@@ -110,10 +112,13 @@ namespace Monad
 
 		void TaskFileHolderGeneric::Run()
 		{
+#if MONAD_HARDWARE_EXCEPTIONS == 1
 			__try
 			{
+#endif
 				OnFile();
-			}
+#if MONAD_HARDWARE_EXCEPTIONS == 1
+		}
 			__except (filter(
 				GetExceptionCode(),
 				GetExceptionInformation())
@@ -122,8 +127,8 @@ namespace Monad
 				DropProfile();
 				Shutdown(EXIT_FAILURE);
 			}
+#endif
 		}
-
 		wstring TaskFileHolderGeneric::GetWFilename() const
 		{
 			return c_path.stem();
@@ -165,7 +170,7 @@ namespace Monad
 						if (IsMonadExt(ext))
 						{
 							m_fileSearcher->m_cipher.GetClear(filename, m_archiveBuffer);
-							if (L".monad-art" != ext && m_archiveBuffer.IsCompressed())
+							if (L".monad$art" != ext && m_archiveBuffer.IsCompressed())
 								m_archiveBuffer.DecompressAndClear(m_outputBuffer);
 						}
 						else
@@ -298,7 +303,7 @@ namespace Monad
 
 		fs::path TaskFileSearcherGeneric::GetFontPath(const std::string& fontFace)
 		{
-			return FONT_PATH / (fontFace + ".monad-fnt"s);
+			return FONT_PATH / (fontFace + ".monad$fnt"s);
 		}
 
 		uint32_t TaskFileSearcherGeneric::SetShaderResourceViewsCount()

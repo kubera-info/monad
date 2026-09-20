@@ -16,6 +16,7 @@
 // Me
 #include "stdafx.h"
 #include "Win32ApplicationGeneric.h"
+
 // Monad
 #include "DXSample.h"
 #include "Wnd/WindowMain.h"

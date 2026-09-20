@@ -14,5 +14,5 @@ float4 main(
 	if (0.0 == texPoint.a)
 		clip(-1);
 	const float shadow = CalculateShadowBlur(input.m_projectedCoord);
-    return ConvertToOutput(float4(texPoint.rgb * shadow, texPoint.a));
+    return ConvertToOutput(float4(SRGBToLinear(texPoint.rgb) * shadow, texPoint.a));
 }
