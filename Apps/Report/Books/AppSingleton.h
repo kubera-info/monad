@@ -74,8 +74,7 @@ namespace Monad::App
 		Microsoft::WRL::ComPtr<ITaskbarList4> m_taskbarList;
 		const uint32_t c_msgTaskbarButtonCreated;
 
-		HMONITOR m_currentMonitor = Monad::Wnd::GetPrimaryMonitor();
-		RECT m_currentMonitorRect = Monad::Wnd::GetMonitorRect();
+		struct Wnd::MonitorConf m_monitorConf;
 
 		Input::CursorControl m_cursorControl;
 

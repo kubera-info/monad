@@ -30,7 +30,7 @@ namespace Monad::App
 		/// <param name="art">Iterator pointing to the artwork entry</param>
 		void SetArt(
 			const Repository::ConstArtIterator art
-		) noexcept;
+		);
 
 	private:
 		/// <summary>

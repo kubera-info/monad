@@ -61,6 +61,7 @@ interface DXSample abstract : DXSampleGeneric, Monad::Renderer::Combine
 	OPER_DEL(DXSample);
 	~DXSample() override;
 
+	void OnAspectRatio();
 	void OnFrameRenderAll(
 		const Monad::Renderer::STAGE_MODES mode
 	);
@@ -102,16 +103,16 @@ protected:
 	virtual void OnUpdate() = 0;
 	virtual void OnRender() = 0;
 	void OnBackBuffer();
-
+	
 	/// <summary>
 	/// Viewport dimensions.
 	/// Whether or not tearing is available for fullscreen borderless windowed mode.
 	/// </summary>
-	static uint32_t m_width, m_height;
 	bool m_tearingSupport = false;
 #pragma region HDR
 
 public:
+	static uint32_t m_width, m_height;
 	Monad::Renderer::HDR::SWAP_CHAIN_BIT_DEPTH m_currentSwapChainBitDepth;
 
 protected:

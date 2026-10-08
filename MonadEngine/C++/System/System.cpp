@@ -127,7 +127,8 @@ namespace Monad::System
 			}
 		};
 
-		return SystemLibraryNtdll{}.IsOSWine();
+		static const auto isOSWine = SystemLibraryNtdll{}.IsOSWine();
+		return isOSWine;
 	}
 
 	/// <summary>

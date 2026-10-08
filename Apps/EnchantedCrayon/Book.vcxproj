@@ -537,7 +537,7 @@
       </AdditionalManifestDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)"</Command>
+      <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" &amp; signtool.exe sign /n "Open Source Developer Wlodzimierz O. Kubera" /tr http://time.certum.pl /td SHA256 /fd SHA256  "$(TargetPath)"</Command>
     </PostBuildEvent>
     <Manifest>
       <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
@@ -739,7 +739,7 @@
       </AdditionalManifestDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)"</Command>
+      <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" &amp; signtool.exe sign /n "Open Source Developer Wlodzimierz O. Kubera" /tr http://time.certum.pl /td SHA256 /fd SHA256  "$(TargetPath)"</Command>
     </PostBuildEvent>
     <Manifest>
       <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>

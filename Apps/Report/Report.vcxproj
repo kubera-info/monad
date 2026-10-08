@@ -225,7 +225,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <PostBuildEvent>
-      <Command>PwSh CopyReport.ps1 $(Platform) $(Configuration) &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" Book</Command>
+      <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" &amp; signtool.exe sign /n "Open Source Developer Wlodzimierz O. Kubera" /tr http://time.certum.pl /td SHA256 /fd SHA256 "$(TargetPath)" &amp; PwSh CopyReport.ps1 $(Platform) $(Configuration) &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(TargetPath)" Book</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -334,7 +334,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <PostBuildEvent>
-      <Command>PwSh CopyReport.ps1 $(Platform) $(Configuration) &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" Book</Command>
+      <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" &amp; signtool.exe sign /n "Open Source Developer Wlodzimierz O. Kubera" /tr http://time.certum.pl /td SHA256 /fd SHA256 "$(TargetPath)" &amp; PwSh CopyReport.ps1 $(Platform) $(Configuration) &amp; PwSh "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(TargetPath)" Book</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>

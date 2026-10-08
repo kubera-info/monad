@@ -6,6 +6,7 @@
 
 // Monad
 #include "Window.h"
+#include "Time/__MonadTime.h"
 
 namespace Monad::Wnd
 {

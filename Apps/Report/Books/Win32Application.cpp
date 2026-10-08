@@ -22,7 +22,6 @@
 
 // Monad
 #include "AppSingleton.h"
-#include "Core/Win32ApplicationGeneric.h"
 #include "Exceptions/Exceptions.h"
 #include "Globals/__MonadGlobals.h"
 #include "Input/Cursor.h"

@@ -58,12 +58,12 @@ ExpectedLResult ProcessWM_CLOSE(
 		Monad::Pages::SelectPage("exit"_pageNo);
 		return PROCESSING_ERROR;
 	}
-	else if (Monad::System::IsOSWine())
+	/*else if (Monad::System::IsOSWine())
 	{
 		g_singleton->OnDestroyDevice();
 		Monad::Audio::g_persistentAudio->Shutdown();
 		ExitProcess(0);
-	}
+	}*/
 	else
 	{
 		RegisterWM_CLOSE();
@@ -132,7 +132,8 @@ ExpectedLResult ProcessWM_DISPLAYCHANGE
 )
 {
 	// Monitor configuration changed
-	g_singleton->OnReorganize();
+	if (!Monad::System::IsOSWine())
+		g_singleton->OnReorganize();
 	return PROCESSING_OK;
 }
 
@@ -145,12 +146,13 @@ ExpectedLResult ProcessWM_DEVICECHANGE
 	LPVOID&
 )
 {
-	if (std::set<WPARAM>{
-		DBT_DEVICEARRIVAL,
-			DBT_DEVICEREMOVECOMPLETE,
-			DBT_DEVNODES_CHANGED
-	}.contains(wParam))
-		g_singleton->OnReorganize();
+	if (!Monad::System::IsOSWine())
+		if (std::set<WPARAM>{
+			DBT_DEVICEARRIVAL,
+				DBT_DEVICEREMOVECOMPLETE,
+				DBT_DEVNODES_CHANGED
+		}.contains(wParam))
+			g_singleton->OnReorganize();
 	return PROCESSING_OK;
 }
 
@@ -181,6 +183,19 @@ Monad::Wnd::ExpectedLResult ProcessWM_ACTIVATEAPP
 	if (g_active)
 		g_singleton->m_cursorControl.SetCurrentCursor();
 	return PROCESSING_OK;
+}
+
+Monad::Wnd::ExpectedLResult ProcessWM_APP_MESSAGE_QUE
+(
+	HWND,
+	UINT,
+	WPARAM,
+	LPARAM,
+	LPVOID&
+)
+{
+	Monad::App::g_singleton->m_threadWndMessage.DequeueAndRunTask();
+	return Monad::Wnd::PROCESSING_OK;
 }
 
 MapForMessages g_forMainMessage{
@@ -237,6 +252,9 @@ MapForMessages g_forMainMessage{
 	),
 	MONAD_MSG(
 		WM_EXITSIZEMOVE
+	),
+	MONAD_MSG(
+		WM_APP_MESSAGE_QUE
 	)
 };
 

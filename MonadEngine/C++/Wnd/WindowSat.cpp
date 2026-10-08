@@ -350,7 +350,7 @@ namespace Monad
 			using UnorderedMap<RECT, ThreadSatellite>::UnorderedMap;
 		};
 
-		void ManagerSatellites::SetSatelliteWindows()
+		void ManagerSatellites::ArrangeSatellites()
 		{
 			if (const auto monitors = GetNonPrimaryMonitors(); !monitors.empty())
 			{
@@ -383,7 +383,7 @@ namespace Monad
 			m_folderSat{ Kernel::DummyParameter{}, L"Sat" },
 			m_blobJpgNames{ "background"s, "background1"s, "background2"s, "background3"s }
 		{
-			SetSatelliteWindows();
+			ArrangeSatellites();
 		}
 
 		ManagerSatellites::~ManagerSatellites()

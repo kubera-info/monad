@@ -4,7 +4,10 @@
 
 // Me
 #include "stdafx.h"
+
+// Monad
 #include "ThreadPool.h"
+#include "Core/Win32ApplicationGeneric.h"
 
 namespace Monad
 {
@@ -21,23 +24,21 @@ namespace Monad
 		/// Determines whether the task should be automatically deleted
 		/// after execution.
 		/// </param>
-		ThreadPool::ITask::ITask(
+		ThreadManager::ITask::ITask(
 			bool ifDelete
 		) noexcept :
 			c_ifDelete{ ifDelete }
-		{
-		}
+		{}
 
 		/// <summary>
 		/// Deletes the task if it was created with ownership enabled.
 		/// Used after task execution.
 		/// </summary>
-		void ThreadPool::ITask::Delete() noexcept
+		void ThreadManager::ITask::Delete() noexcept
 		{
 			if (c_ifDelete)
 				Release();
 		}
-
 #pragma endregion
 
 #pragma region WorkerThread
@@ -50,8 +51,7 @@ namespace Monad
 			ThreadPool* const threadPool
 		) noexcept :
 			m_threads(threadPool)
-		{
-		}
+		{}
 
 		/// <summary>
 		/// Entry point for worker thread execution.
@@ -93,19 +93,9 @@ namespace Monad
 		ThreadPool::~ThreadPool()
 		{
 			// Request stop for all workers.
-			for (auto& thread : m_threads)
-				thread->request_stop();
-
+			m_threads.request_stops();
 			// Wake all sleeping workers.
 			m_ev.notify_all();
-
-			// Wait until all worker threads exit.
-			for (auto& thread : m_threads)
-				thread->join();
-
-			// Safely clear remaining queued commands.
-			const std::lock_guard lg(m_ev.operator std::mutex & ());
-			m_commandQueue.clear();
 		}
 
 		/// <summary>
@@ -177,13 +167,49 @@ namespace Monad
 		/// Clears all pending commands from queue.
 		/// Tasks are properly released.
 		/// </summary>
-		void ThreadPool::QueueCommand::clear() noexcept
+		ThreadPool::QueueCommand::~QueueCommand() noexcept
 		{
 			while (!empty())
 			{
 				const auto command = front();
 				pop();
 				command->Delete();
+			}
+		}
+
+		void ThreadPool::VectorThreads::request_stops() noexcept
+		{
+			for (auto& thread : *this)
+				thread->request_stop();
+		}
+#pragma endregion
+
+#pragma region ThreadWndMessage
+		void ThreadWndMessage::InsertTask(
+			ITask* pTask
+		)
+		{
+			{
+				const std::lock_guard lg(m_lock);
+				m_commandQueue.push(pTask);
+			}
+			if(FALSE == Win32ApplicationGeneric::PostMessageW(WM_APP_MESSAGE_QUE))
+				THROW_EXC(Monad::Exceptions::InvalidClass, E_OUTOFMEMORY, L"Failed to post message to main thread");
+		}
+
+		void ThreadWndMessage::DequeueAndRunTask()
+		{
+			const std::lock_guard lg(m_lock);
+			while (!m_commandQueue.empty())
+			{
+				const auto pTask = m_commandQueue.front();
+				m_commandQueue.pop();
+				try
+				{
+					pTask->Run();
+				}
+				MONAD_CATCH;
+				pTask->Delete();
 			}
 		}
 #pragma endregion

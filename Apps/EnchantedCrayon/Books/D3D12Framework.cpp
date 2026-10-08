@@ -25,6 +25,7 @@
 #include "Input/Cursor.h"
 #include "Printer/Sketch.h"
 #include "System/Parameter.h"
+#include "System/System.h"
 #include "Time/__MonadTime.h"
 #include "Time/Timer.h"
 #include "Win32Application.h"
@@ -319,6 +320,14 @@ D3D12Core::~D3D12Core()
 
 void D3D12Core::OnUpdate()
 {
+	Monad::Time::g_timer.GetTimeValue(Monad::Time::g_fTime);
+	static auto fPreviousTime = Monad::Time::g_fTime;
+	if (fPreviousTime + 1 < Monad::Time::g_fTime && Monad::System::IsOSWine())
+	{
+		fPreviousTime = Monad::Time::g_fTime;
+		Monad::App::g_singleton->EnqueueReorganize();
+	}
+
 	switch (g_fileManagerState)
 	{
 		[[unlikely]]

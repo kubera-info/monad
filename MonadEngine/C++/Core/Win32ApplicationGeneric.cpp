@@ -21,6 +21,8 @@
 #include "DXSample.h"
 #include "Wnd/WindowMain.h"
 #include "Input/Cursor.h"
+#include "Time/__MonadTime.h"
+#include "Time/Timer.h"
 
 bool Win32ApplicationGeneric::s_in_sizemove = false;
 bool Win32ApplicationGeneric::s_inSuspend = false;
@@ -206,4 +208,3 @@ Monad::Wnd::ExpectedLResult ProcessWM_EXITSIZEMOVE
 	Win32ApplicationGeneric::s_in_sizemove = false;
 	return Monad::Wnd::PROCESSING_OK;
 }
-

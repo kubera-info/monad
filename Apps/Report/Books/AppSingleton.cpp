@@ -159,12 +159,9 @@ namespace Monad
 
 		void PersistentSingleton::OnReorganize()
 		{
-			if (const auto rect = GetMonitorRect(); GetPrimaryMonitor() != m_currentMonitor
-				|| memcmp(&m_currentMonitorRect, &rect, sizeof(RECT)) != 0)
+			if (const MonitorConf newMonitorConf; m_monitorConf <=> newMonitorConf != std::strong_ordering::equivalent)
 			{
-				m_currentMonitor = GetPrimaryMonitor();
-				m_currentMonitorRect = rect;
-
+				m_monitorConf = newMonitorConf;
 				ResetDevice();
 			}
 		}

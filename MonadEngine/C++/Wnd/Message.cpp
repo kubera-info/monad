@@ -96,6 +96,8 @@ namespace Monad::Wnd
 
 			SetMyIcon(hWnd, ICON_BIG);
 			SetMyIcon(hWnd, ICON_SMALL);
+			if (Monad::Globals::g_mainWindow == hWnd && 0 == SetTimer(hWnd, 1, 500, nullptr))
+				THROW_EXC_GETLASTERROR(Monad::Exceptions::InvalidClass, L"Timer");
 
 			return PROCESSING_OK;
 		}

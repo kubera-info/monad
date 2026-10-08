@@ -522,21 +522,8 @@ void DXSample::LoadAssets()
 	WaitForGpu();
 }
 
-void DXSample::LoadPipeline()
+void DXSample::OnAspectRatio()
 {
-#if defined _DEBUG
-	// Enable the debug layer (requires the Graphics Tools "optional feature").
-	// NOTE: Enabling the debug layer after device creation will invalidate the active device.
-	if (ComPtr<ID3D12Debug3> debugController; SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController))))
-	{
-		debugController->EnableDebugLayer();
-		debugController->SetEnableGPUBasedValidation(TRUE);
-		debugController->SetEnableSynchronizedCommandQueueValidation(TRUE);
-		debugController->SetGPUBasedValidationFlags(
-			D3D12_GPU_BASED_VALIDATION_FLAGS_NONE
-		);
-	}
-#endif
 	assert(m_height);
 	const auto
 		dx = static_cast<float>(m_width),
@@ -553,7 +540,23 @@ void DXSample::LoadPipeline()
 		dx,
 		dy
 	);
+}
 
+void DXSample::LoadPipeline()
+{
+#if defined _DEBUG
+	// Enable the debug layer (requires the Graphics Tools "optional feature").
+	// NOTE: Enabling the debug layer after device creation will invalidate the active device.
+	if (ComPtr<ID3D12Debug3> debugController; SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(&debugController))))
+	{
+		debugController->EnableDebugLayer();
+		debugController->SetEnableGPUBasedValidation(TRUE);
+		debugController->SetEnableSynchronizedCommandQueueValidation(TRUE);
+		debugController->SetGPUBasedValidationFlags(
+			D3D12_GPU_BASED_VALIDATION_FLAGS_NONE
+		);
+	}
+#endif
 	THROW_EXC_D3D(CreateDXGIFactory2(
 		DXGI_FACTORY_FLAGS,
 		IID_PPV_ARGS(&m_dxgiFactory)),
@@ -691,7 +694,6 @@ bool DXSample::OnBoth()
 	if (!m_device)
 		return false;
 
-	g_timer.GetTimeValue(g_fTime);
 	OnUpdate();
 	OnRender();
 

@@ -21,6 +21,7 @@
 #include "System/Parameter.h"
 #include "Tools/Convert.h"
 #include "System/ResourceLoader.h"
+#include "System/System.h"
 
 using namespace std;
 namespace fs = filesystem;
@@ -79,9 +80,21 @@ namespace Monad
 		void PersistentSingleton::OnCreateDevice()
 		{
 			m_fileSearcher.SetPaths();
-			const auto r = GetMonitorRect();
-			MoveWindow(Monad::Globals::g_mainWindow, r.left, r.top, r.right - r.left, r.bottom - r.top, FALSE);
-			DXSample::UpdateForSizeChange(r.right - r.left, r.bottom - r.top);
+			const auto
+				width = m_monitorConf.m_monitorRect.right - m_monitorConf.m_monitorRect.left,
+				height = m_monitorConf.m_monitorRect.bottom - m_monitorConf.m_monitorRect.top;
+			MoveWindow(
+				Monad::Globals::g_mainWindow,
+				m_monitorConf.m_monitorRect.left,
+				m_monitorConf.m_monitorRect.top,
+				width,
+				height, 
+				FALSE
+			);
+			DXSample::UpdateForSizeChange(
+				width,
+				height
+			);
 			m_d3dSingleton = make_unique<CombineD3DSingleton>();
 		}
 
@@ -127,7 +140,7 @@ namespace Monad
 		void PersistentSingleton::ArrangeSatellites()
 		{
 			//const lock_guard lg(System::g_safeShutdown);
-			m_satellitesManager.SetSatelliteWindows();
+			m_satellitesManager.ArrangeSatellites();
 		}
 
 		bool PersistentSingleton::IsFull() const noexcept
@@ -181,15 +194,29 @@ namespace Monad
 
 		void PersistentSingleton::OnReorganize()
 		{
-			if (const auto rect = GetMonitorRect(); GetPrimaryMonitor() != m_currentMonitor
-				|| memcmp(&m_currentMonitorRect, &rect, sizeof(RECT)) != 0)
+			if (const MonitorConf newMonitorConf; m_monitorConf <=> newMonitorConf != std::strong_ordering::equivalent)
 			{
-				m_currentMonitor = GetPrimaryMonitor();
-				m_currentMonitorRect = rect;
-
+				m_monitorConf = newMonitorConf;
 				ResetDevice();
 			}
 			ArrangeSatellites();
+		}
+		namespace
+		{
+			struct ITaskReorganize : ThreadManager::ITask
+			{
+				ITaskReorganize() noexcept :
+					ITask{ false }
+				{}
+				void Run() final
+				{
+					g_singleton->OnReorganize();
+				}
+			} g_reorganize;
+		}
+		void PersistentSingleton::EnqueueReorganize()
+		{
+			m_threadWndMessage.InsertTask(&g_reorganize);
 		}
 		PersistentSingleton* g_singleton(nullptr);
 #pragma endregion
@@ -198,6 +225,7 @@ namespace Monad
 		PersistentSingleton::CombineD3DSingleton::CombineD3DSingleton()
 		{
 			g_samplers.SetAnisotropy(g_applied.m_quality + 1);
+			OnAspectRatio();
 		}
 
 		void PersistentSingleton::CombineD3DSingleton::Initialize()

@@ -25,6 +25,7 @@ namespace Monad::App
 	struct CombineWorld final : Renderer::Combine, Kernel::EventFrameMoveStub
 	{
 		CombineWorld();
+		~CombineWorld();
 
 		/// <summary>
 		/// Returns current light position used by shaders.

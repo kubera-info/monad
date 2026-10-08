@@ -19,8 +19,8 @@
 #include <shobjidl.h>
 
 // Monad
-#include "Core/Win32ApplicationGeneric.h"
 #include "Wnd/Message.h"
+#include "Core/Win32ApplicationGeneric.h"
 
 extern std::atomic_bool g_keyPressed;
 

@@ -31,7 +31,7 @@ namespace Monad::App
 	/// </summary>
 	struct Repository final : Repositories::RepositoryGeneric
 	{
-		Repository();
+		Repository() noexcept;
 		OPER_DEL_NO_DEF_CTOR(Repository);
 
 		/// <summary>

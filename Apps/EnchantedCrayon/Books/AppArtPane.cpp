@@ -49,7 +49,7 @@ namespace Monad
 		{
 		}
 
-		void ShaderArtGeneric::SetArt(const Repository::ConstArtIterator art) noexcept
+		void ShaderArtGeneric::SetArt(const Repository::ConstArtIterator art)
 		{
 			GetCurrentTexture() = g_repository->GetArtTexture(art);
 

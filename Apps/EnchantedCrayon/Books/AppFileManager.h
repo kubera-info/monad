@@ -5,7 +5,6 @@
 #pragma once
 
 // Monad
-#include "Files/Folder.h"
 #include "Files/FileManager.h"
 
 namespace Monad::App

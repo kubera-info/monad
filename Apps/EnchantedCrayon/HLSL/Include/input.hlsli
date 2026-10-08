@@ -10,26 +10,26 @@ struct VS_INPUT
 
 struct VS_INPUT_TEX
 {
-    float4 m_position : POSITION; // vertex position 
-    float3 m_normal : NORMAL; // this normal comes in per-vertex
-    float2 m_texture : TEXCOORD0; // vertex texture coords 
+    float4 m_position : POSITION;
+    float3 m_normal : NORMAL;
+    float2 m_texture : TEXCOORD0;
 };
 
 struct VS_FONT
 {
-    float2 m_position : POSITION; // vertex position
-    float2 m_texture : TEXCOORD0; // vertex texture coords
+    float2 m_position : POSITION;
+    float2 m_texture : TEXCOORD0;
     nointerpolation float3 m_color : COLOR0;
 };
 
 struct VS_EMOJI
 {
-    float2 m_position : POSITION; // vertex position 
-    float2 m_texture : TEXCOORD0; // vertex texture coords
+    float2 m_position : POSITION;
+    float2 m_texture : TEXCOORD0;
 };
 
 struct VS_PANE
 {
-    float4 m_position : POSITION; // vertex position 
+    float4 m_position : POSITION;
     float2 m_texture : TEXCOORD0;
 };

@@ -44,4 +44,10 @@ namespace Monad::Wnd
 	/// A set containing rectangles of all non-primary monitors.
 	/// </returns>
 	SetMonitors GetNonPrimaryMonitors();
+
+	struct MonitorConf
+	{
+		HMONITOR m_monitor = Monad::Wnd::GetPrimaryMonitor();
+		RECT m_monitorRect = Monad::Wnd::GetMonitorRect(m_monitor);
+	};
 }

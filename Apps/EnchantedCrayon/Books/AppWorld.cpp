@@ -49,6 +49,11 @@ namespace Monad
 			Register();
 		}
 
+		CombineWorld::~CombineWorld()
+		{
+			g_dxSample->WaitForGpu();
+		}
+
 		/// <summary>
 		/// Calculates and returns the transformed light position
 		/// used by the scene shaders.

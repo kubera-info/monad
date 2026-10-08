@@ -51,7 +51,7 @@ namespace Monad::Wnd
 		/// Synchronizes satellite windows with currently available monitors.
 		/// Creates or removes windows as needed.
 		/// </summary>
-		void SetSatelliteWindows();
+		void ArrangeSatellites();
 
 		/// <summary>
 		/// Updates window titles of all satellite windows.

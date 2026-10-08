@@ -27,7 +27,8 @@
 
 enum WM_APPS : uint32_t
 {
-	WM_APP_ACTIVATE_WINDOW = WM_APP,
+	WM_APP_MESSAGE_QUE = WM_APP,
+	WM_APP_ACTIVATE_WINDOW,
 	WM_APP_CLICK,
 	WM_APP_RELEASE,
 	WM_APP_ON_THREAD_DONE
@@ -41,13 +42,13 @@ interface Win32ApplicationGeneric abstract
 	static void SetTitle() noexcept;
 	inline static bool IsIconic() noexcept { return ::IsIconic(Monad::Globals::g_mainWindow); }
 	inline static void ActivateDirect3DWindow() noexcept { PostMessage(WM_APP_ACTIVATE_WINDOW); }
-	inline static void PostMessage(
+	inline static BOOL PostMessage(
 		uint32_t message,
 		WPARAM wParam = 0,
 		LPARAM lParam = 0
 	) noexcept
 	{
-		/*if (nullptr != s_hwnd)*/ ::PostMessage(
+		/*if (nullptr != s_hwnd)*/ return ::PostMessage(
 			Monad::Globals::g_mainWindow,
 			message,
 			wParam,

@@ -4,6 +4,9 @@
 
 #pragma once
 
+// Platform
+#include "Modules/Xbox-ATG-Samples/Kits/CPUTK/OSLockable.h"
+
 // STD
 #include <mutex>
 #include <queue>
@@ -17,6 +20,8 @@
 
 namespace Monad::Threads
 {
+	struct ThreadPool;
+	struct ThreadWndMessage;
 	/// <summary>
 	/// Thread pool implementation responsible for executing asynchronous tasks.
 	/// 
@@ -27,7 +32,7 @@ namespace Monad::Threads
 	/// - Exception-safe execution
 	/// - Optional ownership of task lifetime
 	/// </summary>
-	struct ThreadPool
+	struct ThreadManager abstract
 	{
 		/// <summary>
 		/// Abstract interface representing a single executable task.
@@ -38,6 +43,8 @@ namespace Monad::Threads
 		interface ITask abstract : Kernel::RefCount
 		{
 			friend ThreadPool;
+			friend ThreadManager;
+			friend ThreadWndMessage;
 
 		/// <summary>
 		/// Constructs a task object.
@@ -69,6 +76,23 @@ namespace Monad::Threads
 		const bool c_ifDelete;
 		};
 
+		using PtrTask = Microsoft::WRL::ComPtr<ITask>;
+
+	protected: 
+		/// <summary>
+		/// Internal task queue.
+		/// </summary>
+		struct QueueCommand : std::queue<ITask*>
+		{
+			/// <summary>
+			/// Clears the queue and deletes all tasks.
+			/// </summary>
+			~QueueCommand() noexcept;
+		} m_commandQueue;
+	};
+
+	struct ThreadPool final : ThreadManager
+	{
 		/// <summary>
 		/// Creates a thread pool with a given number of worker threads.
 		/// </summary>
@@ -163,23 +187,26 @@ namespace Monad::Threads
 		Kernel::Ev m_ev;
 
 		/// <summary>
-		/// Internal task queue.
-		/// </summary>
-		struct QueueCommand : std::queue<ITask*>
-		{
-			/// <summary>
-			/// Clears the queue and deletes all tasks.
-			/// </summary>
-			void clear() noexcept;
-		} m_commandQueue;
-
-		/// <summary>
 		/// Collection of worker threads.
 		/// </summary>
-		std::vector<std::unique_ptr<ThreadWorker>> m_threads;
+		struct VectorThreads : std::vector<std::unique_ptr<ThreadWorker>>
+		{
+			using std::vector<std::unique_ptr<ThreadWorker>>::vector;
+			void request_stops() noexcept;
+		} m_threads;
 
 	public:
-		using PtrTask = Microsoft::WRL::ComPtr<ITask>;
 		using ListPtrsTasks = std::forward_list<PtrTask>;
+	};
+
+	struct ThreadWndMessage final : ThreadManager
+	{
+		void InsertTask(
+			ITask* pTask
+		);
+		void DequeueAndRunTask();
+
+	private:
+		ATG::CriticalSectionLockable m_lock;
 	};
 }

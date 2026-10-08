@@ -22,52 +22,6 @@
       <Build Solution="3-Setup|*" Project="false" />
     </Project>
   </Folder>
-  <Folder Name="/Apps/Clock/" />
-  <Folder Name="/Apps/Clock/Assets/">
-    <Project Path="Apps/OldPolishClock/Assets/Shaders/Shaders.vcxproj" Id="892faaf4-0e42-4161-bed8-f50b42e3eb33">
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Release" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
-      <Platform Project="x64" />
-      <Build Project="false" />
-    </Project>
-    <Project Path="Apps/OldPolishClock/Assets/Varia/Varia.vcxproj" Id="1a882cac-5b4a-4494-aa76-aac1ece00f07">
-      <BuildDependency Project="MonadEngine/Tools/Encryption/Encryption.vcxproj" />
-      <BuildDependency Project="MonadEngine/Tools/MeshConverter/MeshConverter.vcxproj" />
-      <BuildDependency Project="MonadEngine/Tools/PCMConverter/PCMConverter.vcxproj" />
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Release" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
-      <Platform Project="x64" />
-      <Build Project="false" />
-    </Project>
-  </Folder>
-  <Folder Name="/Apps/Clock/Code/">
-    <Project Path="Apps/OldPolishClock/HLSL/HLSL.vcxproj" Id="37cca192-c001-41e5-bfb3-6f4b075ae55a">
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Debug" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Debug" />
-      <Platform Project="x64" />
-      <Build Solution="1-Assets|ARM64" Project="false" />
-      <Build Solution="3-Setup|*" Project="false" />
-    </Project>
-    <Project Path="Apps/OldPolishClock/OldPolishClock.vcxproj" Id="8d42e01f-26b1-4dc7-8f0c-b46df37f0584">
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Debug" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Debug" />
-      <Build Solution="0-Engine|*" Project="false" />
-      <Build Solution="1-Assets|*" Project="false" />
-      <Build Solution="3-Setup|*" Project="false" />
-    </Project>
-  </Folder>
   <Folder Name="/Apps/Enchanted Crayon/" />
   <Folder Name="/Apps/Enchanted Crayon/Assets/">
     <Project Path="Apps/EnchantedCrayon/Assets/Art/Arts.vcxproj" Id="f0cb79d6-a576-4a51-95fa-2efe47c8799c">

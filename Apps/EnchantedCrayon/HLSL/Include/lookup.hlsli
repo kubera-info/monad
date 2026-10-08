@@ -37,13 +37,16 @@ static float4 GetColorFromTexel2(
     {
         const float x = g_texArt.SampleLevel(
             g_samplerPoint, 
-            textureCoord + g_PoissonTable16[i].xy, 0).x;
+            textureCoord + g_PoissonTable16[i].xy,
+        0
+        ).x;
         if (x > 0.0)
         {
             color += g_texPalette.SampleLevel(
             g_samplerPoint, 
             x, 
-            0).rgb;
+            0
+            ).rgb;
         }
     }
     color /= g_poissonCount16;

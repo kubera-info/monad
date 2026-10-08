@@ -50,6 +50,7 @@ namespace Monad::App
 		void ResetDevice();
 		void SaveOnDestroy() noexcept;
 		void OnReorganize();
+		void EnqueueReorganize();
 
 		CombineCursorCrayon& GetArrowCursor() noexcept;
 
@@ -59,9 +60,7 @@ namespace Monad::App
 		KeyboardHookNoWinKey m_noWinKey;
 
 	public:
-		HMONITOR m_currentMonitor = Monad::Wnd::GetPrimaryMonitor();
-		RECT m_currentMonitorRect = Monad::Wnd::GetMonitorRect();
-
+		struct Wnd::MonitorConf m_monitorConf;
 		Input::CursorControl m_cursorControl;
 
 		const std::filesystem::path c_profilePath =
@@ -72,7 +71,7 @@ namespace Monad::App
 		Repository m_repository;
 		TaskFileSearcher m_fileSearcher;
 		Threads::ThreadPool m_threadPool;
-
+		Threads::ThreadWndMessage m_threadWndMessage;
 		struct Config
 		{
 			Config();

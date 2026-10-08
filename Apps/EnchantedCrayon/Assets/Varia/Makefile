@@ -4,10 +4,8 @@
 
 MND_TITLE=The Assets Builder for Book
 MND_MESHCONV=@$(MND_BIN_DIR)\MeshConverter.exe $? $@
-MND_EMOJICONV=@pwsh.exe $(MND_RAW_BIN_DIR)\EmojiEncryption.ps1
 MND_MESH_DIR=..\Meshes
 MND_DEST_DIR=..\..\Res
-MND_WAVCONV=@$(MND_BIN_DIR)\PCMConverter.exe $? $@
 MND_WAV_DIR=..\Waves\Streams
 MND_JIN_DIR=..\..\..\..\MonadEngine\Assets\Audio\Jingles
 MND_SPE_DIR=..\..\..\..\MonadEngine\Assets\Audio\Speech
@@ -24,7 +22,6 @@ all: satellites help streams
 
 ..\Textures\DDS\logo.dds: ..\Textures\Maps\logo.png
 	"..\..\..\..\vcpkg_installed\x64\x64-windows-static-md\tools\directxtex\texconv.exe" -nologo -y -gpu 0 -f BC7_UNORM_SRGB -srgb -m 2 -o "..\Textures\DDS" $?
-
 
 logo_obj: ..\Textures\DDS\logo.dds
 
