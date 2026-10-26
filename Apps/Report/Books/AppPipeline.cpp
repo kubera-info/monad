@@ -49,7 +49,7 @@ namespace Monad
 		// ---------------------------------------------------------------------
 		const D3D12_GRAPHICS_PIPELINE_STATE_DESC
 			ShaderConfig::CreateGraphicsPipelineStateDesc(
-				const std::string& id
+				const FXName& id
 			)
 		{
 			SetIfThis::const_iterator idFromMany;
@@ -108,9 +108,7 @@ namespace Monad
 					});
 			}
 			else
-			{
 				std::unreachable();
-			}
 
 			// -----------------------------------------------------------------
 			// Final pipeline assembly
@@ -124,13 +122,13 @@ namespace Monad
 
 			return {
 				.pRootSignature = m_parametersDef->m_rootSignature.Get(),
-				.VS = static_cast<const D3D12_SHADER_BYTECODE>(vsil.m_vs),
-				.PS = static_cast<const D3D12_SHADER_BYTECODE>(Repositories::g_repositoryGeneric->m_ps.GetMember(m_ps)),
+				.VS = vsil,
+				.PS = Repositories::g_repositoryGeneric->m_ps.GetMember(m_ps),
 				.BlendState = m_alphaBlending ? BLEND_DESC_ALPHA : BLEND_DESC_OPAQUE,
 				.SampleMask = UINT_MAX,
 				.RasterizerState = RASTERIZER_DESC,
 				.DepthStencilState = isBlank ? DEPTH_STENCIL_DESC_NULL : DEPTH_STENCIL_DESC,
-				.InputLayout = g_d3d12Core->c_inputLayouts.GetInputLayoutDesc(vsil.c_il),
+				.InputLayout = vsil,
 				.PrimitiveTopologyType = D3D12_PRIMITIVE_TOPOLOGY_TYPE_TRIANGLE,
 				.NumRenderTargets = /*isShadow ? 0u :*/ 1u,
 				.RTVFormats = {

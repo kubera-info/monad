@@ -9,7 +9,6 @@
 #include <string>
 
 // Monad
-#include "Kernel/Del.h"
 
 namespace Monad::Internet
 {
@@ -24,7 +23,10 @@ namespace Monad::Internet
 	{
 		CurlINet();
 		~CurlINet();
-		OPER_DEL_NO_DEF_CTOR(CurlINet);
+		CurlINet(const CurlINet&) = delete;
+		CurlINet& operator=(const CurlINet&) = delete;
+		CurlINet(CurlINet&&) = delete;
+		CurlINet& operator=(CurlINet&&) = delete;
 
 		/// <summary>
 		/// Result type returned by HTTP requests.

@@ -87,7 +87,7 @@ namespace Monad::Tools
 					nullptr,
 					nullptr
 				))
-					THROW_EXC_GETLASTERROR(Exceptions::InvalidClass, L"UnicodeToUTF8");
+					THROW_EXC_GETLASTERROR(Exceptions::InvalidClass, L"WideCharToMultiByte");
 			}
 			return utf8Buffer;
 		}

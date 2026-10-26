@@ -100,9 +100,9 @@ namespace Monad
 		void DialogToolbox::ButtonHelp::OnClick()
 		{
 			g_colorClicked = false;
-			Audio::g_persistentAudio->Describe(
+			Audio::g_persistentAudio->Describe({
 				g_combineFullRequirements->m_artPage.m_toolboxDialog.m_printButton.IsVisible()
-				? "help_art_print"_cue : "help_art"_cue
+				? "help_art_print"_cue : "help_art"_cue }
 			);
 		}
 

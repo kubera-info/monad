@@ -24,7 +24,7 @@ namespace Monad::GUI
 		const MeshStyle& style,
 		const XMFLOAT3& rgb,
 		const Audio::RandomJingle& clicksSounds,
-		const Kernel::VectorString& icons
+		const VectorResourceNames& icons
 	) :
 		c_style{ style },
 		c_rgb{ rgb },
@@ -101,13 +101,13 @@ namespace Monad::GUI
 	};
 
 	// ---------------------------------------------------------------------
-	// IconicStyle � base style for icon-based GUI buttons
+	// IconicStyle © base style for icon-based GUI buttons
 	// ---------------------------------------------------------------------
 
 	IconicStyle::IconicStyle(
 		const MeshStyle& style,
 		const Audio::RandomJingle& clicksSounds,
-		const Kernel::VectorString& icons
+		const VectorResourceNames& icons
 	) :
 		IconicStyleGeneric{
 			style,
@@ -121,7 +121,7 @@ namespace Monad::GUI
 	IconicStyle::IconicStyle(
 		const XMFLOAT3& rgb,
 		const Audio::RandomJingle& clicksSounds,
-		const Kernel::VectorString& icons
+		const VectorResourceNames& icons
 	) :
 		IconicStyleGeneric{
 			CIRCULAR_STYLE,
@@ -134,7 +134,7 @@ namespace Monad::GUI
 
 	IconicStyle::IconicStyle(
 		const XMFLOAT3& rgb,
-		const Kernel::VectorString& icons
+		const VectorResourceNames& icons
 	) :
 		IconicStyle{
 			rgb,
@@ -145,7 +145,7 @@ namespace Monad::GUI
 	}
 
 	IconicStyle::IconicStyle(
-		const Kernel::VectorString& icons
+		const VectorResourceNames& icons
 	) :
 		IconicStyle{
 			GUI_CHECKBOX_COLOR,
@@ -155,7 +155,7 @@ namespace Monad::GUI
 	}
 
 	IconicStyle::IconicStyle(
-		const std::string& flag
+		const ShaderResourceName& flag
 	) :
 		IconicStyle{
 			FLAG_STYLE,

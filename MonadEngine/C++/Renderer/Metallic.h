@@ -19,19 +19,19 @@ namespace Monad::Renderer
 	{
 		using Shader::Shader;
 		ShaderMetallicGeneric(
-			const std::string& technique,
+			const TechniqueName& technique,
 			Mesh mesh,
 			const CB::PipeColor& metallic,
 			const DirectX::XMFLOAT4& dialogFrame
 		);
 
 		ShaderMetallicGeneric(
-			const std::string& technique,
+			const TechniqueName& technique,
 			Mesh mesh
 		);
 
 		ShaderMetallicGeneric(
-			const std::string& technique,
+			const TechniqueName& technique,
 			Mesh mesh,
 			const CB::PipeColor& metallic
 		);

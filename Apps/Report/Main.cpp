@@ -54,8 +54,8 @@ int32_t WINAPI MiniMain(
 	// Copyright text
 	Globals::g_copyright =
 	{
-		L"Copyright © 2016-2026 by Włodzimierz O. Kubera"_pl,
-		L"Copyright © 2016-2026 by Wlodzimierz O. Kubera"_us
+		L"Copyright © 2016-2026 by Włodzimierz O. Kubera"_pl_PL,
+		L"Copyright © 2016-2026 by Wlodzimierz O. Kubera"_en_US
 	};
 
 	// Default UI colors (HDR space)
@@ -83,7 +83,7 @@ int32_t WINAPI MiniMain(
 	if (System::GetParameter(System::FILENAME_REPORT).empty())
 	{
 		// Mocked call
-		const std::string xmlForDebug{ "<monad I18N=\"pl-PL\" Thread=\"Monad Anonymous\" Class=\"struct Monad::Exceptions::AudioFailed\" Exception=\"Karta dĹşwiÄ™kowa lub jej sterowniki nie speĹ‚niajÄ… minimalnych wymagaĹ„\" HRESULT=\"0x80004005\" Stage=\"Moj test\" Page=\"unknown\" Type=\"Report\" GPU=\"\" Version=\"5.0.2 (Debug)X64\" Title=\"Kolorowanka â€žMagiczna Kredkaâ€ť\" Salt=\"0AFFC219D06D4F89\" ShortName=\"Magiczna Kredka\" Path=\"C:\\Users\\wlodz\\source\\repos\\monad_solution\\Apps\\EnchantedCrayon\\Debug\\Book.exe\" WhoAmI=\"ZC\" NativeOrWine=\"Native Windows\" Arch=\"X64\" Ico=\"101\"/>" };
+		const std::string xmlForDebug{ "<monad I18N=\"ru_RU\" Thread=\"Monad Anonymous\" Class=\"struct Monad::Exceptions::AudioFailed\" Exception=\"Звуковая карта или драйвер не отвечают минимальным требованиям\" HRESULT=\"0x80004005\" Stage=\"test\" Page=\"unknown\" Type=\"Report\" GPU=\"NVIDIA GeForce RTX 5070 Ti Laptop GPU\" Version=\"6.0.7 (Debug)X64 on X64\" Title=\"Раскраска «Волшебные Краски»\" Salt=\"0AFFC219D06D4F89\" ShortName=\"Волшебные Краски\" Path=\"C:\\Users\\wlodz\\source\\repos\\monad-solution\\Apps\\EnchantedCrayon\\Debug\\Book.exe\" WhoAmI=\"ZC\" NativeOrWine=\"Native Windows\" Arch=\"X64 on X64\" Ico=\"101\"/>" };
 		g_parameters = std::make_unique<XMLManagerErrorDesc>(Kernel::SpanConstBytes(xmlForDebug).GetComIStreamTemp().Get());
 	}
 	else

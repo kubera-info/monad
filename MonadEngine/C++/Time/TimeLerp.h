@@ -12,7 +12,7 @@ namespace Monad::Time
 	/// <summary>
 	/// TimeLerp
 	/// 
-	/// A time�based linear interpolator.
+	/// A time©based linear interpolator.
 	/// Moves its internal value from startValue to stopValue
 	/// during a specified time interval.
 	///

@@ -35,12 +35,8 @@ namespace Monad::Audio
 	{
 		if (g_persistentAudio->IsReady())
 			for (const auto& queue : listOfQueues)
-				if (m_voicesManagers.contains(queue))
-#if defined _DEBUG
-					m_voicesManagers.at(queue).Mute();
-#else
-					m_voicesManagers.find(queue)->second.Mute();
-#endif
+				if (const auto it = m_voicesManagers.find(queue); m_voicesManagers.cend() != it)
+					it->second.Mute();
 	}
 
 	void XAudioState::SetMasterVoiceVolume(
@@ -74,14 +70,12 @@ namespace Monad::Audio
 		V_RETURN(m_xAudio2->CreateMasteringVoice(&tmpMasteringVoice, 0U, 0U, XAUDIO2_NO_VIRTUAL_AUDIO_CLIENT));
 		m_masteringVoice.reset(tmpMasteringVoice);
 
-		for (const auto& queue : g_persistentAudio->m_voicesVolumesCache)
-		{
+		for (const auto& queueVolume : g_persistentAudio->m_voicesVolumesCache)
 			m_voicesManagers.try_emplace(
-				queue.first,
+				queueVolume.first,
 				m_xAudio2.Get(),
-				queue.first
+				queueVolume.first
 			);
-		}
 		return S_OK;
 	}
 

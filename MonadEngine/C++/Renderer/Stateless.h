@@ -8,7 +8,6 @@
 #include <D3D12.h>
 
 // Monad
-#include "Kernel/Del.h"
 #include "CommandList.h"
 #include "__MonadRenderer.h"
 
@@ -19,8 +18,10 @@ namespace Monad::Renderer
 	struct Stateless
 	{
 		Stateless();
-		~Stateless() = default;
-		OPER_DEL_NO_DEF_CTOR(Stateless);
+		Stateless(const Stateless&) = delete;
+		Stateless& operator=(const Stateless&) = delete;
+		Stateless(Stateless&&) = delete;
+		Stateless& operator=(Stateless&&) = delete;
 		void Commit();
 
 	private:

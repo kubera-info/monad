@@ -46,7 +46,7 @@ namespace Monad
 		struct ForecolorGeneric final : Renderer::CB::ForecolorInstance
 		{
 			ForecolorGeneric(
-				const std::string& counter
+				const ConstantBufferName& counter
 			) noexcept;
 
 		private:
@@ -63,7 +63,7 @@ namespace Monad
 			using OptionalCarriage = std::optional<DirectX::XMFLOAT2>;
 			Text2Mesh(
 				GUI::DialogGeneric& ownerDialog,
-				const std::string& fontName
+				const ShaderResourceName& fontName
 			);
 			void AddRenderedText(
 				const FontStyle& style,

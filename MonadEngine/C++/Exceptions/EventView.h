@@ -7,9 +7,6 @@
 // STD
 #include <string>
 
-// Monad
-#include "Kernel/Del.h"
-
 namespace Monad::Exceptions
 {
 	struct EventLog
@@ -22,7 +19,11 @@ namespace Monad::Exceptions
 			const std::wstring& fullAppName
 		) noexcept;
 		~EventLog();
-		OPER_DEL(EventLog);
+		EventLog(const EventLog&) = delete;
+		EventLog& operator=(const EventLog&) = delete;
+		EventLog(EventLog&&) = delete;
+		EventLog& operator=(EventLog&&) = delete;
+
 		/// <summary>
 		/// Reports an error to event log.
 		/// </summary>

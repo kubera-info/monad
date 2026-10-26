@@ -8,7 +8,7 @@
 
 namespace Monad::Fonts
 {
-	const std::string
+	const ShaderResourceName
 		FONT_CENTURY_GOTHIC{ "century_gothic" },
 		FONT_COURIER_NEW{ "courier_new" },
 		FONT_TIMES_NEW_ROMAN{ "times" };

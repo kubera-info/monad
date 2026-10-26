@@ -31,31 +31,30 @@ int32_t WINAPI MiniMain(
 	// Application display names (localized)
 	Globals::g_shortAppName =
 	{
-		L"#emoji_u1f3a8#Magiczna Kredka"_pl,
-		L"#emoji_u1f3a8#Волшебные Краски"_ru,
-		L"#emoji_u1f3a8#The Enchanted Crayon"_us
+		L"#emoji_u1f3a8#Magiczna Kredka"_pl_PL,
+		L"#emoji_u1f3a8#Волшебные Краски"_ru_RU,
+		L"#emoji_u1f3a8#The Enchanted Crayon"_en_US
 	};
 
 	Globals::g_fullAppName =
 	{
-		L"Kolorowanka „Magiczna Kredka”"_pl,
-		L"Раскраска «Волшебные Краски»"_ru,
-		L"The Enchanted Crayon Colouring Book"_gb,
-		L"The Enchanted Crayon Coloring Book"_us
+		L"Kolorowanka „Magiczna Kredka”"_pl_PL,
+		L"Раскраска «Волшебные Краски»"_ru_RU,
+		L"The Enchanted Crayon Colouring Book"_en_GB,
+		L"The Enchanted Crayon Coloring Book"_en_US
 	};
 
 	// Application identifiers
 	Globals::g_whoAmI = L"ZC";
 	Globals::g_userFolder = L"Enchanted Crayon";
-	Globals::g_userProfile = L"SOFTWARE\\" L"Wlodzimierz O. Kubera\\Enchanted Crayon\\" APP_VER;
+	Globals::g_userProfile = L"SOFTWARE\\Wlodzimierz O. Kubera\\Enchanted Crayon\\" APP_VER;
 	Globals::g_sha256Salt = "0AFFC219D06D4F89";
 	Globals::g_sourceIcon = IDI_MAIN_ICON;
-
 	// Copyright text
 	Globals::g_copyright =
 	{
-		L"Copyright © 2016-2026 by Włodzimierz O. Kubera"_pl,
-		L"Copyright © 2016-2026 by Wlodzimierz O. Kubera"_us
+		L"Copyright © 2016-2026 by Włodzimierz O. Kubera"_pl_PL,
+		L"Copyright © 2016-2026 by Wlodzimierz O. Kubera"_en_US
 	};
 
 	// Default UI colors (HDR space)

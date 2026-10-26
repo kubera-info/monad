@@ -54,7 +54,7 @@ namespace Monad
 
 			bool g_audio = true;
 	
-			Monad::Wnd::ExpectedLResult ProcessTASKBAR(
+			Wnd::ExpectedLResult ProcessTASKBAR(
 				HWND,
 				UINT,
 				WPARAM,
@@ -63,7 +63,7 @@ namespace Monad
 			)
 			{
 				g_singleton->ResetTaskbar();
-				return Monad::Wnd::PROCESSING_OK;
+				return Wnd::PROCESSING_OK;
 			}
 		}
 #pragma region PersistentSingleton
@@ -90,7 +90,7 @@ namespace Monad
 			{
 				g_forMainMessage.emplace(c_msgTaskbarButtonCreated, ProcessTASKBAR);
 				ChangeWindowMessageFilterEx(
-					Monad::Globals::g_mainWindow,
+					Globals::g_mainWindow,
 					c_msgTaskbarButtonCreated,
 					MSGFLT_ALLOW,
 					nullptr
@@ -102,7 +102,7 @@ namespace Monad
 		void PersistentSingleton::OnCreateDevice()
 		{
 			const auto r = GetMonitorRect();
-			MoveWindow(Monad::Globals::g_mainWindow, r.left, r.top, r.right - r.left, r.bottom - r.top, FALSE);
+			MoveWindow(Globals::g_mainWindow, r.left, r.top, r.right - r.left, r.bottom - r.top, FALSE);
 			DXSample::UpdateForSizeChange(r.right - r.left, r.bottom - r.top);
 			m_d3dSingleton = make_unique<CombineD3DSingleton>();
 		}
@@ -168,8 +168,8 @@ namespace Monad
 
 		void PersistentSingleton::Bulk()
 		{
-			Monad::Audio::g_persistentAudio->PlayJingle("yes"_cue);
-			m_cursorControl.SetNewCurrentCursor(Monad::Input::CURSOR_WAIT);
+			Audio::g_persistentAudio->PlayJingle("yes"_cue);
+			m_cursorControl.SetNewCurrentCursor(Input::CURSOR_WAIT);
 			SetProgressState(TBPF_INDETERMINATE);
 			InsertTask(&m_httpsTask);
 		}
@@ -180,11 +180,7 @@ namespace Monad
 				IsReturnedXMLStatus().empty()
 				? TBPF_ERROR
 				: TBPF_NOPROGRESS);
-			/*const auto buttonOk = GetDlgItem(IDOK);
-			buttonOk->SetWindowText(FINISH.ToLPCWSTR());
-			buttonOk->EnableWindow(TRUE);
-			buttonOk->SetFocus();*/
-			m_cursorControl.SetNewCurrentCursor(Monad::Input::CURSOR_ARROW);
+			m_cursorControl.SetNewCurrentCursor(Input::CURSOR_ARROW);
 		}
 		PersistentSingleton::TaskHTTPS::TaskHTTPS() :
 			ITask(false)
@@ -197,12 +193,12 @@ namespace Monad
 			{
 				~SmartPostMessage()
 				{
-					Monad::Pages::SelectPage("exit"_pageNo);
+					Pages::SelectPage("exit"_pageNo);
 				}
 			} postMessageThreadDone;
 
-			if (const auto httpsResponse = Monad::Internet::GetBugReportOnServer(); httpsResponse.has_value())
-				const LoaderXMLStatus xmlParseResponse(Monad::Kernel::SpanConstBytes(*httpsResponse).GetComIStreamTemp().Get());
+			if (const auto httpsResponse = Internet::GetBugReportOnServer(); httpsResponse.has_value())
+				const LoaderXMLStatus xmlParseResponse(Kernel::SpanConstBytes(*httpsResponse).GetComIStreamTemp().Get());
 		}
 	
 		void PersistentSingleton::SetProgressState(
@@ -211,9 +207,9 @@ namespace Monad
 		{
 			if (m_taskbarList)
 			{
-				m_taskbarList->SetProgressState(Monad::Globals::g_mainWindow, flag);
+				m_taskbarList->SetProgressState(Globals::g_mainWindow, flag);
 				if ((TBPF_ERROR & flag) > 0)
-					m_taskbarList->SetProgressValue(Monad::Globals::g_mainWindow, 192, 256);
+					m_taskbarList->SetProgressValue(Globals::g_mainWindow, 192, 256);
 			}
 		}
 		void PersistentSingleton::ResetTaskbar() noexcept
@@ -234,6 +230,7 @@ namespace Monad
 		PersistentSingleton::CombineD3DSingleton::CombineD3DSingleton()
 		{
 			g_samplers.SetAnisotropy(1);
+			OnAspectRatio();
 		}
 
 		void PersistentSingleton::CombineD3DSingleton::Initialize()

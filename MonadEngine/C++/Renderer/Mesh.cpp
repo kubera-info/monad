@@ -218,7 +218,7 @@ namespace Monad
 		constexpr uint32_t HEADER_SIZE = /*3*/ 2 * sizeof uint32_t;
 #pragma region Mesh
 		Mesh::Mesh(
-			const std::string& meshFilename
+			const MeshName& meshFilename
 		) :
 			Mesh{ Repositories::g_repositoryGeneric->m_meshes.GetMember(meshFilename) }
 		{

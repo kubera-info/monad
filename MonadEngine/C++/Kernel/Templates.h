@@ -73,7 +73,7 @@ namespace Monad::Kernel
 		/// </summary>
 		bool operator()(const POD& lhs, const POD& rhs) const noexcept
 		{
-			return std::strong_ordering::equivalent == (lhs <=> rhs);
+			return memcmp(&lhs, &rhs, sizeof(POD)) == 0;
 		}
 	};
 

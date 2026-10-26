@@ -16,7 +16,7 @@ namespace Monad::Audio
 #pragma region VoiceManager
 	VoiceManager::VoiceManager(
 		IXAudio2* const xAudio2,
-		const std::string& queue
+		const Queue& queue
 	) :
 		TimeLerp{
 		1.0,
@@ -34,7 +34,7 @@ namespace Monad::Audio
 		m_isQueueErased = true;
 
 		{
-			const std::lock_guard lg(m_lockSafeQueue);
+			const std::lock_guard lg(m_lockQueue);
 			while (!m_voiceCommandQueue.empty())
 				m_voiceCommandQueue.pop();
 		}
@@ -51,7 +51,7 @@ namespace Monad::Audio
 	{
 		HRESULT hr = S_OK;
 		{
-			const std::lock_guard lg(m_lockSafeQueue);
+			const std::lock_guard lg(m_lockQueue);
 			m_voiceCommandQueue.push(wave);
 		}
 
@@ -79,7 +79,7 @@ namespace Monad::Audio
 	{
 		HRESULT hr = S_OK;
 
-		const std::lock_guard lg(m_lockSafeQueue);
+		const std::lock_guard lg(m_lockQueue);
 		if (!m_voiceCommandQueue.empty())
 		{
 			m_currentWave = m_voiceCommandQueue.front();
@@ -118,7 +118,7 @@ namespace Monad::Audio
 	{
 		SetVoiceVolumeGeneric(VOLUME_MUTED);
 		ResetManager();
-		if ("stream" == m_queue)
+		if ("stream"_queue == m_queue)
 			g_persistentAudio->InternalClearCurrentStream();
 	}
 

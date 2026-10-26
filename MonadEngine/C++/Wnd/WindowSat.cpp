@@ -151,9 +151,13 @@ namespace Monad
 					PostMessage(m_hWnd, WM_APP_CLOSE, 0, 0);
 					join();
 				}
-				OPER_DEL(ThreadSatellite);
+				ThreadSatellite() = delete;
+				ThreadSatellite(const ThreadSatellite&) = delete;
+				ThreadSatellite& operator=(const ThreadSatellite&) = delete;
+				ThreadSatellite(ThreadSatellite&&) = delete;
+				ThreadSatellite& operator=(ThreadSatellite&&) = delete;
 
-				// inline operator const RECT& () const noexcept { return m_wndRect; }
+				inline operator const RECT& () const noexcept { return m_wndRect; }
 
 				static LRESULT CALLBACK WindowProc(
 					HWND hWnd,
@@ -211,11 +215,6 @@ namespace Monad
 					m_pRT.Reset();
 					m_pD2DBitmap.Reset();
 				}
-
-				/*friend bool operator==(const RECT& pLeft, const ThreadSatellite& pRight) noexcept
-				{
-					return std::strong_ordering::equivalent == Kernel::operator<=>(pLeft, pRight.m_wndRect);
-				}*/
 
 				void OnPaint()
 				{
@@ -345,9 +344,30 @@ namespace Monad
 		}
 
 #pragma region ManagerSatellites
-		struct ManagerSatellites::SetSatellites : UnorderedMap<RECT, ThreadSatellite>
+
+		/// <summary>
+/// Hash function.
+/// </summary>
+
+		struct ObjectHash
 		{
-			using UnorderedMap<RECT, ThreadSatellite>::UnorderedMap;
+			size_t operator()(const ThreadSatellite& v) const noexcept
+			{
+				return std::_Hash_array_representation(
+					reinterpret_cast<const uint8_t*>(&v.m_wndRect),
+					sizeof(RECT)
+				);
+			}
+
+			bool operator()(const ThreadSatellite& lhs, const ThreadSatellite& rhs) const noexcept
+			{
+				return memcmp(&lhs.m_wndRect, &rhs.m_wndRect, sizeof(RECT)) == 0;
+			}
+		};
+
+		struct ManagerSatellites::SetSatellites : unordered_set<ThreadSatellite, ObjectHash, ObjectHash>
+		{
+			using unordered_set<ThreadSatellite, ObjectHash, ObjectHash>::unordered_set;
 		};
 
 		void ManagerSatellites::ArrangeSatellites()
@@ -358,11 +378,11 @@ namespace Monad
 					m_satellites = std::make_unique<SetSatellites>();
 				std::erase_if(*m_satellites, [&monitors](const auto& sat)
 					{
-						return !monitors.contains(sat.second.m_wndRect);
+						return !monitors.contains(sat.m_wndRect);
 					}
 				);
 				for (const auto& monitorRect : monitors)
-					m_satellites->try_emplace(monitorRect, monitorRect);
+					m_satellites->emplace(monitorRect);
 			}
 			else
 				m_satellites.reset();
@@ -372,7 +392,7 @@ namespace Monad
 		{
 			if (m_satellites)
 				for (auto& satellite : *m_satellites)
-					SetWindowTitle(satellite.second.m_hWnd);
+					SetWindowTitle(satellite.m_hWnd);
 		}
 
 		ManagerSatellites::ManagerSatellites(

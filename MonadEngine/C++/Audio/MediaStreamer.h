@@ -10,7 +10,6 @@
 
 // Monad
 #include "Kernel/BytesVector.h"
-#include "Kernel/Del.h"
 
 namespace Monad::Audio
 {
@@ -42,6 +41,9 @@ namespace Monad::Audio
 	{
 		MFManager();
 		~MFManager();
-		OPER_DEL_NO_DEF_CTOR(MFManager);
+		MFManager(const MFManager&) = delete;
+		MFManager& operator=(const MFManager&) = delete;
+		MFManager(MFManager&&) = delete;
+		MFManager& operator=(MFManager&&) = delete;
 	};
 }

@@ -113,7 +113,7 @@ namespace Monad
 		{
 			while (true)
 			{
-				ITask* command = nullptr;
+				ITask* task = nullptr;
 
 				{
 					// Wait until either:
@@ -131,22 +131,22 @@ namespace Monad
 						break;
 
 					// Defensive: queue may be empty due to spurious wakeups
-					if (m_commandQueue.empty())
+					if (m_taskQueue.empty())
 						continue;
 
-					command = m_commandQueue.front();
-					m_commandQueue.pop();
+					task = m_taskQueue.front();
+					m_taskQueue.pop();
 				}
 
 				// Execute task safely
 				try
 				{
-					command->Run();
+					task->Run();
 				}
 				MONAD_CATCH;
 
 				// Cleanup if task owns itself
-				command->Delete();
+				task->Delete();
 			}
 		}
 
@@ -160,20 +160,20 @@ namespace Monad
 			std::stop_token stopToken
 		) const noexcept
 		{
-			return !m_commandQueue.empty() || stopToken.stop_requested();
+			return !m_taskQueue.empty() || stopToken.stop_requested();
 		}
 
 		/// <summary>
 		/// Clears all pending commands from queue.
 		/// Tasks are properly released.
 		/// </summary>
-		ThreadPool::QueueCommand::~QueueCommand() noexcept
+		ThreadPool::QueueTask::~QueueTask() noexcept
 		{
 			while (!empty())
 			{
-				const auto command = front();
+				const auto task = front();
 				pop();
-				command->Delete();
+				task->Delete();
 			}
 		}
 
@@ -186,12 +186,12 @@ namespace Monad
 
 #pragma region ThreadWndMessage
 		void ThreadWndMessage::InsertTask(
-			ITask* pTask
+			ITask* task
 		)
 		{
 			{
-				const std::lock_guard lg(m_lock);
-				m_commandQueue.push(pTask);
+				const std::lock_guard lg(m_lockMessageQueue);
+				m_taskQueue.push(task);
 			}
 			if(FALSE == Win32ApplicationGeneric::PostMessageW(WM_APP_MESSAGE_QUE))
 				THROW_EXC(Monad::Exceptions::InvalidClass, E_OUTOFMEMORY, L"Failed to post message to main thread");
@@ -199,17 +199,17 @@ namespace Monad
 
 		void ThreadWndMessage::DequeueAndRunTask()
 		{
-			const std::lock_guard lg(m_lock);
-			while (!m_commandQueue.empty())
+			const std::lock_guard lg(m_lockMessageQueue);
+			while (!m_taskQueue.empty())
 			{
-				const auto pTask = m_commandQueue.front();
-				m_commandQueue.pop();
+				const auto task = m_taskQueue.front();
+				m_taskQueue.pop();
 				try
 				{
-					pTask->Run();
+					task->Run();
 				}
 				MONAD_CATCH;
-				pTask->Delete();
+				task->Delete();
 			}
 		}
 #pragma endregion

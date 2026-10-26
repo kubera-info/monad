@@ -1,5 +1,5 @@
 // ##########################################################################
-// ### Copyright © 2016–2026 by Wlodzimierz O. Kubera. All rights reserved. ###
+// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
 #pragma once
@@ -8,11 +8,9 @@
 #include <d3d12.h>
 
 // STD
-#include <string>
 #include <vector>
 
 // Monad
-#include "Renderer/__MonadRenderer.h"
 #include "Kernel/Templates.h"
 
 namespace Monad::Renderer::InputLayout
@@ -27,6 +25,7 @@ namespace Monad::Renderer::InputLayout
 			SEMANTIC_INDEX semanticIndex,
 			DXGI_FORMAT format
 		) noexcept;
+		using D3D12_INPUT_ELEMENT_DESC::D3D12_INPUT_ELEMENT_DESC;
 	};
 
 	/// <summary>
@@ -39,7 +38,7 @@ namespace Monad::Renderer::InputLayout
 		/// <summary>
 		/// Builds a D3D12 input layout descriptor.
 		/// </summary>
-		D3D12_INPUT_LAYOUT_DESC GetInputLayoutDesc() const noexcept;
+		D3D12_INPUT_LAYOUT_DESC GetInputLayoutDesc() const;
 	};
 
 	/// <summary>
@@ -74,16 +73,8 @@ namespace Monad::Renderer::InputLayout
 
 	/// <summary>
 	/// Standard input layouts for basic geometry.
-	/// </summary>
-	MapInputLayouts Basics();
-
-	/// <summary>
 	/// Input layouts used for font and emoji rendering.
-	/// </summary>
-	MapInputLayouts FontEndEmoji();
-
-	/// <summary>
 	/// Input layouts for textured image rendering.
 	/// </summary>
-	MapInputLayouts Image();
+	extern MapInputLayouts Basics, FontEndEmoji, Image;
 }

@@ -10,7 +10,6 @@
 
 // Monad
 #include "Kernel/BytesVector.h"
-#include "Kernel/Del.h"
 #include "__MonadSafety.h"
 
 //
@@ -33,8 +32,10 @@ namespace Monad::Safety
 		struct SHA256Manager final : SafetyManager
 		{
 			SHA256Manager();
-			~SHA256Manager() = default;
-			OPER_DEL_NO_DEF_CTOR(SHA256Manager);
+			SHA256Manager(const SHA256Manager&) = delete;
+			SHA256Manager& operator=(const SHA256Manager&) = delete;
+			SHA256Manager(SHA256Manager&&) = delete;
+			SHA256Manager& operator=(SHA256Manager&&) = delete;
 			/// <summary>
 			/// Computes a SHA256 hash
 			/// </summary>

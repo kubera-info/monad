@@ -4,67 +4,83 @@
 
 #pragma once
 
+// Platform
+#include <Windows.h>
+
 // STD
 #include <regex>
 #include <string>
 #include <vector>
 
-//
-// Defines the interface for the I18N system.
-// Provides mechanisms for selecting translation sets.
-//
-
+/// <summary>
+/// Defines the interface for the I18N system.
+/// Allows selecting the active translation set (locale) at runtime.
+/// </summary>
 namespace Monad::I18N
 {
 #pragma region API
-	/// <summary>
-	/// American English, used as the default language when no other match is found.
-	/// </summary>
-	constexpr const char* DEFAULT_LANGUAGE = "en-US";
+	constexpr const wchar_t* DEFAULT_LANGUAGE = L"en_US";
 
-	struct SimplifiedLocaleName final
+	struct LocaleManager
 	{
+		LocaleManager();
+
 		/// <summary>
-		/// Analyzer that resolves the appropriate language based on the selected locale.
+		/// American English, used as the default language
+		/// when no other matching is found.
 		/// </summary>
-		std::regex analyzer;
+		struct SimplifiedLocaleName final
+		{
+			/// <summary>
+			/// Analyzer that resolves the appropriate language
+			/// based on the selected locale.
+			/// </summary>
+			std::wregex analyzer;
+			/// <summary>
+			/// When this test passes, `targetLocale` may be applied.
+			/// </summary>
+			std::wstring targetLocale;
+		};
+
 		/// <summary>
-		/// When this test passes, `targetLocale` may be applied.
+		/// List of transformative locales (regex → locale string).
+		/// The order of entries is significant. There is no need to
+		/// The "en_US" (DEFAULT_LANGUAGE) acts as a catch-all.
+		/// for unmatched locales.
 		/// </summary>
-		std::string targetLocale;
-	};
+		using VectorSimplifiedLocaleNames = std::vector<SimplifiedLocaleName>;
 
-	/// <summary>
-	/// List of transformative locales (regex → locale string).
-	/// The order of entries is significant.
-	/// There is no need to include "en-US" (DEFAULT_LANGUAGE), as it acts as a catch-all for unmatched locales.
-	/// </summary>
-	using VectorSimplifiedLocaleNames = std::vector<SimplifiedLocaleName>;
+		/// <summary>
+		/// Active locale name.		
+		/// </summary>
+		/// <returns>Locale name after parsing and normalization;
+		/// Locale name after parsing and normalization; may differ from
+		/// the value passed to SetLocaleName().
+		/// </returns>
+		const std::wstring& GetLocaleName() const noexcept;
 
-	/// <summary>
-	/// Active locale name.
-	/// </summary>
-	/// <returns>Locale name after parsing and normalization; may differ from the value provided to SetLocaleName().</returns>
-	std::string GetLocaleName();
+		/// <summary>
+		/// Sets the active locale from a user-supplied name.
+		/// </summary>
+		/// <param name="name">Locale name in any accepted format (e.g. "pl_PL", "en_GB"); 
+		/// will be normalized.
+		/// </param>
+		void SetLocaleName(
+			const std::wstring& name
+		);
 
-	/// <summary>
-	/// Assigns a new locale name.
-	/// </summary>
-	/// <param name="name">Locale name input to be parsed, validated, and applied.</param>
-	void SetLocaleName(
-		const std::string& name
-	);
-
-	/// <summary>
-	/// Parses a locale name.
-	/// </summary>
-	/// <param name="localeName">The locale name to parse.</param>
-	/// <returns>
-	/// The computed locale value, based on VectorSimplifiedLocaleNames.
-	/// </returns>
-	const std::string SimplifyLocaleName(
-		const std::string& localeName
-	);
+	private:
+		/// <summary>
+		/// Resolves a detected locale to a simplified/canonical form using regular expressions.
+		/// (e.g. Good: "pl" → "pl_PL", "ru_KZ" → "ru_RU").
+		/// (e.g. Wrong: "pl-PL").
+		/// </summary>
+		const VectorSimplifiedLocaleNames m_simplifiedLocaleNames;
+		/// <summary>
+		/// Current locale
+		/// </summary>
+		std::wstring m_applicationLocaleName;
+	} extern g_defaultLocaleManager;
 }
 #pragma endregion
 
@@ -72,22 +88,30 @@ namespace Monad::I18N
 /// <summary>
 /// A key-value pair mapping a locale to its corresponding literal string.
 /// </summary>
-using PairLang = std::pair<std::string, std::wstring>;
+using PairLang = std::pair<std::wstring, std::wstring>;
+
 /// <summary>
 /// Returns a localized string for the specified language.
+/// New suffix operators.
 /// </summary>
-/// <param name="countryCode">ISO country code identifying the language.</param>
-/// <param name="buffer">Text buffer containing the localized string.</param>
+/// <param name="countryCode">Language and country code.</param>
 /// <returns>The localized sentence.</returns>
-#define MONAD_MAKE_LANG(countryCode, locale) \
-	constexpr PairLang operator""_##countryCode(const wchar_t* literal, std::size_t sizeOfString) noexcept\
+#define MONAD_MAKE_LANG(countryCode) \
+	constexpr PairLang operator""_##countryCode(\
+		const wchar_t* literal,\
+		std::size_t sizeOfString) noexcept\
 	{\
-		return std::make_pair<std::string, std::wstring>(locale, { literal, sizeOfString });\
+		return std::make_pair<std::wstring, std::wstring>(\
+			{ TEXT(#countryCode), _countof(#countryCode) - 1 },\
+			{ literal, sizeOfString });\
 	}
 
-	// Example locales build
-MONAD_MAKE_LANG(gb, "en-GB");
-MONAD_MAKE_LANG(pl, "pl-PL");
-MONAD_MAKE_LANG(ru, "ru-RU");
-MONAD_MAKE_LANG(us, Monad::I18N::DEFAULT_LANGUAGE);
+/// <summary>
+/// New suffix operators
+/// </summary>
+/// <param name="">Locale</param>
+MONAD_MAKE_LANG(en_GB);
+MONAD_MAKE_LANG(pl_PL);
+MONAD_MAKE_LANG(ru_RU);
+MONAD_MAKE_LANG(en_US);
 #pragma endregion

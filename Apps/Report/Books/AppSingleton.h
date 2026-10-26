@@ -32,7 +32,10 @@ namespace Monad::App
 	struct PersistentSingleton final
 	{
 		PersistentSingleton();
-		OPER_DEL_NO_DEF_CTOR(PersistentSingleton);
+		PersistentSingleton(const PersistentSingleton&) = delete;
+		PersistentSingleton& operator=(const PersistentSingleton&) = delete;
+		PersistentSingleton(PersistentSingleton&&) = delete;
+		PersistentSingleton& operator=(PersistentSingleton&&) = delete;
 
 		void InsertTask(
 			Threads::ThreadPool::ITask* const task

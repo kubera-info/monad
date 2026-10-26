@@ -18,7 +18,7 @@ namespace Monad::Fonts
 	struct Font;
 	using MapFonts = Kernel::UnorderedMapString<Font>;
 
-	extern const std::string
+	extern const ShaderResourceName
 		FONT_CENTURY_GOTHIC,
 		FONT_COURIER_NEW,
 		FONT_TIMES_NEW_ROMAN;

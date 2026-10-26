@@ -71,7 +71,7 @@ namespace Monad::System
 	/// All values are HEX-encoded.
 	/// </summary>
 	/// <param name="parameters">
-	/// List of parameter name�value pairs.
+	/// List of parameter name©value pairs.
 	/// </param>
 	/// <returns>
 	/// Encoded parameter string ready for process execution.

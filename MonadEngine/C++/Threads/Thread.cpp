@@ -135,8 +135,7 @@ namespace Monad
 			const wstring_view name
 		)
 		{
-			assert(!joinable() && "Thread is already running");
-
+			THROW_EXC_IFFALSE(Exceptions::InvalidClass, !joinable(), L"Thread is already running");
 			m_thread = jthread(&Thread::HardwareExceptionStub, this);
 			SetMetaData(name);
 		}

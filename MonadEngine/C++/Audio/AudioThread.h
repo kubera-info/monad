@@ -9,8 +9,6 @@
 
 namespace Monad::Audio
 {
-	struct PersistentAudio;
-
 	/// <summary>
 	/// An audio task intended for execution within a thread pool, maintaining a reference to a PersistentAudio object.
 	/// </summary>
@@ -29,7 +27,7 @@ namespace Monad::Audio
 #define TASK_AUDIO(NAME)\
 	struct NAME final : TaskAudioGeneric\
 	{\
-	static_assert(std::string_view(#NAME).starts_with("Task"), "NAME must be begin with 'Task' prefix");\
+	static_assert(std::string_view(#NAME).starts_with("Task"), "NAME must begin with 'Task' prefix");\
 	using TaskAudioGeneric::TaskAudioGeneric;\
 	private:\
 		void Run() final;\
@@ -49,6 +47,5 @@ namespace Monad::Audio
 	/// Starts playing a randomly selected melody as an MP3 stream.
 	/// </summary>
 	TASK_AUDIO(TaskStartStream);
-
 #undef TASK_AUDIO
 }

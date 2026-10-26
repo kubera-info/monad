@@ -76,6 +76,21 @@
     <OutDir>..\..\Bin\</OutDir>
     <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
+    <VcpkgUseStatic>true</VcpkgUseStatic>
+    <VcpkgUseMD>true</VcpkgUseMD>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -183,6 +198,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\C++\Audio\__MonadAudio.cpp" />
     <ClCompile Include="..\..\C++\Exceptions\Exceptions.cpp" />
     <ClCompile Include="..\..\C++\Files\Folder.cpp" />
     <ClCompile Include="..\..\C++\Files\Handle.cpp" />
@@ -207,6 +223,7 @@
     <ClCompile Include="MakeSetter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\C++\Audio\__MonadAudio.h" />
     <ClInclude Include="..\..\C++\Exceptions\Exceptions.h" />
     <ClInclude Include="..\..\C++\Exceptions\Catch.h" />
     <ClInclude Include="..\..\C++\Exceptions\__MonadException.h" />

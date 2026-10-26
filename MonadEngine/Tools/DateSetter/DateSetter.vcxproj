@@ -182,6 +182,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\C++\Audio\__MonadAudio.cpp" />
     <ClCompile Include="..\..\C++\Exceptions\Exceptions.cpp" />
     <ClCompile Include="..\..\C++\Files\Folder.cpp" />
     <ClCompile Include="..\..\C++\Files\Handle.cpp" />
@@ -214,6 +215,7 @@
     <ClCompile Include="DateSetter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\C++\Audio\__MonadAudio.h" />
     <ClInclude Include="..\..\C++\Exceptions\Exceptions.h" />
     <ClInclude Include="..\..\C++\Exceptions\Catch.h" />
     <ClInclude Include="..\..\C++\Exceptions\__MonadException.h" />

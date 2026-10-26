@@ -343,6 +343,11 @@ namespace Monad
 			return m_elementName;
 		}
 
+		const string XMLManager::XMLElement::GetElementNameUTF8() const noexcept
+		{
+			return Tools::UnicodeToUTF8(m_elementName);
+		}
+
 #if defined EXTREME_XML
 		const wstring& XMLManager::XMLElement::GetValue() const noexcept
 		{
@@ -392,9 +397,19 @@ namespace Monad
 			return GetAttr(XML_ATTR_NAME);
 		}
 
+		const string XMLManager::XMLElement::GetNameAttrUTF8() const
+		{
+			return Tools::UnicodeToUTF8(GetAttr(XML_ATTR_NAME));
+		}
+
 		const wstring& XMLManager::XMLElement::GetIDAttr() const
 		{
 			return GetAttr(XML_ATTR_ID);
+		}
+
+		const string XMLManager::XMLElement::GetIDAttrUTF8() const
+		{
+			return Tools::UnicodeToUTF8(GetAttr(XML_ATTR_ID));
 		}
 		/*void XMLManager::XMLElement::SetValue(const wstring& value)
 		{

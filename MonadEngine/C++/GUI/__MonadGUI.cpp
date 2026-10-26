@@ -8,13 +8,12 @@
 
 // Monad
 #include "Fonts/__MonadFont.h"
-#include "Audio/__MonadAudio.h"
 
 namespace Monad::GUI
 {
 	using namespace Fonts;
 
-	const std::string
+	const Cue
 		JINGLE_CLEAR1{ "clear1"_cue },
 		JINGLE_CLEAR2{ "clear2"_cue },
 		JINGLE_EXIT{ "exit1"_cue },

@@ -47,34 +47,39 @@ namespace
 		const I18NString
 			QUESTION_EXCEPTION
 		{
-			L"This program needs a permission to send\nan anonymous bug report to the developers.\nCould {} post the report?"_us,
-			L"Program wymaga zgody na wysłanie\nanonimowego raportu błędu do twórców.\nCzy {} może przekazać raport ? "_pl,
-			L"Программа требует разрешения на отправку\nанонимного отчета об ошибке разработчикам.\nМожет ли {} отправить отчет?"_ru },
+			L"This program needs a permission to send\nan anonymous bug report to the developers.\nCould {} post the report?"_en_US,
+			L"Program wymaga zgody na wysłanie\nanonimowego raportu błędu do twórców.\nCzy {} może przekazać raport ? "_pl_PL,
+			L"Программа требует разрешения на отправку\nанонимного отчета об ошибке разработчикам.\nМожет ли {} отправить отчет?"_ru_RU },
 			STAGE
 			{
-				L"Stage: "_us,
-				L"Miejsce: "_pl,
-				L"Стадия: "_ru },
-				THREAD
-				{
-					L"Thread: "_us,
-					L"Wątek: "_pl,
-					L"Нить: "_ru },
-					ERROR_DESC
-					{
-						L"Error: "_us,
-						L"Błąd: "_pl,
-						L"Ошибка: "_ru },
-						WINE
-						{
-							L"Windows or Wine: "_us,
-							L"Windows czy Wine: "_pl,
-							L"Windows или Wine: "_ru },
-							PAGE
+				L"Stage: "_en_US,
+				L"Miejsce: "_pl_PL,
+				L"Стадия: "_ru_RU
+			},
+			THREAD
+			{
+				L"Thread: "_en_US,
+				L"Wątek: "_pl_PL,
+				L"Нить: "_ru_RU
+			},
+			ERROR_DESC
+			{
+				L"Error: "_en_US,
+				L"Błąd: "_pl_PL,
+				L"Ошибка: "_ru_RU
+			},
+			WINE
+			{
+				L"Windows or Wine: "_en_US,
+				L"Windows czy Wine: "_pl_PL,
+				L"Windows или Wine: "_ru_RU
+			},
+			PAGE
 		{
-			L"Page: "_us,
-			L"Strona: "_pl,
-			L"Страница: "_ru };
+			L"Page: "_en_US,
+			L"Strona: "_pl_PL,
+			L"Страница: "_ru_RU
+		};
 	}
 }
 
@@ -84,8 +89,7 @@ DialogReportGeneric::DialogReportGeneric()
 		"quick"_pageNo,
 		L"#logo#" + g_parameters->GetParameter(PAR_NAME_APP_TITLE)
 	)
-{
-}
+{}
 
 wstring DialogReportGeneric::GetReportString()
 {
@@ -124,8 +128,7 @@ DialogReportGeneric::ButtonOneToolbar::ButtonOneToolbar(
 		{ horizontalOffset, Monad::GUI::POS_Y },
 		style
 	)
-{
-}
+{}
 
 void DialogReportGeneric::ButtonAbort::OnClick()
 {

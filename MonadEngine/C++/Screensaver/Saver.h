@@ -25,11 +25,11 @@ namespace Monad::Screensaver
 	/// </summary>
 	enum class SCREENSAVER_MODE
 	{
-		CONFIG,         ///< Configuration dialog
-		PREVIEW,        ///< Preview window inside Display Properties
-		FULL,           ///< Full-screen screensaver mode
-		TEST,           ///< Test / debug mode
-		ERROR_IN_EXEC   ///< Legacy password mode or invalid state
+		CONFIGURATION_DIALOG,
+		PREVIEW,        		// Preview window inside Display Properties
+		FULL,
+		TEST,
+		EXECUTION_ERROR			// Legacy password mode or invalid state
 	};
 
 	/// <summary>
@@ -70,5 +70,5 @@ namespace Monad::Screensaver
 	/// <summary>
 	/// Detects and returns screen saver execution parameters.
 	/// </summary>
-	ScreensaverParameters GetScreensaverParameters() noexcept;
+	const ScreensaverParameters GetScreensaverParameters() noexcept;
 }

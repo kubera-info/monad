@@ -13,7 +13,6 @@
 // Monad
 #include "I18N/I18N.h"
 #include "Input/Cursor.h"
-#include "Kernel/Del.h"
 
 namespace Monad::Wnd
 {
@@ -45,7 +44,11 @@ namespace Monad::Wnd
 		/// </summary>
 		virtual ~WindowClass();
 
-		OPER_DEL(WindowClass);
+		WindowClass() = delete;
+		WindowClass(const WindowClass&) = delete;
+		WindowClass& operator=(const WindowClass&) = delete;
+		WindowClass(WindowClass&&) = delete;
+		WindowClass& operator=(WindowClass&&) = delete; 
 
 	protected:
 		/// <summary>

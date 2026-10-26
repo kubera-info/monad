@@ -190,6 +190,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C++\Audio\MediaStreamer.h" />
+    <ClInclude Include="..\..\C++\Audio\__MonadAudio.h" />
     <ClInclude Include="..\..\C++\Exceptions\Exceptions.h" />
     <ClInclude Include="..\..\C++\Exceptions\Catch.h" />
     <ClInclude Include="..\..\C++\Files\Folder.h" />
@@ -216,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\C++\Audio\MediaStreamer.cpp" />
+    <ClCompile Include="..\..\C++\Audio\__MonadAudio.cpp" />
     <ClCompile Include="..\..\C++\Exceptions\Exceptions.cpp" />
     <ClCompile Include="..\..\C++\Files\Folder.cpp" />
     <ClCompile Include="..\..\C++\Files\Op.cpp" />

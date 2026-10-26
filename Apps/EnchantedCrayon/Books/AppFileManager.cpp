@@ -62,7 +62,7 @@ namespace Monad::App
 			FOLDER_AUTO{ DummyParameter{}, "Auto" },
 			FOLDER_BOOT2_WALLPAPER{
 				FOLDER_BOOT2 /
-					VectorRandomString{ "0", "1", "2" }.GetRandomString() };
+					VectorRandom<std::string>{ "0", "1", "2" }.GetRandomString() };
 
 		/// <summary>
 		/// Runtime-dependent asset directories
@@ -131,7 +131,7 @@ namespace Monad::App
 				"4.6.5"
 			);
 
-	
+
 			const auto ver4_8_2 = GetFolderAppDocumentsSettings(
 				Globals::g_userFolder,
 				"4.8.2"
@@ -162,7 +162,7 @@ namespace Monad::App
 	void TaskFileSearcher::SetPaths()
 	{
 		m_folderBoot2Quality = FOLDER_BOOT2 / g_applied.GetStringRendererQuality();
-		m_folderStreamI18N = FOLDER_STREAM / I18N::GetLocaleName();
+		m_folderStreamI18N = FOLDER_STREAM / I18N::g_defaultLocaleManager.GetLocaleName();
 		m_folderAutoQuality = FOLDER_AUTO / g_applied.GetStringRendererQuality();
 	}
 	// Executes file scanning depending on the current application state

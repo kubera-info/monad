@@ -101,6 +101,9 @@
     <ClCompile Include="..\..\C++\GUI\__MonadGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C++\Audio\__MonadAudio.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -197,6 +200,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C++\GUI\__MonadGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C++\Audio\__MonadAudio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

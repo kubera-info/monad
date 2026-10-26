@@ -10,7 +10,6 @@
 
 // Monad
 #include "Kernel/ComManager.h"
-#include "Kernel/Del.h"
 
 namespace Monad::Print
 {
@@ -23,7 +22,10 @@ namespace Monad::Print
 		D2DPrintJobChecker() noexcept;
 		~D2DPrintJobChecker();
 
-		OPER_DEL_NO_DEF_CTOR(D2DPrintJobChecker);
+		D2DPrintJobChecker(const D2DPrintJobChecker&) = delete;
+		D2DPrintJobChecker& operator=(const D2DPrintJobChecker&) = delete;
+		D2DPrintJobChecker(D2DPrintJobChecker&&) = delete;
+		D2DPrintJobChecker& operator=(D2DPrintJobChecker&&) = delete;
 
 		// ---------------------------------------------------------------------
 		// IUnknown
@@ -112,7 +114,7 @@ namespace Monad::Print
 		DWORD m_eventCookie = 0;
 		HANDLE m_completionEvent = nullptr;
 
-		ATG::CriticalSectionLockable m_criticalSection;
+		ATG::CriticalSectionLockable m_lockMessageQueue;
 		IConnectionPoint* m_connectionPoint = nullptr;
 
 		bool m_isInitialized = false;

@@ -40,14 +40,19 @@ namespace Monad::Audio
 			InitializerListQueues queues
 		);
 		~PersistentAudio();
-		OPER_DEL(PersistentAudio);
+		PersistentAudio() = delete;
+		PersistentAudio(const PersistentAudio&) = delete;
+		PersistentAudio& operator=(const PersistentAudio&) = delete;
+		PersistentAudio(PersistentAudio&&) = delete;
+		PersistentAudio& operator=(PersistentAudio&&) = delete;
+
 		/// <summary>
 		/// Parses monad's custom audio format, and creates object ready for playing in XAudio2
 		/// </summary>
 		/// <param name="filename">Custom audio file data name.</param>
 		/// <param name="blob">Binary blob containing a file in a custom audio format.</param>
 		void CreateSound(
-			const std::string& filename,
+			const Cue& filename,
 			const Kernel::VectorBytes& blob
 		);
 		/// <summary>
@@ -67,7 +72,7 @@ namespace Monad::Audio
 		/// <param name="waveFornatEx">structure WAVEFORMATEX</param>
 		/// <param name="buffer">Raw audio data buffer.</param>
 		void TryEmplacePreparedSound(
-			const std::string& filename,
+			const Cue& filename,
 			const WAVEFORMATEX* const waveFornatEx,
 			Kernel::VectorBytes&& buffer
 		);
@@ -78,7 +83,7 @@ namespace Monad::Audio
 		/// <param name="waveFornatEx">structure WAVEFORMATEX<./param>
 		/// <param name="buffer">Raw audio data buffer.</param>
 		void InsertOrAssignPreparedSound(
-			const std::string& filename,
+			const Cue& filename,
 			const WAVEFORMATEX* const waveFornatEx,
 			Kernel::VectorBytes&& buffer
 		);
@@ -88,7 +93,7 @@ namespace Monad::Audio
 		/// <param name="filename">Name of stream</param>
 		/// <param name="stream">Entire MP3 file provided as a stream.</param>
 		void CreateStream(
-			const std::string& filename,
+			const Cue& filename,
 			IStream* stream
 		);
 		void SetMasterVoiceVolume(
@@ -101,14 +106,14 @@ namespace Monad::Audio
 		/// <param name="queue">Queue ID</param>
 		void SetVoiceVolumeGeneric(
 			const float volume,
-			const std::string& queue
+			const Queue& queue
 		);
 		/// <summary>
 		/// Stops playback of the queue and flushes all its contents.
 		/// </summary>
 		/// <param name="queue">Queue ID</param>
 		void ResetQueue(
-			const std::string& queue
+			const Queue& queue
 		);
 		/// <summary>
 		/// Restores the state to what it was before playing DESCRIBE.
@@ -122,8 +127,8 @@ namespace Monad::Audio
 		/// <param name="queue">Queue ID</param>
 		/// <param name="callback">The callback of PCM Buffer</param>
 		void EnqueueSound(
-			const std::string& filename,
-			const std::string& queue,
+			const Cue& filename,
+			const Queue& queue,
 			IWaveCallback* const callback = nullptr
 		);
 		/// <summary>
@@ -131,14 +136,14 @@ namespace Monad::Audio
 		/// </summary>
 		/// <param name="filename">The name of PCM Buffer.</param>
 		void PlayJingle(
-			const std::string& filename
+			const Cue& filename
 		);
 		/// <summary>
 		/// Flushes the Voice Manager for DESCRIBE and immediately starts playback of a new sound.
 		/// </summary>
 		/// <param name="filename">The name of PCM Buffer.</param>
 		void Describe(
-			const std::string& filename
+			const VectorCue& filenames
 		);
 		/// <summary>
 		/// Determines if the Voice Manager has any active playback.
@@ -146,7 +151,7 @@ namespace Monad::Audio
 		/// <param name="queue">Queue ID</param>
 		/// <returns>Returns true if a voice is currently playing, including when there is a buffer queued for playback.</returns>
 		bool IsPlaying(
-			const std::string& queue = STREAM
+			const Queue& queue = STREAM
 		) noexcept;
 		/// <summary>
 		/// Disables all queues except for DESCRIBE; the help speech queue remains always available.
@@ -188,25 +193,25 @@ namespace Monad::Audio
 		/// <param name="queue">Queue ID</param>
 		/// <returns>Queue volume, maintained as a persistent state even across XAudio invalidations.</returns>
 		float GetVolume(
-			const std::string& queue
+			const Queue& queue
 		) const noexcept;
 
 	private:
 		const Kernel::Me<PersistentAudio> c_me;
-		Kernel::FlatMapString<float> m_voicesVolumesCache;
+		std::flat_map<Queue, float> m_voicesVolumesCache;
 		ATG::CriticalSectionLockable m_lockAudio;
 		std::atomic_bool m_inRestart = false;
 
 		void PlayImmediate(
-			const std::string& filename,
-			const std::string& queue,
+			const Cue& filename,
+			const Queue& queue,
 			IWaveCallback* const callback = nullptr
 		);
 		const bool IsEnabled() const noexcept;
 		void InternalSetStream();
 
 		void InsertTaskStream(TaskAudioGeneric* const task);
-		PtrWaveBuffer GetSound(const std::string& filename);
+		PtrWaveBuffer GetSound(const Cue& filename);
 
 		TaskRestart m_taskRestart;
 		TaskShutdown m_taskShutdown;
@@ -219,7 +224,7 @@ namespace Monad::Audio
 		/// <summary>
 		/// List of identifiers for all currently loaded audio streams.
 		/// </summary>
-		Kernel::VectorRandomString m_streamsNames;
+		VectorRandomCue m_streamsNames;
 		/// <summary>
 		/// Media Foundation Manager.
 		/// </summary>
@@ -228,8 +233,8 @@ namespace Monad::Audio
 		/// A unique repository of WAVEFORMATEX structures for all audio formats discovered in assets.
 		/// </summary>
 		SetWaveFormatEx m_formatSignatures;
-		Kernel::FlatMapString<PtrWaveBuffer> m_waveBuffers;
-		Kernel::FlatMapString<MediaStreamer> m_streams;
+		std::flat_map<Cue, PtrWaveBuffer> m_waveBuffers;
+		std::flat_map<Cue, MediaStreamer> m_streams;
 		struct StreamWave final : IWaveCallback
 		{
 			using IWaveCallback::IWaveCallback;
@@ -247,36 +252,36 @@ namespace Monad::Audio
 		void InternalRestart();
 		void InternalInit();
 		bool InternalIsPlaying(
-			const std::string& queue
+			const Queue& queue
 		) const noexcept;
 		void InternalShutdown() noexcept;
 		void InternalSetVoiceVolume(
 			const float volume,
-			const std::string& queue
+			const Queue& queue
 		);
 		bool InternalContainsQueue(
-			const std::string& queue
+			const Queue& queue
 		) const noexcept;
 		bool InternalReadyContainsQueue(
-			const std::string& queue
+			const Queue& queue
 		) const noexcept;
 		void InternalSetVoiceVolumeXAudio2(
 			const float volume,
-			const std::string& queue
+			const Queue& queue
 		);
 		void InternalResetQueue(
-			const std::string& queue
+			const Queue& queue
 		);
 		void InternalEnqueueSound(
-			const std::string& filename,
-			const std::string& queue = STREAM,
+			const Cue& filename,
+			const Queue& queue = STREAM,
 			IWaveCallback* const callback = nullptr
 		);
 		void InternalEnqueueStream(
-			const std::string& filename
+			const Cue& filename
 		);
 		void InternalAfterWave(
-			const std::string& queue
+			const Queue& queue
 		);
 		void InternalSetMuted();
 		void InternalClearCurrentStream();

@@ -27,7 +27,7 @@ namespace Monad
 			/// <returns>Font monad</returns>
 			Text2Mesh& GetFont(
 				GUI::DialogGeneric& ownerDialog,
-				const std::string& name
+				const ShaderResourceName& name
 			);
 
 		private:

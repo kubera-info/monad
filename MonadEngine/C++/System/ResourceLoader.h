@@ -9,7 +9,7 @@
 
 namespace Monad::System
 {
-	struct TaskSaverProfileIco : public Threads::ThreadPool::ITask
+	struct TaskSaverProfileIco : Threads::ThreadPool::ITask
 	{
 		TaskSaverProfileIco();
 		void Run() final;

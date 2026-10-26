@@ -59,7 +59,7 @@ namespace Monad
 			/// for subtle animation of palette colors.
 			/// </summary>
 			/// <param name="speed">Speed multiplier of oscillation.</param>
-			/// <returns>Animated scalar in range ~[0.0�0.25]</returns>
+			/// <returns>Animated scalar in range ~[0.0©0.25]</returns>
 			float GetColorScalar(const double speed) noexcept
 			{
 				return static_cast<float>(

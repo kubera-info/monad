@@ -29,7 +29,7 @@ namespace Monad::Repositories
 	{
 		using M::M;
 
-		ATG::CriticalSectionLockable m_lockSafeInsert;
+		ATG::CriticalSectionLockable m_lockInsert;
 
 		/// <summary>
 		/// Gets element by name
@@ -87,7 +87,7 @@ namespace Monad::Repositories
 			_Mappedty&&... internalType
 		)
 		{
-			const std::lock_guard lg(m_lockSafeInsert);
+			const std::lock_guard lg(m_lockInsert);
 			this->UnsafeInsert(
 				std::move(filename),
 				std::forward<_Mappedty>(internalType)...
@@ -100,7 +100,7 @@ namespace Monad::Repositories
 			_Mappedty&&... internalType
 		)
 		{
-			const std::lock_guard lg(m_lockSafeInsert);
+			const std::lock_guard lg(m_lockInsert);
 			this->UnsafeInsert(
 				filename,
 				std::forward<_Mappedty>(internalType)...
@@ -153,9 +153,9 @@ namespace Monad::Repositories
 
 		bool OnClearD3DAssetsStub() noexcept final
 		{
-			this->m_lockSafeInsert.lock();
+			this->m_lockInsert.lock();
 			this->clear();
-			this->m_lockSafeInsert.unlock();
+			this->m_lockInsert.unlock();
 			return true;
 		}
 	};

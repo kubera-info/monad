@@ -58,7 +58,8 @@ namespace Monad::Files
 			dwCreationDisposition,
 			dwFlagsAndAttributes,
 			nullptr
-		))
+		)),
+		m_path(path)
 	{
 		if (INVALID_HANDLE_VALUE == m_handle) [[unlikely]]
 		{
@@ -82,9 +83,9 @@ namespace Monad::Files
 			m_handle,
 			&fileSize
 		))
-			THROW_EXC(Exceptions::IOError, HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND), L"File not open #2");
+			THROW_EXC(Exceptions::IOError, HRESULT_FROM_WIN32(ERROR_FILE_NOT_FOUND), L"File not open #2: " + m_path.wstring());
 		if (fileSize.HighPart > 0 || fileSize.LowPart > ZIP_BOMB_RANGE_SIZE) [[unlikely]]
-			THROW_EXC(Exceptions::IOError, HRESULT_FROM_WIN32(ERROR_FILE_TOO_LARGE), L"Pack Bomb");
+			THROW_EXC(Exceptions::IOError, HRESULT_FROM_WIN32(ERROR_FILE_TOO_LARGE), L"Pack Bomb:" + m_path.wstring());
 		return fileSize.LowPart;
 	}
 

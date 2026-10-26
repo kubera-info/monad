@@ -144,7 +144,7 @@ namespace Monad
 				struct RegistryWriteDefaultSketchName : Registry
 				{
 					RegistryWriteDefaultSketchName(
-						const string& profile
+						const wstring& profile
 					) noexcept :
 						Registry{ KEY_WRITE }
 					{
@@ -154,7 +154,7 @@ namespace Monad
 						);
 					}
 				} defaultSketchName(
-					m_currentArtProfile.m_currentArt->first);
+					Tools::UTF8ToUnicode(m_currentArtProfile.m_currentArt->first));
 			}
 		}
 
@@ -237,7 +237,7 @@ namespace Monad
 					Registry(KEY_READ)
 				{
 					g_repository->FindAndSetArtByFilename(
-						GetString(L"Art")
+						Tools::UnicodeToUTF8(GetString(L"Art"))
 					);
 				}
 			} defaultSketch;

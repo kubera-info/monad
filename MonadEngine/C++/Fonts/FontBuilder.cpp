@@ -35,7 +35,7 @@ namespace Monad
 #pragma region Text2Mesh
 		Text2Mesh::Text2Mesh(
 			GUI::DialogGeneric& ownerDialog,
-			const string& fontName
+			const ShaderResourceName& fontName
 		) :
 			TexGUI{
 				"font"_technique,
@@ -186,7 +186,7 @@ namespace Monad
 
 #pragma region ForecolorGeneric
 		ForecolorGeneric::ForecolorGeneric(
-			const std::string& counter
+			const ConstantBufferName& counter
 		) noexcept :
 			CB::ForecolorInstance(counter),
 			c_me(this, g_forecolorFontGeneric

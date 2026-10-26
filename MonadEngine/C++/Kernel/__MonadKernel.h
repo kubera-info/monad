@@ -19,8 +19,8 @@ namespace Monad::Kernel
 	{
 		switch (memcmp(&left, &right, sizeof(P)))
 		{
-		case 0: return std::strong_ordering::equivalent;
 		case -1: return std::strong_ordering::less;
+		case 0: return std::strong_ordering::equivalent;
 		case 1: return std::strong_ordering::greater;
 		default: std::unreachable();
 		}

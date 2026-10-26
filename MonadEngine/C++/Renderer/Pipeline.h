@@ -25,7 +25,7 @@ namespace Monad::Renderer
 	// FlatMapTechnique
 	// =========================================================================
 
-	using FlatMapTechnique = std::flat_map<size_t, std::string>;
+	using FlatMapTechnique = std::flat_map<size_t, FXName>;
 	using ParamListStates = std::initializer_list<std::pair<size_t, std::string>>;
 
 	// =========================================================================
@@ -114,7 +114,7 @@ public:
 			InitD3D12Ranges1::InitializerListInitRanges ranges
 		);
 		void CreateGraphicsPipelineStateGeneric(
-			const std::string& id
+			const FXName& id
 		);
 		void SetMe() const noexcept;
 		uint32_t QueryTableParameter(
@@ -147,7 +147,7 @@ public:
 
 	protected:
 		virtual const D3D12_GRAPHICS_PIPELINE_STATE_DESC CreateGraphicsPipelineStateDesc(
-			const std::string& id
+			const FXName& id
 		) = 0;
 
 		InitD3D12Ranges1* m_parametersDef = nullptr;
@@ -157,13 +157,13 @@ public:
 	// Shader maps
 	// =========================================================================
 
-	struct MapFX : Kernel::FlatMapString<std::shared_ptr<ShaderConfigGeneric>>
+	struct MapFX : std::flat_map<FXName, std::shared_ptr<ShaderConfigGeneric>>
 	{
-		using Kernel::FlatMapString<std::shared_ptr<ShaderConfigGeneric>>::FlatMapString;
+		using std::flat_map<FXName, std::shared_ptr<ShaderConfigGeneric>>::flat_map;
 		using InitializerListFXes = std::initializer_list<value_type>;
 
 		ShaderConfigGeneric* GetPipeline(
-			const std::string& id
+			const FXName& id
 		);
 	};
 
@@ -198,7 +198,7 @@ namespace Monad::App
 
 	private:
 		const D3D12_GRAPHICS_PIPELINE_STATE_DESC CreateGraphicsPipelineStateDesc(
-			const std::string& id
+			const FXName& id
 		) final;
 	};
 }

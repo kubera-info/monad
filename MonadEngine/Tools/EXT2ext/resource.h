@@ -2,7 +2,7 @@
 // Microsoft Visual C++ generated include file.
 // Used by Resource.rc
 
-// Nastêpne wartoœci domyœlne dla nowych obiektów
+// NastÂ©pne wartoÂ©ci domyÂ©lne dla nowych obiektÂ©w
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS

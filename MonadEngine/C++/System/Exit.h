@@ -22,7 +22,7 @@ namespace Monad::System
 
 	/// <summary>
 	/// Sets the process exit code.
-	/// Only the first call has effect � subsequent calls are ignored.
+	/// Only the first call has effect © subsequent calls are ignored.
 	/// </summary>
 	/// <param name="exitCode">
 	/// Exit code to be stored.

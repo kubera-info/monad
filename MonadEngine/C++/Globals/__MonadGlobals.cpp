@@ -16,16 +16,10 @@ namespace Monad::Globals
 	using namespace Exceptions;
 	using namespace Kernel;
 
-	I18N::VectorSimplifiedLocaleNames g_simplifiedLocaleNames
-	{
-	{ regex{ R"((^pl$)|(^.+\-PL$))" }, "pl-PL" },
-	{ regex{ R"((^ru$)|(^ru\-.+$))" }, "ru-RU" },
-	{ regex{ R"(^en\-GB$)" }, "en-GB" }
-	};
 	I18N::I18NString
-		g_shortAppName{ L"noname" },
-		g_fullAppName{ L"noname" },
-		g_copyright{ L"Place your copyrignt/copyleft"_us };
+		g_shortAppName{ L"noname"_en_US },
+		g_fullAppName{ L"noname"_en_US },
+		g_copyright{ L"Place your copyrignt/copyleft"_en_US };
 	std::wstring
 		g_whoAmI,
 		g_adapterDesc,

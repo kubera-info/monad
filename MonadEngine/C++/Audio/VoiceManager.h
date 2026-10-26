@@ -25,11 +25,9 @@ namespace Monad::Audio
 	{
 		VoiceManager(
 			IXAudio2* const xAudio2,
-			const std::string& queue
+			const Queue& queue
 		);
-		VoiceManager(const VoiceManager& source) = delete;
 		VoiceManager(VoiceManager&& source) = default;
-		VoiceManager& operator=(const VoiceManager& source) = delete;
 		VoiceManager& operator=(VoiceManager&& source) = default;
 
 		void OnFrameMove() noexcept final;
@@ -101,13 +99,13 @@ namespace Monad::Audio
 			return ifFound != self.m_distinctVoices.cend() ? &ifFound->second : nullptr;
 		}
 
-		ATG::CriticalSectionLockable m_lockSafeQueue;
+		ATG::CriticalSectionLockable m_lockQueue;
 		IXAudio2* m_xAudio2 = nullptr;
 		std::queue<WaveToPlayWithCallback> m_voiceCommandQueue;
 		WaveToPlayWithCallback m_currentWave;
 
 		// All voices managed within a single Voice Manager.
 		std::unordered_map <const WAVEFORMATEX*, Voice> m_distinctVoices;
-		std::string m_queue;
+		Queue m_queue;
 	};
 }

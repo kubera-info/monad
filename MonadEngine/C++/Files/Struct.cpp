@@ -258,7 +258,11 @@ namespace Monad
 					{
 						Lzma2Enc_Destroy(m_lzma2Handle);
 					}
-					OPER_DEL_NO_DEF_CTOR(LZMAHandle);
+					LZMAHandle(const LZMAHandle&) = delete;
+					LZMAHandle& operator=(const LZMAHandle&) = delete;
+					LZMAHandle(LZMAHandle&&) = delete;
+					LZMAHandle& operator=(LZMAHandle&&) = delete;
+
 					inline operator const CLzma2EncHandle& () const noexcept
 					{
 						return m_lzma2Handle;

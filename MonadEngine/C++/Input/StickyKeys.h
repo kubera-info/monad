@@ -4,9 +4,6 @@
 
 #pragma once
 
-// Monad
-#include "Kernel/Del.h"
-
 namespace Monad::Input
 {
 	/// <summary>
@@ -24,7 +21,10 @@ namespace Monad::Input
 		/// </summary>
 		~StickyKeys();
 
-		OPER_DEL_NO_DEF_CTOR(StickyKeys);
+		StickyKeys(const StickyKeys&) = delete;
+		StickyKeys& operator=(const StickyKeys&) = delete;
+		StickyKeys(StickyKeys&&) = delete;
+		StickyKeys& operator=(StickyKeys&&) = delete; 
 
 	private:
 		/// <summary>

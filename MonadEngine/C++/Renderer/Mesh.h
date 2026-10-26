@@ -8,7 +8,6 @@
 #include <memory>
 
 // Monad
-#include "Kernel/Del.h"
 #include "CommandList.h"
 #include "__MonadRenderer.h"
 
@@ -78,7 +77,11 @@ namespace Monad::Renderer
 					|| std::is_same_v<typename I::value_type, uint32_t>,
 					"Indices must be uint16_t or uint32_t");
 			}
-			OPER_DEL(MeshHelper);
+			MeshHelper() = delete;
+			MeshHelper(const MeshHelper&) = delete;
+			MeshHelper& operator=(const MeshHelper&) = delete;
+			MeshHelper(MeshHelper&&) = delete;
+			MeshHelper& operator=(MeshHelper&&) = delete;
 
 		private:
 			inline uint32_t GetIndexCount() const noexcept;
@@ -93,10 +96,13 @@ namespace Monad::Renderer
 			const bool release = true
 		);
 		Mesh(
-			const std::string& meshFilename
+			const MeshName& meshFilename
 		);
 		~Mesh() = default;
-		OPER_DEF_NO_DEF_CTOR(Mesh);
+		Mesh(const Mesh&) = default;
+		Mesh& operator=(const Mesh&) = default;
+		Mesh(Mesh&&) = default;
+		Mesh& operator=(Mesh&&) = default;
 
 		void SetBuffers(
 			const MeshHelper& meshDef,

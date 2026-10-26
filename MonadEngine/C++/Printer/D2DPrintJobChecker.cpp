@@ -144,9 +144,9 @@ namespace Monad::Print
 			// since PackageStatusUpdated may be called in a very short time slot.
 			try
 			{
-				m_criticalSection.lock();
+				m_lockMessageQueue.lock();
 				m_documentPackageStatus = *packageStatus;
-				m_criticalSection.unlock();
+				m_lockMessageQueue.unlock();
 			}
 			catch (std::system_error&)
 			{

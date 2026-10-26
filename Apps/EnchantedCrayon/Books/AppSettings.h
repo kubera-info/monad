@@ -75,14 +75,14 @@ namespace Monad::App
 				RadioButtonFlag(
 					uint32_t& currID,
 					RadioButtonManagerLang& manager,
-					const std::string& flag,
-					const std::string& localeName
+					const ShaderResourceName& flag,
+					const std::wstring& localeName
 				);
 
 				void OnClick() override;
 
 			private:
-				const std::string c_localeName;
+				const std::wstring c_localeName;
 			};
 
 			uint32_t m_locale;

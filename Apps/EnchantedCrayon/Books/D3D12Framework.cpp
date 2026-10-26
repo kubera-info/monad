@@ -52,9 +52,9 @@ SingleCall g_setArtStubs(true);
 D3D12Core::D3D12Core() :
 	DXSample{
 		{
-			InputLayout::FontEndEmoji()
-			+ InputLayout::Basics()
-			+ InputLayout::Image()
+			InputLayout::FontEndEmoji
+			+ InputLayout::Basics
+			+ InputLayout::Image
 		},
 		{
 			.c_bareCbvSrvCount = CBV_SRV_COUNT,
@@ -302,6 +302,7 @@ D3D12Core::D3D12Core() :
 		{ "shadow"_constantBuffer, { sizeof DirectX::XMFLOAT4X4, 240 } }
 	} }
 {
+	m_shadows.emplace();
 	LoadPipeline();
 	LoadAssets();
 }
@@ -320,7 +321,6 @@ D3D12Core::~D3D12Core()
 
 void D3D12Core::OnUpdate()
 {
-	Monad::Time::g_timer.GetTimeValue(Monad::Time::g_fTime);
 	static auto fPreviousTime = Monad::Time::g_fTime;
 	if (fPreviousTime + 1 < Monad::Time::g_fTime && Monad::System::IsOSWine())
 	{
@@ -387,8 +387,7 @@ void D3D12Core::OnUpdate()
 				m_height,
 				1024U);
 		}
-
-		m_shadows.CreateDepthStencil(
+		m_shadows->CreateDepthStencil(
 #if defined _DEBUG
 			L"Shadow",
 #endif
@@ -454,11 +453,11 @@ void D3D12Core::OnRender()
 {
 	// Record all the commands we need to render the scene into the command lists.
 /*#if defined MONAD_PIX
-	PIXBeginEvent(m_commandQueue.Get(), 0, L"Render");
+	PIXBeginEvent(m_taskQueue.Get(), 0, L"Render");
 #endif*/
 	PopulateCommandLists();
 	/*#if defined MONAD_PIX
-		PIXEndEvent(m_commandQueue.Get());
+		PIXEndEvent(m_taskQueue.Get());
 	#endif*/
 
 	// Execute the command lists.
@@ -531,11 +530,11 @@ void D3D12Core::PopulateCommandLists()
 		DequeuePage();
 		{
 			const auto scopedTransition = m_commandList.ScopedTransition({ {
-				m_shadows.GetDsResource(),
+				m_shadows->GetDsResource(),
 				D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE,
 				D3D12_RESOURCE_STATE_DEPTH_WRITE } }
 				);
-			m_shadows.SetMe();
+			m_shadows->SetMe();
 			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_SHADOW);
 		}
 #pragma endregion

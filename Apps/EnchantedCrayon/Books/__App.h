@@ -21,4 +21,4 @@ namespace Monad::App
 		CBV_SRV_COUNT = SRV::CACHED_PALETTE_VECTORS_COUNT + SRV_GHOST;
 }
 
-#define APP_VER L"6.0.2"
+#define APP_VER L"6.0.6"

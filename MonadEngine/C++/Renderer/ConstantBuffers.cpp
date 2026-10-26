@@ -192,7 +192,7 @@ namespace Monad::Renderer
 
 #pragma region CBInstanceGeneric
 		CBInstanceGeneric::CBInstanceGeneric(
-			const std::string& counter,
+			const ConstantBufferName& counter,
 			CB_STATES pair,
 			Registers::CONSTANT_BUFFER baseShaderRegister
 		) :
@@ -266,34 +266,38 @@ namespace Monad::Renderer
 		{
 			return m_typedCounter.m_resCounter.IsFragmentedSwap();
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="_Key_val"></param>
+		/// <returns></returns>
 		MapConstantBufferManager::iterator MapConstantBufferManager::find(
 			const MapConstantBufferManager::key_type& _Key_val
 		)
 		{
-			auto manager = Kernel::FlatMapString<CBTypeCtrl>::find(_Key_val);
+			auto manager = __super::find(_Key_val);
 			THROW_EXC_ONEND(*this, manager, L"CB Manager");
 			return manager;
 		}
 
 		MapConstantBufferManager::const_iterator MapConstantBufferManager::cbegin() const noexcept
 		{
-			return Kernel::FlatMapString<CBTypeCtrl>::cbegin();
+			return __super::cbegin();
 		}
 
 		MapConstantBufferManager::const_iterator MapConstantBufferManager::cend() const noexcept
 		{
-			return Kernel::FlatMapString<CBTypeCtrl>::cend();
+			return __super::cend();
 		}
 
 		MapConstantBufferManager::iterator MapConstantBufferManager::begin() noexcept
 		{
-			return Kernel::FlatMapString<CBTypeCtrl>::begin();
+			return __super::begin();
 		}
 
 		MapConstantBufferManager::iterator MapConstantBufferManager::end() noexcept
 		{
-			return Kernel::FlatMapString<CBTypeCtrl>::end();
+			return __super::end();
 		}
 #pragma endregion
 	}

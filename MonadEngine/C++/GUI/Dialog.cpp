@@ -30,7 +30,7 @@ namespace Monad
 		{
 			constexpr XMFLOAT4 MAX_DIALOG{ -1.0f, -1.0f, 1.0f, 1.0f };
 			constexpr float LEFT_PADDING = 0.04f;
-			const I18NString HORIZONTAL_ELLIPSIS{ L"\x2026"_us };
+			const I18NString HORIZONTAL_ELLIPSIS{ L"\x2026"_en_US };
 		}
 		DialogGeneric::DialogGeneric(
 			const std::string& pageNo,
@@ -63,7 +63,7 @@ namespace Monad
 		}
 
 		Text2Mesh& DialogGeneric::GetFont(
-			const std::string& fontName
+			const ShaderResourceName& fontName
 		)
 		{
 			return m_guiText.GetFont(

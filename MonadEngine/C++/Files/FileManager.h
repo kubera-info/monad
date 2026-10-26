@@ -5,6 +5,7 @@
 #pragma once
 
 // Monad
+#include "Audio/__MonadAudio.h"
 #include "Kernel/Dummy.h"
 #include "Kernel/Templates.h"
 #include "Struct.h"
@@ -63,7 +64,12 @@ namespace Monad::Files
 		friend TaskFileHolderGeneric;
 
 		~TaskFileSearcherGeneric() override;
-		OPER_DEL(TaskFileSearcherGeneric);
+		TaskFileSearcherGeneric() = delete;
+		TaskFileSearcherGeneric(const TaskFileSearcherGeneric&) = delete;
+		TaskFileSearcherGeneric& operator=(const TaskFileSearcherGeneric&) = delete;
+		TaskFileSearcherGeneric(TaskFileSearcherGeneric&&) = delete;
+		TaskFileSearcherGeneric& operator=(TaskFileSearcherGeneric&&) = delete;
+
 		/// <summary>
 		/// Paths with wildcards to load.
 		/// </summary>
@@ -133,7 +139,11 @@ namespace Monad::Files
 			TaskFileSearcherGeneric* const fileSearcher,
 			std::filesystem::path && filePath
 		) noexcept;
-		OPER_DEL(TaskFileHolderGeneric);
+		TaskFileHolderGeneric() = delete;
+		TaskFileHolderGeneric(const TaskFileHolderGeneric&) = delete;
+		TaskFileHolderGeneric& operator=(const TaskFileHolderGeneric&) = delete;
+		TaskFileHolderGeneric(TaskFileHolderGeneric&&) = delete;
+		TaskFileHolderGeneric& operator=(TaskFileHolderGeneric&&) = delete;
 
 		std::wstring GetWFilename() const; // The filename without the extension
 		std::string GetFilename() const; // The filename without the extension
@@ -230,7 +240,11 @@ const Kernel::SpanConstBytes c_span;
 			const DWORD fileSize
 		) noexcept;
 		~FileRefHolder() override;
-		OPER_DEL(FileRefHolder);
+		FileRefHolder() = delete;
+		FileRefHolder(const FileRefHolder&) = delete;
+		FileRefHolder& operator=(const FileRefHolder&) = delete;
+		FileRefHolder(FileRefHolder&&) = delete;
+		FileRefHolder& operator=(FileRefHolder&&) = delete;
 	};
 	void DropProfile() noexcept;
 
@@ -266,12 +280,12 @@ const Kernel::SpanConstBytes c_span;
 
 	const auto LOADER_PCM = [](TaskFileHolderGeneric& file)
 		{
-			Audio::g_persistentAudio->CreateSound(file.GetFilename(), file.GetVector());
+			Audio::g_persistentAudio->CreateSound(Cue(file.GetFilename()), file.GetVector());
 		};
 
 	const auto LOADER_MP3 = [](TaskFileHolderGeneric& file)
 		{
-			Audio::g_persistentAudio->CreateStream(file.GetFilename(), file.GetComIStreamOnCopy().Get()); \
+			Audio::g_persistentAudio->CreateStream(Cue(file.GetFilename()), file.GetComIStreamOnCopy().Get()); \
 		};
 
 	const auto LOADER_TEX = [](TaskFileHolderGeneric& file)

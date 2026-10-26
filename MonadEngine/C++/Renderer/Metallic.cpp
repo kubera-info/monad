@@ -15,7 +15,7 @@ using namespace std;
 namespace Monad::Renderer
 {
 	ShaderMetallicGeneric::ShaderMetallicGeneric(
-		const string& technique,
+		const TechniqueName& technique,
 		Mesh mesh,
 		const CB::PipeColor& metallic,
 		const XMFLOAT4& dialogFrame
@@ -42,7 +42,7 @@ namespace Monad::Renderer
 	{}
 
 	ShaderMetallicGeneric::ShaderMetallicGeneric(
-		const string& technique,
+		const TechniqueName& technique,
 		Mesh mesh
 	) :
 		Shader{
@@ -53,7 +53,7 @@ namespace Monad::Renderer
 	{}
 
 	ShaderMetallicGeneric::ShaderMetallicGeneric(
-		const string& technique,
+		const TechniqueName& technique,
 		Mesh mesh,
 		const Renderer::CB::PipeColor& metallic
 	) :

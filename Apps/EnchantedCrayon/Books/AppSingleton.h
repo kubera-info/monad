@@ -31,7 +31,10 @@ namespace Monad::App
 	struct PersistentSingleton final
 	{
 		PersistentSingleton();
-		OPER_DEL_NO_DEF_CTOR(PersistentSingleton);
+		PersistentSingleton(const PersistentSingleton&) = delete;
+		PersistentSingleton& operator=(const PersistentSingleton&) = delete;
+		PersistentSingleton(PersistentSingleton&&) = delete;
+		PersistentSingleton& operator=(PersistentSingleton&&) = delete;
 
 		void InsertTask(
 			Threads::ThreadPool::ITask* const task
@@ -89,7 +92,7 @@ namespace Monad::App
 				bool m_exit = true;
 				bool m_vSync = false;
 				uint32_t m_quality = 0;
-				std::string m_locale = I18N::GetLocaleName();
+				std::wstring m_locale = I18N::g_defaultLocaleManager.GetLocaleName();
 			} m_before;
 
 			struct ConfigRecordGlobal : ConfigRecord

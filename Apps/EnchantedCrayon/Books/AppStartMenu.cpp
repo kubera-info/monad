@@ -244,7 +244,7 @@ namespace Monad
 
 		void DialogArtSelection::ButtonHelp::OnClick()
 		{
-			Audio::g_persistentAudio->Describe("help_menu");
+			Audio::g_persistentAudio->Describe({ "help_menu"_cue });
 		}
 
 		DialogArtSelection::CheckboxAudioGeneric::CheckboxAudioGeneric(const GUI::IconicStyle& style, bool& isSelected) :

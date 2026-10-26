@@ -16,7 +16,7 @@ using namespace DirectX;
 namespace Monad::Renderer
 {
 	ShaderNoLight::ShaderNoLight(
-		const std::string& technique,
+		const TechniqueName& technique,
 		Mesh mesh
 	) :
 		ShaderGeneric(
@@ -96,7 +96,7 @@ namespace Monad::Renderer
 	}
 
 	Shader::Shader(
-		const std::string& technique,
+		const TechniqueName& technique,
 		Mesh mesh
 	) :
 		ShaderNoLight(

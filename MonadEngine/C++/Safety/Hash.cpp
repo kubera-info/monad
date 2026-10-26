@@ -50,7 +50,11 @@ namespace Monad::Safety::SafetyCore
 				//if (m_hash)
 				BCryptDestroyHash(m_hash);
 			}
-			OPER_DEL(SHA256);
+			SHA256() = delete;
+			SHA256(const SHA256&) = delete;
+			SHA256& operator=(const SHA256&) = delete;
+			SHA256(SHA256&&) = delete;
+			SHA256& operator=(SHA256&&) = delete;
 			/// <summary>
 			/// Calculates using SHA256Manager, SHA256, for a list of buffers
 			/// </summary>

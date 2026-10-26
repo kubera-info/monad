@@ -29,7 +29,10 @@ struct D3D12Core : DXSample
 {
 	D3D12Core();
 	~D3D12Core() override;
-	OPER_DEL_NO_DEF_CTOR(D3D12Core);
+	D3D12Core(const D3D12Core&) = delete;
+	D3D12Core& operator=(const D3D12Core&) = delete;
+	D3D12Core(D3D12Core&&) = delete;
+	D3D12Core& operator=(D3D12Core&&) = delete;
 
 private:
 	void NewFrame();

@@ -6,7 +6,6 @@
 
 // Monad
 #include "Tex.h"
-#include "Kernel/Del.h"
 
 namespace Monad::Renderer
 {
@@ -58,8 +57,11 @@ namespace Monad::Renderer
 			long dy,
 			uint32_t sampleCount = 1
 		);
-		OPER_DEL_NO_DEF_CTOR(RenderTargetDepthStencilGeneric);
-
+		RenderTargetDepthStencilGeneric(const RenderTargetDepthStencilGeneric&) = delete;
+		RenderTargetDepthStencilGeneric& operator=(const RenderTargetDepthStencilGeneric&) = delete;
+		RenderTargetDepthStencilGeneric(RenderTargetDepthStencilGeneric&&) = delete;
+		RenderTargetDepthStencilGeneric& operator=(RenderTargetDepthStencilGeneric&&) = delete;
+		
 	public:
 		void SetMe() noexcept;
 

@@ -310,7 +310,7 @@ namespace Monad
 		}
 
 		Texture::Texture(
-			const std::string& filename
+			const ShaderResourceName& filename
 		) :
 			Texture{
 			Repositories::g_repositoryGeneric->m_shaderResources.GetMember(filename)

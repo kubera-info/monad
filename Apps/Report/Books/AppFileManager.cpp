@@ -33,13 +33,6 @@ namespace Monad::App
 
 	namespace
 	{
-		// Removes a file or directory without throwing exceptions
-		void Remove(const fs::path& path) noexcept
-		{
-			std::error_code ec;
-			fs::remove(path, ec);
-		}
-
 		/// <summary>
 		/// Base asset directories used by the application.
 		/// </summary>

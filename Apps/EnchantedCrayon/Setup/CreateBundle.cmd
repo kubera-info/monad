@@ -6,7 +6,7 @@ rem ##########################################################################
 
 call "c:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars64.bat"
 
-set APPVER=6.0.6.0
+set APPVER=6.0.8.0
 mkdir bundle
 del bundle\*.msixbundle
 copy "SetupBook\AppPackages\SetupBook_%APPVER%_ARM64_Setup_Test\*.msix" bundle\

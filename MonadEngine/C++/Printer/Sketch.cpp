@@ -16,7 +16,7 @@ namespace Monad::Print
 	ShaderSketchGeneric::ShaderSketchGeneric()
 		: ShaderTextured(
 			"blank_tex"_technique,
-			{ Kernel::GHOST },
+			{ ShaderResourceName{ Kernel::GHOST } },
 			Renderer::Registers::INPUT_RESOURCE::T2,
 			"pane"_mesh
 		),

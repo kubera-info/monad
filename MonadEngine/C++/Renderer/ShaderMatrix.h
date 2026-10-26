@@ -15,7 +15,7 @@ namespace Monad::Renderer
 	{
 	protected:
 		ShaderNoLight(
-			const std::string & technique,
+			const TechniqueName& technique,
 			Mesh mesh
 		);
 		void OnComputePerWorldFrame(
@@ -38,7 +38,7 @@ namespace Monad::Renderer
 	{
 	protected:
 		Shader(
-			const std::string & technique,
+			const TechniqueName& technique,
 			Mesh mesh
 		);
 		void OnComputePerWorldFrame(

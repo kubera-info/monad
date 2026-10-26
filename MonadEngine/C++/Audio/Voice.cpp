@@ -64,7 +64,8 @@ namespace Monad::Audio
 	{
 		if (!g_persistentAudio->IsReady())
 			return S_OK;
-		assert(nullptr != m_sourceVoice);
+		if (nullptr == m_sourceVoice)
+			return E_POINTER;
 		V_RETURN(m_sourceVoice->Stop(0));
 		V_RETURN(m_sourceVoice->FlushSourceBuffers());
 		WaitForEndOfStreams();

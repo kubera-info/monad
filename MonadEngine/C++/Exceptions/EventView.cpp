@@ -31,7 +31,7 @@ namespace Monad::Exceptions
 			if (hEventLog)
 				try
 				{
-					Kernel::VectorWString parts;
+					std::vector<std::wstring> parts;
 					wstringstream wss(message);
 					for (wstring currentRow; getline(wss, currentRow);)
 						if (!currentRow.empty())

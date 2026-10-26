@@ -45,7 +45,7 @@ namespace Monad::Renderer
 		/// Constructs shader from a mesh file.
 		/// </summary>
 		ShaderGeneric(
-			const std::string & technique,
+			const TechniqueName& technique,
 			Mesh mesh
 		);
 
@@ -98,7 +98,7 @@ namespace Monad::Renderer
 	struct HDRGeneric final : CB::HDRInstance
 	{
 		HDRGeneric(
-			const std::string& counter,
+			const ConstantBufferName& counter,
 			const BUFFER_TYPE& cbType
 		) noexcept;
 
@@ -126,7 +126,7 @@ namespace Monad::Renderer
 	struct LightPosGeneric final : CB::LightPosInstance
 	{
 		LightPosGeneric(
-			const std::string& counter,
+			const ConstantBufferName& counter,
 			DirectX::XMFLOAT4 lightPosition
 		) noexcept;
 

@@ -22,9 +22,9 @@ namespace Monad::Screensaver
 		commandLine++;
 		while (*commandLine && !isdigit(*commandLine))
 			commandLine++;
-		static_assert(sizeof HWND == sizeof(unsigned long long));
+		static_assert(sizeof HWND == sizeof unsigned long long);
 		if (0 != *commandLine)
-			return reinterpret_cast<HWND> (wcstoull(commandLine, nullptr, 10));
+			return reinterpret_cast<HWND> (std::wcstoull(commandLine, nullptr, 10));
 		else
 			return nullptr;
 	}
@@ -43,13 +43,13 @@ namespace Monad::Screensaver
 		return SCREENSAVER_MODE::FULL == c_screensaverMode || SCREENSAVER_MODE::TEST == c_screensaverMode;
 	}
 
-//-----------------------------------------------------------------------------
-// Name: GetScreenSaverParameters()
-// Desc: Interpret command-line parameters passed to this app.
-//-----------------------------------------------------------------------------
-ScreensaverParameters GetScreensaverParameters() noexcept
-{
-	LPCWSTR commandLine = GetCommandLine();
+	//-----------------------------------------------------------------------------
+	// Name: GetScreenSaverParameters()
+	// Desc: Interpret command-line parameters passed to this app.
+	//-----------------------------------------------------------------------------
+	const ScreensaverParameters GetScreensaverParameters() noexcept
+	{
+		LPCWSTR commandLine = GetCommandLine();
 
 		// Skip the first part of the command line, which is the full path 
 		// to the exe.  If it contains spaces, it will be contained in quotes.
@@ -100,7 +100,7 @@ ScreensaverParameters GetScreensaverParameters() noexcept
 
 		case 'A':
 			// Password change mode, so option is followed by parent HWND in decimal
-			return SCREENSAVER_MODE::ERROR_IN_EXEC;
+			return SCREENSAVER_MODE::EXECUTION_ERROR;
 
 		default:
 			// All other options => run the screensaver (typically this is "/s")

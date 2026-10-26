@@ -30,8 +30,7 @@ namespace Monad::Audio
 			IWaveCallback* const callback,
 			const PtrWaveBuffer& waveBuffer
 		);
-		~WaveToPlayWithCallback() = default;
-		OPER_DEF_NO_DEF_CTOR(WaveToPlayWithCallback);
+
 		bool IsCallback() const noexcept;
 		const std::string& GetFilename() const noexcept;
 		bool empty() const noexcept;

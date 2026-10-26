@@ -57,23 +57,6 @@ namespace Monad::System
 		}
 
 		/// <summary>
-		/// Returns the architecture of the currently built binary.
-		/// </summary>
-		/// <returns>
-		/// "ARM64" or "X64"
-		/// </returns>
-		static std::wstring GetAppArch() noexcept
-		{
-#if defined _M_ARM64
-			return L"ARM64";
-#elif defined _M_X64
-			return L"X64";
-#else
-#	error Unknown processor architecture.
-#endif
-		}
-
-		/// <summary>
 		/// Returns formatted application version with architecture suffix.
 		/// </summary>
 		/// <returns>
@@ -82,9 +65,9 @@ namespace Monad::System
 		std::wstring GetAppVersionAndArch() const noexcept
 		{
 #if defined _DEBUG
-			return m_appVersion + L" (Debug) " + GetAppArch();
+			return m_appVersion + L" (Debug) " + GetAppArchitecture() + L" on " + GetOSArchitecture();
 #else
-			return m_appVersion + L' ' + GetAppArch();
+			return m_appVersion + L' ' + GetAppArchitecture() + L" on " + GetOSArchitecture();
 #endif
 		}
 
@@ -132,26 +115,52 @@ namespace Monad::System
 	}
 
 	/// <summary>
+	/// Returns the architecture of the currently built binary.
+	/// </summary>
+	/// <returns>
+	/// "ARM64" or "X64"
+	/// </returns>
+	std::wstring GetAppArchitecture() noexcept
+	{
+#if defined _M_ARM64
+		return L"ARM64";
+#elif defined _M_X64
+		return L"X64";
+#else
+#	error Unknown processor architecture.
+#endif
+	}
+
+	/// <summary>
 	/// Determines whether the host system architecture is ARM64.
 	/// </summary>
 	/// <returns>
-	/// True if the native system architecture is ARM64.
+	/// Architecture string: "ARM64" or "X64".
 	/// </returns>
-	bool GetArchitecture()
+	std::wstring GetOSArchitecture()
 	{
-		USHORT
-			processMachine = 0,
-			nativeMachine = 0;
+		struct SystemLibraryKernel32 : SystemLibrary
+		{
+			SystemLibraryKernel32() : SystemLibrary{ L"kernel32.dll" }
+			{}
 
-		// Use IsWow64Process2 dynamically for compatibility with older systems
-		using LPFN_ISWOW64PROCESS2 = BOOL(WINAPI*)(HANDLE, USHORT*, USHORT*);
+		private:
+			using LPIsWow64Process2 = BOOL(WINAPI*)(HANDLE, USHORT*, USHORT*);
+			const LPIsWow64Process2 c_fnIsWow64Process2 = reinterpret_cast<LPIsWow64Process2>(GetProcAddress("IsWow64Process2"));
 
-		if (auto fnIsWow64Process2 =
-			reinterpret_cast<LPFN_ISWOW64PROCESS2>(
-				GetProcAddress(GetModuleHandle(L"kernel32"), "IsWow64Process2")); fnIsWow64Process2)
-			if (fnIsWow64Process2(GetCurrentProcess(), &processMachine, &nativeMachine))
-				return IMAGE_FILE_MACHINE_ARM64 == nativeMachine;
-
-		return false;
+		public:
+			bool GetOSArchitecture() noexcept
+			{
+				USHORT
+					processMachine = 0,
+					nativeMachine = 0;
+				if (c_fnIsWow64Process2(GetCurrentProcess(), &processMachine, &nativeMachine))
+					return IMAGE_FILE_MACHINE_ARM64 == nativeMachine;
+				else
+					return false; // Unable to determine architecture, assume not ARM64
+			}
+		};
+		static const auto architecture = SystemLibraryKernel32{}.GetOSArchitecture() ? L"ARM64" : L"X64";
+		return architecture;
 	}
 }

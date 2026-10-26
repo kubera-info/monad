@@ -8,7 +8,6 @@
 #include <shlwapi.h>
 
 // Monad
-#include "Kernel/Del.h"
 #include "Kernel/Patterns.h"
 
 namespace Monad::Files
@@ -24,7 +23,13 @@ namespace Monad::Files
 		FileHandle(
 			Kernel::VectorPath&& searchFolders
 		) noexcept;
-		OPER_DEL(FileHandle);
+
+		FileHandle() = delete;
+		FileHandle(const FileHandle&) = delete;
+		FileHandle& operator=(const FileHandle&) = delete;
+		FileHandle(FileHandle&&) = delete;
+		FileHandle& operator=(FileHandle&&) = delete;
+
 		void Run();
 
 	protected:

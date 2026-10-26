@@ -8,6 +8,7 @@
 #include <DirectXMath.h>
 
 // Monad
+#include "Audio/__MonadAudio.h"
 #include "I18N/I18N.h"
 
 namespace Monad::GUI
@@ -39,7 +40,7 @@ namespace Monad::GUI
 		GUI_RADIO_BUTTON_COLOR{ 0.0f, 1.0f, 0.5f },
 		GUI_SETTINGS_COLOR{ 1.0f, 1.0f, 0.5f };
 
-	extern const std::string
+	extern const Cue
 		JINGLE_CLEAR1,
 		JINGLE_CLEAR2,
 		JINGLE_EXIT,
@@ -47,7 +48,6 @@ namespace Monad::GUI
 		JINGLE_VOPROS,
 		JINGLE_FOCUS,
 		JINGLE_PRINT;
-
 
 	/// <summary>
 	/// Strips a leading emoji icon from the beginning of the title string.

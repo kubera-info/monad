@@ -70,7 +70,10 @@ namespace Monad::Wnd
 		/// </summary>
 		~ManagerSatellites();
 
-		OPER_DEL_NO_DEF_CTOR(ManagerSatellites);
+		ManagerSatellites(const ManagerSatellites&) = delete;
+		ManagerSatellites& operator=(const ManagerSatellites&) = delete;
+		ManagerSatellites(ManagerSatellites&&) = delete;
+		ManagerSatellites& operator=(ManagerSatellites&&) = delete;
 
 		/// <summary>
 		/// Self-reference helper used by the framework.
@@ -85,7 +88,7 @@ namespace Monad::Wnd
 		/// <summary>
 		/// Pool of random image names used for satellite backgrounds.
 		/// </summary>
-		const Kernel::VectorRandomString m_blobJpgNames;
+		const Kernel::VectorRandom<std::string> m_blobJpgNames;
 
 		/// <summary>
 		/// Reference to 2D renderer factory.

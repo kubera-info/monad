@@ -19,8 +19,6 @@ namespace Monad::Files
 	struct VectorBytesArchive final : Kernel::VectorBytes
 	{
 		using VectorBytes::VectorBytes;
-		~VectorBytesArchive() = default;
-		OPER_DEF_NO_DEF_CTOR(VectorBytesArchive);
 
 		/// <summary>
 		/// Header of an asset file (not encrypted).

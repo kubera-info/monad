@@ -105,6 +105,26 @@ namespace Monad
 				MndOutputDebugString(_com_error(hr).ErrorMessage());
 				__debugbreak();
 #endif
+				constexpr wstring_view horizontal(L"\n\t--------------------\n\t");
+				wstring excTitle = I18N::g_defaultLocaleManager.GetLocaleName();
+				const wstring errStr = L"\nError: " + excTitle.
+					append(horizontal).
+					append(report).
+					append(L".\n").
+					append(horizontal).
+					append(L"\tClass: ").
+					append(exceptionClass).
+					append(horizontal).
+					append(L"Operation: ").
+					append(stage).
+					append(horizontal).
+					append(L"Code: ").
+					append(StringFromAnyULongHex(hr)).
+					append(horizontal).
+					append(L"Message: ").
+					append(_com_error(hr).ErrorMessage()) +
+					L"\n";
+				OutputDebugString(errStr.c_str());
 
 				switch (Globals::g_exceptionReportingMethod)
 				{
@@ -169,7 +189,7 @@ namespace Monad
 									{ PAR_NAME_PAGE, UTF8ToUnicode(Pages::g_currentPage) },
 									{ PAR_NAME_TYPE, errorType },
 									{ PAR_NAME_THREAD_NAME, strThreadName },
-									{ PAR_NAME_I18N, UTF8ToUnicode(I18N::GetLocaleName()) },
+									{ PAR_NAME_I18N, I18N::g_defaultLocaleManager.GetLocaleName() },
 									{ PAR_NAME_GPU, g_adapterDesc },
 									{ PAR_NAME_APP_TITLE, GUI::RemoveEmojiIcon(g_fullAppName) },
 									{ PAR_NAME_SALT, UTF8ToUnicode(g_sha256Salt) },
@@ -178,7 +198,7 @@ namespace Monad
 									{ PAR_NAME_WHO_AM_I, g_whoAmI },
 									{ PAR_NAME_VERSION, GetAppVersionAndArch() },
 									{ PAR_NAME_NATIVE, IsOSWine() ? L"WineHQ"s : L"Native Windows"s },
-									{ PAR_NAME_ARM64, GetArchitecture() ? L"ARM64"s : L"X64"s },
+									{ PAR_NAME_ARM64, GetAppArchitecture() + L" on " + GetOSArchitecture() },
 									{ PAR_NAME_ICO, to_wstring(g_sourceIcon) }
 							}, XML_NO_ELEMENTS }.BuildXML();
 						SmartHandle fileHandle = SaveStringAsWithDACL(
@@ -187,12 +207,10 @@ namespace Monad
 
 						System::SmartHandle event(CreateEvent(NULL, TRUE, FALSE, g_childEvent));
 
-#	if defined _DEBUG
 						OutputDebugStringA(("\n" + xmlFileImage + "\n").c_str());
 						OutputDebugString(L"\n");
 						OutputDebugString((L"\n" + pathToReportXML.wstring() + L"\n").c_str());
 						OutputDebugString(L"\n");
-#	endif
 						// Calls the report.exe tool. It can send bug descritpion to the web server.
 						ExecuteApp(
 							GetFolderBin() / L"Report.exe"sv,
@@ -207,11 +225,14 @@ namespace Monad
 					}
 				}
 				break;
+				case REPORT_TO_CONSOLE:
+				{
+					OutputDebugString(L"No GUI");
+				}
+				break;
 				case MESSAGE_BOX:
 				{
-					constexpr wstring_view horizontal(L"\n--------------------\n");
-					wstring excTitle = I18N::Errors::EXCEPTION_TITLE.GetVal();
-					const wstring errStr = excTitle.
+					const wstring errStrMsg = excTitle.
 						append(horizontal).
 						append(report).
 						append(L".\n").
@@ -227,33 +248,7 @@ namespace Monad
 						append(horizontal).
 						append(L"Message: ").
 						append(_com_error(hr).ErrorMessage());
-					MessageBox(0, errStr.c_str(), Globals::g_fullAppName.GetVal().c_str(), MB_ICONERROR | MB_TASKMODAL | MB_ICONERROR);
-				}
-				break;
-				case REPORT_TO_CONSOLE:
-				{
-					constexpr wstring_view horizontal(L"\n\t--------------------\n\t");
-					wstring excTitle = I18N::Errors::EXCEPTION_TITLE.GetVal();
-					const wstring errStr = L'\t' + excTitle.
-						append(horizontal).
-						append(report).
-						append(L".\n").
-						append(horizontal).
-						append(L"\tClass: ").
-						append(exceptionClass).
-						append(horizontal).
-						append(L"Operation: ").
-						append(stage).
-						append(horizontal).
-						append(L"Code: ").
-						append(StringFromAnyULongHex(hr)).
-						append(horizontal).
-						append(L"Message: ").
-						append(_com_error(hr).ErrorMessage());
-					OutputDebugString(L"\nError: ");
-					OutputDebugString(errStr.c_str());
-					OutputDebugString(L"noname");
-					OutputDebugString(L"\n");
+					MessageBox(0, errStrMsg.c_str(), Globals::g_fullAppName.GetVal().c_str(), MB_ICONERROR | MB_TASKMODAL | MB_ICONERROR);
 				}
 				break;
 				default:

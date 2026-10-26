@@ -18,7 +18,6 @@
       <Build Solution="0-Engine|*" Project="false" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|ARM64" Project="false" />
-      <Build Solution="2-Release|x64" Project="false" />
       <Build Solution="3-Setup|*" Project="false" />
     </Project>
   </Folder>
@@ -176,6 +175,7 @@
       <Platform Solution="2-Release|ARM64" Project="x64" />
       <Platform Solution="3-Setup|ARM64" Project="Win32" />
       <Build Solution="1-Assets|ARM64" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
       <Build Solution="3-Setup|*" Project="false" />
     </Project>
     <Project Path="MonadEngine/Assets/Fonts/Fonts.vcxproj" Id="ca6142cf-5c69-43cc-a47f-9a76d09abda5">
@@ -235,6 +235,7 @@
       <Platform Project="x64" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
       <Build Solution="3-Setup|*" Project="false" />
     </Project>
     <Project Path="MonadEngine/Tools/Encryption/Encryption.vcxproj" Id="f685dae3-5f88-4b6c-a4eb-27eee9177b54">
@@ -257,6 +258,7 @@
       <BuildType Solution="3-Setup|*" Project="Setup" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|ARM64" Project="false" />
+      <Build Solution="2-Release|ARM64" Project="false" />
       <Build Solution="3-Setup|*" Project="false" />
     </Project>
     <Project Path="MonadEngine/Tools/MakeSetter/MakeSetter.vcxproj" Id="8517f6e7-96cf-4696-80d1-08e718d2ffcc">

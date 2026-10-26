@@ -11,7 +11,7 @@
 
 // Monad
 #include "Globals/__MonadGlobals.h"
-#include "I18N/__MonadI18N.h"
+#include "I18N/I18NDict.h"
 #include "System/Parameter.h"
 #include "Tools/Convert.h"
 
@@ -49,8 +49,8 @@ XMLManagerErrorDesc::XMLManagerErrorDesc(
 ) :
 	XMLManager(fileStream, {})
 {
-	SetLocaleName(
-		UnicodeToUTF8(GetParameter(PAR_NAME_I18N))
+	g_defaultLocaleManager.SetLocaleName(
+		GetParameter(PAR_NAME_I18N)
 	);
 	g_sourceModuleHandle = LoadLibraryEx(
 		GetParameter(PAR_NAME_PATH).c_str(),

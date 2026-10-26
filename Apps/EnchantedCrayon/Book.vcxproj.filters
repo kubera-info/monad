@@ -255,9 +255,6 @@
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\ComManager.h">
       <Filter>Monad%28a%29 Incudes\Kernel</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Del.h">
-      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Dummy.h">
       <Filter>Monad%28a%29 Incudes\Kernel</Filter>
     </ClInclude>
@@ -450,7 +447,7 @@
     <ClInclude Include="..\..\MonadEngine\C++\Renderer2D\__Monad2D.h">
       <Filter>Monad%28a%29 Incudes\Renderer2D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MonadEngine\C++\I18N\__MonadI18N.h">
+    <ClInclude Include="..\..\MonadEngine\C++\I18N\I18NDict.h">
       <Filter>Monad%28a%29 Incudes\I18N</Filter>
     </ClInclude>
     <ClInclude Include="..\..\MonadEngine\C++\System\__MonadSystem.h">

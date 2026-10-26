@@ -7,9 +7,6 @@
 // STD
 #include <assert.h>
 
-// Monad
-#include "Kernel/Del.h"
-
 #define MONAD_COM_REF_CNT_GENERIC(CALL,VIRTUAL)\
 	DWORD CALL AddRef() VIRTUAL\
 	{\
@@ -56,7 +53,10 @@ namespace Monad
 		protected:
 			RefCount() = default;
 			virtual ~RefCount() = default;
-			OPER_DEL_NO_DEF_CTOR(RefCount);
+			RefCount(const RefCount&) = delete;
+			RefCount& operator=(const RefCount&) = delete;
+			RefCount(RefCount&&) = delete;
+			RefCount& operator=(RefCount&&) = delete;
 
 		public:
 			inline DWORD GetRefCount() const noexcept { return m_referenceCount; }

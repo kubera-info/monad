@@ -10,7 +10,6 @@
 
 // Monad
 #include "__MonadException.h"
-#include "Kernel/Del.h"
 #include "Catch.h"
 #include "System/Library.h"
 
@@ -59,8 +58,6 @@ namespace Monad::Exceptions
 		ExceptionGeneric(
 			const std::exception& stdException
 		);
-		~ExceptionGeneric() = default;
-		OPER_DEF_NO_DEF_CTOR(ExceptionGeneric);
 
 	protected:
 		ExceptionGeneric(

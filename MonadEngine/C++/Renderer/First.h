@@ -7,8 +7,8 @@
 // Platform
 #include <DirectXMath.h>
 
-// Monad
-#include "Kernel/Del.h"
+// CRT
+#include <utility>
 
 namespace Monad::Renderer
 {
@@ -21,6 +21,13 @@ namespace Monad::Renderer
 	/// </summary>
 	interface First abstract
 	{
+		First() noexcept = default;
+		First(const First&) = default;
+		First& operator=(const First&) = default;
+		First(First&&) = default;
+		First& operator=(First&&) = default;
+		virtual ~First() = default;
+
 		/// <summary>
 		/// Entry point for rendering this monad.
 		/// Called internally by the rendering pipeline.
@@ -29,18 +36,13 @@ namespace Monad::Renderer
 		/// Current transformation matrix inherited from parent monads.
 		/// </param>
 		void OnFrameRenderInternal(
-			const DirectX::XMFLOAT4X4 & modelSpaceMatrix
+			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		);
 
 		/// <summary>
 		/// Determines whether this monad should be rendered.
 		/// </summary>
 		virtual bool IsVisible() const noexcept;
-
-	protected:
-		First() noexcept = default;
-		OPER_DEF_NO_DEF_CTOR(First);
-		virtual ~First() = default;
 
 		/// <summary>
 		/// Allows modification of the transformation matrix
@@ -49,7 +51,7 @@ namespace Monad::Renderer
 		/// <param name="matrixToAlter">
 		/// Matrix to be modified for this monad.
 		/// </param>
-	virtual void OnNewMatrix(
+		virtual void OnNewMatrix(
 			DirectX::XMFLOAT4X4& matrixToAlter
 		) const noexcept;
 	/// <summary>
@@ -73,20 +75,19 @@ namespace Monad::Renderer
 	struct CalculatePosition : R
 	{
 	protected:
-		template<typename... A>
+		template <class... _Mappedty>
 		CalculatePosition(
 			const DirectX::XMFLOAT4X4& staticSpace,
-			A&&... args
+			_Mappedty&&... internalType
 		) :
-			R(args...),
+			R(std::forward<_Mappedty>(internalType)...),
 			m_staticSpace{ staticSpace }
-		{
-		}
+		{}
 
 		/// <summary>
-				/// Multiplies the current transformation matrix
-				/// by a predefined static matrix.
-				/// </summary>
+		/// Multiplies the current transformation matrix
+		/// by a predefined static matrix.
+		/// </summary>
 		void OnNewMatrix(
 			DirectX::XMFLOAT4X4& matrixToAlter
 		) const noexcept override

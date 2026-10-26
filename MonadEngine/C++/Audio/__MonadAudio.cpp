@@ -8,20 +8,32 @@
 
 namespace Monad::Audio
 {
-	const std::string
-		STREAM = "stream",
-		DESCRIBE = "desrcibe",
-		JINGLE = "jingle";
+	const Queue
+		STREAM = "stream"_queue,
+		DESCRIBE = "describe"_queue,
+		JINGLE = "jingle"_queue;
 
 	FnDestroyVoice DestroyVoice = [](IXAudio2Voice* const voice) noexcept
 		{
-			assert(voice);
-			voice->DestroyVoice();
+			if (voice)
+				voice->DestroyVoice();
 		};
 	FnDestroyVoice DestroySourceVoice = [](IXAudio2Voice* const voice) noexcept
 		{
-			assert(voice);
-			static_cast<IXAudio2SourceVoice*> (voice)->Stop();
-			DestroyVoice(voice);
+			if (voice)
+			{
+				static_cast<IXAudio2SourceVoice*> (voice)->Stop();
+				voice->DestroyVoice();
+			}
 		};
+}
+
+Cue operator""_cue(const char* literal, std::size_t sizeOfString)
+{
+	return { literal, sizeOfString };
+}
+
+Queue operator""_queue(const char* literal, std::size_t sizeOfString)
+{
+	return { literal, sizeOfString };
 }

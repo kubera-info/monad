@@ -42,53 +42,49 @@ namespace Monad::Threads
 		/// </summary>
 		interface ITask abstract : Kernel::RefCount
 		{
-			friend ThreadPool;
-			friend ThreadManager;
-			friend ThreadWndMessage;
+			/// <summary>
+			/// Constructs a task object.
+			/// </summary>
+			/// <param name="ifDelete">
+			/// If true, the task will be released automatically after execution.
+			/// </param>
+			ITask(
+				bool ifDelete = true
+			) noexcept;
 
-		/// <summary>
-		/// Constructs a task object.
-		/// </summary>
-		/// <param name="ifDelete">
-		/// If true, the task will be released automatically after execution.
-		/// </param>
-		ITask(
-			bool ifDelete = true
-		) noexcept;
+			/// <summary>
+			/// Main task body.
+			/// This function is executed on a worker thread.
+			/// May throw C++ or hardware exceptions.
+			/// All exceptions are caught by the thread pool.
+			/// </summary>
+			virtual void Run() = 0;
 
-		/// <summary>
-		/// Main task body.
-		/// This function is executed on a worker thread.
-		/// May throw C++ or hardware exceptions.
-		/// All exceptions are caught by the thread pool.
-		/// </summary>
-		virtual void Run() = 0;
+			/// <summary>
+			/// Deletes the task if it was created with ownership enabled.
+			/// </summary>
+			void Delete() noexcept;
 
-		/// <summary>
-		/// Deletes the task if it was created with ownership enabled.
-		/// </summary>
-		void Delete() noexcept;
-
-	private:
-		/// <summary>
-		/// Determines whether the task should delete itself after execution.
-		/// </summary>
-		const bool c_ifDelete;
+		private:
+			/// <summary>
+			/// Determines whether the task should delete itself after execution.
+			/// </summary>
+			const bool c_ifDelete;
 		};
 
 		using PtrTask = Microsoft::WRL::ComPtr<ITask>;
 
-	protected: 
+	protected:
 		/// <summary>
 		/// Internal task queue.
 		/// </summary>
-		struct QueueCommand : std::queue<ITask*>
+		struct QueueTask : std::queue<ITask*>
 		{
 			/// <summary>
 			/// Clears the queue and deletes all tasks.
 			/// </summary>
-			~QueueCommand() noexcept;
-		} m_commandQueue;
+			~QueueTask() noexcept;
+		} m_taskQueue;
 	};
 
 	struct ThreadPool final : ThreadManager
@@ -109,7 +105,10 @@ namespace Monad::Threads
 		/// </summary>
 		~ThreadPool();
 
-		OPER_DEL(ThreadPool);
+		ThreadPool(const ThreadPool&) = delete;
+		ThreadPool& operator=(const ThreadPool&) = delete;
+		ThreadPool(ThreadPool&&) = delete;
+		ThreadPool& operator=(ThreadPool&&) = delete; 
 
 		/// <summary>
 		/// Adds tasks to the execution queue.
@@ -128,11 +127,11 @@ namespace Monad::Threads
 
 			{
 				const std::unique_lock<std::mutex> ul(m_ev);
-				m_commandQueue.push_range(tasks);
+				m_taskQueue.push_range(tasks);
 			}
 
 			// Wake up workers for each inserted task
-			for ([[maybe_unused]] auto command : tasks)
+			for ([[maybe_unused]] auto task : tasks)
 				m_ev.notify_one();
 		}
 
@@ -202,11 +201,11 @@ namespace Monad::Threads
 	struct ThreadWndMessage final : ThreadManager
 	{
 		void InsertTask(
-			ITask* pTask
+			ITask* task
 		);
 		void DequeueAndRunTask();
 
 	private:
-		ATG::CriticalSectionLockable m_lock;
+		ATG::CriticalSectionLockable m_lockMessageQueue;
 	};
 }

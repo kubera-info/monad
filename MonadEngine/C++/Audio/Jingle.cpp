@@ -10,7 +10,8 @@ namespace Monad::Audio
 {
 	void RandomJingle::PlayJingle() const
 	{
+		THROW_EXC_IFNULL(Exceptions::AudioFailed, g_persistentAudio, L"Audio is not initialized");
 		if (!empty() /* && g_persistentAudio*/)
-			g_persistentAudio->PlayJingle(GetRandomString());
+			g_persistentAudio->PlayJingle(Cue{ GetRandomString() });
 	}
 }

@@ -16,8 +16,10 @@ namespace Monad::Input
 	struct ThreadXboxController final : Threads::Thread
 	{
 		ThreadXboxController() noexcept;
-		~ThreadXboxController() = default;
-		OPER_DEL_NO_DEF_CTOR(ThreadXboxController);
+		ThreadXboxController(const ThreadXboxController&) = delete;
+		ThreadXboxController& operator=(const ThreadXboxController&) = delete;
+		ThreadXboxController(ThreadXboxController&&) = delete;
+		ThreadXboxController& operator=(ThreadXboxController&&) = delete;
 
 	private:
 		void Routine() final;

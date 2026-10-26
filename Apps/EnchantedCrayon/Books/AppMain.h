@@ -19,7 +19,6 @@ namespace Monad::App
 	struct CombineMain final : Renderer::Combine
 	{
 		CombineMain();
-		~CombineMain() = default;
 
 	private:
 		/// <summary>

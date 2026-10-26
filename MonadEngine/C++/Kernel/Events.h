@@ -7,9 +7,6 @@
 // STD
 #include <xutility>
 
-// Monad
-#include "Del.h"
-
 //
 // Monad Events – event interfaces that can be implemented by derived classes
 //
@@ -156,56 +153,48 @@ namespace Monad::Kernel
 	interface EventFrameMoveStub abstract
 		: ManagerStub<EVENT_IDS::FRAME_MOVE_STUB>
 	{
-		OPER_DEF(EventFrameMoveStub);
 		virtual bool OnFrameMoveStub() = 0;
 	};
 
 	interface EventPointerDownStub abstract
 		: ManagerStub<EVENT_IDS::POINTER_DOWN>
 	{
-		OPER_DEF(EventPointerDownStub);
 		virtual bool OnPointerDownStub() = 0;
 	};
 
 	interface EventPointerUpStub abstract
 		: ManagerStub<EVENT_IDS::POINTER_UP>
 	{
-		OPER_DEF(EventPointerUpStub);
 		virtual bool OnPointerUpStub() = 0;
 	};
 
 	interface EventD3DCreateStub abstract
 		: ManagerStub<EVENT_IDS::D3D_CREATE>
 	{
-		OPER_DEF(EventD3DCreateStub);
 		virtual bool OnD3DCreateStub() = 0;
 	};
 
 	interface EventD3DRenderStub abstract
 		: ManagerStub<EVENT_IDS::D3D_RENDER>
 	{
-		OPER_DEF(EventD3DRenderStub);
 		virtual bool OnD3DRenderStub() = 0;
 	};
 
 	interface EventClearD3DAssetsStub abstract
 		: ManagerStub<EVENT_IDS::D3D_CLEAR_ASSETS>
 	{
-		OPER_DEF(EventClearD3DAssetsStub);
 		virtual bool OnClearD3DAssetsStub() = 0;
 	};
 
 	interface EventLanguageChangeEmojiStub abstract
 		: ManagerStub<EVENT_IDS::LANGUAGE_CHANGE_EMOJI>
 	{
-		OPER_DEF(EventLanguageChangeEmojiStub);
 		virtual bool OnLanguageChangeEmojiStub() = 0;
 	};
 
 	interface EventLanguageChangeFontStub abstract
 		: ManagerStub<EVENT_IDS::LANGUAGE_CHANGE_FONT>
 	{
-		OPER_DEF(EventLanguageChangeFontStub);
 		virtual bool OnLanguageChangeFontStub() = 0;
 	};
 }

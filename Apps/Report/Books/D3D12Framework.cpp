@@ -49,9 +49,9 @@ SingleCall g_setArtStubs(true);
 D3D12Core::D3D12Core() :
 	DXSample{
 		{
-			InputLayout::FontEndEmoji()
-			+ InputLayout::Basics()
-			+ InputLayout::Image()
+			InputLayout::FontEndEmoji
+			+ InputLayout::Basics
+			+ InputLayout::Image
 		},
 		{
 			.c_bareCbvSrvCount = CBV_SRV_COUNT,
@@ -141,16 +141,10 @@ D3D12Core::D3D12Core() :
 		{ "pipe_color"_constantBuffer, { sizeof CB::PipeColor, 2u } }
 	} }
 {
+	m_shadows.emplace();
 	LoadPipeline();
 	LoadAssets();
 }
-
-/*void D3D12Framework::ResizeWindow() noexcept
-{
-	const RECT rect = ResizeWindowGeneric();
-
-	OnSizeChanged(rect.right, rect.bottom, IsIconic(Win32ApplicationGeneric::GetHwnd()));
-}*/
 
 void D3D12Core::OnUpdate()
 {
@@ -160,8 +154,6 @@ void D3D12Core::OnUpdate()
 	{
 		g_singleton->InsertTaskSearcher2(LOAD_BOOT_DX);
 
-		//if (static SingleCall initializedAudioOnce; !initializedAudioOnce.test_and_set())
-			//Monad::Audio::g_persistentAudio->SetMuted();
 		break;
 	}
 	[[unlikely]]
@@ -171,7 +163,7 @@ void D3D12Core::OnUpdate()
 		SetMyCursor();
 		g_singleton->m_d3dSingleton->Initialize();
 
-		m_shadows.CreateDepthStencil(
+		m_shadows->CreateDepthStencil(
 #if defined _DEBUG
 			L"Shadow",
 #endif
@@ -190,21 +182,17 @@ void D3D12Core::OnUpdate()
 	}
 
 	FireEventOnCopy(EVENT_IDS::FRAME_MOVE_STUB);
-
-	if (!g_active)
-		if (POINT curPos; GetCursorPos(&curPos))
-			SetCursorPosGeneric(curPos.x, curPos.y);
 }
 
 void D3D12Core::OnRender()
 {
 	// Record all the commands we need to render the scene into the command lists.
 /*#if defined MONAD_PIX
-	PIXBeginEvent(m_commandQueue.Get(), 0, L"Render");
+	PIXBeginEvent(m_taskQueue.Get(), 0, L"Render");
 #endif*/
 	PopulateCommandLists();
 	/*#if defined MONAD_PIX
-		PIXEndEvent(m_commandQueue.Get());
+		PIXEndEvent(m_taskQueue.Get());
 	#endif*/
 
 	// Execute the command lists.
@@ -250,13 +238,6 @@ void D3D12Core::NewFrame()
 	MoveToNextFrame();
 }
 
-/*D3D12Core::~D3D12Core()
-{
-	g_hourGlassBlockingRefs.WaitForEndOfStreams();
-	// Ensure that the GPU is no longer referencing resources that are about to be
-	// cleaned up by the destructor.
-}*/
-
 void D3D12Core::PopulateCommandLists()
 {
 	OnD3DReset();
@@ -272,17 +253,13 @@ void D3D12Core::PopulateCommandLists()
 		DequeuePage();
 		{
 			const auto scopedTransition = m_commandList.ScopedTransition({ {
-				m_shadows.GetDsResource(),
+				m_shadows->GetDsResource(),
 				D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE,
 				D3D12_RESOURCE_STATE_DEPTH_WRITE } }
 				);
-			m_shadows.SetMe();
+			m_shadows->SetMe();
 			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_SHADOW);
 		}
-#pragma endregion
-
-#pragma region Temporary monads
-		OnFrameRenderAll(STAGE_MODES::STAGE_MODE_CUSTOM);
 #pragma endregion
 
 #pragma region World			
@@ -301,8 +278,6 @@ void D3D12Core::PopulateCommandLists()
 #pragma endregion
 		}
 	}
-	else
-		CenterCursor();
 
 	OnBackBuffer();
 	m_commandList.Get()->Close();

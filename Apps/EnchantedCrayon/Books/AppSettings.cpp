@@ -38,15 +38,6 @@ namespace Monad
 	{
 		namespace
 		{
-			/*const I18NFloat
-				LEFT_COLUMN{
-				make_pair("pl-PL"s, 0.82f),
-				make_pair("ru-RU"s, -0.85f),
-				make_pair(DEFAULT_LANGUAGE, -0.81f) },
-				RIGHT_COLUMN{
-				make_pair("pl-PL"s, 0.12f),
-				make_pair("ru-RU"s, 0.04f),
-				make_pair(DEFAULT_LANGUAGE, -0.15f) };*/
 			constexpr float g_pos = -0.15f, g_vertical = 0.22f, g_size = 0.25f;
 
 			consteval XMFLOAT2 GetEfficiencyPos(
@@ -115,7 +106,7 @@ namespace Monad
 				&m_descButton,
 				&m_openSourceButton });
 
-			LabelCheckbox(m_ifVSyncButton, { L"V-sync"_us });
+			LabelCheckbox(m_ifVSyncButton, { L"V-sync"_en_US });
 			LabelCheckbox(m_ifPrivPrintButton, IF_PRINT_BUTTON);
 			LabelCheckbox(m_ifPrivExitButton, IF_EXIT_BUTTON);
 		}
@@ -249,19 +240,19 @@ namespace Monad
 				currID,
 				*this,
 				"flag-pl"_shaderResource,
-				"pl-PL"
+				L"pl_PL"
 		},
 			{
 				currID,
 				*this,
 				"flag-ru"_shaderResource,
-				"ru-RU"
+				L"ru_RU"
 		},
 			{
 				currID,
 				*this,
 				"flag-uk"_shaderResource,
-				"en-GB"
+				L"en_GB"
 		},
 			{
 				currID,
@@ -275,8 +266,8 @@ namespace Monad
 		DialogSettings::RadioButtonManagerLang::RadioButtonFlag::RadioButtonFlag(
 			uint32_t& currID,
 			RadioButtonManagerLang& manager,
-			const string& flag,
-			const string& localeName
+			const ShaderResourceName& flag,
+			const wstring& localeName
 		) :
 			RadioButton(
 				"settings"_pageNo,
@@ -286,7 +277,7 @@ namespace Monad
 				IconicStyle{ flag }),
 			c_localeName(localeName)
 		{
-			if (I18N::GetLocaleName() == localeName)
+			if (g_defaultLocaleManager.GetLocaleName() == localeName)
 				manager.SetSelected(this);
 			currID++;
 		}
@@ -401,54 +392,54 @@ namespace Monad
 			constexpr float top = 0.55f;
 			DrawDialogTexts({
 					{
-		L"Developer\nWłodzimierz O.Kubera"_us,
-		L"Oprogramowanie\nWłodzimierz O. Kubera"_pl,
-		L"Автор и программист\nWłodzimierz O. Kubera"_ru
+		L"Developer\nWłodzimierz O.Kubera"_en_US,
+		L"Oprogramowanie\nWłodzimierz O. Kubera"_pl_PL,
+		L"Автор и программист\nWłodzimierz O. Kubera"_ru_RU
 	},
 				{
-		L"#emoji_u1f46c_1f3fb#Tested by children\nOla and Mateusz Kowalczyk\nBianka Rodowska\nOtylka Mirecka"_us,
-		L"#emoji_u1f46c_1f3fb#Dzieci testujące\nOla i Mateusz Kowalczykowie\nBianka Rodowska\nOtylka Mirecka"_pl,
-		L"#emoji_u1f46c_1f3fb#Бета - тестеры\nOla и Mateusz Kowalczykowie\nBianka Rodowska\nOtylka Mirecka"_ru
+		L"#emoji_u1f46c_1f3fb#Tested by children\nOla and Mateusz Kowalczyk\nBianka Rodowska\nOtylka Mirecka"_en_US,
+		L"#emoji_u1f46c_1f3fb#Dzieci testujące\nOla i Mateusz Kowalczykowie\nBianka Rodowska\nOtylka Mirecka"_pl_PL,
+		L"#emoji_u1f46c_1f3fb#Бета - тестеры\nOla и Mateusz Kowalczykowie\nBianka Rodowska\nOtylka Mirecka"_ru_RU
 	},
 				{
-		L"Quality Assurance\nJerzy Ziembiński"_us,
-		L"Test techniczny\nJerzy Ziembiński"_pl,
-		L"Взрослый бета - тестер\nJerzy Ziembiński"_ru
+		L"Quality Assurance\nJerzy Ziembiński"_en_US,
+		L"Test techniczny\nJerzy Ziembiński"_pl_PL,
+		L"Взрослый бета - тестер\nJerzy Ziembiński"_ru_RU
 	},
 				{
-		L"Pictures\nMalwina De Brade"_us,
-		L"Rysunki\nMalwina De Brade"_pl,
-		L"Художник\nMalwina De Brade"_ru
+		L"Pictures\nMalwina De Brade"_en_US,
+		L"Rysunki\nMalwina De Brade"_pl_PL,
+		L"Художник\nMalwina De Brade"_ru_RU
 	},
 				{
-		L"Polish Lector\nBianka Rodowska"_gb,
-		L"Polish Narration\nBianka Rodowska"_us,
-		L"Lektorka polskiego\nBianka Rodowska"_pl,
-		L"Диктор (польский язык)\nBianka Rodowska"_ru
+		L"Polish Lector\nBianka Rodowska"_en_GB,
+		L"Polish Narration\nBianka Rodowska"_en_US,
+		L"Lektorka polskiego\nBianka Rodowska"_pl_PL,
+		L"Диктор (польский язык)\nBianka Rodowska"_ru_RU
 	} }, {
 					-.85f, top }
 					);
 			DrawDialogTexts(
 				{ {
-		L"Professional review\nElżbieta Jalowiecka\n(Karwowska)"_us,
-		L"Wskazówki merytoryczne\nElżbieta Jałowiecka\n(Karwowska)"_pl,
-		L"Помощь и консультирование\nElżbieta Jalowiecka\n(Karwowska)"_ru
+		L"Professional review\nElżbieta Jalowiecka\n(Karwowska)"_en_US,
+		L"Wskazówki merytoryczne\nElżbieta Jałowiecka\n(Karwowska)"_pl_PL,
+		L"Помощь и консультирование\nElżbieta Jalowiecka\n(Karwowska)"_ru_RU
 	},
 				{
-		L"English Translation\nIzabela Błaszczyk"_us,
-		L"Angielskie tłumaczenie\nIzabela Błaszczyk"_pl,
-		L"Перевод на английский\nIzabela Błaszczyk"_ru
+		L"English Translation\nIzabela Błaszczyk"_en_US,
+		L"Angielskie tłumaczenie\nIzabela Błaszczyk"_pl_PL,
+		L"Перевод на английский\nIzabela Błaszczyk"_ru_RU
 	},
 				{
-		L"Music, lector\nand Russian translation\nKirill Ponomarev"_gb,
-		L"Music, narration\nand Russian translation\nKirill Ponomarev"_us,
-		L"Muzyka, lektor\ni rosyjskie tłumaczenie\nKirill Ponomarev"_pl,
-		L"Музыка, звук\nи перевод на русский\nKirill Ponomarev"_ru
+		L"Music, lector\nand Russian translation\nKirill Ponomarev"_en_GB,
+		L"Music, narration\nand Russian translation\nKirill Ponomarev"_en_US,
+		L"Muzyka, lektor\ni rosyjskie tłumaczenie\nKirill Ponomarev"_pl_PL,
+		L"Музыка, звук\nи перевод на русский\nKirill Ponomarev"_ru_RU
 	},
 				{
-		L"Legal support\nR.pr. Szymon Marzęcki"_us,
-		L"Wsparcie prawne\nR.Pr. Szymon Marzęcki"_pl,
-		L"Юридическое сопровождение\nR.pr. Szymon Marzęcki"_ru
+		L"Legal support\nR.pr. Szymon Marzęcki"_en_US,
+		L"Wsparcie prawne\nR.Pr. Szymon Marzęcki"_pl_PL,
+		L"Юридическое сопровождение\nR.pr. Szymon Marzęcki"_ru_RU
 	} }, {
 					0.0f, top }
 					);
@@ -469,9 +460,9 @@ namespace Monad
 				Globals::g_copyright,
 				ALL_RIGHTS_RESERVED,
 				{
-				L"Since version 5.0.0 the application is\nOpen Source under the MIT license.\nIt is available on GitHub."_us,
-				L"Od wersji 5.0.0 aplikacja jest dostępna na\nlicencji Open Source, zgodnie z licencją MIT.\nZnajduje się ona w serwisie GitHub"_pl,
-				L"Начиная с версии 5.0.0,\nприложение являетсяоткрытым исходным кодом\nи распространяется под лицензией MIT.\nОно доступно на GitHub."_ru
+				L"Since version 5.0.0 the application is\nOpen Source under the MIT license.\nIt is available on GitHub."_en_US,
+				L"Od wersji 5.0.0 aplikacja jest dostępna na\nlicencji Open Source, zgodnie z licencją MIT.\nZnajduje się ona w serwisie GitHub"_pl_PL,
+				L"Начиная с версии 5.0.0,\nприложение являетсяоткрытым исходным кодом\nи распространяется под лицензией MIT.\nОно доступно на GitHub."_ru_RU
 			} },
 				{ -0.65f, 0.45f },
 				System::GetAppVersionAndArch());
@@ -484,7 +475,7 @@ namespace Monad
 #pragma region DialogDesc::*
 		DialogDesc::LogoTexture::LogoTexture() :
 			ShaderTextured{
-				"logo"_pageNo,
+				"logo"_technique,
 				{ "logo"_shaderResource },
 				T2_ART,
 				InputLayout::MeshBuilderArtPane{ {
@@ -519,14 +510,14 @@ namespace Monad
 			OPEN_SOURCE_TITLE }
 		{
 			DrawDialogTexts({
-				{ L"Software:"_us, L"Oprogramowanie"_pl, L"Программное обеспечение"_ru },
-				{ L"Audacity, BMFont, curl, GIMP, Inkscape"_us },
-				{ L"LZMA, meshoptimizer, noto-emoji"_us },
-				{ L"DirectX-Graphics-Samples, DirectXTex"_us },
-				{ L"Art:"_us },
-				{ L"„Wood” & „Marble” Textures by Vladimir Radetzki"_us },
-				{ L"AI: "_us, L"SI: "_pl, L"ИИ: "_ru },
-				{ L"ChatGPT, Claude, DeepSeek, GitHub Copilot"_us }
+				{ L"Software:"_en_US, L"Oprogramowanie"_pl_PL, L"Программное обеспечение"_ru_RU },
+				{ L"Audacity, BMFont, curl, GIMP, Inkscape"_en_US },
+				{ L"LZMA, meshoptimizer, noto-emoji"_en_US },
+				{ L"DirectX-Graphics-Samples, DirectXTex"_en_US },
+				{ L"Art:"_en_US },
+				{ L"„Wood” & „Marble” Textures by Vladimir Radetzki"_en_US },
+				{ L"AI: "_en_US, L"SI: "_pl_PL, L"ИИ: "_ru_RU },
+				{ L"ChatGPT, Claude, DeepSeek, GitHub Copilot"_en_US }
 				}, {
 					-.762f, .5f });
 		}

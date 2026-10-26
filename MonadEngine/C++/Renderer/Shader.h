@@ -24,8 +24,8 @@ namespace Monad::Renderer
 		/// <param name="startTexSlot">Texture's slot</param>
 		/// <param name="mesh">Model</param>
 		ShaderTextured(
-			const std::string & technique,
-			const Kernel::VectorString & textureFilenames,
+			const TechniqueName& technique,
+			const VectorResourceNames& textureFilenames,
 			Registers::INPUT_RESOURCE startTexSlot,
 			Mesh mesh
 		) :
@@ -47,7 +47,7 @@ namespace Monad::Renderer
 		/// <param name="startTexSlot">Texture's slot</param>
 		/// <param name="mesh">Model</param>
 		ShaderTextured(
-			const std::string & technique,
+			const TechniqueName& technique,
 			InitializerListTextures textures,
 			Registers::INPUT_RESOURCE startTexSlot,
 			Mesh mesh

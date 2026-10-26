@@ -84,7 +84,7 @@ namespace Monad
 				width = m_monitorConf.m_monitorRect.right - m_monitorConf.m_monitorRect.left,
 				height = m_monitorConf.m_monitorRect.bottom - m_monitorConf.m_monitorRect.top;
 			MoveWindow(
-				Monad::Globals::g_mainWindow,
+				Globals::g_mainWindow,
 				m_monitorConf.m_monitorRect.left,
 				m_monitorConf.m_monitorRect.top,
 				width,
@@ -275,13 +275,13 @@ namespace Monad
 					)
 					};
 
-					if (const std::string locale =
+					if (const auto locale =
 						GetString(
 							L"Locale"
 						); !locale.empty())
 					{
 						profile.m_locale = locale;
-						SetLocaleName(
+						g_defaultLocaleManager.SetLocaleName(
 							profile.m_locale
 						);
 						g_singleton->InsertTask(&System::g_SetProfileFolder);
@@ -337,7 +337,7 @@ namespace Monad
 			}
 			if (lang)
 			{
-				I18N::SetLocaleName(
+				g_defaultLocaleManager.SetLocaleName(
 					g_applied.m_locale
 				);
 				Win32ApplicationGeneric::SetTitle();
@@ -393,7 +393,7 @@ namespace Monad
 		}
 		PersistentSingleton::Config::ConfigRecordGlobal::ConfigRecordGlobal()
 		{
-			Monad::I18N::SetLocaleName(m_locale);
+			g_defaultLocaleManager.SetLocaleName(m_locale);
 		}
 #pragma endregion
 	}

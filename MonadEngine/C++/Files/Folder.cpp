@@ -11,7 +11,6 @@
 
 // Monad
 #include "__MonadFile.h"
-#include "Kernel/Del.h"
 #include "Exceptions/Exceptions.h"
 
 using namespace std;
@@ -32,7 +31,10 @@ namespace Monad::Files
 				// nullptr is OK for this subprogram
 				CoTaskMemFree(m_str);
 			}
-			OPER_DEL_NO_DEF_CTOR(Mem);
+			Mem(const Mem&) = delete;
+			Mem& operator=(const Mem&) = delete;
+			Mem(Mem&&) = delete;
+			Mem& operator=(Mem&&) = delete;
 
 			wchar_t* m_str = nullptr;
 		} folder;

@@ -53,9 +53,9 @@ namespace Monad::GUI
 	{
 		Pane(
 			const DirectX::XMFLOAT4& positionOfCenter,
-			const std::string& technique,
-			const Kernel::VectorString& textureFilenames,
-			const std::string& meshFilename
+			const TechniqueName& technique,
+			const VectorResourceNames& textureFilenames,
+			const MeshName& meshFilename
 		);
 		const DirectX::XMFLOAT2 GetPos() const noexcept;
 

@@ -12,9 +12,6 @@
 #include <array>
 #include <atomic>
 
-// Monad
-#include "Kernel/Del.h"
-
 namespace Monad
 {
 	namespace Safety
@@ -33,7 +30,11 @@ namespace Monad
 					LPCWCHAR length
 				);
 				~SafetyManager();
-				OPER_DEL(SafetyManager);
+				SafetyManager() = delete;
+				SafetyManager(const SafetyManager&) = delete;
+				SafetyManager& operator=(const SafetyManager&) = delete;
+				SafetyManager(SafetyManager&&) = delete;
+				SafetyManager& operator=(SafetyManager&&) = delete;
 					inline BCRYPT_ALG_HANDLE GetAlgorithmHandle(
 						const wchar_t* algorithm,
 						DWORD flags
@@ -50,11 +51,6 @@ namespace Monad
 					SafetyProperty(
 						DWORD explicitSize = 0
 					) noexcept;
-					SafetyProperty(const SafetyProperty&) noexcept = default;
-					SafetyProperty(SafetyProperty&&) noexcept = default;
-					SafetyProperty& operator=(const SafetyProperty&) noexcept = default;
-					SafetyProperty& operator=(SafetyProperty&&) noexcept = default;
-					~SafetyProperty() = default;
 					PBYTE Factory() const;
 					DWORD Size() const noexcept;
 
@@ -73,7 +69,11 @@ namespace Monad
 						const SafetyProperty& propFactory
 					);
 					~SafetyPropertyInstance();
-					OPER_DEL(SafetyPropertyInstance);
+					SafetyPropertyInstance() = delete;
+					SafetyPropertyInstance(const SafetyPropertyInstance&) = delete;
+					SafetyPropertyInstance& operator=(const SafetyPropertyInstance&) = delete;
+					SafetyPropertyInstance(SafetyPropertyInstance&&) = delete;
+					SafetyPropertyInstance& operator=(SafetyPropertyInstance&&) = delete;
 					PBYTE Data() const noexcept;
 					uint32_t Size() const noexcept;
 

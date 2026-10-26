@@ -24,7 +24,7 @@ namespace Monad::Kernel
 	/// Immutable view over a block of binary data.
 	/// Typically represents a fragment of a byte vector.
 	/// </summary>
-	struct SpanConstBytes final : public std::span<const uint8_t>
+	struct SpanConstBytes final : std::span<const uint8_t>
 	{
 		using span::span;
 

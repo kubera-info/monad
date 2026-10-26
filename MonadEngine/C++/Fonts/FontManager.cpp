@@ -13,7 +13,7 @@ namespace Monad::Fonts
 {
 	Text2Mesh& FontManager::GetFont(
 		GUI::DialogGeneric& ownerDialog,
-		const std::string& name
+		const ShaderResourceName& name
 	)
 	{
 		const auto shaderFont = m_guiTexts.try_emplace(

@@ -6,7 +6,6 @@
 
 // Monad
 #include "Pipeline.h"
-#include "Kernel/Del.h"
 
 namespace Monad::Renderer
 {
@@ -16,7 +15,6 @@ namespace Monad::Renderer
 	struct Texture final
 	{
 		Texture() = default;
-		~Texture() = default;
 		Texture(
 			const D3D12_RESOURCE_DESC& sourceFormat
 		);
@@ -42,7 +40,7 @@ namespace Monad::Renderer
 			D3D12_RESOURCE_FLAGS resourceFlags
 		);
 		Texture(
-			const std::string& filename
+			const ShaderResourceName& filename
 		);
 		Texture(
 			const Kernel::SpanConstBytes sourceDDS
@@ -51,7 +49,6 @@ namespace Monad::Renderer
 			const ShaderConfigGeneric* shaderConfig,
 			Registers::INPUT_RESOURCE baseShaderRegister
 		) const;
-		OPER_DEF_NO_DEF_CTOR(Texture);
 
 		template<typename V>
 		void UpdateTexture1D(

@@ -121,7 +121,7 @@ namespace Monad
 		CombineWorld::CombineFullRequirements::CombineFullRequirements() :
 			c_me(this, g_combineFullRequirements)
 		{
-			if (g_parameters->GetParameter(Monad::System::PAR_NAME_TYPE) == Monad::System::PAR_VAL_INFO)
+			if (g_parameters->GetParameter(System::PAR_NAME_TYPE) == System::PAR_VAL_INFO)
 				m_dlg = std::make_unique<DialogInfo>();
 			else
 				m_dlg = std::make_unique<DialogReport>();

@@ -29,7 +29,12 @@ namespace Monad::Audio
 			float volume,
 			const WAVEFORMATEX* waveFornatEx
 		);
-		OPER_DEL(Voice);
+		Voice() = delete;
+		Voice(const Voice&) = delete;
+		Voice& operator=(const Voice&) = delete;
+		Voice(Voice&&) = delete;
+		Voice& operator=(Voice&&) = delete;
+
 		/// <summary>
 		/// Plays a WAV buffer that is already loaded into memory.
 		/// </summary>

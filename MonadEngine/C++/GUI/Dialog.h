@@ -35,7 +35,7 @@ namespace Monad
 
 		protected:
 			Fonts::Text2Mesh& GetFont(
-				const std::string& fontName
+				const ShaderResourceName& fontName
 			);
 			DirectX::XMFLOAT4 GetInternalRect() const noexcept;
 			void LabelCheckbox(

@@ -24,7 +24,7 @@ namespace Monad
 		HDRGeneric* g_dataHDRGeneric = nullptr;
 
 		HDRGeneric::HDRGeneric(
-			const std::string& counter,
+			const ConstantBufferName& counter,
 			const BUFFER_TYPE& cbType
 		) noexcept :
 			CB::HDRInstance(
@@ -55,7 +55,7 @@ namespace Monad
 		LightPosGeneric* g_dataLightPosMatrixGeneric = nullptr;
 
 		LightPosGeneric::LightPosGeneric(
-			const std::string& counter,
+			const ConstantBufferName& counter,
 			DirectX::XMFLOAT4 lightPosition) noexcept :
 			CB::LightPosInstance(
 				counter,
@@ -72,7 +72,7 @@ namespace Monad
 		uint32_t g_texDepthHeight = 1024, g_texDepthWidth = 2048;
 
 		ShaderGeneric::ShaderGeneric(
-			const std::string& technique,
+			const TechniqueName& technique,
 			Mesh mesh
 		) :
 			m_mesh{ mesh },
@@ -114,12 +114,12 @@ namespace Monad
 				m_shaderConfig.at(STAGE_MODE_WORLD)->SetMe();
 				OnComputePerWorldFrame(modelSpaceMatrix);
 				g_dataHDRGeneric->SetMe(m_shaderConfig.at(STAGE_MODE_WORLD));
-#if MONAD_SHADOW
-				g_dxSample->m_shadows.GetDsTexture().SetMe(
-					m_shaderConfig.at(STAGE_MODE_WORLD),
-					T0_SHADOW_MAP
-				);
-#endif
+				if (g_dxSample->m_shadows)
+					g_dxSample->m_shadows->GetDsTexture().SetMe(
+						m_shaderConfig.at(STAGE_MODE_WORLD),
+						T0_SHADOW_MAP
+					);
+
 				break;
 #if MONAD_SHADOW
 			case STAGE_MODE_SHADOW:

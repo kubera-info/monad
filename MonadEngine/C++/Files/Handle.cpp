@@ -59,7 +59,11 @@ namespace Monad::Files
 					if (INVALID_HANDLE_VALUE != c_findFile)
 						FindClose(c_findFile);
 				}
-				OPER_DEL(HandleHolder);
+				HandleHolder() = delete;
+				HandleHolder(const HandleHolder&) = delete;
+				HandleHolder& operator=(const HandleHolder&) = delete;
+				HandleHolder(HandleHolder&&) noexcept = delete;
+				HandleHolder& operator=(HandleHolder&&) noexcept = delete;
 
 				const HANDLE c_findFile;
 			} handle{ FindFirstFile(

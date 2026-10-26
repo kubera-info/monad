@@ -15,8 +15,6 @@
 
 #pragma once
 
-using namespace std::string_literals;
-
 /// <summary>
 /// Assigns a name to the DX12 object, only in debug build.
 /// </summary>

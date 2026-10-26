@@ -10,9 +10,6 @@
 // STD
 #include <stdint.h>
 
-// Monad
-#include "Kernel/Del.h"
-
 namespace Monad::Input
 {
 	/// <summary>
@@ -39,7 +36,11 @@ namespace Monad::Input
 		/// </summary>
 		~Hook();
 
-		OPER_DEL(Hook);
+		Hook() = delete;
+		Hook(const Hook&) = delete;
+		Hook& operator=(const Hook&) = delete;
+		Hook(Hook&&) = delete;
+		Hook& operator=(Hook&&) = delete;		
 
 	private:
 		/// <summary>

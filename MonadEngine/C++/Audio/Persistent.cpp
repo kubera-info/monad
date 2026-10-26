@@ -30,11 +30,11 @@ namespace Monad
 			m_config{ config },
 			m_threadPoolStreams{ Threads::THREAD_NAME_AUDIO_STREAM_POOL },
 			m_voicesVolumesCache{
-				ranges::to<Kernel::FlatMapString<float>>(
+				ranges::to<std::flat_map<Queue, float>>(
 					views::transform
 					(
 						queues,
-						[](const std::string& queue)
+						[](const Queue& queue)
 						{
 							return std::make_pair(queue, VOLUME_MAX);
 						}
@@ -77,13 +77,13 @@ namespace Monad
 			m_threadPoolStreams.InsertTask(task);
 		}
 
-		/*inline bool PersistentAudio::InternalSoundExists(const wstring& filename) const
+		/*inline bool PersistentAudio::InternalSoundExists(const Cue& filename) const
 		{
 			return m_buffers.contains(filename);
 		}*/
 
 		bool PersistentAudio::InternalIsPlaying(
-			const string& queue
+			const Queue& queue
 		) const noexcept
 		{
 			if (IsReady())
@@ -99,7 +99,7 @@ namespace Monad
 		}
 
 		void PersistentAudio::CreateSound(
-			const string& filename,
+			const Cue& filename,
 			const VectorBytes& blob
 		)
 		{
@@ -116,7 +116,8 @@ namespace Monad
 		}
 
 		PtrWaveBuffer PersistentAudio::GetPreparedSound(
-			const WAVEFORMATEX* const waveFornatEx, VectorBytes&& buffer
+			const WAVEFORMATEX* const waveFornatEx,
+			VectorBytes&& buffer
 		)
 		{
 			PtrWaveBuffer newReferenceWaveBuffer;
@@ -129,7 +130,7 @@ namespace Monad
 		}
 
 		void PersistentAudio::TryEmplacePreparedSound(
-			const string& filename,
+			const Cue& filename,
 			const WAVEFORMATEX* const waveFornatEx,
 			VectorBytes&& buffer
 		)
@@ -143,7 +144,7 @@ namespace Monad
 		}
 
 		void PersistentAudio::InsertOrAssignPreparedSound(
-			const string& filename,
+			const Cue& filename,
 			const WAVEFORMATEX* const waveFornatEx,
 			VectorBytes&& buffer
 		)
@@ -157,7 +158,7 @@ namespace Monad
 		}
 
 		PtrWaveBuffer PersistentAudio::GetSound(
-			const string& filename
+			const Cue& filename
 		)
 		{
 			if (const auto waveBuffer(m_waveBuffers.find(filename)); m_waveBuffers.cend() != waveBuffer)
@@ -167,7 +168,7 @@ namespace Monad
 		}
 
 		void PersistentAudio::CreateStream(
-			const string& filename,
+			const Cue& filename,
 			IStream* const stream
 		)
 		{
@@ -187,7 +188,7 @@ namespace Monad
 
 		void PersistentAudio::SetVoiceVolumeGeneric(
 			const float volume,
-			const string& queue
+			const Queue& queue
 		)
 		{
 			const lock_guard lg(m_lockAudio);
@@ -196,7 +197,7 @@ namespace Monad
 		}
 
 		void PersistentAudio::ResetQueue(
-			const string& queue
+			const Queue& queue
 		)
 		{
 			const lock_guard lg(m_lockAudio);
@@ -211,8 +212,8 @@ namespace Monad
 		}
 
 		void PersistentAudio::EnqueueSound(
-			const string& filename,
-			const string& queue,
+			const Cue& filename,
+			const Queue& queue,
 			IWaveCallback* const callback
 		)
 		{
@@ -224,8 +225,8 @@ namespace Monad
 		}
 
 		void PersistentAudio::PlayImmediate(
-			const string& filename,
-			const string& queue,
+			const Cue& filename,
+			const Queue& queue,
 			IWaveCallback* const callback
 		)
 		{
@@ -243,7 +244,7 @@ namespace Monad
 		}
 
 		void PersistentAudio::PlayJingle(
-			const string& filename
+			const Cue& filename
 		)
 		{
 			if (IsEnabled())
@@ -254,22 +255,29 @@ namespace Monad
 		}
 
 		void PersistentAudio::Describe(
-			const string& filename
+			const VectorCue& filenames
 		)
 		{
-			SetVoiceVolumeGeneric(
-				VOLUME_SILENT,
-				STREAM
-			);
-			PlayImmediate(
-				filename,
-				DESCRIBE,
-				&m_stopDescribe
-			);
+			const lock_guard lg(m_lockAudio);
+			if (IsReady())
+			{
+				SetVoiceVolumeGeneric(
+					VOLUME_SILENT,
+					STREAM
+				);
+				InternalResetQueue(DESCRIBE);
+				for (auto itInnner = filenames.cbegin(); filenames.cend() != itInnner; ++itInnner)
+				{
+					if (filenames.cend() - 1 == itInnner)
+						EnqueueSound(*itInnner, DESCRIBE, &g_persistentAudio->m_stopDescribe);
+					else
+						EnqueueSound(*itInnner, DESCRIBE);
+				}
+			}
 		}
 
 		void PersistentAudio::InternalAfterWave(
-			const string& queue
+			const Queue& queue
 		)
 		{
 #if MONAD_HARDWARE_EXCEPTIONS == 1
@@ -319,7 +327,7 @@ namespace Monad
 
 		void PersistentAudio::InternalSetVoiceVolume(
 			const float volume,
-			const string& queue
+			const Queue& queue
 		)
 		{
 			if (InternalContainsQueue(queue))
@@ -333,7 +341,7 @@ namespace Monad
 
 		void PersistentAudio::InternalSetVoiceVolumeXAudio2(
 			const float volume,
-			const string& queue
+			const Queue& queue
 		)
 		{
 			if (InternalReadyContainsQueue(queue))
@@ -341,21 +349,21 @@ namespace Monad
 		}
 
 		bool PersistentAudio::InternalContainsQueue(
-			const string& queue
+			const Queue& queue
 		) const noexcept
 		{
 			return m_voicesVolumesCache.contains(queue);
 		}
 
 		bool PersistentAudio::InternalReadyContainsQueue(
-			const std::string& queue
+			const Queue& queue
 		) const noexcept
 		{
 			return IsReady() && InternalContainsQueue(queue);
 		}
 
 		void PersistentAudio::InternalResetQueue(
-			const string& queue
+			const Queue& queue
 		)
 		{
 			if (InternalReadyContainsQueue(queue))
@@ -363,8 +371,8 @@ namespace Monad
 		}
 
 		void PersistentAudio::InternalEnqueueSound(
-			const string& filename,
-			const string& queue,
+			const Cue& filename,
+			const Queue& queue,
 			IWaveCallback* const callback
 		)
 		{
@@ -377,7 +385,7 @@ namespace Monad
 		}
 
 		void PersistentAudio::InternalEnqueueStream(
-			const string& filename
+			const Cue& filename
 		)
 		{
 			InternalEnqueueSound(
@@ -393,7 +401,7 @@ namespace Monad
 		}
 
 		bool PersistentAudio::IsPlaying(
-			const string& queue
+			const Queue& queue
 		) noexcept
 		{
 			if (InternalReadyContainsQueue(queue))
@@ -445,7 +453,7 @@ namespace Monad
 			if (InternalIsReadyAndIsEnabled())
 			{
 				const auto& mediaStreamer = m_streams.find(
-					m_streamsNames.GetRandomString());
+					Cue{ m_streamsNames.GetRandomString() });
 				THROW_EXC_ONEND(
 					m_streams,
 					mediaStreamer,
@@ -488,7 +496,7 @@ namespace Monad
 		}
 
 		float PersistentAudio::GetVolume(
-			const string& queue
+			const Queue& queue
 		) const noexcept
 		{
 #if defined _DEBUG

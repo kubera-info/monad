@@ -160,35 +160,35 @@ $(MND_DEST_DIR)\Stream\yes.monad$$snd: $(MND_JIN_DIR)\yes.pcm
 
 jingles: $(MND_DEST_DIR)\Stream\clear1.monad$$snd $(MND_DEST_DIR)\Stream\clear2.monad$$snd $(MND_DEST_DIR)\Stream\color1.monad$$snd $(MND_DEST_DIR)\Stream\color3.monad$$snd $(MND_DEST_DIR)\Stream\color5.monad$$snd $(MND_DEST_DIR)\Stream\exit1.monad$$snd $(MND_DEST_DIR)\Stream\focus.monad$$snd $(MND_DEST_DIR)\Stream\no.monad$$snd $(MND_DEST_DIR)\Stream\paint1.monad$$snd $(MND_DEST_DIR)\Stream\paint2.monad$$snd $(MND_DEST_DIR)\Stream\print1.monad$$snd $(MND_DEST_DIR)\Stream\vopros.monad$$snd $(MND_DEST_DIR)\Stream\yes.monad$$snd
 
-$(MND_DEST_DIR)\Stream\en-US\help_art.monad$$snd: $(MND_SPE_DIR)\En\help_art.pcm
+$(MND_DEST_DIR)\Stream\en_US\help_art.monad$$snd: $(MND_SPE_DIR)\En\help_art.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\en-US\help_art_print.monad$$snd: $(MND_SPE_DIR)\En\help_art_print.pcm
+$(MND_DEST_DIR)\Stream\en_US\help_art_print.monad$$snd: $(MND_SPE_DIR)\En\help_art_print.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\en-US\help_menu.monad$$snd: $(MND_SPE_DIR)\En\help_menu.pcm
+$(MND_DEST_DIR)\Stream\en_US\help_menu.monad$$snd: $(MND_SPE_DIR)\En\help_menu.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\en-GB\help_art.monad$$snd: $(MND_SPE_DIR)\En-GB\help_art.pcm
+$(MND_DEST_DIR)\Stream\en_GB\help_art.monad$$snd: $(MND_SPE_DIR)\En-GB\help_art.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\en-GB\help_art_print.monad$$snd: $(MND_SPE_DIR)\En-GB\help_art_print.pcm
+$(MND_DEST_DIR)\Stream\en_GB\help_art_print.monad$$snd: $(MND_SPE_DIR)\En-GB\help_art_print.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\en-GB\help_menu.monad$$snd: $(MND_SPE_DIR)\En-GB\help_menu.pcm
+$(MND_DEST_DIR)\Stream\en_GB\help_menu.monad$$snd: $(MND_SPE_DIR)\En-GB\help_menu.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\pl-PL\help_art.monad$$snd: $(MND_SPE_DIR)\Pl\help_art.pcm
+$(MND_DEST_DIR)\Stream\pl_PL\help_art.monad$$snd: $(MND_SPE_DIR)\Pl\help_art.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\pl-PL\help_art_print.monad$$snd: $(MND_SPE_DIR)\Pl\help_art_print.pcm
+$(MND_DEST_DIR)\Stream\pl_PL\help_art_print.monad$$snd: $(MND_SPE_DIR)\Pl\help_art_print.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\pl-PL\help_menu.monad$$snd: $(MND_SPE_DIR)\Pl\help_menu.pcm
+$(MND_DEST_DIR)\Stream\pl_PL\help_menu.monad$$snd: $(MND_SPE_DIR)\Pl\help_menu.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\ru-RU\help_art.monad$$snd: $(MND_SPE_DIR)\Ru\help_art.pcm
+$(MND_DEST_DIR)\Stream\ru_RU\help_art.monad$$snd: $(MND_SPE_DIR)\Ru\help_art.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\ru-RU\help_art_print.monad$$snd: $(MND_SPE_DIR)\Ru\help_art_print.pcm
+$(MND_DEST_DIR)\Stream\ru_RU\help_art_print.monad$$snd: $(MND_SPE_DIR)\Ru\help_art_print.pcm
 	$(MND_ENCRYPT)
-$(MND_DEST_DIR)\Stream\ru-RU\help_menu.monad$$snd: $(MND_SPE_DIR)\Ru\help_menu.pcm
+$(MND_DEST_DIR)\Stream\ru_RU\help_menu.monad$$snd: $(MND_SPE_DIR)\Ru\help_menu.pcm
 	$(MND_ENCRYPT)
 
-helpUS: $(MND_DEST_DIR)\Stream\en-US\help_art.monad$$snd $(MND_DEST_DIR)\Stream\en-US\help_art_print.monad$$snd $(MND_DEST_DIR)\Stream\en-US\help_menu.monad$$snd
-helpGB: $(MND_DEST_DIR)\Stream\en-GB\help_art.monad$$snd $(MND_DEST_DIR)\Stream\en-GB\help_art_print.monad$$snd $(MND_DEST_DIR)\Stream\en-GB\help_menu.monad$$snd
-helpPl: $(MND_DEST_DIR)\Stream\pl-PL\help_art.monad$$snd $(MND_DEST_DIR)\Stream\pl-PL\help_art_print.monad$$snd $(MND_DEST_DIR)\Stream\pl-PL\help_menu.monad$$snd
-helpRu: $(MND_DEST_DIR)\Stream\ru-RU\help_art.monad$$snd $(MND_DEST_DIR)\Stream\ru-RU\help_art_print.monad$$snd $(MND_DEST_DIR)\Stream\ru-RU\help_menu.monad$$snd
+helpUS: $(MND_DEST_DIR)\Stream\en_US\help_art.monad$$snd $(MND_DEST_DIR)\Stream\en_US\help_art_print.monad$$snd $(MND_DEST_DIR)\Stream\en_US\help_menu.monad$$snd
+helpGB: $(MND_DEST_DIR)\Stream\en_GB\help_art.monad$$snd $(MND_DEST_DIR)\Stream\en_GB\help_art_print.monad$$snd $(MND_DEST_DIR)\Stream\en_GB\help_menu.monad$$snd
+helpPl: $(MND_DEST_DIR)\Stream\pl_PL\help_art.monad$$snd $(MND_DEST_DIR)\Stream\pl_PL\help_art_print.monad$$snd $(MND_DEST_DIR)\Stream\pl_PL\help_menu.monad$$snd
+helpRu: $(MND_DEST_DIR)\Stream\ru_RU\help_art.monad$$snd $(MND_DEST_DIR)\Stream\ru_RU\help_art_print.monad$$snd $(MND_DEST_DIR)\Stream\ru_RU\help_menu.monad$$snd
 help: helpUS helpGB helpPl helpRu
 
 $(MND_MESH_DIR)\circullar_button.x.m12: $(MND_MESH_DIR)\circullar_button.x

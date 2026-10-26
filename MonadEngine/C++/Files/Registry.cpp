@@ -63,33 +63,35 @@ namespace Monad::Files
 			DWORD type,
 			const BYTE* data,
 			DWORD size
-		) noexcept
+		)
 		{
-			::RegSetValueEx(
+			THROW_EXC_ONERROR(Exceptions::InvalidClass,
+				::RegSetValueEx(
 				subKey,
 				name,
 				0,
 				type,
 				data,
-				size);
+				size),
+				L"Reg Set Value Ex");
 		}
 	}
 
 #pragma region Accessors
 	void Registry::SetString(
 		const wchar_t* name,
-		const std::string& value
-	) noexcept
+		const std::wstring& value
+	)
 	{
-		/*return ERROR_SUCCESS ==*/ RegSetValueEx(
+		RegSetValueEx(
 			m_subKey,
 			name,
 			REG_SZ,
-			reinterpret_cast<const uint8_t*>(Tools::UTF8ToUnicode(value).c_str()),
+			reinterpret_cast<const uint8_t*>(value.c_str()),
 			static_cast<DWORD>((value.length() + 1) * sizeof(wchar_t)));
 	}
 
-	std::string Registry::GetString(
+	std::wstring Registry::GetString(
 		const wchar_t* name
 	) const
 	{
@@ -114,16 +116,16 @@ namespace Monad::Files
 						reinterpret_cast<uint8_t*>(registryStringValue.data()),
 						&dwLength),
 					L"Reg Query Value Ex");
-				return Tools::UnicodeToUTF8(registryStringValue);
+				return registryStringValue;
 			}
 		}
-		return "";
+		return L"";
 	}
 
 	void Registry::SetDWORD(
 		const wchar_t* name,
 		DWORD value
-	) noexcept
+	)
 	{
 		/*return ERROR_SUCCESS ==*/ RegSetValueEx(
 			m_subKey,
@@ -154,7 +156,7 @@ namespace Monad::Files
 	void Registry::SetBool(
 		const wchar_t* name,
 		bool value
-	) noexcept
+	)
 	{
 		SetDWORD(
 			name,

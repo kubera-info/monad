@@ -21,8 +21,8 @@ namespace Monad::Time
 	{
 		/// <summary>
 		/// Special values describing the internal state of the interpolation.
-		/// START_STATE  � interpolation has not been started yet
-		/// STOP_STATE   � interpolation has finished
+		/// START_STATE  © interpolation has not been started yet
+		/// STOP_STATE   © interpolation has finished
 		/// </summary>
 		constexpr double START_STATE(0.0), STOP_STATE(-1.0);
 	}

@@ -39,8 +39,6 @@ namespace Monad::Renderer
 			) noexcept;
 			ScopedBarrier(ScopedBarrier&&) = default;
 			ScopedBarrier& operator=(ScopedBarrier&&) = default;
-			ScopedBarrier(ScopedBarrier const&) = delete;
-			ScopedBarrier& operator=(ScopedBarrier const&) = delete;
 			~ScopedBarrier();
 
 			GraphicsCommandList1& m_commandList;
@@ -74,7 +72,11 @@ namespace Monad::Renderer
 		struct SmartHandleFence final : System::SmartHandle
 		{
 			SmartHandleFence();
-			OPER_DEL_NO_DEF_CTOR(SmartHandleFence);
+
+			SmartHandleFence(const SmartHandleFence&) = delete;
+			SmartHandleFence& operator=(const SmartHandleFence&) = delete;
+			SmartHandleFence(SmartHandleFence&&) = delete;
+			SmartHandleFence& operator=(SmartHandleFence&&) = delete;
 		} const c_fenceEvent;
 
 	public:

@@ -10,9 +10,6 @@
 // STD
 #include <filesystem>
 
-// Monad
-#include "Kernel/Del.h"
-
 namespace Monad::System
 {
 	/// <summary>
@@ -60,7 +57,11 @@ namespace Monad::System
 		/// </summary>
 		~LibraryGeneric();
 
-		OPER_DEL(LibraryGeneric);
+		LibraryGeneric() = delete;
+		LibraryGeneric(const LibraryGeneric&) = delete;
+		LibraryGeneric& operator=(const LibraryGeneric&) = delete;
+		LibraryGeneric(LibraryGeneric&&) = delete;
+		LibraryGeneric& operator=(LibraryGeneric&&) = delete;
 
 	private:
 		/// <summary>
@@ -83,8 +84,6 @@ namespace Monad::System
 		SystemLibrary(
 			const wchar_t* fileName
 		);
-
-		OPER_DEL(SystemLibrary);
 	};
 
 	/// <summary>
@@ -101,7 +100,5 @@ namespace Monad::System
 		LocalLibrary(
 			const wchar_t* fileName
 		);
-
-		OPER_DEL(LocalLibrary);
 	};
 }

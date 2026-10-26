@@ -8,9 +8,6 @@
 #include <cassert>
 #include <random>
 
-// Monad
-#include "Kernel/Del.h"
-
 namespace Monad::Math
 {
 	/// <summary>
@@ -20,9 +17,10 @@ namespace Monad::Math
 	struct Random final
 	{
 		Random();
-		~Random() = default;
-
-		OPER_DEL_NO_DEF_CTOR(Random);
+		Random(const Random&) = delete;
+		Random& operator=(const Random&) = delete;
+		Random(Random&&) = delete;
+		Random& operator=(Random&&) = delete;
 
 		/// <summary>
 		/// Returns a random integer value in the specified range.

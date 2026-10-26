@@ -9,6 +9,10 @@
 #include <vector>
 #include <string>
 
+// Monad
+#include "Exceptions/Exceptions.h"
+#include "Math/Random.h"
+
 namespace Monad::Kernel
 {
 	/// <summary>
@@ -31,24 +35,32 @@ namespace Monad::Kernel
 	) noexcept;
 
 	using VectorPath = std::vector<std::filesystem::path>;
-	using VectorWString = std::vector<std::wstring>;
-	using VectorString = std::vector<std::string>;
 
 	/// <summary>
 	/// Container for random string selection.
 	/// </summary>
-	struct VectorRandomString : VectorString
+	template<typename S>
+	struct VectorRandom : std::vector<S>
 	{
-		using VectorString::VectorString;
+		using std::vector<S>::vector;
 
 		/// <summary>
 		/// Returns a randomly selected string from the vector.
 		/// </summary>
-		const std::string& GetRandomString() const;
+		const S& GetRandomString() const
+		{
+			THROW_EXC_IFFALSE(Exceptions::NoDataFound, !this->empty(), L"Random String");
+			return std::vector<S>::operator[](Math::g_random.GetRandomInt(this->size() - 1));
+		}
 
 		/// <summary>
 		/// Returns a randomly selected string and removes it from the vector.
 		/// </summary>
-		std::string GetRandomStringOnce();
+		S GetRandomStringOnce()
+		{
+			auto ret = GetRandomString();
+			erase_if(*this, [&ret](const auto& name) { return name == ret; });
+			return ret;
+		}
 	};
 }

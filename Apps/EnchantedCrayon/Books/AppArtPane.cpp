@@ -37,7 +37,7 @@ namespace Monad
 		) :
 			ShaderTextured{
 				"raw_tex"_technique,
-				{ GHOST },
+				{ ShaderResourceName{ GHOST } },
 				T2_ART,
 				InputLayout::MeshBuilderArtPane{
 					paneRect,

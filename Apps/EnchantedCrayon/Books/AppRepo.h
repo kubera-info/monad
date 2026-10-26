@@ -32,7 +32,10 @@ namespace Monad::App
 	struct Repository final : Repositories::RepositoryGeneric
 	{
 		Repository() noexcept;
-		OPER_DEL_NO_DEF_CTOR(Repository);
+		Repository(const Repository&) = delete;
+		Repository& operator=(const Repository&) = delete;
+		Repository(Repository&&) = delete;
+		Repository& operator=(Repository&&) = delete;
 
 		/// <summary>
 		/// Internal map type storing artworks and their GPU memory.

@@ -25,9 +25,8 @@ namespace Monad::GUI
 		/// Evaluates whether the object is currently targeted by a pointing device.
 		/// </summary>
 		const FnOnRegion c_onRegionFun;
-		const std::string
-			c_meshFilename,
-			c_technique;
+		const MeshName c_meshFilename;
+		const TechniqueName c_technique;
 	};
 
 	struct IconicStyleGeneric
@@ -36,7 +35,7 @@ namespace Monad::GUI
 			const MeshStyle& style,
 			const DirectX::XMFLOAT3& rgb,
 			const Audio::RandomJingle& clicksSounds,
-			const Kernel::VectorString& icons
+			const VectorResourceNames& icons
 		);
 
 		const MeshStyle& c_style;
@@ -45,7 +44,7 @@ namespace Monad::GUI
 		/// Manages randomized jingle playback for non-deterministic audio behavior.
 		/// </summary>
 		const Audio::RandomJingle c_clicksSounds;
-		const Kernel::VectorString c_icons;
+		const VectorResourceNames c_icons;
 	};
 
 	/// <summary>
@@ -61,7 +60,7 @@ namespace Monad::GUI
 		IconicStyle(
 			const DirectX::XMFLOAT3& rgb,
 			const Audio::RandomJingle& clicksSounds,
-			const Kernel::VectorString& icons
+			const VectorResourceNames& icons
 		);
 
 		/// <summary>
@@ -70,7 +69,7 @@ namespace Monad::GUI
 		IconicStyle(
 			const GUI::MeshStyle& style,
 			const Audio::RandomJingle& clicksSounds,
-			const Kernel::VectorString& icons
+			const VectorResourceNames& icons
 		);
 
 		/// <summary>
@@ -78,21 +77,21 @@ namespace Monad::GUI
 		/// </summary>
 		IconicStyle(
 			const DirectX::XMFLOAT3& rgb,
-			const Kernel::VectorString& icons
+			const VectorResourceNames& icons
 		);
 
 		/// <summary>
 		/// Creates an icon style using default color and no sound.
 		/// </summary>
 		IconicStyle(
-			const Kernel::VectorString& icons
+			const VectorResourceNames& icons
 		);
 
 		/// <summary>
 		/// Creates an icon style for a language or flag icon.
 		/// </summary>
 		IconicStyle(
-			const std::string& flag
+			const ShaderResourceName& flag
 		);
 	};
 

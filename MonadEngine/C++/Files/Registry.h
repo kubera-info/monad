@@ -6,7 +6,6 @@
 
 // Monad
 #include "Globals/__MonadGlobals.h"
-#include "Kernel/Del.h"
 
 //
 // A wrapper for the Windows Registry API.
@@ -31,17 +30,17 @@ namespace Monad::Files
 	public:
 		void SetString(
 			const wchar_t* name,
-			const std::string& value
-		) noexcept;
+			const std::wstring& value
+		);
 
-		std::string GetString(
+		std::wstring GetString(
 			const wchar_t* name
 		) const;
 
 		void SetDWORD(
 			const wchar_t* name,
 			DWORD value
-		) noexcept;
+		);
 
 		DWORD GetDWORD(
 			const wchar_t* name,
@@ -51,7 +50,7 @@ namespace Monad::Files
 		void SetBool(
 			const wchar_t* name,
 			bool value
-		) noexcept;
+		);
 
 		bool GetBool(
 			const wchar_t* name,
@@ -59,7 +58,11 @@ namespace Monad::Files
 		) const noexcept;
 
 	private:
-		OPER_DEL(Registry);
+		Registry() = delete;
+		Registry(const Registry&) = delete;
+		Registry& operator=(const Registry&) = delete;
+		Registry(Registry&&) = delete;
+		Registry& operator=(Registry&&) = delete;
 
 		const HKEY m_subKey;
 	};

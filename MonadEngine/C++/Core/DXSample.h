@@ -46,7 +46,7 @@ interface DXSample abstract : DXSampleGeneric, Monad::Renderer::Combine
 {
 	const Monad::Kernel::Me<DXSample> c_me;
 	const Monad::Renderer::InputLayout::MapInputLayouts c_inputLayouts;
-	using MapTechniques = Monad::Kernel::FlatMapString<Monad::Renderer::FlatMapTechnique>;
+	using MapTechniques = std::flat_map<TechniqueName, Monad::Renderer::FlatMapTechnique>;
 	MapTechniques m_techniques;
 	using InitializerListTechniques = std::initializer_list<MapTechniques::value_type>;
 
@@ -58,7 +58,12 @@ interface DXSample abstract : DXSampleGeneric, Monad::Renderer::Combine
 		InitializerListTechniques techniques,
 		Monad::Renderer::CB::MapConstantBufferManager::InitializerListConstantBufferManager cbTypeGenerics
 	);
-	OPER_DEL(DXSample);
+
+	DXSample() = delete;
+	DXSample(const DXSample&) = delete;
+	DXSample& operator=(const DXSample&) = delete;
+	DXSample(DXSample&&) = delete;
+	DXSample& operator=(DXSample&&) = delete;
 	~DXSample() override;
 
 	void OnAspectRatio();
@@ -230,9 +235,7 @@ public:
 	virtual void Repo()
 	{}
 
-#if defined MONAD_SHADOW
-	Monad::Renderer::DepthStencil m_shadows;
-#endif
+	std::optional<Monad::Renderer::DepthStencil> m_shadows;
 	Monad::Renderer::CB::MapConstantBufferManager m_constantBufferManager;
 	Monad::Renderer::MapFX m_fxCollection;
 } extern* g_dxSample;

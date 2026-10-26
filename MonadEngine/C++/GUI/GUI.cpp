@@ -59,9 +59,9 @@ namespace Monad
 
 		Pane::Pane(
 			const XMFLOAT4& positionOfCenter,
-			const std::string& technique,
-			const VectorString& textureFilenames,
-			const std::string& meshFilename
+			const TechniqueName& technique,
+			const VectorResourceNames& textureFilenames,
+			const MeshName& meshFilename
 		) :
 			CalculatePosition{
 				InitializePane(positionOfCenter),

@@ -11,7 +11,6 @@
 #include <array>
 
 // Monad
-#include "Kernel/Del.h"
 #include "Renderer/__MonadRenderer.h"
 #include "Time/TimeLerp.h"
 
@@ -34,7 +33,10 @@ namespace Monad::App
 		) noexcept;
 		~ColorIndexGeneric() = default;
 
-		OPER_DEL_NO_DEF_CTOR(ColorIndexGeneric);
+		ColorIndexGeneric(const ColorIndexGeneric&) = delete;
+		ColorIndexGeneric& operator=(const ColorIndexGeneric&) = delete;
+		ColorIndexGeneric(ColorIndexGeneric&&) = delete;
+		ColorIndexGeneric& operator=(ColorIndexGeneric&&) = delete;
 
 		/// <summary>
 		/// Sets the color directly.
@@ -71,7 +73,10 @@ namespace Monad::App
 		) noexcept;
 		~ColorIndex() = default;
 
-		OPER_DEL_NO_DEF_CTOR(ColorIndex);
+		ColorIndex(const ColorIndex&) = delete;
+		ColorIndex& operator=(const ColorIndex&) = delete;
+		ColorIndex(ColorIndex&&) = delete;
+		ColorIndex& operator=(ColorIndex&&) = delete;
 
 		/// <summary>
 		/// Overrides the base method.

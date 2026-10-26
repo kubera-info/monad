@@ -53,7 +53,10 @@ namespace Monad::Pages
 		ScopeCounter() noexcept;
 		~ScopeCounter();
 
-		OPER_DEL_NO_DEF_CTOR(ScopeCounter);
+		ScopeCounter(const ScopeCounter&) = delete;
+		ScopeCounter& operator=(const ScopeCounter&) = delete;
+		ScopeCounter(ScopeCounter&&) = delete;
+		ScopeCounter& operator=(ScopeCounter&&) = delete;
 	};
 
 	/// <summary>

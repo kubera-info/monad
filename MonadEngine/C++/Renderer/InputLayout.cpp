@@ -28,8 +28,9 @@ namespace Monad::Renderer::InputLayout
 	}
 	{}
 
-	D3D12_INPUT_LAYOUT_DESC VectorInputElementsDesc::GetInputLayoutDesc() const noexcept
+	D3D12_INPUT_LAYOUT_DESC VectorInputElementsDesc::GetInputLayoutDesc() const
 	{
+		THROW_EXC_IFFALSE(Exceptions::NoDataFound, !empty(), L"3D Input Layout Description (vector)");
 		return
 		{
 			.pInputElementDescs = data(),
@@ -42,68 +43,60 @@ namespace Monad::Renderer::InputLayout
 	) const
 	{
 		const auto foundIL = find(id);
-		THROW_EXC_ONEND(*this, foundIL, L"Input Layout Desc");
+		THROW_EXC_ONEND(*this, foundIL, L"3D Input Layout Descriptions (map)");
 		return foundIL->second.GetInputLayoutDesc();
 	}
 
-	MapInputLayouts FontEndEmoji()
+	MapInputLayouts
+		FontEndEmoji
 	{
-		return
-		{
-			{ "emoji",
-				{
-					{ "POSITION", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT },
-					{ "TEXCOORD", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT } }
-				},
-			{ "font",
-				{
-					{ "POSITION", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT },
-					{ "TEXCOORD", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT },
-					{ "COLOR", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT }
-
-				}
+		{ "emoji",
+			{
+				{ "POSITION", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT },
+				{ "TEXCOORD", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT }
 			}
-		};
-	}
-
-	MapInputLayouts Basics()
+		},
+		{ "font",
+			{
+				{ "POSITION", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT },
+				{ "TEXCOORD", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT },
+				{ "COLOR", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT }
+			}
+		}
+	},
+		Basics
 	{
-		return
-		{
-			{ "plain",
-				{
-					{ "POSITION", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT },
-					{ "NORMAL", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT}
-				}
-			},
-			{ "tex",
-				{
-					{ "POSITION", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT },
-					{ "NORMAL", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT },
-					{ "TEXCOORD", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT }
-				}
+		{ "plain",
+			{
+				{ "POSITION", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT },
+				{ "NORMAL", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT }
 			}
-		};
-	}
-
-	MapInputLayouts Image()
+		},
+		{ "tex",
+			{
+				{ "POSITION", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT },
+				{ "NORMAL", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT },
+				{ "TEXCOORD", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT }
+			}
+		}
+	},
+		Image
 	{
-		return
-		{
-			{ "image",
-				{
-					{ "POSITION", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT },
-					{ "TEXCOORD", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT }
-				}
+		{ "image",
+			{
+				{ "POSITION", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32B32_FLOAT },
+				{ "TEXCOORD", SEMANTIC_INDEX::SI0, DXGI_FORMAT_R32G32_FLOAT }
 			}
-		};
-	}
+		}
+	};
 
 	MapInputLayouts& MapInputLayouts::operator+=(
 		const MapInputLayouts& source
 		)
 	{
+		const size_t oldSize = size();
 		insert(source.cbegin(), source.cend());
+		THROW_EXC_IFFALSE(Exceptions::ClassAlreadyExists, oldSize + source.size() == size(), L"3D Failed to merge input layout maps");
 		return *this;
 	}
 
@@ -111,7 +104,6 @@ namespace Monad::Renderer::InputLayout
 		const MapInputLayouts& source
 		)
 	{
-		MapInputLayouts newILs{ *this };
-		return newILs += source;
+		return MapInputLayouts{ *this } += source;
 	}
 }

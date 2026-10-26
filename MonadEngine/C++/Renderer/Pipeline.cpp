@@ -190,7 +190,7 @@ namespace Monad
 		}
 
 		void ShaderConfigGeneric::CreateGraphicsPipelineStateGeneric(
-			const string& id
+			const FXName& id
 		)
 		{
 			if (!m_pipelineState)
@@ -276,7 +276,7 @@ namespace Monad
 
 #pragma region MapFX
 		ShaderConfigGeneric* MapFX::GetPipeline(
-			const std::string& id
+			const FXName& id
 		)
 		{
 			auto& tech = operator[](id);

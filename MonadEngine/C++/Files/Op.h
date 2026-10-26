@@ -52,7 +52,12 @@ namespace Monad::Files
 			DWORD dwFlagsAndAttributes
 		);
 		uint32_t FileSize() const;
-		OPER_DEL(SmartHandleFile);
+		SmartHandleFile() = delete;
+		SmartHandleFile(const SmartHandleFile&) = delete;
+		SmartHandleFile& operator=(const SmartHandleFile&) = delete;
+		SmartHandleFile(SmartHandleFile&&) = delete;
+		SmartHandleFile& operator=(SmartHandleFile&&) = delete;
+
 		void Read(
 			Kernel::VectorBytes& buffer,
 			OptionalSize optionalBegin = std::nullopt,
@@ -88,6 +93,8 @@ namespace Monad::Files
 					L"Pack Bomb #2"
 				);
 		}
+
+		std::filesystem::path m_path;
 	};
 
 	void RenameFileForBackup(const std::filesystem::path& filename);

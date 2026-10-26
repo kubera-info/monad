@@ -67,7 +67,7 @@ BEGIN
     BEGIN
         BLOCK "041504b0"
         BEGIN
-            VALUE "CompanyName", "W³odzimierz O. Kubera"
+            VALUE "CompanyName", "WÂ©odzimierz O. Kubera"
             VALUE "FileDescription", "TODO: <Opis pliku>"
             VALUE "FileVersion", "0.0.0.1"
             VALUE "InternalName", "Name2Dat.exe"

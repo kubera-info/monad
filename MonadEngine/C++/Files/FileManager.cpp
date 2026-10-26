@@ -152,7 +152,7 @@ namespace Monad
 				try
 				{
 					const auto filename = c_path.filename();
-					const wstring ext = filename.extension();
+					const auto ext = filename.extension().wstring();
 					if (const auto extExecIt = m_fileSearcher->c_interpreter.find(ext); m_fileSearcher->c_interpreter.cend() != extExecIt)
 					{
 						{

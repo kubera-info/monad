@@ -32,13 +32,13 @@ namespace Monad
 		/// The formatting placeholder `{}` is replaced by:
 		///     "<version> <architecture>"
 		/// e.g.:
-		///     "1.2.0 X64"
-		///     "1.2.0 ARM64"
+		///     "1.2.0 X64 on X64"
+		///     "1.2.0 ARM64 on ARM64"
 		/// </summary>
 		const I18NString APP_VER_LABEL{
-			L"Wersja aplikacji: {}"_pl,
-			L"Версия приложения: {}"_ru,
-			L"The application's version: {}"_us
+			L"Wersja aplikacji: {}"_pl_PL,
+			L"Версия приложения: {}"_ru_RU,
+			L"The application's version: {}"_en_US
 		};
 	}
 
@@ -48,8 +48,8 @@ namespace Monad
 		/// Returns the application version combined with CPU architecture.
 		/// 
 		/// Example:
-		///     "1.2.0 X64"
-		///     "1.2.0 ARM64"
+		///     "1.2.0 X64 on X64"
+		///     "1.2.0 ARM64 on ARM64"
 		/// 
 		/// The version is extracted from the executable's version resource.
 		/// </summary>
@@ -70,14 +70,24 @@ namespace Monad
 		bool IsOSWine();
 
 		/// <summary>
+		/// Answers whether the application is built against ARM64 architecture.
+		/// 
+		/// </summary>
+		/// <returns>
+		/// ARM64
+		/// x64
+		/// </returns>
+		std::wstring GetAppArchitecture() noexcept;
+
+		/// <summary>
 		/// Detects whether the application is running on ARM64 architecture.
 		/// 
 		/// Internally uses IsWow64Process2 when available.
 		/// </summary>
 		/// <returns>
-		/// true  - ARM64
-		/// false - x64 or other
+		/// ARM64
+		/// x64
 		/// </returns>
-		bool GetArchitecture();
+		std::wstring GetOSArchitecture();
 	}
 }

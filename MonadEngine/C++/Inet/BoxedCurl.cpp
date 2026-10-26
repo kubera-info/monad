@@ -37,7 +37,7 @@ namespace Monad::Internet
 		};
 
 		/// <summary>
-		/// CURL write callback � appends incoming bytes to string.
+		/// CURL write callback © appends incoming bytes to string.
 		/// </summary>
 		size_t CallbackWriteToString(
 			void* contents,
@@ -78,7 +78,10 @@ namespace Monad::Internet
 			{
 				curl_easy_cleanup(m_curl);
 			}
-			OPER_DEL_NO_DEF_CTOR(Easy);
+			Easy(const Easy&) = delete;
+			Easy& operator=(const Easy&) = delete;
+			Easy(Easy&&) = delete;
+			Easy& operator=(Easy&&) = delete;
 
 			/// <summary>
 			/// Generic wrapper for curl_easy_setopt
@@ -136,7 +139,7 @@ namespace Monad::Internet
 				SetOpt(CURLOPT_HTTP_VERSION, static_cast<long>(CURL_HTTP_VERSION_3));
 
 				// HTTP headers
-				auto monadLocale = I18N::GetLocaleName();
+				auto monadLocale = Tools::UnicodeToUTF8(I18N::g_defaultLocaleManager.GetLocaleName());
 				struct SList final
 				{
 					using PairHTTPHeader = pair<string, string>;

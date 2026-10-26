@@ -50,7 +50,10 @@ namespace Monad
 						/*if (!BCRYPT_SUCCESS(BCryptDestroyKey(m_key)))
 						terminate();*/
 					}
-					OPER_DEL_NO_DEF_CTOR(KeyHandle);
+					KeyHandle(const KeyHandle&) = delete;
+					KeyHandle& operator=(const KeyHandle&) = delete;
+					KeyHandle(KeyHandle&&) = delete;
+					KeyHandle& operator=(KeyHandle&&) = delete;
 
 					BCRYPT_KEY_HANDLE m_key{};
 				};

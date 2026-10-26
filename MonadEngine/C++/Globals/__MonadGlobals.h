@@ -14,11 +14,6 @@
 namespace Monad::Globals
 {
 	/// <summary>
-	/// Vector of regular expressions used to resolve a simplified locale.
-	/// Resolution order: detected current locale first, then en-US as fallback.
-	/// </summary>
-	extern I18N::VectorSimplifiedLocaleNames g_simplifiedLocaleNames;
-	/// <summary>
 	/// Application name,
 	/// Copyright notice, author, ©, year, etc.
 	/// </summary>

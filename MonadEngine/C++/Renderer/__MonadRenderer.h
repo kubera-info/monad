@@ -9,14 +9,13 @@
 #include <dxgi1_6.h>
 #include <DirectXMath.h>
 #include <wrl.h>
+#include <stdint.h>
 
 // STD
 #include <optional>
 #include <string>
-#include <stdint.h>
 
 // Monad
-#include "Kernel/Del.h"
 #include "Kernel/BytesVector.h"
 
 namespace Monad::Renderer
@@ -48,7 +47,7 @@ namespace Monad::Renderer
 		D3D12_CLEAR_VALUE m_clearValue;
 	};
 
-	struct FormatAndClearRenderTarget final : public FormatAndClear
+	struct FormatAndClearRenderTarget final : FormatAndClear
 	{
 		FormatAndClearRenderTarget(
 			const DXGI_FORMAT format,
@@ -59,14 +58,12 @@ namespace Monad::Renderer
 			m_desc{ .Format = format, .ViewDimension = viewDimension }
 		{
 		}
-		OPER_DEF_NO_DEF_CTOR(FormatAndClearRenderTarget);
 		FormatAndClearRenderTarget() noexcept = default;
-		~FormatAndClearRenderTarget() = default;
 
 		D3D12_RENDER_TARGET_VIEW_DESC m_desc;
 	};
 
-	struct FormatAndClearDepthStencil final : public FormatAndClear
+	struct FormatAndClearDepthStencil final : FormatAndClear
 	{
 		consteval FormatAndClearDepthStencil(
 			const D3D12_DSV_DIMENSION viewDimension
@@ -116,13 +113,18 @@ namespace Monad::Renderer
 		/// Returns a compiled shader from the STL vector
 		/// </summary>
 		/// <returns>Bytecode</returns>
-		operator const D3D12_SHADER_BYTECODE() const noexcept;
+		operator D3D12_SHADER_BYTECODE() const noexcept;
 	};
 
 	struct ConfigVS
 	{
-		const VectorBytesBytecode m_vs;
-		const std::string c_il;
+		ConfigVS(VectorBytesBytecode vs, std::string il);
+		operator D3D12_SHADER_BYTECODE() const noexcept;
+		operator D3D12_INPUT_LAYOUT_DESC() const;
+
+	private:
+		VectorBytesBytecode m_vs;
+		std::string c_il;
 	};
 
 	/*/// <summary>
@@ -369,37 +371,24 @@ namespace Monad::Renderer
 	using InitializerListTextures = std::initializer_list<Texture>;
 }
 
-constexpr std::string operator""_technique(const char* literal, std::size_t sizeOfString) noexcept
-{
-	return { literal, sizeOfString };
-}
+using TechniqueName = std::string;
+TechniqueName operator""_technique(const char* literal, std::size_t sizeOfString);
 
-constexpr std::string operator""_fx(const char* literal, std::size_t sizeOfString) noexcept
-{
-	return { literal, sizeOfString };
-}
+using FXName = std::string;
+FXName operator""_fx(const char* literal, std::size_t sizeOfString);
 
-constexpr std::string operator""_vertexShader(const char* literal, std::size_t sizeOfString) noexcept
-{
-	return { literal, sizeOfString };
-}
+using VertexShaderName = std::string;
+VertexShaderName operator""_vertexShader(const char* literal, std::size_t sizeOfString);
 
-constexpr std::string operator""_pixelShader(const char* literal, std::size_t sizeOfString) noexcept
-{
-	return { literal, sizeOfString };
-}
+using PixelShaderName = std::string;
+PixelShaderName operator""_pixelShader(const char* literal, std::size_t sizeOfString);
 
-constexpr std::string operator""_constantBuffer(const char* literal, std::size_t sizeOfString)
-{
-	return { literal, sizeOfString };
-}
+using ConstantBufferName = std::string;
+ConstantBufferName operator""_constantBuffer(const char* literal, std::size_t sizeOfString);
 
-constexpr std::string operator""_shaderResource(const char* literal, std::size_t sizeOfString)
-{
-	return { literal, sizeOfString };
-}
+using ShaderResourceName = std::string;
+ShaderResourceName operator""_shaderResource(const char* literal, std::size_t sizeOfString);
+using VectorResourceNames = std::vector<ShaderResourceName>;
 
-constexpr std::string operator""_mesh(const char* literal, std::size_t sizeOfString)
-{
-	return { literal, sizeOfString };
-}
+using MeshName = std::string;
+MeshName operator""_mesh(const char* literal, std::size_t sizeOfString);

@@ -6,6 +6,9 @@
 
 // STD
 #include <string>
+#include "Kernel/Templates.h"
+#include "Tools/SingleCall.h"
+#include "Exceptions/Exceptions.h"
 
 namespace Monad::Dev
 {
@@ -29,9 +32,23 @@ namespace Monad::Dev
 	{
 		std::basic_string<C> newCaseName;
 		bool capitalizeNext = isPascal;
-
+		Tools::SingleCall s_profileOnce;
 		for (const C ch : name)
-			if (uint32_t('_') == uint32_t(ch))
+		{
+			if(!s_profileOnce.test_and_set()) [[unlikely]]
+				assert(
+					'_' == ch
+					|| Kernel::between<size_t>('a', 'z', ch)
+					|| Kernel::between<size_t>('A', 'Z', ch)
+				); 
+			else [[likely]]
+				assert(
+					'_' == ch
+					|| Kernel::between<size_t>('0', '9', ch)
+					|| Kernel::between<size_t>('a', 'z', ch)
+					|| Kernel::between<size_t>('A', 'Z', ch)
+				);
+			if ('_' == ch)
 				capitalizeNext = true;
 			else if (capitalizeNext)
 			{
@@ -40,7 +57,9 @@ namespace Monad::Dev
 			}
 			else
 				newCaseName += static_cast<C>(tolower(ch));
-
+		}
 		return newCaseName;
 	}
+
+	inline void EXC() { THROW_EXC(Monad::Exceptions::FileDamaged, E_FAIL, L"test"); }
 }

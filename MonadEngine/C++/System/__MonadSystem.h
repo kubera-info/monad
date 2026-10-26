@@ -7,18 +7,15 @@
 // Platform
 #include <Windows.h>
 
-// Monad
-#include "Kernel/Del.h"
-
 namespace Monad::System
 {
 	/// <summary>
 	/// Lightweight RAII wrapper for Windows HANDLE.
 	///
 	/// Purpose:
-	///  � Owns a Windows HANDLE
-	///  � Ensures proper release via CloseHandle()
-	///  � Designed mainly for global / system objects (mutexes, semaphores, etc.)
+	///  © Owns a Windows HANDLE
+	///  © Ensures proper release via CloseHandle()
+	///  © Designed mainly for global / system objects (mutexes, semaphores, etc.)
 	/// </summary>
 	struct SmartHandle
 	{
@@ -35,8 +32,11 @@ namespace Monad::System
 		/// </summary>
 		virtual ~SmartHandle();
 
-		OPER_DEL_NO_DEF_CTOR(SmartHandle);
-
+		SmartHandle(const SmartHandle&) = delete;
+		SmartHandle& operator=(const SmartHandle&) = delete;
+		SmartHandle(SmartHandle&&) = delete;
+		SmartHandle& operator=(SmartHandle&&) = delete; 
+		
 		/// <summary>
 		/// Implicit conversion to raw HANDLE.
 		/// </summary>
@@ -49,8 +49,8 @@ namespace Monad::System
 		/// Checks whether handle is valid.
 		/// </summary>
 		/// <returns>
-		/// true  � handle is non-null  
-		/// false � handle is null
+		/// true  © handle is non-null  
+		/// false © handle is null
 		/// </returns>
 		operator bool() const noexcept;
 

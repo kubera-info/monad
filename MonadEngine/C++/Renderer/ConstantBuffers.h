@@ -8,7 +8,6 @@
 #include <memory>
 
 // Monad
-#include "Kernel/Del.h"
 #include "Kernel/Events.h"
 #include "__MonadRenderer.h"
 #include "Pipeline.h"
@@ -128,12 +127,16 @@ namespace Monad::Renderer::CB
 	interface CBInstanceGeneric abstract
 	{
 		CBInstanceGeneric(
-			const std::string & counter,
+			const ConstantBufferName& counter,
 			CB_STATES pair,
 			Registers::CONSTANT_BUFFER baseShaderRegister
 		);
 		virtual ~CBInstanceGeneric() = default;
-		OPER_DEL(CBInstanceGeneric);
+
+		CBInstanceGeneric(const CBInstanceGeneric&) = delete;
+		CBInstanceGeneric& operator=(const CBInstanceGeneric&) = delete;
+		CBInstanceGeneric(CBInstanceGeneric&&) = delete;
+		CBInstanceGeneric& operator=(CBInstanceGeneric&&) = delete;
 
 		template<typename Self>
 		decltype(auto) GetGPUMemory(this Self&& self) noexcept
@@ -234,7 +237,7 @@ namespace Monad::Renderer::CB
 		/// <param name="cbType">The buffer's content</param>
 		/// <param name="baseShaderRegister">The register</param>
 		CBInstance(
-			const std::string& counter,
+			const ConstantBufferName& counter,
 			const BUFFER_TYPE& cbType,
 			Registers::CONSTANT_BUFFER baseShaderRegister
 		) :
@@ -257,7 +260,7 @@ namespace Monad::Renderer::CB
 		/// <param name="counter">The index of C</param>
 		/// <param name="baseShaderRegister">The register</param>
 		CBInstance(
-			const std::string& counter,
+			const ConstantBufferName& counter,
 			Registers::CONSTANT_BUFFER baseShaderRegister) :
 			CBInstanceGeneric{ counter, CB_STATES::CB_STATE_PAIR, baseShaderRegister }
 #if defined _DEBUG
@@ -306,7 +309,7 @@ namespace Monad::Renderer::CB
 		/// <param name="counter">The index of C</param>
 		/// <param name="cbType">The buffer's content</param>
 		CBBoundRegInstance(
-			const std::string& counter,
+			const ConstantBufferName& counter,
 			const CB& cbType) :
 			CBInstance<CB>{ counter, cbType, R }
 		{
@@ -318,17 +321,17 @@ namespace Monad::Renderer::CB
 		/// </summary>
 		/// <param name="counter">The index of C</param>
 		CBBoundRegInstance(
-			const std::string& counter) :
+			const ConstantBufferName& counter) :
 			CBInstance<CB>{ counter, R }
 		{
 		}
 	};
 
-	struct MapConstantBufferManager final : private Kernel::FlatMapString<CBTypeCtrl>
+	struct MapConstantBufferManager final : private std::flat_map<ConstantBufferName,CBTypeCtrl>
 	{
-		using value_type = typename Kernel::FlatMapString<CBTypeCtrl>::value_type;
+		using value_type = typename std::flat_map<ConstantBufferName, CBTypeCtrl>::value_type;
 		using InitializerListConstantBufferManager = std::initializer_list<value_type>;
-		using Kernel::FlatMapString<CBTypeCtrl>::FlatMapString;
+		using std::flat_map<ConstantBufferName, CBTypeCtrl>::flat_map;
 
 		// Map operations
 		[[nodiscard]] iterator find(const key_type& _Key_val);
@@ -348,7 +351,7 @@ namespace Monad::Renderer::CB
 	{
 		DirectX::XMFLOAT4X4 m_modelViewProj, m_model;
 	};
-	using ModelInstance = CBBoundRegInstance<Model, Registers::CONSTANT_BUFFER::B3>;;
+	using ModelInstance = CBBoundRegInstance<Model, Registers::CONSTANT_BUFFER::B3>;
 
 	using PipeColorInstance = CBBoundRegInstance<PipeColor, Registers::CONSTANT_BUFFER::B4>;
 

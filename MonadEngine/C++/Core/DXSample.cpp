@@ -693,6 +693,7 @@ bool DXSample::OnBoth()
 {
 	if (!m_device)
 		return false;
+	Monad::Time::g_timer.GetTimeValue(Monad::Time::g_fTime);
 
 	OnUpdate();
 	OnRender();

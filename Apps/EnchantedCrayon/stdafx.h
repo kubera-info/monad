@@ -26,18 +26,13 @@
 // WinHelp is deprecated
 #define NOHELP
 
-//#define WIN32_LEAN_AND_MEAN
-
 // Platform
 #include <Windows.h>
 #include <wrl.h>
 #include <d3d12.h>
 #include <dxgi1_6.h>
 #include <shlwapi.h>
-/*#if defined MONAD_PIX
-#	include <pix3.h>
-#	pragma comment(lib, "..\\..\\packages\\WinPixEventRuntime.1.0.230302001\\bin\\x64\\WinPixEventRuntime.lib")
-#endif*/
+
 // STD
 #include <assert.h>
 #include <string>
@@ -49,6 +44,7 @@
 #include <algorithm>
 #include <functional>
 #include <map>
+#include <set>
 #include <unordered_map>
 #include <unordered_set>
 #include <mutex>

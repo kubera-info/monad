@@ -49,7 +49,7 @@ namespace Monad::Fonts
 			float CalculateDistance(
 				wchar_t char2
 			) const;
-			using MapKernings = std::unordered_map<wchar_t, const float>;
+			using MapKernings = std::flat_map<wchar_t, float>;
 			MapKernings m_kernings;
 
 		private:

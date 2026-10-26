@@ -9,7 +9,6 @@
 #include <unordered_map>
 
 // Monad
-#include "Kernel/Del.h"
 #include "Kernel/Templates.h"
 
 interface IXmlReader;
@@ -49,11 +48,14 @@ namespace Monad::Files
 				VectorNestedElements nestedElements
 			);
 			XMLElement() noexcept = default;
-			~XMLElement() = default;
-			OPER_DEF_NO_DEF_CTOR(XMLElement)
+			XMLElement(const XMLElement&) = default;
+			XMLElement& operator=(const XMLElement&) = default;
+			XMLElement(XMLElement&&) noexcept = default;
+			XMLElement& operator=(XMLElement&&) noexcept = default;
 
-				// Accessors
-				const std::wstring& GetElementName() const noexcept;
+			// Accessors
+			const std::wstring& GetElementName() const noexcept;
+			const std::string GetElementNameUTF8() const noexcept;
 #if defined EXTREME_XML
 			const std::wstring& GetValue() const noexcept;
 #endif
@@ -73,7 +75,9 @@ namespace Monad::Files
 				const std::wstring& name
 			) const;
 			const std::wstring& GetNameAttr() const;
+			const std::string GetNameAttrUTF8() const;
 			const std::wstring& GetIDAttr() const;
+			const std::string GetIDAttrUTF8() const;
 
 		private:
 			void SaveXML(

@@ -32,9 +32,6 @@ namespace Monad::App
 			Files::VectorBytesArchive&& file
 		) noexcept;
 
-		~TaskAndMemoryLookup() = default;
-		OPER_DEL(TaskAndMemoryLookup);
-
 		/// <summary>
 		/// Returns the palette index for a given normalized texture coordinate.
 		/// </summary>
