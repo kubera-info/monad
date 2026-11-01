@@ -29,10 +29,7 @@ namespace Monad::System
 				LOAD_WITH_ALTERED_SEARCH_PATH
 			);
 			if (nullptr == lib)
-				THROW_EXC_GETLASTERROR(
-					Exceptions::InvalidClass,
-					L"Load LibraryEx: " + path.wstring()
-				);
+				throw std::exception("Load LibraryEx failed");
 			return lib;
 		}
 	}

@@ -70,12 +70,6 @@ namespace Monad::Threads
 		void RunThread(const std::wstring_view name);
 
 		/// <summary>
-		/// Joins the thread.
-		/// This method never throws, even if the thread is not joinable.
-		/// </summary>
-		void join() noexcept;
-
-		/// <summary>
 		/// Checks whether the underlying std::jthread is joinable.
 		/// </summary>
 		/// <returns>true if joinable, false otherwise</returns>

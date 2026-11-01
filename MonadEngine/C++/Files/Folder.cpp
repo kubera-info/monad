@@ -11,7 +11,6 @@
 
 // Monad
 #include "__MonadFile.h"
-#include "Exceptions/Exceptions.h"
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -38,12 +37,13 @@ namespace Monad::Files
 
 			wchar_t* m_str = nullptr;
 		} folder;
-		THROW_EXC_IFFAILED(Exceptions::FileNotFound, SHGetKnownFolderPath(
+		if (FAILED(SHGetKnownFolderPath(
 			rfid,
 			KF_FLAG_DEFAULT,
 			nullptr,
 			&folder.m_str
-		), L"Get Known Folder Path");
+		)))
+			throw std::exception("Get Known Folder Path");
 		return folder.m_str;
 	}
 
@@ -55,11 +55,12 @@ namespace Monad::Files
 	fs::path GetModulePath()
 	{
 		wchar_t pathModule[32767ul];
-		THROW_EXC_IFFALSE(Monad::Exceptions::IOError, GetModuleFileName(
+		if (FAILED(GetModuleFileName(
 			nullptr,
 			pathModule,
 			32767ul
-		), L"FS Path");
+		)))
+			throw std::exception("FS Path");
 		return pathModule;
 	}
 

@@ -499,11 +499,11 @@ namespace Monad
 			const Queue& queue
 		) const noexcept
 		{
-#if defined _DEBUG
-			return m_voicesVolumesCache.at(queue);
-#else
-			return m_voicesVolumesCache.find(queue)->second;
-#endif
+			if (
+				auto itVolume = m_voicesVolumesCache.find(queue);
+				m_voicesVolumesCache.cend() != itVolume)
+				return itVolume->second;
+			return .0f;
 		}
 
 		/*bool PersistentAudio::IsDefaultAudioDevice() noexcept

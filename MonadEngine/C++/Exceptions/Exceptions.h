@@ -17,6 +17,8 @@ namespace Monad::Exceptions
 {
 	inline constexpr const wchar_t* g_childEvent = L"Global\\MonadaChildReadyEvent";
 
+	//extern BOOL g_reboot;
+
 	/// <summary>
 	/// Function invoked in the context of a hardware exception.
 	/// </summary>
@@ -107,6 +109,10 @@ namespace Monad::Exceptions
 		{ if (FAILED(MONAD_EXC_HRES)) THROW_EXC(Monad::Exceptions::AudioFailed, MONAD_EXC_HRES, L"Audio " MONAD_EXC_STAGE) }
 #define THROW_EXC_D3D( MONAD_EXC_HRES, MONAD_EXC_STAGE)\
 		{ if (FAILED(MONAD_EXC_HRES)) THROW_EXC(Monad::Exceptions::ThreeDFailed, MONAD_EXC_HRES, L"3D " MONAD_EXC_STAGE) }
+#define THROW_EXC_IFPROTON(MONAD_EXC_STAGE)\
+	{ if (Monad::System::IsOSWine()) { Monad::Globals::g_exceptionReportingMethod = Monad::Exceptions::EXCEPTION_PRESENTATION::MESSAGE_BOX;\
+		THROW_EXC(Monad::Exceptions::ChangeInProton, E_FAIL, MONAD_EXC_STAGE);\
+		} }
 	CREATE_MONAD_EXCEPTION_CLASS(NullValue, I18N::Errors::NULL_VALUE);
 	CREATE_MONAD_EXCEPTION_CLASS(InvalidCall, I18N::Errors::INVALID_CALL);
 
@@ -137,6 +143,7 @@ namespace Monad::Exceptions
 	CREATE_MONAD_EXCEPTION_CLASS(AudioFailed, I18N::Errors::AUDIO_FAILED);
 	CREATE_MONAD_EXCEPTION_CLASS(ThreeDFailed, I18N::Errors::THREE_D_FAILED);
 	CREATE_MONAD_EXCEPTION_CLASS(CapsFailed, I18N::Errors::CAPS_FAILED);
+	CREATE_MONAD_EXCEPTION_CLASS(ChangeInProton, I18N::Errors::CHANGE_IN_PROTON);
 #pragma endregion
 
 	[[noreturn]]

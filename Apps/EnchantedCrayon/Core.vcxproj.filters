@@ -165,9 +165,6 @@
     <ClInclude Include="..\..\MonadEngine\C++\GUI\GUIMath.h">
       <Filter>Monad%28a%29 Incudes\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MonadEngine\C++\System\Library.h">
-      <Filter>Monad%28a%29 Incudes\System</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\MonadEngine\C++\Printer\Texture.h">
       <Filter>Monad%28a%29 Incudes\Printer</Filter>
     </ClInclude>
@@ -364,9 +361,6 @@
       <Filter>Monad%28a%29 Incudes\Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\MonadEngine\C++\Files\EncryptAndSave.h">
-      <Filter>Monad%28a%29 Incudes\Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\MonadEngine\C++\Files\Folder.h">
       <Filter>Monad%28a%29 Incudes\Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\MonadEngine\C++\Files\Handle.h">
@@ -591,6 +585,18 @@
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\MeshOpt.h">
       <Filter>Monad%28a%29 Incudes\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Dev\DevDialog.h">
+      <Filter>Monad%28a%29 Incudes\Dev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\System\Library.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Files\Folder.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\HardwareAdapter.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\MonadEngine\C++\GUI\GUI.cpp">
@@ -607,9 +613,6 @@
     </ClCompile>
     <ClCompile Include="..\..\MonadEngine\C++\GUI\GUIMath.cpp">
       <Filter>Monad%28a%29 Incudes\GUI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\MonadEngine\C++\System\Library.cpp">
-      <Filter>Monad%28a%29 Incudes\System</Filter>
     </ClCompile>
     <ClCompile Include="..\..\MonadEngine\C++\Printer\D2DPrintJobChecker.cpp">
       <Filter>Monad%28a%29 Incudes\Printer</Filter>
@@ -768,9 +771,6 @@
       <Filter>Monad%28a%29 Incudes\Fonts</Filter>
     </ClCompile>
     <ClCompile Include="..\..\MonadEngine\C++\Files\__MonadFile.cpp">
-      <Filter>Monad%28a%29 Incudes\Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\MonadEngine\C++\Files\Folder.cpp">
       <Filter>Monad%28a%29 Incudes\Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\MonadEngine\C++\Files\Handle.cpp">
@@ -980,6 +980,18 @@
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\MeshOpt.cpp">
       <Filter>Monad%28a%29 Incudes\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Dev\DevDialog.cpp">
+      <Filter>Monad%28a%29 Incudes\Dev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\System\Library.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Files\Folder.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\HardwareAdapter.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Main.rc">
@@ -1059,5 +1071,6 @@
     <None Include="..\..\MonadEngine\C++\Globals\README.md">
       <Filter>Monad%28a%29 Incudes\Globals\Doc</Filter>
     </None>
+    <None Include="Core.def" />
   </ItemGroup>
 </Project>

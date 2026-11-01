@@ -7,7 +7,6 @@
 
 // Monad
 #include "ThreadPool.h"
-#include "Core/Win32ApplicationGeneric.h"
 
 namespace Monad
 {
@@ -50,7 +49,7 @@ namespace Monad
 		ThreadPool::ThreadWorker::ThreadWorker(
 			ThreadPool* const threadPool
 		) noexcept :
-			m_threads(threadPool)
+			m_threadPool(threadPool)
 		{}
 
 		/// <summary>
@@ -59,7 +58,7 @@ namespace Monad
 		/// </summary>
 		void ThreadPool::ThreadWorker::Routine()
 		{
-			m_threads->RoutineWrap(m_stopToken);
+			m_threadPool->RoutineWrap(m_stopToken);
 		}
 #pragma endregion
 
@@ -73,10 +72,10 @@ namespace Monad
 			size_t workersCount
 		)
 		{
-			m_threads.reserve(workersCount);
+			m_threadPool.reserve(workersCount);
 
 			for (size_t i = 0; i < workersCount; ++i)
-				m_threads.emplace_back(
+				m_threadPool.emplace_back(
 					std::make_unique<ThreadWorker>(this)
 				)->RunThread(name);
 		}
@@ -93,7 +92,7 @@ namespace Monad
 		ThreadPool::~ThreadPool()
 		{
 			// Request stop for all workers.
-			m_threads.request_stops();
+			m_threadPool.request_stops();
 			// Wake all sleeping workers.
 			m_ev.notify_all();
 		}
@@ -189,28 +188,23 @@ namespace Monad
 			ITask* task
 		)
 		{
-			{
-				const std::lock_guard lg(m_lockMessageQueue);
-				m_taskQueue.push(task);
-			}
-			if(FALSE == Win32ApplicationGeneric::PostMessageW(WM_APP_MESSAGE_QUE))
-				THROW_EXC(Monad::Exceptions::InvalidClass, E_OUTOFMEMORY, L"Failed to post message to main thread");
+			InsertTasks({ task });
 		}
 
 		void ThreadWndMessage::DequeueAndRunTask()
 		{
-			const std::lock_guard lg(m_lockMessageQueue);
-			while (!m_taskQueue.empty())
+			try
 			{
-				const auto task = m_taskQueue.front();
-				m_taskQueue.pop();
-				try
+				const std::lock_guard lg(m_lockMessageQueue);
+				while (!m_taskQueue.empty())
 				{
+					const auto task = m_taskQueue.front();
+					m_taskQueue.pop();
 					task->Run();
+					task->Delete();
 				}
-				MONAD_CATCH;
-				task->Delete();
 			}
+			MONAD_CATCH;
 		}
 #pragma endregion
 	}

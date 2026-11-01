@@ -53,7 +53,8 @@ ExpectedLResult ProcessWM_CLOSE(
 		&& (STOP_BOOT_DX <= Monad::Files::g_fileManagerState
 			&& FILE_MAN_STATE_SYSTEM > Monad::Files::g_fileManagerState
 			|| FILE_MAN_STATE_READY == Monad::Files::g_fileManagerState)
-		&& "exit"_pageNo != Monad::Pages::g_currentPage)
+		&& "exit"_pageNo != Monad::Pages::g_currentPage
+		)
 	{
 		Monad::Pages::SelectPage("exit"_pageNo);
 		return PROCESSING_ERROR;
@@ -133,7 +134,7 @@ ExpectedLResult ProcessWM_DISPLAYCHANGE
 {
 	// Monitor configuration changed
 	if (!Monad::System::IsOSWine())
-		g_singleton->OnReorganize();
+		g_singleton->ArrangeSatellites();
 	return PROCESSING_OK;
 }
 
@@ -152,7 +153,7 @@ ExpectedLResult ProcessWM_DEVICECHANGE
 				DBT_DEVICEREMOVECOMPLETE,
 				DBT_DEVNODES_CHANGED
 		}.contains(wParam))
-			g_singleton->OnReorganize();
+			g_singleton->ArrangeSatellites();
 	return PROCESSING_OK;
 }
 

@@ -219,22 +219,8 @@ public:
 	void WaitForGpu() noexcept;
 	bool OnBoth();
 
-	/// <summary>
-	// Helper function for acquiring the first available hardware adapter that supports Direct3D 12.
-	// If no such adapter can be found, *ppAdapter will be set to nullptr.
-	/// </summary>
-	/// <param name="factory">DXGI Factory</param>
-	/// <param name="pAdapter">Output Adapter/nullptr</param>
-	/// <param name="requestHighPerformanceAdapter">High Performance Adapter?</param>
-	void GetHardwareAdapter(
-		IDXGIFactory6* factory,
-		IDXGIAdapter1** pAdapter,
-		bool requestHighPerformanceAdapter = true
-	);
-
-	virtual void Repo()
-	{}
-
+	virtual void Repo();
+	
 	std::optional<Monad::Renderer::DepthStencil> m_shadows;
 	Monad::Renderer::CB::MapConstantBufferManager m_constantBufferManager;
 	Monad::Renderer::MapFX m_fxCollection;

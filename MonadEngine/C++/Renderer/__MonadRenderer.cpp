@@ -52,35 +52,35 @@ namespace Monad::Renderer
 
 TechniqueName operator""_technique(const char* literal, std::size_t sizeOfString)
 {
-	return { literal, sizeOfString };
+	return TechniqueName{ { literal, sizeOfString } };
 }
 
 FXName operator""_fx(const char* literal, std::size_t sizeOfString)
 {
-	return { literal, sizeOfString };
+	return FXName{ { literal, sizeOfString } };
 }
 
 VertexShaderName operator""_vertexShader(const char* literal, std::size_t sizeOfString)
 {
-	return { literal, sizeOfString };
+	return VertexShaderName{ { literal, sizeOfString } };
 }
 
 PixelShaderName operator""_pixelShader(const char* literal, std::size_t sizeOfString)
 {
-	return { literal, sizeOfString };
+	return PixelShaderName{ { literal, sizeOfString } };
 }
 
 ConstantBufferName operator""_constantBuffer(const char* literal, std::size_t sizeOfString)
 {
-	return { literal, sizeOfString };
+	return ConstantBufferName{ { literal, sizeOfString } };
 }
 
 ShaderResourceName operator""_shaderResource(const char* literal, std::size_t sizeOfString)
 {
-	return { literal, sizeOfString };
+	return ShaderResourceName{ { literal, sizeOfString } };
 }
 
 MeshName operator""_mesh(const char* literal, std::size_t sizeOfString)
 {
-	return { literal, sizeOfString };
+	return MeshName{ { literal, sizeOfString } };
 }

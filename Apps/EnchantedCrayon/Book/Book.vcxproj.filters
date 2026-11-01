@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Pliki źródłowe">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Pliki zasobów">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes">
+      <UniqueIdentifier>{49ddde46-b7aa-432c-88e6-031924e70bdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\System">
+      <UniqueIdentifier>{d3e40a5e-915c-43f3-8720-694ca7ebfbbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Files">
+      <UniqueIdentifier>{c4188609-2ecb-4c26-8b19-d27dfe0b0a66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monad%28a%29 Incudes\Renderer">
+      <UniqueIdentifier>{326be99c-7c0f-4b3d-980c-a837d01f0858}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\MonadEngine\C++\System\Library.h">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\MonadEngine\C++\Files\Folder.h">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\MonadEngine\C++\I18N\I18N.h">
+      <Filter>Monad%28a%29 Incudes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\MonadEngine\C++\I18N\I18NLocale.h">
+      <Filter>Monad%28a%29 Incudes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\MonadEngine\C++\Renderer\HardwareAdapter.h">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Book.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\MonadEngine\C++\System\Library.cpp">
+      <Filter>Monad%28a%29 Incudes\System</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\MonadEngine\C++\Files\Folder.cpp">
+      <Filter>Monad%28a%29 Incudes\Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\MonadEngine\C++\I18N\I18N.cpp">
+      <Filter>Monad%28a%29 Incudes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\MonadEngine\C++\I18N\I18NLocale.cpp">
+      <Filter>Monad%28a%29 Incudes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\MonadEngine\C++\Renderer\HardwareAdapter.cpp">
+      <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Book.rc">
+      <Filter>Pliki zasobów</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="Book.ico">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="..\small.ico">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

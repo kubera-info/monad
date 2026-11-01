@@ -21,6 +21,7 @@
 #include "__App.h"
 #include "AppSingleton.h"
 #include "GUI/__MonadGUI.h"
+#include "Exceptions/Exceptions.h"
 #include "Files/FileManager.h"
 #include "Input/Cursor.h"
 #include "Printer/Sketch.h"
@@ -294,17 +295,18 @@ D3D12Core::D3D12Core() :
 		}
 	},
 	{
-		{ "forecolor"_constantBuffer, { sizeof DirectX::XMFLOAT3, 76 } },
-		{ "hdr"_constantBuffer, { sizeof BOOL, 1u } },
-		{ "light_pos"_constantBuffer, { sizeof DirectX::XMFLOAT4, 1 } },
-		{ "model"_constantBuffer, { sizeof CB::Model, 240 } },
-		{ "pipe_color"_constantBuffer, { sizeof CB::PipeColor, 25 } },
-		{ "shadow"_constantBuffer, { sizeof DirectX::XMFLOAT4X4, 240 } }
+		{ "forecolor"_constantBuffer,{ sizeof DirectX::XMFLOAT3, 76 } },
+		{ "hdr"_constantBuffer,{ sizeof BOOL, 1u } },
+		{ "light_pos"_constantBuffer,{ sizeof DirectX::XMFLOAT4, 1 } },
+		{ "model"_constantBuffer,{ sizeof CB::Model, 240 } },
+		{ "pipe_color"_constantBuffer,{ sizeof CB::PipeColor, 25 } },
+		{ "shadow"_constantBuffer,{ sizeof DirectX::XMFLOAT4X4, 240 } }
 	} }
 {
 	m_shadows.emplace();
 	LoadPipeline();
 	LoadAssets();
+	m_previousTime = Monad::Time::g_fTime;
 }
 
 D3D12Core::~D3D12Core()
@@ -321,10 +323,19 @@ D3D12Core::~D3D12Core()
 
 void D3D12Core::OnUpdate()
 {
-	static auto fPreviousTime = Monad::Time::g_fTime;
-	if (fPreviousTime + 1 < Monad::Time::g_fTime && Monad::System::IsOSWine())
+	if (m_previousTime + 1 < Monad::Time::g_fTime)
 	{
-		fPreviousTime = Monad::Time::g_fTime;
+		m_previousTime = Monad::Time::g_fTime;
+		if (const Monad::Wnd::MonitorConf testRect;
+			memcmp(
+				&testRect,
+				&Monad::App::g_singleton->m_monitorConf,
+				sizeof(Monad::Wnd::MonitorConf)) != 0
+			)
+		{
+			THROW_EXC_IFPROTON(L"Rectangle");
+			Monad::App::g_singleton->EnqueueResetDevice();
+		}
 		Monad::App::g_singleton->EnqueueReorganize();
 	}
 
@@ -355,34 +366,34 @@ void D3D12Core::OnUpdate()
 			break;
 		case 1:
 			shadowWidth = GetOptimalMapSize({
-					{3840U, 4096U},
-					{1200U, 2048U}
+					{ 3840U, 4096U },
+					{ 1200U, 2048U }
 				},
 				m_width,
 				1024U
 			);
 			shadowHeight = GetOptimalMapSize({
-					{1920U, 4096U},
-					{1080U, 2048U}
+					{ 1920U, 4096U },
+					{ 1080U, 2048U }
 				},
 				m_height,
 				1024U);
 			break;
 		default:
 			shadowWidth = GetOptimalMapSize({
-					{15360U, 16384U},
-					{7680U, 8192U},
-					{3840U, 4096U},
-					{1200U, 2048U}
+					{ 15360U, 16384U },
+					{ 7680U, 8192U },
+					{ 3840U, 4096U },
+					{ 1200U, 2048U }
 				},
 				m_width,
 				1024U
 			);
 			shadowHeight = GetOptimalMapSize({
-					{8640U, 16384U},
-					{4320U, 8192U},
-					{1920U, 4096U},
-					{1080U, 2048U}
+					{ 8640U, 16384U },
+					{ 4320U, 8192U },
+					{ 1920U, 4096U },
+					{ 1080U, 2048U }
 				},
 				m_height,
 				1024U);
@@ -493,7 +504,7 @@ void D3D12Core::OnRender()
 	}
 #endif
 	case DXGI_ERROR_DEVICE_RESET:
-		g_singleton->ResetDevice();
+		g_singleton->EnqueueResetDevice();
 		break;
 	default:
 		THROW_EXC_D3D(hr, L"Present");
@@ -507,13 +518,6 @@ void D3D12Core::NewFrame()
 	if (nullptr != g_shaderSketchGeneric)
 		g_shaderSketchGeneric->ScreenshotRT();
 }
-
-/*D3D12Core::~D3D12Core()
-{
-	g_hourGlassBlockingRefs.WaitForEndOfStreams();
-	// Ensure that the GPU is no longer referencing resources that are about to be
-	// cleaned up by the destructor.
-}*/
 
 void D3D12Core::PopulateCommandLists()
 {
@@ -564,7 +568,7 @@ void D3D12Core::PopulateCommandLists()
 		}
 	}
 	else
-		if(!Monad::Exceptions::InAnyCloseReason())
+		if (!Monad::Exceptions::InAnyCloseReason())
 			CenterCursor();
 	OnBackBuffer();
 	m_commandList.Get()->Close();

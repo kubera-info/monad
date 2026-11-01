@@ -8,6 +8,7 @@
 
 // Monad
 #include "Globals/__MonadGlobals.h"
+#include "Core/DXSample.h"
 
 namespace Monad::Wnd
 {
@@ -75,7 +76,6 @@ namespace Monad::Wnd
 			WS_OVERLAPPEDWINDOW,
 			appTitle
 		);
-
 		return Globals::g_mainWindow;
 	}
 }

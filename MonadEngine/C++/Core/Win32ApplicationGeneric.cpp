@@ -43,24 +43,6 @@ bool Win32ApplicationGeneric::IsRendered() noexcept
 		&& !s_inSuspend;
 }
 
-void Win32ApplicationGeneric::OnTriple()
-{
-	if (!IsRendered() || !g_dxSample->OnBoth())
-	{
-		PAINTSTRUCT ps;
-		//HDC hdc;
-
-		/*hdc =*/ static_cast<void>(BeginPaint(
-			Monad::Globals::g_mainWindow,
-			&ps)
-			);
-		EndPaint(
-			Monad::Globals::g_mainWindow,
-			&ps
-		);
-	}
-}
-
 void Win32ApplicationGeneric::OnBoth()
 {
 	if (IsRendered())
@@ -136,7 +118,7 @@ Monad::Wnd::ExpectedLResult ProcessWM_PAINT
 	LPVOID&
 )
 {
-	Win32ApplicationGeneric::OnTriple();
+	Win32ApplicationGeneric::OnBoth();
 	return Monad::Wnd::PROCESSING_OK;
 }
 

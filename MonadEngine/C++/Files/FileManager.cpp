@@ -380,7 +380,7 @@ namespace Monad
 
 		FileHandleCount::operator uint32_t() const
 		{
-			THROW_EXC_IFFALSE(Exceptions::OutOfRange, m_count < 10001, L"Cannot Count Files");
+			THROW_EXC_IFFALSE(Exceptions::OutOfRange, m_count < 10001, L"Cannot count more files");
 			return m_count;
 		}
 #pragma endregion

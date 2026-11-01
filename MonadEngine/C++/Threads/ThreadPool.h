@@ -13,6 +13,7 @@
 #include <ranges>
 
 // Monad
+#include "Core/Win32ApplicationGeneric.h"
 #include "Exceptions/Exceptions.h"
 #include "Kernel/ComManager.h"
 #include "Thread.h"
@@ -71,8 +72,24 @@ namespace Monad::Threads
 			/// </summary>
 			const bool c_ifDelete;
 		};
-
 		using PtrTask = Microsoft::WRL::ComPtr<ITask>;
+		using InitializerListTasks = std::initializer_list<ITask*>;
+
+		template<typename T>
+		auto PrepareTasks(T tasks, auto& safeUpdate)
+		{
+			auto notNullTasks =
+				std::ranges::views::filter(
+					tasks,
+					[](auto task) { return task != nullptr; }
+				);
+			if (notNullTasks.begin() != notNullTasks.end())
+			{
+				const std::unique_lock ul(safeUpdate);
+				m_taskQueue.push_range(notNullTasks);
+			}
+			return notNullTasks;
+		}
 
 	protected:
 		/// <summary>
@@ -117,21 +134,15 @@ namespace Monad::Threads
 		/// - Each inserted task wakes a worker thread.
 		/// </summary>
 		/// <param name="tasks">Collection of task pointers</param>
-		template<typename T = std::initializer_list<ITask*>>
+		template<typename T = InitializerListTasks>
 		void InsertTasks(
-			const T& tasks
+			T tasks
 		)
 		{
-			assert(tasks.begin() != tasks.end() && "At least one task must be provided");
-			assert(std::ranges::all_of(tasks, [](auto task) { return task != nullptr; }) && "Null tasks are not allowed");
-
-			{
-				const std::unique_lock<std::mutex> ul(m_ev);
-				m_taskQueue.push_range(tasks);
-			}
+			auto notNullTasks = PrepareTasks(tasks, m_ev.operator std::mutex &());
 
 			// Wake up workers for each inserted task
-			for ([[maybe_unused]] auto task : tasks)
+			for ([[maybe_unused]] auto task : notNullTasks)
 				m_ev.notify_one();
 		}
 
@@ -177,7 +188,7 @@ namespace Monad::Threads
 			/// </summary>
 			void Routine() final;
 
-			ThreadPool* const m_threads;
+			ThreadPool* const m_threadPool;
 		};
 
 		/// <summary>
@@ -192,7 +203,7 @@ namespace Monad::Threads
 		{
 			using std::vector<std::unique_ptr<ThreadWorker>>::vector;
 			void request_stops() noexcept;
-		} m_threads;
+		} m_threadPool;
 
 	public:
 		using ListPtrsTasks = std::forward_list<PtrTask>;
@@ -200,6 +211,23 @@ namespace Monad::Threads
 
 	struct ThreadWndMessage final : ThreadManager
 	{
+		/// <summary>
+		/// Adds tasks to the execution queue.
+		/// - Null tasks are ignored.
+		/// - Tasks are queued atomically.
+		/// - Each inserted task should be dequed oustide the DirectX processing.
+		/// </summary>
+		/// <param name="tasks">Collection of task pointers</param>
+		template<typename T = std::initializer_list<ITask*>>
+		void InsertTasks(
+			const T& tasks
+		)
+		{
+			auto notNullTasks = PrepareTasks(tasks, m_lockMessageQueue);
+
+			if (FALSE == Win32ApplicationGeneric::PostMessageW(WM_APP_MESSAGE_QUE))
+				THROW_EXC(Monad::Exceptions::InvalidClass, E_OUTOFMEMORY, L"Failed to post message to main thread");
+		}
 		void InsertTask(
 			ITask* task
 		);

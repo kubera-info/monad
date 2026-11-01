@@ -7,6 +7,7 @@
 #include "WindowSat.h"
 
 // Monad
+#include "Core/Win32ApplicationGeneric.h"
 #include "Globals/__MonadGlobals.h"
 #include "Exceptions/Exceptions.h"
 #include "Files/FileManager.h"
@@ -19,7 +20,7 @@
 #include "Math/Random.h"
 #include "Tools/Convert.h"
 #include "Message.h"
-
+#include "System/System.h"
 using namespace std;
 using namespace Microsoft::WRL;
 using namespace std::string_literals;
@@ -36,6 +37,8 @@ namespace Monad
 	{
 		namespace
 		{
+			ATG::CriticalSectionLockable m_lockSat;
+
 			inline void ProcessMsg(
 				const HWND pHWND
 			) noexcept
@@ -143,13 +146,11 @@ namespace Monad
 					nullptr
 				},
 					Thread{ L"Satellite" }
-				{
-				}
+				{}
 
 				~ThreadSatellite()
 				{
 					PostMessage(m_hWnd, WM_APP_CLOSE, 0, 0);
-					join();
 				}
 				ThreadSatellite() = delete;
 				ThreadSatellite(const ThreadSatellite&) = delete;
@@ -243,11 +244,6 @@ namespace Monad
 											rtSize.height * GUI::CENTER })
 									);
 
-									// Clear the background 
-									// m_pRT->Clear(D2D1::ColorF(D2D1::ColorF::White));
-
-									// D2DBitmap may have been released due to device loss. 
-									// If so, re-create it from the source bitmap
 									if (!m_pD2DBitmap)
 										m_pRT->CreateBitmapFromWicBitmap(
 											m_wicBitmap.Get(),
@@ -263,8 +259,9 @@ namespace Monad
 												0.0f,
 												0.0f,
 												rtSize.width,
-												rtSize.height }
-												);
+												rtSize.height
+											}
+										);
 
 									// In case of device loss, discard D2D render target and D2DBitmap
 									// They will be re-create in the next rendering pass
@@ -331,7 +328,8 @@ namespace Monad
 					ProcessMsg((m_hWnd = g_managerSatellites->m_satelliteWindowClass.WindowFactory(
 						m_wndRect,
 						this,
-						Globals::g_fullAppName)));
+						Globals::g_fullAppName))
+					);
 				}
 
 				Renderer2D::PtrWICBitmap m_wicBitmap;
@@ -346,9 +344,8 @@ namespace Monad
 #pragma region ManagerSatellites
 
 		/// <summary>
-/// Hash function.
-/// </summary>
-
+		/// Hash function.
+		/// </summary>
 		struct ObjectHash
 		{
 			size_t operator()(const ThreadSatellite& v) const noexcept
@@ -372,20 +369,40 @@ namespace Monad
 
 		void ManagerSatellites::ArrangeSatellites()
 		{
-			if (const auto monitors = GetNonPrimaryMonitors(); !monitors.empty())
+			if (!System::IsOSWine())
 			{
-				if (!m_satellites)
-					m_satellites = std::make_unique<SetSatellites>();
+				const std::lock_guard lg(m_lockSat);
+				const auto monitors = GetNonPrimaryMonitors();
 				std::erase_if(*m_satellites, [&monitors](const auto& sat)
 					{
-						return !monitors.contains(sat.m_wndRect);
+						if (!monitors.contains(sat))
+						{
+							THROW_EXC_IFPROTON(L"Satellite");
+							return true;
+						}
+						else
+							return false;
 					}
 				);
 				for (const auto& monitorRect : monitors)
-					m_satellites->emplace(monitorRect);
+					if (
+						const auto found =
+						std::ranges::find_if(
+							*m_satellites,
+							[&monitorRect](const auto& sat) noexcept
+							{
+								return memcmp(
+									&sat.m_wndRect,
+									&monitorRect,
+									sizeof(RECT)
+								) == 0;
+							})
+						== m_satellites->cend())
+					{
+						THROW_EXC_IFPROTON(L"Satellite");
+						m_satellites->emplace(monitorRect);
+					}
 			}
-			else
-				m_satellites.reset();
 		}
 
 		void ManagerSatellites::SetTitle() const noexcept
@@ -401,14 +418,16 @@ namespace Monad
 			c_me(this, g_managerSatellites),
 			m_2D(factory2D),
 			m_folderSat{ Kernel::DummyParameter{}, L"Sat" },
-			m_blobJpgNames{ "background"s, "background1"s, "background2"s, "background3"s }
+			m_blobJpgNames{ "background"s, "background1"s, "background2"s, "background3"s },
+			m_satellites{ std::make_unique<SetSatellites>() }
 		{
-			ArrangeSatellites();
+			const auto monitors = GetNonPrimaryMonitors();
+			for (const auto& monitorRect : monitors)
+				m_satellites->emplace(monitorRect);
 		}
 
 		ManagerSatellites::~ManagerSatellites()
-		{
-		}
+		{}
 
 		extern ManagerSatellites* g_managerSatellites = nullptr;
 #pragma endregion
@@ -416,8 +435,7 @@ namespace Monad
 #pragma region ManagerSatellites::WindowClassSatellite
 		ManagerSatellites::WindowClassSatellite::WindowClassSatellite() :
 			WindowClass{ L"WndClassSat", ThreadSatellite::WindowProc }
-		{
-		}
+		{}
 
 		HWND ManagerSatellites::WindowClassSatellite::WindowFactory(
 			const RECT& wndRect,
@@ -428,7 +446,7 @@ namespace Monad
 				WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE,
 				wndRect,
 				createWindowParameter,
-				/* WS_MAXIMIZE | */ WS_POPUP | WS_VISIBLE,
+				WS_POPUP | WS_VISIBLE,
 				appTitle
 			);
 		}

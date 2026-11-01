@@ -48,6 +48,7 @@ private:
 public:
 	Monad::Renderer::RenderTarget m_screenshotRT;
 	const Monad::Input::ThreadXboxController m_xBoxController;
+	double m_previousTime = 0.0;
 
 	/// <summary>
 	/// Fill the command list with all the render commands and dependent state.

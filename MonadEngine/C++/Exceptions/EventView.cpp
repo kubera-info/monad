@@ -12,10 +12,6 @@
 // STD
 #include <ranges>
 
-// Monad
-#include "Kernel/Patterns.h"
-#include "Exceptions.h"
-
 using namespace std;
 
 namespace Monad::Exceptions
@@ -26,37 +22,33 @@ namespace Monad::Exceptions
 			const HANDLE hEventLog,
 			const WORD type,
 			const std::wstring& message
-		) noexcept
+		)
 		{
 			if (hEventLog)
-				try
-				{
-					std::vector<std::wstring> parts;
-					wstringstream wss(message);
-					for (wstring currentRow; getline(wss, currentRow);)
-						if (!currentRow.empty())
-							parts.emplace_back(move(currentRow));
-					assert(!parts.empty());
-					auto stringZRows(
-						ranges::views::transform(
-							parts,
-							[](const auto& str) noexcept { return str.c_str(); }) |
-						ranges::to<vector<const wchar_t*>>());
-					::ReportEvent(
-						hEventLog,
-						type,
-						0,
-						0,
-						nullptr,
-						static_cast<WORD>(stringZRows.size()),
-						0,
-						stringZRows.data(),
-						nullptr
-					);
-				}
-				MONAD_CATCH
-				{
-				}
+			{
+				std::vector<std::wstring> parts;
+				wstringstream wss(message);
+				for (wstring currentRow; getline(wss, currentRow);)
+					if (!currentRow.empty())
+						parts.emplace_back(move(currentRow));
+				assert(!parts.empty());
+				auto stringZRows(
+					ranges::views::transform(
+						parts,
+						[](const auto& str) noexcept { return str.c_str(); }) |
+					ranges::to<vector<const wchar_t*>>());
+				::ReportEvent(
+					hEventLog,
+					type,
+					0,
+					0,
+					nullptr,
+					static_cast<WORD>(stringZRows.size()),
+					0,
+					stringZRows.data(),
+					nullptr
+				);
+			}
 		}
 	}
 	EventLog::EventLog(
@@ -67,8 +59,7 @@ namespace Monad::Exceptions
 			nullptr,
 			fullAppName.data())
 	}
-	{
-	}
+	{}
 
 	EventLog::~EventLog()
 	{
@@ -78,7 +69,7 @@ namespace Monad::Exceptions
 
 	void EventLog::ReportErrorEvent(
 		const wstring& message
-	) const noexcept
+	) const
 	{
 		ReportEventGeneric(
 			c_hEventLog,

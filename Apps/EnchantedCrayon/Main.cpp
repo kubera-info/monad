@@ -24,9 +24,7 @@ using namespace Monad::I18N;
 /// </summary>
 /// <param name="hInstance">Handle to the application instance.</param>
 /// <returns>Application exit code.</returns>
-int32_t WINAPI MiniMain(
-	_In_ HINSTANCE hInstance
-)
+__declspec(dllexport) INT WINAPI MiniMain()
 {
 	// Application display names (localized)
 	Globals::g_shortAppName =
@@ -82,7 +80,7 @@ int32_t WINAPI MiniMain(
 		App::PersistentSingleton,
 		Win32Application>(
 			Wnd::GetMonitorRect(),
-			hInstance
+			g_hInstance
 		);
 }
 
@@ -90,22 +88,29 @@ int32_t WINAPI MiniMain(
 /// Standard Windows entry point.
 /// Wraps MiniMain and provides structured exception handling when enabled.
 /// </summary>
-int32_t WINAPI wWinMain(
-	_In_ HINSTANCE hInstance,
-	_In_opt_ HINSTANCE,
-	_In_ wchar_t*,
-	_In_ int32_t)
+BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD fdwReason, LPVOID lpvReserved)
 {
-#if MONAD_HARDWARE_EXCEPTIONS == 1
-	__try
+	switch (fdwReason)
 	{
-#endif
-		return MiniMain(hInstance);
-#if MONAD_HARDWARE_EXCEPTIONS == 1
+	case DLL_PROCESS_ATTACH:
+		// Initialize once for each new process.
+		// Return FALSE to fail DLL load.
+		g_hInstance = hInstance;
+		break;
+
+	case DLL_THREAD_ATTACH:
+		// Do thread-specific initialization.
+		break;
+
+	case DLL_THREAD_DETACH:
+		// Do thread-specific cleanup.
+		break;
+
+	case DLL_PROCESS_DETACH:
+		if (lpvReserved != nullptr)
+			break; // do not do cleanup if process termination scenario
+		// Perform any necessary cleanup.
+		break;
 	}
-	__except (Exceptions::filter(GetExceptionCode(), GetExceptionInformation()))
-	{
-		return EXIT_FAILURE;
-	}
-#endif
+	return TRUE;
 }

@@ -76,22 +76,6 @@ namespace Monad
 		}
 
 		/// <summary>
-		/// Joins the thread safely.
-		/// Exceptions are intentionally swallowed.
-		/// </summary>
-		void Thread::join() noexcept
-		{
-			try
-			{
-				m_thread.join();
-			}
-			catch (invalid_argument&)
-			{
-				// join() may throw if thread is not joinable
-				// ignored intentionally
-			}
-		}
-
 		/// <summary>
 		/// Returns whether the underlying std::jthread is joinable.
 		/// </summary>

@@ -58,6 +58,12 @@ namespace Monad::I18N::Errors
 		L"Graphics adapter or its driver do not meet minimal software requirements"_en_GB,
 		L"The graphics adapter or its driver do not meet minimal software requirements"_en_US
 	},
+		CHANGE_IN_PROTON
+	{
+		L"Zmiana konfiguracji monitorów nie jest wspierana w wywołaniu Protona"_pl_PL,
+		L"Изменение конфигурации мониторов при запуске через Proton не поддерживается."_ru_RU,
+		L"Changing monitor configuration is not supported in a Proton invocation."_en_US
+	},
 		/*g_noSSE41(
 		L"Mikroprocesor nie spełnia minimalnych wymagań (SSE4.1)",
 		L"Микропроцессор не отвечает минимальным требованиям (SSE4.1)",

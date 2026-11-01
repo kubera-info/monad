@@ -13,6 +13,7 @@
 #include "GUI/Frame.h"
 #include "Win32Application.h"
 #include "Files/Registry.h"
+#include "Files/FileManager.h"
 #include "Fonts/__MonadFont.h"
 #include "Input/Cursor.h"
 #include "Renderer/States.h"
@@ -60,41 +61,25 @@ namespace Monad
 			this,
 			g_singleton
 		},
-			m_audioManager{ g_applied.m_audio, { Audio::STREAM, Audio::JINGLE, Audio::DESCRIBE } },
+			m_audioManager{ g_applied.m_audio,{ Audio::STREAM, Audio::JINGLE, Audio::DESCRIBE } },
 			m_threadPool{
 				THREAD_NAME_SINGLETON_POOL,
 				GetOptimalMapSize({
-					{16U, 8U},
-					{12U, 6U},
-					{8U, 5U},
-					{6U, 4U} },
+					{ 16U, 8U },
+					{ 12U, 6U },
+					{ 8U, 5U },
+					{ 6U, 4U } },
 					thread::hardware_concurrency(),
 					2U)
 			},
 			m_satellitesManager{ m_2D }
 		{
 			m_cursorControl.SetNewCurrentCursor(CURSOR_WAIT);
-			InsertTaskSearcher();
+			InsertTaskSearcher2(FILE_MAN_STATE_LOAD_BOOT);
 		}
 
 		void PersistentSingleton::OnCreateDevice()
 		{
-			m_fileSearcher.SetPaths();
-			const auto
-				width = m_monitorConf.m_monitorRect.right - m_monitorConf.m_monitorRect.left,
-				height = m_monitorConf.m_monitorRect.bottom - m_monitorConf.m_monitorRect.top;
-			MoveWindow(
-				Globals::g_mainWindow,
-				m_monitorConf.m_monitorRect.left,
-				m_monitorConf.m_monitorRect.top,
-				width,
-				height, 
-				FALSE
-			);
-			DXSample::UpdateForSizeChange(
-				width,
-				height
-			);
 			m_d3dSingleton = make_unique<CombineD3DSingleton>();
 		}
 
@@ -124,22 +109,18 @@ namespace Monad
 			m_threadPool.InsertTask(task);
 		}
 
-		void PersistentSingleton::InsertTaskSearcher()
-		{
-			InsertTask(&m_fileSearcher);
-		}
-
 		void PersistentSingleton::InsertTaskSearcher2(
-			const FILE_MAN_STATES newState
+			const size_t newState
 		)
 		{
 			g_fileManagerState = newState;
-			InsertTaskSearcher();
+			InsertTask(
+				&m_fileSearcher
+			);
 		}
 
 		void PersistentSingleton::ArrangeSatellites()
 		{
-			//const lock_guard lg(System::g_safeShutdown);
 			m_satellitesManager.ArrangeSatellites();
 		}
 
@@ -181,6 +162,25 @@ namespace Monad
 			OnCreateDevice();
 		}
 
+		namespace
+		{
+			struct TaskResetDevice final : Threads::ThreadManager::ITask
+			{
+				TaskResetDevice() noexcept :
+					ITask(false)
+				{}
+				void Run()
+				{
+					g_singleton->ResetDevice();
+				}
+			} g_resetDevice;
+		}
+
+		void PersistentSingleton::EnqueueResetDevice()
+		{
+			m_threadWndMessage.InsertTask(&g_resetDevice);
+		}
+
 		void PersistentSingleton::SaveOnDestroy() noexcept
 		{
 			if (m_d3dSingleton && IsWM_CLOSE() && IsFull())
@@ -192,25 +192,16 @@ namespace Monad
 			return m_d3dSingleton->m_world->m_full->m_arrowCursor;
 		}
 
-		void PersistentSingleton::OnReorganize()
-		{
-			if (const MonitorConf newMonitorConf; m_monitorConf <=> newMonitorConf != std::strong_ordering::equivalent)
-			{
-				m_monitorConf = newMonitorConf;
-				ResetDevice();
-			}
-			ArrangeSatellites();
-		}
 		namespace
 		{
-			struct ITaskReorganize : ThreadManager::ITask
+			struct ITaskReorganize final : ThreadManager::ITask
 			{
 				ITaskReorganize() noexcept :
 					ITask{ false }
 				{}
-				void Run() final
+				void Run()
 				{
-					g_singleton->OnReorganize();
+					g_singleton->ArrangeSatellites();
 				}
 			} g_reorganize;
 		}
@@ -224,7 +215,24 @@ namespace Monad
 #pragma region PersistentSingleton::CombineD3DSingleton
 		PersistentSingleton::CombineD3DSingleton::CombineD3DSingleton()
 		{
+			g_singleton->m_fileSearcher.SetPaths();
 			g_samplers.SetAnisotropy(g_applied.m_quality + 1);
+			g_singleton->m_monitorConf = MonitorConf{};
+			const auto
+				width = g_singleton->m_monitorConf.GetWidth(),
+				height = g_singleton->m_monitorConf.GetHeight();
+			DXSample::UpdateForSizeChange(
+				width,
+				height
+			);
+			MoveWindow(
+				Globals::g_mainWindow,
+				0,
+				0,
+				width,
+				height,
+				FALSE
+			);
 			OnAspectRatio();
 		}
 
@@ -382,7 +390,7 @@ namespace Monad
 			const wstring g_med = L"Med"s, g_hi = L"Hi"s, g_lo = L"Lo"s;
 		}
 
-		const wstring PersistentSingleton::Config::ConfigRecord::GetStringRendererQuality() const noexcept
+		const wstring& PersistentSingleton::Config::ConfigRecord::GetStringRendererQuality() const noexcept
 		{
 			switch (m_quality)
 			{

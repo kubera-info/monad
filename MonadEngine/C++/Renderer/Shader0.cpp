@@ -159,11 +159,12 @@ namespace Monad
 		ShaderConfigGeneric* ShaderGeneric::GetCurrentConfig() const noexcept
 		{
 #if defined MONAD_SHADOW
+			using enum STAGE_MODES;
 			switch (g_stageOfRendering)
 			{
-			case STAGE_MODES::STAGE_MODE_SHADOW:
+			case STAGE_MODE_SHADOW:
 				return m_shaderConfig.at(STAGE_MODE_SHADOW);
-			case STAGE_MODES::STAGE_MODE_CUSTOM:
+			case STAGE_MODE_CUSTOM:
 				return m_shaderConfig.at(STAGE_MODE_CUSTOM);
 			default:
 				return m_shaderConfig.at(STAGE_MODE_WORLD);

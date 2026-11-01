@@ -50,6 +50,7 @@ namespace Monad::App
 		void OnDestroyDevice() noexcept;
 		void ArrangeSatellites();
 		bool IsFull() const noexcept;
+		void EnqueueResetDevice();
 		void ResetDevice();
 		void SaveOnDestroy() noexcept;
 		void OnReorganize();
@@ -89,6 +90,7 @@ namespace Monad::App
 		Repositories::RepositoryGeneric m_repository;
 		TaskFileSearcher m_fileSearcher;
 		Threads::ThreadPool m_threadPool;
+		Threads::ThreadWndMessage m_threadWndMessage;
 
 		/// <summary>
 		/// Audio subsystem facade.

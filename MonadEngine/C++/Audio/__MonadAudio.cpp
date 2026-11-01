@@ -30,10 +30,10 @@ namespace Monad::Audio
 
 Cue operator""_cue(const char* literal, std::size_t sizeOfString)
 {
-	return { literal, sizeOfString };
+	return Cue{ { literal, sizeOfString } };
 }
 
 Queue operator""_queue(const char* literal, std::size_t sizeOfString)
 {
-	return { literal, sizeOfString };
+	return Queue{ { literal, sizeOfString } };
 }

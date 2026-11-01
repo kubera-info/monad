@@ -57,7 +57,6 @@ interface Win32ApplicationGeneric abstract
 	}
 	static bool IsRendered() noexcept;
 	static void OnBoth();
-	static void OnTriple();
 	static bool s_in_sizemove, s_inSuspend, s_minimized;
 };
 

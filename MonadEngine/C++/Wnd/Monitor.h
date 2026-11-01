@@ -4,6 +4,9 @@
 
 #pragma once
 
+// Platform
+#include <Windows.h>
+
 // Monad
 #include "Kernel/Templates.h"
 
@@ -47,6 +50,16 @@ namespace Monad::Wnd
 
 	struct MonitorConf
 	{
+		auto GetWidth() const noexcept
+		{
+			return m_monitorRect.right - m_monitorRect.left;
+		}
+
+		auto GetHeight() const noexcept
+		{
+			return m_monitorRect.bottom - m_monitorRect.top;
+		}
+
 		HMONITOR m_monitor = Monad::Wnd::GetPrimaryMonitor();
 		RECT m_monitorRect = Monad::Wnd::GetMonitorRect(m_monitor);
 	};

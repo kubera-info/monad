@@ -27,7 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>Book</ProjectName>
+    <ProjectName>Core</ProjectName>
     <ProjectGuid>{D3D09108-96D0-4629-88B8-122C0256058C}</ProjectGuid>
     <RootNamespace>Edu</RootNamespace>
     <Keyword>Win32Proj</Keyword>
@@ -35,7 +35,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v145</PlatformToolset>
@@ -47,7 +47,7 @@
     <MSVCPreviewEnabled>false</MSVCPreviewEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v145</PlatformToolset>
@@ -59,7 +59,7 @@
     <MSVCPreviewEnabled>false</MSVCPreviewEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v145</PlatformToolset>
@@ -71,7 +71,7 @@
     <MSVCPreviewEnabled>false</MSVCPreviewEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v145</PlatformToolset>
@@ -83,20 +83,22 @@
     <MSVCPreviewEnabled>false</MSVCPreviewEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v145</PlatformToolset>
     <SpectreMitigation>false</SpectreMitigation>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <MSVCPreviewEnabled>false</MSVCPreviewEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfAtl>false</UseOfAtl>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v145</PlatformToolset>
     <SpectreMitigation>false</SpectreMitigation>
     <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <MSVCPreviewEnabled>false</MSVCPreviewEnabled>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -155,10 +157,10 @@
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">true</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</EmbedManifest>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'">true</EmbedManifest>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">.exe</TargetExt>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">.exe</TargetExt>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'">.exe</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">.dll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">.dll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'">.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
@@ -217,7 +219,7 @@
     <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
     <TargetName>$(ProjectName)</TargetName>
     <SourcePath>$(VC_SourcePath);$(SolutionDir)MonadEngine\C++</SourcePath>
-    <TargetExt>.exe</TargetExt>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
     <CustomBuildAfterTargets />
@@ -229,7 +231,7 @@
     <EnableMicrosoftCodeAnalysis>false</EnableMicrosoftCodeAnalysis>
     <TargetName>$(ProjectName)</TargetName>
     <SourcePath>$(VC_SourcePath);$(SolutionDir)MonadEngine\C++</SourcePath>
-    <TargetExt>.exe</TargetExt>
+    <TargetExt>.dll</TargetExt>
     <OutDir>$(ProjectDir)$(Platform)$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
@@ -342,6 +344,7 @@
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <StackReserveSize>
       </StackReserveSize>
+      <ModuleDefinitionFile>Core.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)"</Command>
@@ -432,6 +435,7 @@
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <StackReserveSize>
       </StackReserveSize>
+      <ModuleDefinitionFile>Core.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)"</Command>
@@ -535,6 +539,7 @@
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <AdditionalManifestDependencies>
       </AdditionalManifestDependencies>
+      <ModuleDefinitionFile>Core.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" &amp; signtool.exe sign /n "Open Source Developer Wlodzimierz O. Kubera" /tr http://time.certum.pl /td SHA256 /fd SHA256  "$(TargetPath)"</Command>
@@ -638,6 +643,7 @@
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <AdditionalManifestDependencies>
       </AdditionalManifestDependencies>
+      <ModuleDefinitionFile>Core.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)"</Command>
@@ -737,6 +743,7 @@
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <AdditionalManifestDependencies>
       </AdditionalManifestDependencies>
+      <ModuleDefinitionFile>Core.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)" &amp; signtool.exe sign /n "Open Source Developer Wlodzimierz O. Kubera" /tr http://time.certum.pl /td SHA256 /fd SHA256  "$(TargetPath)"</Command>
@@ -837,6 +844,7 @@
       <UACExecutionLevel>AsInvoker</UACExecutionLevel>
       <AdditionalManifestDependencies>
       </AdditionalManifestDependencies>
+      <ModuleDefinitionFile>Core.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
       <Command>PwSh.exe "$(SolutionDir)MonadEngine\bin\End.ps1" 2 "$(ProjectName)"</Command>
@@ -934,6 +942,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Dev\DevDialog.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Exceptions.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Catch.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Exceptions\__MonadException.h" />
@@ -999,6 +1008,7 @@
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\CommandList.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\ConstantBuffers.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\First.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\HardwareAdapter.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\InputLayout.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\Heap.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\HDR.h" />
@@ -1114,6 +1124,7 @@
     <ClCompile Include="..\..\MonadEngine\C++\Audio\WaveWithCallback.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Audio\__MonadAudio.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Core\Win32ApplicationGeneric.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Dev\DevDialog.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Exceptions\Exceptions.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Files\Folder.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Files\Handle.cpp" />
@@ -1173,6 +1184,7 @@
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\CommandList.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\ConstantBuffers.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\First.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\HardwareAdapter.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\InputLayout.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\HDR.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\Heap.cpp" />
@@ -1302,6 +1314,7 @@
     <None Include="..\..\MonadEngine\C++\Time\README.md" />
     <None Include="..\..\MonadEngine\C++\Tools\README.md" />
     <None Include="..\..\MonadEngine\C++\Wnd\README.md" />
+    <None Include="Core.def" />
     <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

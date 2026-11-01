@@ -225,7 +225,7 @@ void D3D12Core::OnRender()
 	}
 #endif
 	case DXGI_ERROR_DEVICE_RESET:
-		g_singleton->ResetDevice();
+		g_singleton->EnqueueResetDevice();
 		break;
 	default:
 		THROW_EXC_D3D(hr, L"Present");

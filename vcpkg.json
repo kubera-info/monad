@@ -20,6 +20,7 @@
         "tools"
       ]
     },
-    "meshoptimizer"
+    "meshoptimizer",
+    "boost-serialization"
   ]
 }

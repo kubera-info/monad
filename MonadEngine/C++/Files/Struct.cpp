@@ -39,7 +39,6 @@ namespace Monad
 				case SZ_OK: return S_OK;
 				case SZ_ERROR_MEM: return E_OUTOFMEMORY;
 				case SZ_ERROR_PARAM: return E_INVALIDARG;
-					// case SZ_ERROR_PROGRESS: return E_ABORT;
 				case SZ_ERROR_DATA: return E_UNEXPECTED;
 				default: return E_FAIL;
 				}

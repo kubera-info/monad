@@ -57,14 +57,15 @@ namespace Monad
 			{
 				switch (textureDimension)
 				{
+					using enum TEX_DIMENSION;
 					[[likely]]
-				case TEX_DIMENSION::TEX_DIMENSION_TEXTURE2D:
+				case TEX_DIMENSION_TEXTURE2D:
 					return D3D12_RESOURCE_DIMENSION_TEXTURE2D;
 					[[likely]]
-				case TEX_DIMENSION::TEX_DIMENSION_TEXTURE1D:
+				case TEX_DIMENSION_TEXTURE1D:
 					return D3D12_RESOURCE_DIMENSION_TEXTURE1D;
 					[[unlikely]]
-				case TEX_DIMENSION::TEX_DIMENSION_TEXTURE3D:
+				case TEX_DIMENSION_TEXTURE3D:
 					return D3D12_RESOURCE_DIMENSION_TEXTURE3D;
 					[[unlikely]]
 				default:

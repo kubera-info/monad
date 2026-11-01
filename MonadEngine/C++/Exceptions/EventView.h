@@ -30,7 +30,7 @@ namespace Monad::Exceptions
 		/// <param name="message">A bulk of rows separated by CRLF values</param>
 		void ReportErrorEvent(
 			const std::wstring& message
-		) const noexcept;
+		) const;
 
 	private:
 		const HANDLE c_hEventLog;

@@ -89,7 +89,18 @@
     </Project>
   </Folder>
   <Folder Name="/Apps/Enchanted Crayon/Code/">
-    <Project Path="Apps/EnchantedCrayon/Book.vcxproj" Id="d3d09108-96d0-4629-88b8-122c0256058c">
+    <Project Path="Apps/EnchantedCrayon/Book/Book.vcxproj" Id="789b79d7-ab0b-4da2-b418-5d4951b7b69a">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <BuildType Solution="3-Setup|*" Project="Debug" />
+      <Platform Solution="0-Engine|ARM64" Project="x64" />
+      <Platform Solution="1-Assets|ARM64" Project="x64" />
+      <Platform Solution="2-Debug|ARM64" Project="x64" />
+      <Platform Solution="3-Setup|ARM64" Project="x64" />
+    </Project>
+    <Project Path="Apps/EnchantedCrayon/Core.vcxproj" Id="d3d09108-96d0-4629-88b8-122c0256058c">
       <BuildDependency Project="Apps/EnchantedCrayon/Assets/Shaders/Shaders.vcxproj" />
       <BuildType Solution="0-Engine|*" Project="Release" />
       <BuildType Solution="1-Assets|*" Project="Release" />

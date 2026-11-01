@@ -208,6 +208,19 @@ Monad::Wnd::ExpectedLResult ProcessWM_KEYDOWN
 		return std::unexpected(CONTINUE_PROCESSING);
 }
 
+Monad::Wnd::ExpectedLResult ProcessWM_APP_MESSAGE_QUE
+(
+	HWND,
+	UINT,
+	WPARAM,
+	LPARAM,
+	LPVOID&
+)
+{
+	Monad::App::g_singleton->m_threadWndMessage.DequeueAndRunTask();
+	return Monad::Wnd::PROCESSING_OK;
+}
+
 MapForMessages g_forMainMessage{
 	MONAD_MSG(
 		WM_CLOSE
@@ -262,6 +275,9 @@ MapForMessages g_forMainMessage{
 	),
 	MONAD_MSG(
 		WM_KEYDOWN
+	),
+	MONAD_MSG(
+		WM_APP_MESSAGE_QUE
 	)
 };
 

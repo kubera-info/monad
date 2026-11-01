@@ -8,6 +8,7 @@
 
 // Monad
 #include "Kernel/__MonadKernel.h"
+#include "Files/Folder.h"
 
 using namespace std;
 
@@ -17,8 +18,8 @@ namespace Monad::Globals
 	using namespace Kernel;
 
 	I18N::I18NString
-		g_shortAppName{ L"noname"_en_US },
-		g_fullAppName{ L"noname"_en_US },
+		g_shortAppName{ Files::GetModulePath().stem() },
+		g_fullAppName{ Files::GetModulePath().stem() },
 		g_copyright{ L"Place your copyrignt/copyleft"_en_US };
 	std::wstring
 		g_whoAmI,

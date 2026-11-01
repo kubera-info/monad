@@ -78,7 +78,7 @@ namespace Monad::Wnd
 			LPVOID&
 		)
 		{
-			/// Standard shutdown path
+			// Standard shutdown path
 			PostQuitMessage(0);
 			return PROCESSING_OK;
 		}

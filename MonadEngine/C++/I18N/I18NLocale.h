@@ -106,10 +106,6 @@ using PairLang = std::pair<std::wstring, std::wstring>;
 			{ literal, sizeOfString });\
 	}
 
-/// <summary>
-/// New suffix operators
-/// </summary>
-/// <param name="">Locale</param>
 MONAD_MAKE_LANG(en_GB);
 MONAD_MAKE_LANG(pl_PL);
 MONAD_MAKE_LANG(ru_RU);

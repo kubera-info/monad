@@ -14,6 +14,14 @@
 // Monad
 #include "Kernel/Patterns.h"
 
+MONAD_STRONG_TYPEDEF(std::string, Cue);
+Cue operator""_cue(const char* literal, std::size_t sizeOfString);
+using VectorCue = std::vector<Cue>;
+using VectorRandomCue = Monad::Kernel::VectorRandom<Cue>;
+
+MONAD_STRONG_TYPEDEF(std::string, Queue);
+Queue operator""_queue(const char* literal, std::size_t sizeOfString);
+
 namespace Monad::Audio
 {
 	constexpr float
@@ -27,18 +35,7 @@ namespace Monad::Audio
 	using FnDestroyVoice = void(*)(IXAudio2Voice* const) noexcept;
 	extern FnDestroyVoice DestroyVoice;
 	extern FnDestroyVoice DestroySourceVoice;
-}
 
-using Cue = std::string;
-Cue operator""_cue(const char* literal, std::size_t sizeOfString);
-using VectorCue = std::vector<Cue>;
-using VectorRandomCue = Monad::Kernel::VectorRandom<Cue>;
-
-using Queue = std::string;
-Queue operator""_queue(const char* literal, std::size_t sizeOfString);
-
-namespace Monad::Audio
-{
 	/// <summary>
 	/// Dedicated queue names for voices intended for parallel playback.
 	/// </summary>

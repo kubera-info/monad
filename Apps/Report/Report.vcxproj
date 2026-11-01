@@ -585,6 +585,7 @@
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\CommandList.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\ConstantBuffers.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\First.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\HardwareAdapter.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\HDR.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\Heap.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\InputLayout.h" />
@@ -719,6 +720,7 @@
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\CommandList.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\ConstantBuffers.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\First.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\HardwareAdapter.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\HDR.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\Heap.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\InputLayout.cpp" />

@@ -21,30 +21,26 @@ namespace Monad::Wnd
 		struct SetNonPrimaryMonitors : SetMonitors
 		{
 			BOOL AddNonPrimaryMonitor(
-				const HMONITOR hMonitor,
-				const LPRECT lprcMonitor
+				const HMONITOR hMonitor
 			)
 			{
-				// Skip primary monitor
-				if (m_hMonitor != hMonitor)
-				{
-					try
-					{
-						emplace(*lprcMonitor);
-					}
-					catch (const std::bad_alloc&)
-					{
-						// Stop enumeration if allocation fails
-						return FALSE;
-					}
-				}
-				return TRUE;
+				MONITORINFOEXW mi;
+				mi.cbSize = sizeof(mi);
+
+				if (GetMonitorInfo(hMonitor, &mi))
+					// Skip primary monitor
+					if (!mi.dwFlags & MONITORINFOF_PRIMARY)
+						try
+						{
+							emplace(mi.rcMonitor);
+						}
+						catch (const std::bad_alloc&)
+						{
+							// Stop enumeration if allocation fails
+							return FALSE;
+						}
+						return TRUE;
 			}
-			/// <summary>
-			/// Handle to the primary monitor.
-			/// Used to exclude it from the enumeration results.
-			/// </summary>
-			const HMONITOR m_hMonitor = GetPrimaryMonitor();
 		};
 	}
 
@@ -67,12 +63,12 @@ namespace Monad::Wnd
 		BOOL CALLBACK RegisterMonitor(
 			_In_  HMONITOR hMonitor,
 			_In_  HDC,
-			_In_  LPRECT lprcMonitor,
+			_In_  LPRECT,
 			_In_  LPARAM dwData
 		) noexcept
 		{
 			return reinterpret_cast<SetNonPrimaryMonitors*>(dwData)->
-				AddNonPrimaryMonitor(hMonitor, lprcMonitor);
+				AddNonPrimaryMonitor(hMonitor);
 		}
 	}
 

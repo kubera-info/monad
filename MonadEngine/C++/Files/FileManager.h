@@ -45,7 +45,7 @@ namespace Monad::Files
 	extern std::filesystem::path g_profilePath;
 	constexpr size_t
 		FILE_MAN_STATE_SYSTEM = 2048,
-		FILE_MAN_STATE_FREE = 2048,
+		FILE_MAN_STATE_FREE = FILE_MAN_STATE_SYSTEM,
 		FILE_MAN_STATE_LOAD_BOOT = 4096,
 		FILE_MAN_STATE_EXCEPTION = 8192,
 		FILE_MAN_STATE_READY = 16348;

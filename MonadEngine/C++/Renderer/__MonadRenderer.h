@@ -16,6 +16,7 @@
 #include <string>
 
 // Monad
+#include "Kernel/Patterns.h"
 #include "Kernel/BytesVector.h"
 
 namespace Monad::Renderer
@@ -371,24 +372,24 @@ namespace Monad::Renderer
 	using InitializerListTextures = std::initializer_list<Texture>;
 }
 
-using TechniqueName = std::string;
+MONAD_STRONG_TYPEDEF(std::string, TechniqueName);
 TechniqueName operator""_technique(const char* literal, std::size_t sizeOfString);
 
-using FXName = std::string;
+MONAD_STRONG_TYPEDEF(std::string, FXName);
 FXName operator""_fx(const char* literal, std::size_t sizeOfString);
 
-using VertexShaderName = std::string;
+MONAD_STRONG_TYPEDEF(std::string, VertexShaderName);
 VertexShaderName operator""_vertexShader(const char* literal, std::size_t sizeOfString);
 
-using PixelShaderName = std::string;
+MONAD_STRONG_TYPEDEF(std::string, PixelShaderName);
 PixelShaderName operator""_pixelShader(const char* literal, std::size_t sizeOfString);
 
-using ConstantBufferName = std::string;
+MONAD_STRONG_TYPEDEF(std::string, ConstantBufferName);
 ConstantBufferName operator""_constantBuffer(const char* literal, std::size_t sizeOfString);
 
-using ShaderResourceName = std::string;
+MONAD_STRONG_TYPEDEF(std::string, ShaderResourceName);
 ShaderResourceName operator""_shaderResource(const char* literal, std::size_t sizeOfString);
 using VectorResourceNames = std::vector<ShaderResourceName>;
 
-using MeshName = std::string;
+MONAD_STRONG_TYPEDEF(std::string, MeshName);
 MeshName operator""_mesh(const char* literal, std::size_t sizeOfString);

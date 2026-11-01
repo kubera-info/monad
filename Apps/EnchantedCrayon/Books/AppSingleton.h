@@ -39,9 +39,8 @@ namespace Monad::App
 		void InsertTask(
 			Threads::ThreadPool::ITask* const task
 		);
-		void InsertTaskSearcher();
 		void InsertTaskSearcher2(
-			const FILE_MAN_STATES newState
+			const size_t newState
 		);
 
 		void OnCreateDevice();
@@ -51,8 +50,8 @@ namespace Monad::App
 		bool IsFull() const noexcept;
 		void SetPalette() noexcept;
 		void ResetDevice();
+		void EnqueueResetDevice();
 		void SaveOnDestroy() noexcept;
-		void OnReorganize();
 		void EnqueueReorganize();
 
 		CombineCursorCrayon& GetArrowCursor() noexcept;
@@ -85,7 +84,7 @@ namespace Monad::App
 
 			struct ConfigRecord
 			{
-				const std::wstring GetStringRendererQuality() const noexcept;
+				const std::wstring& GetStringRendererQuality() const noexcept;
 
 				bool m_audio = true;
 				bool m_printer = true;

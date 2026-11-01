@@ -511,6 +511,9 @@
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\MeshOpt.h">
       <Filter>Monad%28a%29 Engine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Renderer\HardwareAdapter.h">
+      <Filter>Monad%28a%29 Engine\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\MonadEngine\C++\Audio\__MonadAudio.cpp">
@@ -853,6 +856,9 @@
       <Filter>Inet</Filter>
     </ClCompile>
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\MeshOpt.cpp">
+      <Filter>Monad%28a%29 Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Renderer\HardwareAdapter.cpp">
       <Filter>Monad%28a%29 Engine\Renderer</Filter>
     </ClCompile>
   </ItemGroup>

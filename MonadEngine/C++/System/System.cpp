@@ -106,7 +106,14 @@ namespace Monad::System
 			/// </summary>
 			bool IsOSWine() const noexcept
 			{
-				return nullptr != GetProcAddress("wine_get_host_version");
+//#define FORCE_WINE
+#if defined FORCE_WINE
+#	pragma message ("IsOSWine() set to true")
+				static const bool WINE = true;
+#else
+				static bool WINE = nullptr != GetProcAddress("wine_get_host_version");
+#endif
+				return WINE;
 			}
 		};
 

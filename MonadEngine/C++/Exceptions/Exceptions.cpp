@@ -52,6 +52,7 @@ namespace Monad
 
 	namespace Exceptions
 	{
+		//BOOL g_reboot = FALSE;
 		namespace
 		{
 			enum CLOSE_REASON_STATES : size_t
@@ -98,13 +99,10 @@ namespace Monad
 			{
 				if (!SetReason(closeReason))
 					return;
-				MndOutputDebugString(L"---\nException has been created\n");
-				MndOutputDebugString(stage);
-				MndOutputDebugString(StringFromAnyULongHex(hr));
-#if defined _DEBUG
-				MndOutputDebugString(_com_error(hr).ErrorMessage());
-				__debugbreak();
-#endif
+				OutputDebugString(L"---\nException has been created\n");
+				OutputDebugString(stage.c_str());
+				OutputDebugString(StringFromAnyULongHex(hr).c_str());
+				OutputDebugString(_com_error(hr).ErrorMessage());
 				constexpr wstring_view horizontal(L"\n\t--------------------\n\t");
 				wstring excTitle = I18N::g_defaultLocaleManager.GetLocaleName();
 				const wstring errStr = L"\nError: " + excTitle.
@@ -232,7 +230,7 @@ namespace Monad
 				break;
 				case MESSAGE_BOX:
 				{
-					const wstring errStrMsg = excTitle.
+					const wstring errStrMsg = L""s.
 						append(horizontal).
 						append(report).
 						append(L".\n").
@@ -242,9 +240,6 @@ namespace Monad
 						append(horizontal).
 						append(L"Operation: ").
 						append(stage).
-						append(horizontal).
-						append(L"Code: ").
-						append(StringFromAnyULongHex(hr)).
 						append(horizontal).
 						append(L"Message: ").
 						append(_com_error(hr).ErrorMessage());

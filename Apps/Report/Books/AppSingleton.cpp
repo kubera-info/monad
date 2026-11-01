@@ -101,9 +101,6 @@ namespace Monad
 
 		void PersistentSingleton::OnCreateDevice()
 		{
-			const auto r = GetMonitorRect();
-			MoveWindow(Globals::g_mainWindow, r.left, r.top, r.right - r.left, r.bottom - r.top, FALSE);
-			DXSample::UpdateForSizeChange(r.right - r.left, r.bottom - r.top);
 			m_d3dSingleton = make_unique<CombineD3DSingleton>();
 		}
 
@@ -122,7 +119,7 @@ namespace Monad
 			m_cursorControl.SetNewCurrentCursor(CURSOR_WAIT);
 			m_d3dSingleton.reset();
 
-			g_fileManagerState = App::FILE_MAN_STATES::STOP_BOOT_DX;
+			g_fileManagerState = STOP_BOOT_DX;
 			Pages::g_processingPages = false;
 		}
 
@@ -149,6 +146,25 @@ namespace Monad
 		bool PersistentSingleton::IsFull() const noexcept
 		{
 			return m_d3dSingleton->m_world && m_d3dSingleton->m_world->m_full;
+		}
+
+		namespace
+		{
+			struct TaskResetDevice final : Threads::ThreadManager::ITask
+			{
+				TaskResetDevice() noexcept :
+					ITask(false)
+				{}
+				void Run()
+				{
+					g_singleton->ResetDevice();
+				}
+			} g_resetDevice;
+		}
+
+		void PersistentSingleton::EnqueueResetDevice()
+		{
+			m_threadWndMessage.InsertTask(&g_resetDevice);
 		}
 
 		void PersistentSingleton::ResetDevice()
@@ -230,6 +246,9 @@ namespace Monad
 		PersistentSingleton::CombineD3DSingleton::CombineD3DSingleton()
 		{
 			g_samplers.SetAnisotropy(1);
+			const auto r = GetMonitorRect();
+			MoveWindow(Globals::g_mainWindow, r.left, r.top, r.right - r.left, r.bottom - r.top, FALSE);
+			DXSample::UpdateForSizeChange(r.right - r.left, r.bottom - r.top);
 			OnAspectRatio();
 		}
 
