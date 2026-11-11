@@ -22,7 +22,7 @@ namespace Monad
 		/// <summary>
 		/// Base dialog structure containing the minimal required elements.
 		/// </summary>
-		interface DialogGeneric abstract : Renderer::Combine
+		struct DialogGeneric : Renderer::Combine
 		{
 			friend Fonts::Text2Mesh;
 			friend ManagerRadioButton;

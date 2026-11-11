@@ -11,7 +11,7 @@
 // Monad
 #include "Kernel/Templates.h"
 
-interface IXmlReader;
+struct IXmlReader;
 
 namespace Monad::Files
 {

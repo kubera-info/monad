@@ -12,7 +12,6 @@
 #include "Exceptions/Exceptions.h"
 #include "Files/FileManager.h"
 #include "GUI/__MonadGUI.h"
-#include "Kernel/Dummy.h"
 #include "Kernel/Format.h"
 #include "Kernel/Templates.h"
 #include "Monitor.h"
@@ -126,7 +125,7 @@ namespace Monad
 			/// <summary>
 			/// This class forces to call the code, before creating attributes of the ThreadSatellite's.
 			/// </summary>
-			interface ThreadWnd abstract
+			struct ThreadWnd
 			{
 				RECT m_wndRect;
 				HWND m_hWnd;
@@ -417,7 +416,7 @@ namespace Monad
 		) :
 			c_me(this, g_managerSatellites),
 			m_2D(factory2D),
-			m_folderSat{ Kernel::DummyParameter{}, L"Sat" },
+			m_folderSat{ Files::DummyFolderParameter{}, L"Sat" },
 			m_blobJpgNames{ "background"s, "background1"s, "background2"s, "background3"s },
 			m_satellites{ std::make_unique<SetSatellites>() }
 		{

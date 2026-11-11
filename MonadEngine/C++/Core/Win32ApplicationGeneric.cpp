@@ -24,21 +24,21 @@
 #include "Time/__MonadTime.h"
 #include "Time/Timer.h"
 
-bool Win32ApplicationGeneric::s_in_sizemove = false;
+bool Win32ApplicationGeneric::s_inSizeMove = false;
 bool Win32ApplicationGeneric::s_inSuspend = false;
 bool Win32ApplicationGeneric::s_minimized = false;
 
-using Monad::Wnd::ExpectedLResult;
+using namespace Monad::Wnd;
 
 void Win32ApplicationGeneric::SetTitle() noexcept
 {
-	Monad::Wnd::SetWindowTitle(Monad::Globals::g_mainWindow);
+	SetWindowTitle(Monad::Globals::g_mainWindow);
 }
 
 bool Win32ApplicationGeneric::IsRendered() noexcept
 {
 	return g_dxSample
-		&& !s_in_sizemove
+		&& !s_inSizeMove
 		&& !s_minimized
 		&& !s_inSuspend;
 }
@@ -59,10 +59,10 @@ ExpectedLResult ProcessWM_POINTERUPDATE(
 {
 	// Pointer moved (mouse, pen, touch)
 	Monad::Input::SetCursorPos(lParam);
-	return Monad::Wnd::PROCESSING_OK;
+	return PROCESSING_OK;
 }
 
-Monad::Wnd::ExpectedLResult ProcessWM_APP_ACTIVATE_WINDOW
+ExpectedLResult ProcessWM_APP_ACTIVATE_WINDOW
 (
 	HWND hWnd,
 	UINT,
@@ -71,11 +71,11 @@ Monad::Wnd::ExpectedLResult ProcessWM_APP_ACTIVATE_WINDOW
 	LPVOID&
 )
 {
-	Monad::Wnd::ActivateDirect3DWindow(hWnd);
-	return Monad::Wnd::PROCESSING_OK;
+	ActivateDirect3DWindow(hWnd);
+	return PROCESSING_OK;
 }
 
-Monad::Wnd::ExpectedLResult ProcessPBT_APMQUERYSUSPEND
+ExpectedLResult ProcessPBT_APMQUERYSUSPEND
 (
 	HWND,
 	UINT,
@@ -87,10 +87,10 @@ Monad::Wnd::ExpectedLResult ProcessPBT_APMQUERYSUSPEND
 	if (!Win32ApplicationGeneric::s_inSuspend)
 		Monad::Input::g_active = false;
 	Win32ApplicationGeneric::s_inSuspend = true;
-	return Monad::Wnd::PROCESSING_TRUE;
+	return PROCESSING_TRUE;
 }
 
-Monad::Wnd::ExpectedLResult ProcessPBT_APMRESUMESUSPEND
+ExpectedLResult ProcessPBT_APMRESUMESUSPEND
 (
 	HWND,
 	UINT,
@@ -106,10 +106,10 @@ Monad::Wnd::ExpectedLResult ProcessPBT_APMRESUMESUSPEND
 			Monad::Input::g_active = true;
 		Win32ApplicationGeneric::s_inSuspend = false;
 	}
-	return Monad::Wnd::PROCESSING_TRUE;
+	return PROCESSING_TRUE;
 }
 
-Monad::Wnd::ExpectedLResult ProcessWM_PAINT
+ExpectedLResult ProcessWM_PAINT
 (
 	HWND,
 	UINT,
@@ -119,10 +119,10 @@ Monad::Wnd::ExpectedLResult ProcessWM_PAINT
 )
 {
 	Win32ApplicationGeneric::OnBoth();
-	return Monad::Wnd::PROCESSING_OK;
+	return PROCESSING_OK;
 }
 
-Monad::Wnd::ExpectedLResult ProcessWM_NCHITTEST
+ExpectedLResult ProcessWM_NCHITTEST
 (
 	HWND,
 	UINT,
@@ -174,7 +174,7 @@ Monad::Wnd::ExpectedLResult ProcessWM_ENTERSIZEMOVE
 	LPVOID&
 )
 {
-	Win32ApplicationGeneric::s_in_sizemove = true;
+	Win32ApplicationGeneric::s_inSizeMove = true;
 	return Monad::Wnd::PROCESSING_OK;
 }
 
@@ -187,6 +187,6 @@ Monad::Wnd::ExpectedLResult ProcessWM_EXITSIZEMOVE
 	LPVOID&
 )
 {
-	Win32ApplicationGeneric::s_in_sizemove = false;
+	Win32ApplicationGeneric::s_inSizeMove = false;
 	return Monad::Wnd::PROCESSING_OK;
 }

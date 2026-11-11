@@ -106,6 +106,7 @@
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeaderOutputFile />
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,6 +143,7 @@
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeaderOutputFile />
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -183,6 +185,7 @@
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

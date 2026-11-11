@@ -19,7 +19,7 @@ namespace Monad::Renderer
 	/// (parent–child relationships). Monads cannot be copied or moved;
 	/// they must be handled through pointers.
 	/// </summary>
-	interface First abstract
+	struct First
 	{
 		First() noexcept = default;
 		First(const First&) = default;
@@ -54,17 +54,17 @@ namespace Monad::Renderer
 		virtual void OnNewMatrix(
 			DirectX::XMFLOAT4X4& matrixToAlter
 		) const noexcept;
-	/// <summary>
-	/// Performs actual rendering of the monad.
-	/// </summary>
-	/// <param name="modelSpaceMatrix">
-	/// Final transformation matrix for rendering.
-	/// </param>
+		/// <summary>
+		/// Performs actual rendering of the monad.
+		/// </summary>
+		/// <param name="modelSpaceMatrix">
+		/// Final transformation matrix for rendering.
+		/// </param>
 
-	virtual void OnFrameRender(
-		const DirectX::XMFLOAT4X4& modelSpaceMatrix
-	) = 0;
-	// virtual bool IsTemporary() const noexcept;
+		virtual void OnFrameRender(
+			const DirectX::XMFLOAT4X4& modelSpaceMatrix
+		) = 0;
+		// virtual bool IsTemporary() const noexcept;
 	};
 
 	/// <summary>

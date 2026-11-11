@@ -56,8 +56,7 @@ namespace Monad::Renderer
 	.RegisterSpace = 0,
 	.ShaderVisibility = D3D12_SHADER_VISIBILITY_PIXEL
 	} } }
-	{
-	}
+	{}
 
 	const D3D12_STATIC_SAMPLER_DESC* Samplers::GetAllSamplersDesc() const noexcept
 	{

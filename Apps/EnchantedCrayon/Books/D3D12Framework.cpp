@@ -18,34 +18,22 @@
 #include "D3D12Framework.h"
 
 // Monad
-#include "__App.h"
 #include "AppSingleton.h"
-#include "GUI/__MonadGUI.h"
-#include "Exceptions/Exceptions.h"
-#include "Files/FileManager.h"
-#include "Input/Cursor.h"
 #include "Printer/Sketch.h"
-#include "System/Parameter.h"
 #include "System/System.h"
 #include "Time/__MonadTime.h"
-#include "Time/Timer.h"
-#include "Win32Application.h"
-#include "Renderer/__MonadRenderer.h"
 
 using namespace DirectX;
 using namespace std;
 using Microsoft::WRL::ComPtr;
 using namespace Monad::App;
 using namespace Monad::Files;
-using namespace Monad::GUI;
 using namespace Monad::Input;
 using namespace Monad::Kernel;
 using namespace Monad::Pages;
 using namespace Monad::Print;
 using namespace Monad::Renderer;
-using namespace Monad::System;
 using namespace Monad::Threads;
-using namespace Monad::Time;
 using namespace Monad::Tools;
 
 SingleCall g_setArtStubs(true);

@@ -26,10 +26,11 @@ namespace
 			using FileHandle::FileHandle;
 
 			void OnFindFile(
-				const std::filesystem::path& selectedFolder
+				const std::filesystem::path& selectedFolder,
+				WIN32_FIND_DATA findFileData
 			) final
 			{
-				fs::path currentFolder = selectedFolder / FindFileData().cFileName, relPath = FindFileData().cFileName;
+				fs::path currentFolder = selectedFolder / findFileData.cFileName, relPath = findFileData.cFileName;
 				if (Monad::Files::IsMonadExt(relPath.extension()))
 				{
 					do
@@ -45,12 +46,12 @@ namespace
 			}
 
 			void OnFindDirectory(
-				const std::filesystem::path& selectedFolder
+				const std::filesystem::path& selectedFolder,
+				WIN32_FIND_DATA findFileData
 			) final
 			{
-				FileHandleTime{ { selectedFolder / FindFileData().cFileName } }.Run();
+				FileHandleTime{ { selectedFolder / findFileData.cFileName } }.Run();
 			}
-
 		} handle{ { folder } };
 		handle.Run();
 	}
@@ -68,13 +69,14 @@ namespace
 		{
 			using FileHandle::FileHandle;
 			void OnFindFile(
-				const std::filesystem::path& selectedFolder
+				const std::filesystem::path& selectedFolder,
+				WIN32_FIND_DATA findFileData
 			) final
 			{
-				std::wstring filename = FindFileData().cFileName;
+				std::wstring filename = findFileData.cFileName;
 				filename[0] = towupper(filename[0]);
 				filename = L"__" + filename;
-				fs::path currentFolder = selectedFolder / FindFileData().cFileName, relPath = FindFileData().cFileName, relPath2 = filename;
+				fs::path currentFolder = selectedFolder / findFileData.cFileName, relPath = findFileData.cFileName, relPath2 = filename;
 				if (Monad::Files::IsMonadExt(relPath.extension()))
 				{
 					do
@@ -97,10 +99,11 @@ namespace
 				}
 			}
 			void OnFindDirectory(
-				const std::filesystem::path& selectedFolder
+				const std::filesystem::path& selectedFolder,
+				WIN32_FIND_DATA findFileData
 			) final
 			{
-				FileHandleTime{ { selectedFolder / FindFileData().cFileName } }.Run();
+				FileHandleTime{ { selectedFolder / findFileData.cFileName } }.Run();
 			}
 		} handle{ { folder } };
 		handle.Run();

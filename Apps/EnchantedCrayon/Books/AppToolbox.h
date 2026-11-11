@@ -26,11 +26,11 @@ namespace Monad::App
 		/// Base class for toolbar buttons used in the toolbox.
 		/// Provides common visual and behavioral configuration.
 		/// </summary>
-		interface ButtonOneToolbar abstract : GUI::ButtonOneToolbarGeneric
+		struct ButtonOneToolbar : GUI::ButtonOneToolbarGeneric
 		{
 			ButtonOneToolbar(
-				const DirectX::XMFLOAT2 & positionOfCenter,
-				const GUI::IconicStyle & style
+				const DirectX::XMFLOAT2& positionOfCenter,
+				const GUI::IconicStyle& style
 			);
 		};
 

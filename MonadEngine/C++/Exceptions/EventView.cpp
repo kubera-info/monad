@@ -21,12 +21,12 @@ namespace Monad::Exceptions
 		void ReportEventGeneric(
 			const HANDLE hEventLog,
 			const WORD type,
-			const std::wstring& message
+			const wstring& message
 		)
 		{
 			if (hEventLog)
 			{
-				std::vector<std::wstring> parts;
+				vector<wstring> parts;
 				wstringstream wss(message);
 				for (wstring currentRow; getline(wss, currentRow);)
 					if (!currentRow.empty())
@@ -51,6 +51,7 @@ namespace Monad::Exceptions
 			}
 		}
 	}
+
 	EventLog::EventLog(
 		const wstring& fullAppName
 	) noexcept :

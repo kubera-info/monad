@@ -9,14 +9,14 @@
 
 namespace Monad::Renderer
 {
-	interface RenderTargetDepthStencilGeneric abstract
+	struct RenderTargetDepthStencilGeneric
 	{
 	protected:
 		RenderTargetDepthStencilGeneric() = default;
 
 	public:
 		void reset() noexcept;
-		interface PassIDs abstract
+		struct PassIDs
 		{
 			const int32_t c_typeID;
 			const OptionalUInt m_texID;
@@ -61,7 +61,7 @@ namespace Monad::Renderer
 		RenderTargetDepthStencilGeneric& operator=(const RenderTargetDepthStencilGeneric&) = delete;
 		RenderTargetDepthStencilGeneric(RenderTargetDepthStencilGeneric&&) = delete;
 		RenderTargetDepthStencilGeneric& operator=(RenderTargetDepthStencilGeneric&&) = delete;
-		
+
 	public:
 		void SetMe() noexcept;
 

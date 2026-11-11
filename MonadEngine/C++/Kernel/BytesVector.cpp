@@ -33,8 +33,7 @@ namespace Monad::Kernel
 				m_refCount(1),
 				m_buffer(buffer),
 				m_position(0)
-			{
-			}
+			{}
 
 			// IUnknown methods
 			STDMETHODIMP QueryInterface(
@@ -249,8 +248,7 @@ namespace Monad::Kernel
 			sourceBytes.cbegin(),
 			sourceBytes.cend()
 		)
-	{
-	}
+	{}
 #pragma endregion
 
 #pragma region VectorBlock
@@ -258,27 +256,26 @@ namespace Monad::Kernel
 		size_t blockSize
 	) noexcept :
 		c_blockSize{ blockSize }
-	{
-	}
+	{}
 
 	void VectorBlock::resize(size_t blocks)
 	{
-		__super::resize(blocks * c_blockSize);
+		VectorBytes::resize(blocks * c_blockSize);
 	}
 
 	size_t VectorBlock::size() const noexcept
 	{
-		return __super::size() / c_blockSize;
+		return VectorBytes::size() / c_blockSize;
 	}
 
 	void* VectorBlock::data() noexcept
 	{
-		return __super::data();
+		return VectorBytes::data();
 	}
 
 	const void* VectorBlock::data() const noexcept
 	{
-		return __super::data();
+		return VectorBytes::data();
 	}
 #pragma endregion
 }

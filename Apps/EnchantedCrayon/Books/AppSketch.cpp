@@ -32,14 +32,13 @@ namespace Monad
 			m_renderTargetID(
 				g_dxSample->m_rtCurrentID++
 			)
-		{
-		}
+		{}
 
 		void ShaderSketch::OnComputePerSystemFrame(
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
-			__super::OnComputePerSystemFrame(modelSpaceMatrix);
+			ShaderSketchGeneric::OnComputePerSystemFrame(modelSpaceMatrix);
 
 			if (PRINT_STATUSES::START == m_printOnce)
 			{
@@ -53,7 +52,7 @@ namespace Monad
 						GetCurrentConfig(),
 						T3_PALETTE);
 
-				__super::OnComputePerWorldFrame(modelSpaceMatrix);
+				ShaderSketchGeneric::OnComputePerWorldFrame(modelSpaceMatrix);
 
 				g_singleton->m_d3dSingleton->m_screenshotRT.CreateRenderTarget(
 #if defined _DEBUG

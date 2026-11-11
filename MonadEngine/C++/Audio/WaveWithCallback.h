@@ -12,9 +12,9 @@ namespace Monad::Audio
 	struct PersistentAudio;
 
 	/// <summary>
-	/// This interface can be implemented to play WAV audio, for example, to support automatic streaming.
+	/// This struct can be implemented to play WAV audio, for example, to support automatic streaming.
 	/// </summary>
-	interface IWaveCallback abstract
+	struct IWaveCallback
 	{
 		virtual void OnAfterWave() noexcept = 0;
 	};

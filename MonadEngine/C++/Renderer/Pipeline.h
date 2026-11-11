@@ -32,78 +32,78 @@ namespace Monad::Renderer
 	// Shader Configuration
 	// =========================================================================
 
-	interface ShaderConfigGeneric abstract
+	struct ShaderConfigGeneric
 	{
 		// ---------------------------------------------------------------------
 		// Root Signature Builder
 		// ---------------------------------------------------------------------
 
-	struct InitD3D12Ranges1 final
+		struct InitD3D12Ranges1 final
+		{
+			struct InitD3D12Range1
 			{
-				struct InitD3D12Range1
-				{
-					friend InitD3D12Ranges1;
+				friend InitD3D12Ranges1;
 
-					/// <summary>
-					/// Shader Resource View
-					/// </summary>
-					/// <param name="baseShaderRegister">ID of resurce view</param>
-					InitD3D12Range1(
-						const Registers::INPUT_RESOURCE baseShaderRegister
-					) noexcept;
-					/// <summary>
-					/// Constant Buffer View
-					/// </summary>
-					/// <param name="shaderVisibility">VS/PS</param>
-					/// <param name="index">The ID of block</param>
-					InitD3D12Range1(
-						const D3D12_SHADER_VISIBILITY shaderVisibility,
-						const Registers::CONSTANT_BUFFER baseShaderRegister
-					) noexcept;
+				/// <summary>
+				/// Shader Resource View
+				/// </summary>
+				/// <param name="baseShaderRegister">ID of resurce view</param>
+				InitD3D12Range1(
+					const Registers::INPUT_RESOURCE baseShaderRegister
+				) noexcept;
+				/// <summary>
+				/// Constant Buffer View
+				/// </summary>
+				/// <param name="shaderVisibility">VS/PS</param>
+				/// <param name="index">The ID of block</param>
+				InitD3D12Range1(
+					const D3D12_SHADER_VISIBILITY shaderVisibility,
+					const Registers::CONSTANT_BUFFER baseShaderRegister
+				) noexcept;
 
-				private:
-					InitD3D12Range1(
-						const D3D12_SHADER_VISIBILITY shaderVisibility,
-						const D3D12_DESCRIPTOR_RANGE_TYPE rangeType,
-						const uint32_t baseShaderRegister
-					) noexcept;
-
-					const D3D12_SHADER_VISIBILITY m_shaderVisibility;
-					const D3D12_DESCRIPTOR_RANGE_TYPE m_rangeType;
-					const uint32_t m_baseShaderRegister;
-					const D3D12_DESCRIPTOR_RANGE_FLAGS m_rangeFlags;
-				};
-				using InitializerListInitRanges = std::initializer_list<InitD3D12Range1>;
-				InitD3D12Ranges1(
-#if defined _DEBUG
-					const std::wstring& name,
-#endif
-					InitializerListInitRanges ranges
-				);
-				void SetTableParameter(
-					const D3D12_DESCRIPTOR_RANGE_TYPE rangeType,
-					const uint32_t baseShaderRegister,
-					const D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle
-				) const noexcept;
-				uint32_t QueryTableParameter(
+			private:
+				InitD3D12Range1(
+					const D3D12_SHADER_VISIBILITY shaderVisibility,
 					const D3D12_DESCRIPTOR_RANGE_TYPE rangeType,
 					const uint32_t baseShaderRegister
-				) const noexcept;
+				) noexcept;
 
-				PtrRootSignature m_rootSignature;
-
-				std::vector<CD3DX12_DESCRIPTOR_RANGE1> m_ranges;
-#if defined _DEBUG
-			private:
-				std::wstring m_name;
-#endif
+				const D3D12_SHADER_VISIBILITY m_shaderVisibility;
+				const D3D12_DESCRIPTOR_RANGE_TYPE m_rangeType;
+				const uint32_t m_baseShaderRegister;
+				const D3D12_DESCRIPTOR_RANGE_FLAGS m_rangeFlags;
 			};
+			using InitializerListInitRanges = std::initializer_list<InitD3D12Range1>;
+			InitD3D12Ranges1(
+#if defined _DEBUG
+				const std::wstring& name,
+#endif
+				InitializerListInitRanges ranges
+			);
+			void SetTableParameter(
+				const D3D12_DESCRIPTOR_RANGE_TYPE rangeType,
+				const uint32_t baseShaderRegister,
+				const D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle
+			) const noexcept;
+			uint32_t QueryTableParameter(
+				const D3D12_DESCRIPTOR_RANGE_TYPE rangeType,
+				const uint32_t baseShaderRegister
+			) const noexcept;
 
+			PtrRootSignature m_rootSignature;
+
+			std::vector<CD3DX12_DESCRIPTOR_RANGE1> m_ranges;
+#if defined _DEBUG
+		private:
+			std::wstring m_name;
+#endif
+		};
+
+		// ---------------------------------------------------------------------
+	// ShaderConfigGeneric interface
 	// ---------------------------------------------------------------------
-// ShaderConfigGeneric interface
-// ---------------------------------------------------------------------
 
-public:
+	public:
 		using MapRootSignatures = Kernel::UnorderedMapString<InitD3D12Ranges1>;
 		ShaderConfigGeneric(
 			const std::string& vs,

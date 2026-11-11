@@ -89,7 +89,7 @@ namespace Monad::Pages
 	/// <summary>
 	/// Base class for animated page transitions.
 	/// </summary>
-	interface TimeLerpMorphing abstract : Time::TimeLerp
+	struct TimeLerpMorphing : Time::TimeLerp
 	{
 		enum class GET_LERPS : size_t
 		{

@@ -102,6 +102,7 @@
       <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,6 +128,7 @@
       <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,6 +156,7 @@
       <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

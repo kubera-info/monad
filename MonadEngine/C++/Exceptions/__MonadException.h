@@ -141,10 +141,10 @@ namespace Monad::I18N::Errors
 		L"Установщик."_ru_RU,
 		L"The Installer."_en_US },
 		HARDWARE_EXCEPTION
-		{
-		L"Wyjątek sprzętowy został rzucony"_pl_PL,
-		L"Ошибка несовместимости оборудования"_ru_RU,
-		L"A hardware exception has been thrown"_en_US };
+	{
+	L"Wyjątek sprzętowy został rzucony"_pl_PL,
+	L"Ошибка несовместимости оборудования"_ru_RU,
+	L"A hardware exception has been thrown"_en_US };
 }
 namespace Monad::Exceptions
 {

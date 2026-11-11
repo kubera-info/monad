@@ -46,7 +46,7 @@ namespace Monad
 {
 	namespace Kernel
 	{
-		interface RefCount abstract
+		struct RefCount
 		{
 			MONAD_CPP_REF_CNT;
 

@@ -19,7 +19,7 @@ namespace Monad::Renderer
 		using R::R;
 		bool IsVisible() const noexcept final
 		{
-			return __super::IsVisible() && F == g_frameIndex;
+			return R::IsVisible() && F == g_frameIndex;
 		}
 	};
 	template<typename R>

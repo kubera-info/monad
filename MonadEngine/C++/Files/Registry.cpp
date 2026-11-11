@@ -6,9 +6,7 @@
 #include "stdafx.h"
 #include "Registry.h"
 
-// Monad
-#include "Tools/Convert.h"
-#include "Exceptions/Exceptions.h"
+using namespace std;
 
 namespace Monad::Files
 {
@@ -16,7 +14,7 @@ namespace Monad::Files
 	{
 		constexpr bool DWORDToBool(DWORD dword) noexcept
 		{
-			return 0 != dword;
+			return !!dword;
 		}
 
 		inline const HKEY RegCreateKeyEx(
@@ -25,18 +23,18 @@ namespace Monad::Files
 		)
 		{
 			HKEY retSubKey;
-			THROW_EXC_IFFALSE(Monad::Exceptions::InvalidCall,
-				ERROR_SUCCESS == ::RegCreateKeyEx(
-					HKEY_CURRENT_USER,
-					subKey,
-					0,
-					NULL,
-					0,
-					options,
-					NULL,
-					&retSubKey,
-					NULL),
-				L"Reg Create Key Ex");
+			if (ERROR_SUCCESS != ::RegCreateKeyEx(
+				HKEY_CURRENT_USER,
+				subKey,
+				0,
+				NULL,
+				0,
+				options,
+				NULL,
+				&retSubKey,
+				NULL)
+				)
+				throw runtime_error("Reg Create Key Ex");
 			return retSubKey;
 		}
 
@@ -65,22 +63,22 @@ namespace Monad::Files
 			DWORD size
 		)
 		{
-			THROW_EXC_ONERROR(Exceptions::InvalidClass,
-				::RegSetValueEx(
+			if (ERROR_SUCCESS != ::RegSetValueEx(
 				subKey,
 				name,
 				0,
 				type,
 				data,
-				size),
-				L"Reg Set Value Ex");
+				size)
+				)
+				throw runtime_error("Reg Set Value Ex");
 		}
 	}
 
 #pragma region Accessors
 	void Registry::SetString(
 		const wchar_t* name,
-		const std::wstring& value
+		const wstring& value
 	)
 	{
 		RegSetValueEx(
@@ -91,7 +89,7 @@ namespace Monad::Files
 			static_cast<DWORD>((value.length() + 1) * sizeof(wchar_t)));
 	}
 
-	std::wstring Registry::GetString(
+	wstring Registry::GetString(
 		const wchar_t* name
 	) const
 	{
@@ -102,22 +100,15 @@ namespace Monad::Files
 			&dwLength)
 			)
 		{
-			if (dwLength <= 1024)
-			{
-				std::wstring registryStringValue{
-					dwLength / sizeof(wchar_t) - 1,
-					L'\0',
-					Kernel::default_init_allocator<std::wstring::value_type> {}
-				};
-				THROW_EXC_IFFALSE(Monad::Exceptions::InvalidCall,
-					ERROR_SUCCESS == RegQueryValueEx(
-						m_subKey,
-						name,
-						reinterpret_cast<uint8_t*>(registryStringValue.data()),
-						&dwLength),
-					L"Reg Query Value Ex");
-				return registryStringValue;
-			}
+			wstring registryStringValue(dwLength / sizeof(wchar_t) - 1, L'\0');
+			if (ERROR_SUCCESS != RegQueryValueEx(
+				m_subKey,
+				name,
+				reinterpret_cast<uint8_t*>(registryStringValue.data()),
+				&dwLength)
+				)
+				throw runtime_error("Reg Query Value Ex");
+			return registryStringValue;
 		}
 		return L"";
 	}
@@ -177,18 +168,17 @@ namespace Monad::Files
 	}
 #pragma endregion
 
-#pragma region Ctors Dtors and tools
+#pragma region Ctors Dtors
 	Registry::Registry(
 		const DWORD options,
-		const std::wstring& subKey
+		const wstring& subKey
 	) :
 		m_subKey{
 		RegCreateKeyEx(
 			options,
 			subKey.c_str())
 	}
-	{
-	}
+	{}
 
 	Registry::~Registry()
 	{

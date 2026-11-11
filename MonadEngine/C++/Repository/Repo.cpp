@@ -20,8 +20,7 @@ namespace Monad::Repositories
 			this,
 			g_repositoryGeneric
 		)
-	{
-	}
+	{}
 
 	void RepositoryGeneric::AddGhostTexture()
 	{
@@ -44,7 +43,7 @@ namespace Monad::Repositories
 		else
 		{
 			Files::Path emojiPath{
-				Kernel::DummyParameter{},
+				Files::DummyFolderParameter{},
 				L"Emoji" };
 			emojiPath /= Tools::UTF8ToUnicode(filename) + Files::EXT_TEX;
 			Files::TaskFileHolder loader(

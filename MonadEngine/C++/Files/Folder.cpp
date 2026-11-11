@@ -43,7 +43,7 @@ namespace Monad::Files
 			nullptr,
 			&folder.m_str
 		)))
-			throw std::exception("Get Known Folder Path");
+			throw std::runtime_error("Get Known Folder Path");
 		return folder.m_str;
 	}
 
@@ -60,7 +60,7 @@ namespace Monad::Files
 			pathModule,
 			32767ul
 		)))
-			throw std::exception("FS Path");
+			throw std::runtime_error("FS Path");
 		return pathModule;
 	}
 
@@ -99,12 +99,11 @@ namespace Monad::Files
 	}
 
 	Path::Path(
-		Kernel::DummyParameter,
+		DummyFolderParameter,
 		const path& source
 	) :
 		path{ Files::GetFolderRes() / source }
-	{
-	}
+	{}
 
 	Path& Path::operator=(
 		const path& source

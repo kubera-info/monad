@@ -72,7 +72,7 @@ namespace Monad::GUI
 			}
 
 			/// <summary>
-			/// Facade providing a simplified interface for invoking AddTriangle.
+			/// Facade providing a simplified struct for invoking AddTriangle.
 			/// </summary>
 			/// <param name="a">First vertex</param>
 			/// <param name="b">Second vertex</param>

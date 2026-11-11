@@ -53,7 +53,7 @@ namespace Monad
 			}
 
 			bool g_audio = true;
-	
+
 			Wnd::ExpectedLResult ProcessTASKBAR(
 				HWND,
 				UINT,
@@ -76,8 +76,8 @@ namespace Monad
 		m_threadPool{
 			THREAD_NAME_SINGLETON_POOL,
 			GetOptimalMapSize({
-				{8U, 3U},
-				{6U, 2U} },
+				{ 8U, 3U },
+				{ 6U, 2U } },
 				thread::hardware_concurrency(),
 				2U)
 		},
@@ -200,8 +200,7 @@ namespace Monad
 		}
 		PersistentSingleton::TaskHTTPS::TaskHTTPS() :
 			ITask(false)
-		{
-		}
+		{}
 		void PersistentSingleton::TaskHTTPS::Run()
 		{
 			g_sent.test_and_set();
@@ -216,7 +215,7 @@ namespace Monad
 			if (const auto httpsResponse = Internet::GetBugReportOnServer(); httpsResponse.has_value())
 				const LoaderXMLStatus xmlParseResponse(Kernel::SpanConstBytes(*httpsResponse).GetComIStreamTemp().Get());
 		}
-	
+
 		void PersistentSingleton::SetProgressState(
 			const TBPFLAG flag
 		) noexcept

@@ -22,23 +22,15 @@
 
 // Monad
 #include "AppSingleton.h"
-#include "Audio/Persistent.h"
-#include "Core/Win32ApplicationGeneric.h"
-#include "Exceptions/Exceptions.h"
-#include "Globals/__MonadGlobals.h"
-#include "Input/Cursor.h"
 #include "System/System.h"
-#include "Time/Timer.h"
 #include "Wnd/WindowMain.h"
-#include "Wnd/Message.h"
 
 using namespace Monad::App;
 using namespace Monad::Exceptions;
 using namespace Monad::Files;
-using namespace Monad::Globals;
-using namespace Monad::I18N;
 using namespace Monad::Input;
-using namespace Monad::Time;
+using namespace Monad::Pages;
+using namespace Monad::System;
 using namespace Monad::Wnd;
 
 ExpectedLResult ProcessWM_CLOSE(
@@ -50,21 +42,15 @@ ExpectedLResult ProcessWM_CLOSE(
 )
 {
 	if (!InAnyCloseReason()
-		&& (STOP_BOOT_DX <= Monad::Files::g_fileManagerState
-			&& FILE_MAN_STATE_SYSTEM > Monad::Files::g_fileManagerState
-			|| FILE_MAN_STATE_READY == Monad::Files::g_fileManagerState)
-		&& "exit"_pageNo != Monad::Pages::g_currentPage
+		&& (STOP_BOOT_DX <= g_fileManagerState
+			&& FILE_MAN_STATE_SYSTEM > g_fileManagerState
+			|| FILE_MAN_STATE_READY == g_fileManagerState)
+		&& "exit"_pageNo != g_currentPage
 		)
 	{
-		Monad::Pages::SelectPage("exit"_pageNo);
+		SelectPage("exit"_pageNo);
 		return PROCESSING_ERROR;
 	}
-	/*else if (Monad::System::IsOSWine())
-	{
-		g_singleton->OnDestroyDevice();
-		Monad::Audio::g_persistentAudio->Shutdown();
-		ExitProcess(0);
-	}*/
 	else
 	{
 		RegisterWM_CLOSE();
@@ -133,7 +119,7 @@ ExpectedLResult ProcessWM_DISPLAYCHANGE
 )
 {
 	// Monitor configuration changed
-	if (!Monad::System::IsOSWine())
+	if (!IsOSWine())
 		g_singleton->ArrangeSatellites();
 	return PROCESSING_OK;
 }
@@ -147,7 +133,7 @@ ExpectedLResult ProcessWM_DEVICECHANGE
 	LPVOID&
 )
 {
-	if (!Monad::System::IsOSWine())
+	if (!IsOSWine())
 		if (std::set<WPARAM>{
 			DBT_DEVICEARRIVAL,
 				DBT_DEVICEREMOVECOMPLETE,
@@ -170,7 +156,7 @@ ExpectedLResult ProcessWM_SETCURSOR
 	return PROCESSING_TRUE;
 }
 
-Monad::Wnd::ExpectedLResult ProcessWM_ACTIVATEAPP
+ExpectedLResult ProcessWM_ACTIVATEAPP
 (
 	HWND,
 	UINT,
@@ -186,7 +172,7 @@ Monad::Wnd::ExpectedLResult ProcessWM_ACTIVATEAPP
 	return PROCESSING_OK;
 }
 
-Monad::Wnd::ExpectedLResult ProcessWM_APP_MESSAGE_QUE
+ExpectedLResult ProcessWM_APP_MESSAGE_QUE
 (
 	HWND,
 	UINT,
@@ -195,8 +181,8 @@ Monad::Wnd::ExpectedLResult ProcessWM_APP_MESSAGE_QUE
 	LPVOID&
 )
 {
-	Monad::App::g_singleton->m_threadWndMessage.DequeueAndRunTask();
-	return Monad::Wnd::PROCESSING_OK;
+	g_singleton->m_threadWndMessage.DequeueAndRunTask();
+	return PROCESSING_OK;
 }
 
 MapForMessages g_forMainMessage{

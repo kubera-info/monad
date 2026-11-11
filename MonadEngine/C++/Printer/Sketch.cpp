@@ -24,8 +24,7 @@ namespace Monad::Print
 			this,
 			g_shaderSketchGeneric
 		)
-	{
-	}
+	{}
 
 	void ShaderSketchGeneric::PrintOnce() noexcept
 	{

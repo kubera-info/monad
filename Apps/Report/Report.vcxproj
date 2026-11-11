@@ -205,6 +205,7 @@
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <GuardEHContMetadata>false</GuardEHContMetadata>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -259,6 +260,7 @@
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -314,6 +316,7 @@
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <GuardEHContMetadata>false</GuardEHContMetadata>
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -367,6 +370,7 @@
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -419,6 +423,7 @@
       <ControlFlowGuard>
       </ControlFlowGuard>
       <SmallerTypeCheck>false</SmallerTypeCheck>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -467,6 +472,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <StringPooling>true</StringPooling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -568,7 +574,6 @@
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\BytesVector.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\ComManager.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Del.h" />
-    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Dummy.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Events.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Format.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Main.h" />

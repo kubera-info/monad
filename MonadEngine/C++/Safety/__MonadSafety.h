@@ -21,7 +21,7 @@ namespace Monad
 
 		namespace SafetyCore
 		{
-			interface SafetyManager abstract
+			struct SafetyManager
 			{
 			protected:
 				SafetyManager(
@@ -35,10 +35,10 @@ namespace Monad
 				SafetyManager& operator=(const SafetyManager&) = delete;
 				SafetyManager(SafetyManager&&) = delete;
 				SafetyManager& operator=(SafetyManager&&) = delete;
-					inline BCRYPT_ALG_HANDLE GetAlgorithmHandle(
-						const wchar_t* algorithm,
-						DWORD flags
-					);
+				inline BCRYPT_ALG_HANDLE GetAlgorithmHandle(
+					const wchar_t* algorithm,
+					DWORD flags
+				);
 
 				const BCRYPT_ALG_HANDLE m_algorithm;
 

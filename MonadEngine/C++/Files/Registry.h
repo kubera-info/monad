@@ -4,6 +4,12 @@
 
 #pragma once
 
+// Platform
+#include <Windows.h>
+
+// STD
+#include <string>
+
 // Monad
 #include "Globals/__MonadGlobals.h"
 
@@ -18,12 +24,12 @@ namespace Monad::Files
 	/// <summary>
 	/// Windows Registry reader and writer, wrapping the system API.
 	/// </summary>
-	interface Registry abstract
+	struct Registry
 	{
 	protected:
 		Registry(
 			const DWORD options,
-			const std::wstring & subKey = Globals::g_userProfile
+			const std::wstring& subKey = Globals::g_userProfile
 		);
 		~Registry();
 

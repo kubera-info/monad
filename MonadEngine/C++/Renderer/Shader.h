@@ -13,7 +13,7 @@
 namespace Monad::Renderer
 {
 	template<typename B>
-	interface ShaderTextured abstract : B
+	struct ShaderTextured : B
 	{
 	protected:
 		/// <summary>
@@ -33,8 +33,8 @@ namespace Monad::Renderer
 				technique,
 				mesh
 		},
-				c_startTexSlot{ startTexSlot },
-			 m_textures{ std::from_range, textureFilenames }
+			c_startTexSlot{ startTexSlot },
+			m_textures{ std::from_range, textureFilenames }
 		{}
 
 		/// <summary>
@@ -56,23 +56,23 @@ namespace Monad::Renderer
 				technique,
 				mesh
 		},
-				c_startTexSlot{ startTexSlot },
-				m_textures{ textures }
+			c_startTexSlot{ startTexSlot },
+			m_textures{ textures }
 		{}
 
-void OnComputePerWorldFrame(
-	const DirectX::XMFLOAT4X4 & modelSpaceMatrix
-) override
-{
-	__super::OnComputePerWorldFrame(modelSpaceMatrix);
+		void OnComputePerWorldFrame(
+			const DirectX::XMFLOAT4X4& modelSpaceMatrix
+		) override
+		{
+			B::OnComputePerWorldFrame(modelSpaceMatrix);
 
-	if (!m_textures.empty())
-		GetCurrentTexture().SetMe(this->GetCurrentConfig(), c_startTexSlot);
-}
-virtual size_t GetCurrentTextureID() const noexcept { return 0; }
-Texture & GetCurrentTexture() noexcept { return m_textures[GetCurrentTextureID()]; }
+			if (!m_textures.empty())
+				GetCurrentTexture().SetMe(this->GetCurrentConfig(), c_startTexSlot);
+		}
+		virtual size_t GetCurrentTextureID() const noexcept { return 0; }
+		Texture& GetCurrentTexture() noexcept { return m_textures[GetCurrentTextureID()]; }
 
-std::vector<Texture> m_textures;
-const Registers::INPUT_RESOURCE c_startTexSlot;
+		std::vector<Texture> m_textures;
+		const Registers::INPUT_RESOURCE c_startTexSlot;
 	};
 }

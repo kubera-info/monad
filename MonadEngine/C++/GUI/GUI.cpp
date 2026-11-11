@@ -70,8 +70,7 @@ namespace Monad
 				Renderer::Registers::INPUT_RESOURCE::T2,
 				meshFilename },
 				m_positionOfCenter{ positionOfCenter }
-		{
-		}
+		{}
 
 		const DirectX::XMFLOAT2 Pane::GetPos() const noexcept
 		{
@@ -82,7 +81,7 @@ namespace Monad
 			const XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
-			__super::OnComputePerWorldFrame(modelSpaceMatrix);
+			Super::OnComputePerWorldFrame(modelSpaceMatrix);
 
 			Light();
 		}

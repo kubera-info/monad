@@ -11,6 +11,7 @@
 * audacity
 * libcurl
 * directx-graphics-samples
+* directxmath
 * directxtex
 * gimp
 * git for windows

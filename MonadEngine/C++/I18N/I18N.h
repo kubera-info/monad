@@ -67,7 +67,7 @@ namespace Monad::I18N
 	struct I18NString : I18NType<std::wstring>
 	{
 		using I18NType::I18NType;
-		
+
 		/// <summary>
 		/// The size() method is intentionally omitted,
 		/// as separate calls would not be atomic and could lead to inconsistent results.

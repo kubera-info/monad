@@ -15,7 +15,7 @@ namespace Monad::Files
 {
 	std::filesystem::path GlobalFileNameSuffix();
 
-	/*interface FolderGeneric abstract
+	/*struct FolderGeneric
 	{
 		std::filesystem::path GetPathForFile(
 			const std::filesystem::path & filename

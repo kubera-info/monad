@@ -284,7 +284,7 @@ namespace Monad
 		void DialogSettings::RadioButtonManagerLang::RadioButtonFlag::OnClick()
 		{
 			g_applied.m_locale = c_localeName;
-			__super::OnClick();
+			RadioButton::OnClick();
 		}
 #pragma endregion
 
@@ -482,7 +482,7 @@ namespace Monad
 					-g_size,
 					-g_size,
 					g_size,
-					g_size} }.Commit()
+					g_size } }.Commit()
 		}
 		{}
 

@@ -2,9 +2,11 @@
 // ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
 // ##########################################################################
 
+// Me
 #include "stdafx.h"
 #include "Timestamp.h"
-//
+
+// STD
 #include <iostream>
 
 using namespace std;
@@ -64,5 +66,4 @@ namespace Monad::Files
 		else
 			THROW_EXC_GETLASTERROR(Monad::Exceptions::IOError, L"CreateFile2");
 	}
-
 }

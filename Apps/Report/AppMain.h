@@ -26,15 +26,15 @@ protected:
 		const std::wstring& text
 	);
 	void OnInitDialogGeneric();
-	
+
 	/// <summary>
 	/// Base class for toolbar buttons.
 	/// </summary>
-	interface ButtonOneToolbar abstract : Monad::GUI::ButtonOneToolbarGeneric
+	struct ButtonOneToolbar : Monad::GUI::ButtonOneToolbarGeneric
 	{
 		ButtonOneToolbar(
 			const float horizontalOffset,
-			const Monad::GUI::IconicStyle & style
+			const Monad::GUI::IconicStyle& style
 		);
 	};
 	struct ButtonAbort : ButtonOneToolbar
@@ -55,7 +55,7 @@ struct DialogReport final : DialogReportGeneric
 {
 	// Construction
 	DialogReport();
-	
+
 private:
 	ButtonAbort m_abortButton;
 	struct ButtonSendReport : ButtonOneToolbar
@@ -65,7 +65,7 @@ private:
 	private:
 		void OnClick() final;
 	} m_sendReportButton;
-	
+
 	std::wstring GetReportStringUI();
 };
 

@@ -31,7 +31,7 @@
 /// <summary>
 /// Ensures that specific initialization code is executed prior to creating DXSample attribute objects.
 /// </summary>
-interface DXSampleGeneric abstract
+struct DXSampleGeneric
 {
 	DXSampleGeneric() noexcept;
 	virtual ~DXSampleGeneric() = default;
@@ -42,7 +42,7 @@ interface DXSampleGeneric abstract
 /// </summary>
 extern uint32_t g_shaderResourceViewCount;
 
-interface DXSample abstract : DXSampleGeneric, Monad::Renderer::Combine
+struct DXSample : DXSampleGeneric, Monad::Renderer::Combine
 {
 	const Monad::Kernel::Me<DXSample> c_me;
 	const Monad::Renderer::InputLayout::MapInputLayouts c_inputLayouts;

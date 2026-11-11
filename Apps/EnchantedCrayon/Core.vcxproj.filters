@@ -252,9 +252,6 @@
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\ComManager.h">
       <Filter>Monad%28a%29 Incudes\Kernel</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Dummy.h">
-      <Filter>Monad%28a%29 Incudes\Kernel</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Format.h">
       <Filter>Monad%28a%29 Incudes\Kernel</Filter>
     </ClInclude>
@@ -429,9 +426,6 @@
     <ClInclude Include="..\..\MonadEngine\C++\Threads\Thread.h">
       <Filter>Monad%28a%29 Incudes\Threads</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MonadEngine\C++\Threads\ThreadPool.h">
-      <Filter>Monad%28a%29 Incudes\Threads</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\MonadEngine\C++\Core\__MonadCore.h">
       <Filter>Core</Filter>
     </ClInclude>
@@ -596,6 +590,9 @@
     </ClInclude>
     <ClInclude Include="..\..\MonadEngine\C++\Renderer\HardwareAdapter.h">
       <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Threads\ThreadPool.h">
+      <Filter>Monad%28a%29 Incudes\Threads</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

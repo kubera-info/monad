@@ -215,8 +215,7 @@ namespace Monad::Renderer
 			sampleCount,
 			state,
 			&c_clearValue }
-	{
-	}
+	{}
 #pragma endregion
 
 #pragma region RenderTargetDepthStencilGeneric::PassIDsRenderTarget
@@ -232,8 +231,7 @@ namespace Monad::Renderer
 		resourceState
 	},
 		c_viewDesc{ viewDesc }
-	{
-	}
+	{}
 #pragma endregion
 
 #pragma region RenderTargetDepthStencilGeneric::PassIDsDepthStencil
@@ -247,8 +245,7 @@ namespace Monad::Renderer
 			resourceState
 		},
 		c_viewDesc{ viewDesc }
-	{
-	}
+	{}
 #pragma endregion
 	RenderTarget::RenderTarget()
 	{

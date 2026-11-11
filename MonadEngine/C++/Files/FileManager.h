@@ -6,7 +6,6 @@
 
 // Monad
 #include "Audio/__MonadAudio.h"
-#include "Kernel/Dummy.h"
 #include "Kernel/Templates.h"
 #include "Struct.h"
 #include "Handle.h"
@@ -57,7 +56,7 @@ namespace Monad::Files
 	/// <summary>
 	/// Queries filenames and file sizes of assets.
 	/// </summary>
-	interface TaskFileSearcherGeneric abstract : Threads::ThreadPool::ITask
+	struct TaskFileSearcherGeneric : Threads::ThreadPool::ITask
 	{
 		friend FileRefHolder;
 		friend TaskFileHolder;
@@ -133,11 +132,11 @@ namespace Monad::Files
 	/// Encapsulates loading and storage of a binary file in memory.
 	/// A generic file holder for clear or encoded asset files.
 	/// </summary>
-	interface __declspec(novtable) TaskFileHolderGeneric abstract : Threads::ThreadPool::ITask
+	struct __declspec(novtable) TaskFileHolderGeneric : Threads::ThreadPool::ITask
 	{
 		TaskFileHolderGeneric(
 			TaskFileSearcherGeneric* const fileSearcher,
-			std::filesystem::path && filePath
+			std::filesystem::path&& filePath
 		) noexcept;
 		TaskFileHolderGeneric() = delete;
 		TaskFileHolderGeneric(const TaskFileHolderGeneric&) = delete;
@@ -167,11 +166,11 @@ namespace Monad::Files
 						sourceSpan.size() - c_stringView.length() - 1)
 				}
 			{}
-std::wstring UTF8ToUnicode() const;
+			std::wstring UTF8ToUnicode() const;
 
-const std::string_view c_stringView;
-const Kernel::SpanConstBytes c_span;
-};
+			const std::string_view c_stringView;
+			const Kernel::SpanConstBytes c_span;
+		};
 		/// <summary>
 		/// Splits the file’s data vector into two parts: a string from the beginning and a binary blob from the end.
 		/// </summary>
@@ -254,17 +253,19 @@ const Kernel::SpanConstBytes c_span;
 			const Kernel::VectorPath& searchFolders
 		);
 		void OnFindFile(
-			const std::filesystem::path& selectedFolder
+			const std::filesystem::path& selectedFolder,
+			WIN32_FIND_DATA findFileData
 		) final;
 		void OnFindDirectory(
-			const std::filesystem::path& selectedFolder
+			const std::filesystem::path& selectedFolder,
+			WIN32_FIND_DATA findFileData
 		) final;
 		[[nodiscard]]
 		operator uint32_t() const;
 
 	private:
 		FileHandleCount(
-			Kernel::DummyParameter,
+			DummyFolderParameter,
 			const Kernel::VectorPath& searchFolders
 		);
 

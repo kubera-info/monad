@@ -19,7 +19,7 @@ namespace Monad::Dev
 		void AppendAppVersionAndArch();
 		void ClearString() noexcept;
 
-	private:                                                         
+	private:
 		std::wstring m_currentLog;
 	};
 }

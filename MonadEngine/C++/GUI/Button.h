@@ -22,12 +22,12 @@ namespace Monad::GUI
 	/// <summary>
 	/// Abstract base class representing a generic button.
 	/// </summary>
-	interface Button abstract : Pane, Clickable
+	struct Button : Pane, Clickable
 	{
 		Button(
-			const std::string & pageNo,
-			const DirectX::XMFLOAT4 & positionOfCenter,
-			const IconicStyleGeneric & style
+			const std::string& pageNo,
+			const DirectX::XMFLOAT4& positionOfCenter,
+			const IconicStyleGeneric& style
 		);
 
 		Button(
@@ -53,12 +53,12 @@ namespace Monad::GUI
 	/// <summary>
 	/// Abstract base class shared by checkbox and radio button controls.
 	/// </summary>
-	interface TwoStateButton abstract : Button
+	struct TwoStateButton : Button
 	{
 		TwoStateButton(
-			const std::string & pageNo,
-			const DirectX::XMFLOAT2 & positionOfCenter,
-			const IconicStyleGeneric & style
+			const std::string& pageNo,
+			const DirectX::XMFLOAT2& positionOfCenter,
+			const IconicStyleGeneric& style
 		);
 
 	protected:
@@ -142,13 +142,13 @@ namespace Monad::GUI
 		Kernel::VectorNoCtor<RadioButton*> m_radioStates;
 	};
 
-	interface ButtonOneToolbarGeneric abstract : Button
+	struct ButtonOneToolbarGeneric : Button
 	{
 	protected:
 		ButtonOneToolbarGeneric(
-			const std::string & pageNo,
-			const DirectX::XMFLOAT2 & positionOfCenter,
-			const IconicStyleGeneric & style
+			const std::string& pageNo,
+			const DirectX::XMFLOAT2& positionOfCenter,
+			const IconicStyleGeneric& style
 		);
 	};
 }

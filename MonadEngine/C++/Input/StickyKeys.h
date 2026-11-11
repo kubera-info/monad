@@ -24,7 +24,7 @@ namespace Monad::Input
 		StickyKeys(const StickyKeys&) = delete;
 		StickyKeys& operator=(const StickyKeys&) = delete;
 		StickyKeys(StickyKeys&&) = delete;
-		StickyKeys& operator=(StickyKeys&&) = delete; 
+		StickyKeys& operator=(StickyKeys&&) = delete;
 
 	private:
 		/// <summary>

@@ -27,14 +27,13 @@ namespace Monad::Renderer
 #if defined MONAD_SHADOW
 		, m_cBufferShadow{ "shadow"_constantBuffer }
 #endif
-	{
-	}
+	{}
 
 	void ShaderNoLight::OnComputePerWorldFrame(
 		const XMFLOAT4X4& modelSpaceMatrix
 	)
 	{
-		__super::OnComputePerWorldFrame(modelSpaceMatrix);
+		ShaderGeneric::OnComputePerWorldFrame(modelSpaceMatrix);
 
 #if defined MONAD_SHADOW
 		XMStoreFloat4x4(
@@ -68,7 +67,7 @@ namespace Monad::Renderer
 		const XMFLOAT4X4& modelSpaceMatrix
 	)
 	{
-		__super::OnComputePerShadowFrame(modelSpaceMatrix);
+		ShaderGeneric::OnComputePerShadowFrame(modelSpaceMatrix);
 
 		XMStoreFloat4x4(
 			&m_cBufferShadow.GetBuffer(),
@@ -85,7 +84,7 @@ namespace Monad::Renderer
 		const XMFLOAT4X4& modelSpaceMatrix
 	)
 	{
-		__super::OnComputePerWorldFrame(modelSpaceMatrix);
+		ShaderNoLight::OnComputePerWorldFrame(modelSpaceMatrix);
 
 		Light();
 	}
@@ -103,6 +102,5 @@ namespace Monad::Renderer
 			technique,
 			mesh
 		)
-	{
-	}
+	{}
 }

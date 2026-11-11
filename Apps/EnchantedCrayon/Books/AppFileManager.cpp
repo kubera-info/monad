@@ -53,13 +53,13 @@ namespace Monad::App
 /// Base asset directories used by the application.
 /// </summary>
 		const Files::Path
-			FOLDER_BOOT{ DummyParameter{}, "Boot" },
-			FOLDER_BOOT2{ DummyParameter{}, "Boot2" },
-			FOLDER_EMOJI{ DummyParameter{}, "Emoji" },
-			FOLDER_STREAM{ DummyParameter{}, "Stream" },
-			FOLDER_LOGO{ DummyParameter{}, "Logo" },
-			FOLDER_ART{ DummyParameter{}, "Art" },
-			FOLDER_AUTO{ DummyParameter{}, "Auto" },
+			FOLDER_BOOT{ DummyFolderParameter{}, "Boot" },
+			FOLDER_BOOT2{ DummyFolderParameter{}, "Boot2" },
+			FOLDER_EMOJI{ DummyFolderParameter{}, "Emoji" },
+			FOLDER_STREAM{ DummyFolderParameter{}, "Stream" },
+			FOLDER_LOGO{ DummyFolderParameter{}, "Logo" },
+			FOLDER_ART{ DummyFolderParameter{}, "Art" },
+			FOLDER_AUTO{ DummyFolderParameter{}, "Auto" },
 			FOLDER_BOOT2_WALLPAPER{
 				FOLDER_BOOT2 /
 					VectorRandom<std::string>{ "0", "1", "2" }.GetRandomString() };
@@ -257,6 +257,6 @@ namespace Monad::App
 
 	uint32_t TaskFileSearcher::SetShaderResourceViewsCount()
 	{
-		return __super::SetShaderResourceViewsCount();
+		return TaskFileSearcherGeneric::SetShaderResourceViewsCount();
 	}
 }

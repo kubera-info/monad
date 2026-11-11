@@ -27,7 +27,7 @@ namespace Monad::Wnd
 	///
 	/// Designed as a RAII helper for window-class lifetime management.
 	/// </summary>
-	interface WindowClass abstract
+	struct WindowClass
 	{
 		/// <summary>
 		/// Registers a window class using provided name and window procedure.
@@ -48,7 +48,7 @@ namespace Monad::Wnd
 		WindowClass(const WindowClass&) = delete;
 		WindowClass& operator=(const WindowClass&) = delete;
 		WindowClass(WindowClass&&) = delete;
-		WindowClass& operator=(WindowClass&&) = delete; 
+		WindowClass& operator=(WindowClass&&) = delete;
 
 	protected:
 		/// <summary>

@@ -46,8 +46,7 @@ namespace Monad
 					m_colors{ colors },
 					m_paletteName{ palette },
 					c_paneRect{ paneRect }
-		{
-		}
+		{}
 
 		void ShaderArtGeneric::SetArt(const Repository::ConstArtIterator art)
 		{
@@ -58,7 +57,7 @@ namespace Monad
 
 		void ShaderArtGeneric::OnComputePerWorldFrame(const XMFLOAT4X4& modelSpaceMatrix)
 		{
-			__super::OnComputePerWorldFrame(modelSpaceMatrix);
+			Super::OnComputePerWorldFrame(modelSpaceMatrix);
 
 			g_repository->m_shaderResources.GetMember(m_paletteName).SetMe(
 				GetCurrentConfig(),
@@ -81,8 +80,7 @@ namespace Monad
 					PREVIEW_HEIGHT
 				}
 		}
-		{
-		}
+		{}
 
 		void ShaderArtPreview::SetHorizontalRange(
 			const double start,

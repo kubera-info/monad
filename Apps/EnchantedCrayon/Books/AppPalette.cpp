@@ -43,10 +43,10 @@ namespace Monad
 				CONTENT_COUNT_IN_COL = static_cast<float>(COLORS_COUNT);
 			const XMFLOAT3 colors[SHADES_COUNT][COLORS_COUNT]
 			{
-				{ GUI_PINK, { 1.00f, 0.00f, 1.00f }, { BRIGHNESS_66, BRIGHNESS_66, 1.0f}, {0.00f, 1.00f, 1.00f}, {0.00f, 1.00f, 0.00f}, {1.00f, BRIGHNESS_90, 0.00f}, GUI_WHITE},
-				{ { 1.00f, 0.00f, 0.00f }, { BRIGHNESS_75, 0.00f, BRIGHNESS_75 }, { 0.00f, 0.00f, 1.0f }, { 0.00f, BRIGHNESS_75, BRIGHNESS_75 }, { 0.00f, BRIGHNESS_75, 0.00f }, { BRIGHNESS_90, BRIGHNESS_75, 0.00f }, { BRIGHNESS_66, BRIGHNESS_66, BRIGHNESS_66 } },
-				{ { BRIGHNESS_66, 0.00f, 0.00f }, { BRIGHNESS_50, 0.00f, BRIGHNESS_50 }, { 0.00f, 0.00f, BRIGHNESS_66 }, { 0.00f, BRIGHNESS_50, BRIGHNESS_50 }, { 0.00f, BRIGHNESS_50, 0.00f }, { BRIGHNESS_75, BRIGHNESS_50, 0.00f }, { BRIGHNESS_33, BRIGHNESS_33, BRIGHNESS_33 } },
-				{ { BRIGHNESS_33, 0.00f, 0.00f }, { BRIGHNESS_25, 0.00f, BRIGHNESS_25 }, { 0.00f, 0.00f, BRIGHNESS_33 }, { 0.00f, BRIGHNESS_25, BRIGHNESS_25 }, { 0.00f, BRIGHNESS_25, 0.00f }, { BRIGHNESS_50, BRIGHNESS_25, 0.00f }, GUI_BLACK }
+				{ GUI_PINK,{ 1.00f, 0.00f, 1.00f },{ BRIGHNESS_66, BRIGHNESS_66, 1.0f },{ 0.00f, 1.00f, 1.00f },{ 0.00f, 1.00f, 0.00f },{ 1.00f, BRIGHNESS_90, 0.00f }, GUI_WHITE },
+				{ { 1.00f, 0.00f, 0.00f },{ BRIGHNESS_75, 0.00f, BRIGHNESS_75 },{ 0.00f, 0.00f, 1.0f },{ 0.00f, BRIGHNESS_75, BRIGHNESS_75 },{ 0.00f, BRIGHNESS_75, 0.00f },{ BRIGHNESS_90, BRIGHNESS_75, 0.00f },{ BRIGHNESS_66, BRIGHNESS_66, BRIGHNESS_66 } },
+				{ { BRIGHNESS_66, 0.00f, 0.00f },{ BRIGHNESS_50, 0.00f, BRIGHNESS_50 },{ 0.00f, 0.00f, BRIGHNESS_66 },{ 0.00f, BRIGHNESS_50, BRIGHNESS_50 },{ 0.00f, BRIGHNESS_50, 0.00f },{ BRIGHNESS_75, BRIGHNESS_50, 0.00f },{ BRIGHNESS_33, BRIGHNESS_33, BRIGHNESS_33 } },
+				{ { BRIGHNESS_33, 0.00f, 0.00f },{ BRIGHNESS_25, 0.00f, BRIGHNESS_25 },{ 0.00f, 0.00f, BRIGHNESS_33 },{ 0.00f, BRIGHNESS_25, BRIGHNESS_25 },{ 0.00f, BRIGHNESS_25, 0.00f },{ BRIGHNESS_50, BRIGHNESS_25, 0.00f }, GUI_BLACK }
 			};
 			const GridInfo gridInfo{
 			.m_contentMargin = GetInternalRect(),
@@ -70,14 +70,13 @@ namespace Monad
 						ForceConstForecolor,
 						"game"_pageNo,
 						positionOfCenter,
-						{ONE_COLOR_STYLE,
+						{ ONE_COLOR_STYLE,
 						rgb,
 						{ "color1"_cue, "color3"_cue, "color5"_cue },
 						{}
 				}
 				}
-				{
-				}
+				{}
 
 			private:
 				void OnClick()

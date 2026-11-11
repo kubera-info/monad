@@ -31,7 +31,7 @@ namespace Monad
 
 		CombineMain::DialogPicture::DialogPicture() :
 			DialogGeneric{
-			"game"_pageNo, {
+			"game"_pageNo,{
 					ASPECT,
 					-1.0f,
 					1.0f,

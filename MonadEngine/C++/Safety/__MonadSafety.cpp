@@ -36,8 +36,7 @@ namespace Monad::Safety::SafetyCore
 	) :
 		m_algorithm{ GetAlgorithmHandle(algorithm, flags) },
 		m_property{ *this, length }
-	{
-	}
+	{}
 
 	SafetyManager::~SafetyManager()
 	{
@@ -50,8 +49,7 @@ namespace Monad::Safety::SafetyCore
 		SafetyManager& algorithm, const wchar_t* pszProperty
 	) :
 		SafetyProperty{ InitSafetyProperty(algorithm, pszProperty) }
-	{
-	}
+	{}
 
 	uint32_t SafetyManager::SafetyProperty::InitSafetyProperty(
 		SafetyManager& algorithm,
@@ -73,8 +71,7 @@ namespace Monad::Safety::SafetyCore
 		DWORD explicitSize
 	) noexcept :
 		m_size(explicitSize)
-	{
-	}
+	{}
 
 	PBYTE SafetyManager::SafetyProperty::Factory() const
 	{
@@ -95,8 +92,7 @@ namespace Monad::Safety::SafetyCore
 		const SafetyProperty& propFactory
 	) :
 		m_byteBuffer(propFactory.Factory())
-	{
-	}
+	{}
 
 	SafetyManager::SafetyPropertyInstance::~SafetyPropertyInstance()
 	{

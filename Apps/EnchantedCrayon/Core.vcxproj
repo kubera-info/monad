@@ -321,6 +321,7 @@
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
       <ConformanceMode>Default</ConformanceMode>
       <StringPooling>true</StringPooling>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <AdditionalOptions>/IGNORE:4089,4291 %(AdditionalOptions)</AdditionalOptions>
@@ -413,6 +414,7 @@
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
       <StringPooling>true</StringPooling>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <AdditionalOptions>/IGNORE:4089,4291 %(AdditionalOptions)</AdditionalOptions>
@@ -510,6 +512,7 @@
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <GuardEHContMetadata>false</GuardEHContMetadata>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>
@@ -614,6 +617,7 @@
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>
@@ -715,6 +719,7 @@
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>
@@ -816,6 +821,7 @@
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>
@@ -991,7 +997,6 @@
     <ClInclude Include="..\..\MonadEngine\C++\Input\XBOXControler.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\BytesVector.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\ComManager.h" />
-    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Dummy.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Events.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Format.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Main.h" />

@@ -28,10 +28,11 @@ void IterateFiles(
 		using FileHandle::FileHandle;
 
 		void OnFindFile(
-			const std::filesystem::path& selectedFolder
+			const std::filesystem::path& selectedFolder,
+			WIN32_FIND_DATA findFileData
 		) final
 		{
-			auto file = selectedFolder / FindFileData().cFileName;
+			auto file = selectedFolder / findFileData.cFileName;
 			if (file.extension() == L".x"s)
 				g_filesMeshes.emplace_back(file);
 			else if (file.extension() == L".wav"s)
@@ -43,10 +44,11 @@ void IterateFiles(
 		}
 
 		void OnFindDirectory(
-			const std::filesystem::path& selectedFolder
+			const std::filesystem::path& selectedFolder,
+			WIN32_FIND_DATA findFileData
 		) final
 		{
-			FileHandleTime{ { selectedFolder / FindFileData().cFileName } }.Run();
+			FileHandleTime{ { selectedFolder / findFileData.cFileName } }.Run();
 		}
 
 	} handle{ { folder } };

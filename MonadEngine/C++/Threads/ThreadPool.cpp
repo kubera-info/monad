@@ -17,7 +17,7 @@ namespace Monad
 #pragma region ITask
 
 		/// <summary>
-		/// Base interface for a task executed by ThreadPool.
+		/// Base struct for a task executed by ThreadPool.
 		/// </summary>
 		/// <param name="ifDelete">
 		/// Determines whether the task should be automatically deleted

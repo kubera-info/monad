@@ -150,11 +150,11 @@ namespace Monad::App
 	/// Base class for informational full-screen dialogs
 	/// such as About, Description, or Open Source notices.
 	/// </summary>
-	interface DialogAboutGeneric abstract : GUI::DialogFullScreenGeneric
+	struct DialogAboutGeneric : GUI::DialogFullScreenGeneric
 	{
 		DialogAboutGeneric(
-			const std::string & pageNo,
-			const I18N::I18NString & title
+			const std::string& pageNo,
+			const I18N::I18NString& title
 		);
 
 		/// <summary>

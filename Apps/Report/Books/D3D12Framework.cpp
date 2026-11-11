@@ -133,12 +133,12 @@ D3D12Core::D3D12Core() :
 		}
 	},
 	{
-		{ "forecolor"_constantBuffer, { sizeof DirectX::XMFLOAT3, 4u } },
-		{ "hdr"_constantBuffer, { sizeof BOOL, 1u } },
-		{ "shadow"_constantBuffer, { sizeof DirectX::XMFLOAT4X4 , 12u } },
-		{ "light_pos"_constantBuffer, { sizeof DirectX::XMFLOAT4, 1u } },
-		{ "model"_constantBuffer, { sizeof CB::Model, 12u } },
-		{ "pipe_color"_constantBuffer, { sizeof CB::PipeColor, 2u } }
+		{ "forecolor"_constantBuffer,{ sizeof DirectX::XMFLOAT3, 4u } },
+		{ "hdr"_constantBuffer,{ sizeof BOOL, 1u } },
+		{ "shadow"_constantBuffer,{ sizeof DirectX::XMFLOAT4X4 , 12u } },
+		{ "light_pos"_constantBuffer,{ sizeof DirectX::XMFLOAT4, 1u } },
+		{ "model"_constantBuffer,{ sizeof CB::Model, 12u } },
+		{ "pipe_color"_constantBuffer,{ sizeof CB::PipeColor, 2u } }
 	} }
 {
 	m_shadows.emplace();

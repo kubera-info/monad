@@ -163,8 +163,7 @@ namespace Monad
 						{
 							ScopedString(PWSTR& name) :
 								m_threadName(name)
-							{
-							}
+							{}
 
 							~ScopedString()
 							{
@@ -277,7 +276,8 @@ namespace Monad
 		{
 			struct SystemLibraryNtdll : private SystemLibrary
 			{
-				SystemLibraryNtdll() : SystemLibrary{ g_Ntdll } {}
+				SystemLibraryNtdll() : SystemLibrary{ g_Ntdll }
+				{}
 
 				using LPRtlNtStatusToDosError = DWORD(WINAPI*)(NTSTATUS);
 				const LPRtlNtStatusToDosError c_fnRtlNtStatusToDosError = reinterpret_cast<LPRtlNtStatusToDosError>(GetProcAddress("RtlNtStatusToDosError"));
@@ -344,7 +344,6 @@ namespace Monad
 				UTF8ToUnicode(stdException.what()),
 				typeid(stdException).name()
 		}
-		{
-		}
+		{}
 	}
 }

@@ -7,7 +7,6 @@
 #include "SaveUTF8Encrypted.h"
 
 // Monad
-#include "Op.h"
 #include "EncryptAndSave.h"
 
 using namespace std;

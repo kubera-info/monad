@@ -15,7 +15,7 @@ namespace Monad::Renderer
 	/// Provides shared functionality for shaders rendering metallic materials.
 
 	/// </summary>
-	interface ShaderMetallicGeneric abstract : Shader
+	struct ShaderMetallicGeneric : Shader
 	{
 		using Shader::Shader;
 		ShaderMetallicGeneric(

@@ -72,7 +72,7 @@ namespace Monad::Renderer
 
 		void CBTypeCtrl::Move(CBTypeCtrl&& source) noexcept
 		{
-			__super::MoveEvent(std::move(source));
+			EventD3DCreateStub::MoveEvent(std::move(source));
 			m_resCounter = source.m_resCounter;
 			c_size256 = source.c_size256;
 			c_heapStart = source.c_heapStart;
@@ -275,29 +275,29 @@ namespace Monad::Renderer
 			const MapConstantBufferManager::key_type& _Key_val
 		)
 		{
-			auto manager = __super::find(_Key_val);
+			auto manager = Super::find(_Key_val);
 			THROW_EXC_ONEND(*this, manager, L"CB Manager");
 			return manager;
 		}
 
 		MapConstantBufferManager::const_iterator MapConstantBufferManager::cbegin() const noexcept
 		{
-			return __super::cbegin();
+			return Super::cbegin();
 		}
 
 		MapConstantBufferManager::const_iterator MapConstantBufferManager::cend() const noexcept
 		{
-			return __super::cend();
+			return Super::cend();
 		}
 
 		MapConstantBufferManager::iterator MapConstantBufferManager::begin() noexcept
 		{
-			return __super::begin();
+			return Super::begin();
 		}
 
 		MapConstantBufferManager::iterator MapConstantBufferManager::end() noexcept
 		{
-			return __super::end();
+			return Super::end();
 		}
 #pragma endregion
 	}

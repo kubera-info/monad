@@ -149,8 +149,7 @@ namespace Monad::System
 	}
 	TaskSaverProfileIco::TaskSaverProfileIco() :
 		Threads::ThreadPool::ITask(false)
-	{
-	}
+	{}
 
 	void TaskSaverProfileIco::Run()
 	{

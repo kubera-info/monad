@@ -25,7 +25,7 @@ namespace Monad
 	{
 		namespace
 		{
-			const IconicStyle STYLE_CLEAR_BUTTON{ GUI_GREEN, { JINGLE_CLEAR1, JINGLE_CLEAR2 }, { "new"_shaderResource } };
+			const IconicStyle STYLE_CLEAR_BUTTON{ GUI_GREEN,{ JINGLE_CLEAR1, JINGLE_CLEAR2 },{ "new"_shaderResource } };
 		}
 #pragma region DialogToolbox
 		DialogToolbox::DialogToolbox(
@@ -80,8 +80,7 @@ namespace Monad
 				"game"_pageNo,
 				positionOfCenter,
 				style }
-		{
-		}
+		{}
 
 		void DialogToolbox::ButtonBlank::OnClick()
 		{

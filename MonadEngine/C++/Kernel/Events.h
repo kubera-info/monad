@@ -78,7 +78,7 @@ namespace Monad::Kernel
 	// ---------------------------------------------------------------------
 
 	template<auto ID>
-	interface ManagerStub abstract
+	struct ManagerStub
 	{
 		ManagerStub() = default;
 
@@ -150,49 +150,49 @@ namespace Monad::Kernel
 	// Event interfaces
 	// ---------------------------------------------------------------------
 
-	interface EventFrameMoveStub abstract
+	struct EventFrameMoveStub
 		: ManagerStub<EVENT_IDS::FRAME_MOVE_STUB>
 	{
 		virtual bool OnFrameMoveStub() = 0;
 	};
 
-	interface EventPointerDownStub abstract
+	struct EventPointerDownStub
 		: ManagerStub<EVENT_IDS::POINTER_DOWN>
 	{
 		virtual bool OnPointerDownStub() = 0;
 	};
 
-	interface EventPointerUpStub abstract
+	struct EventPointerUpStub
 		: ManagerStub<EVENT_IDS::POINTER_UP>
 	{
 		virtual bool OnPointerUpStub() = 0;
 	};
 
-	interface EventD3DCreateStub abstract
+	struct EventD3DCreateStub
 		: ManagerStub<EVENT_IDS::D3D_CREATE>
 	{
 		virtual bool OnD3DCreateStub() = 0;
 	};
 
-	interface EventD3DRenderStub abstract
+	struct EventD3DRenderStub
 		: ManagerStub<EVENT_IDS::D3D_RENDER>
 	{
 		virtual bool OnD3DRenderStub() = 0;
 	};
 
-	interface EventClearD3DAssetsStub abstract
+	struct EventClearD3DAssetsStub
 		: ManagerStub<EVENT_IDS::D3D_CLEAR_ASSETS>
 	{
 		virtual bool OnClearD3DAssetsStub() = 0;
 	};
 
-	interface EventLanguageChangeEmojiStub abstract
+	struct EventLanguageChangeEmojiStub
 		: ManagerStub<EVENT_IDS::LANGUAGE_CHANGE_EMOJI>
 	{
 		virtual bool OnLanguageChangeEmojiStub() = 0;
 	};
 
-	interface EventLanguageChangeFontStub abstract
+	struct EventLanguageChangeFontStub
 		: ManagerStub<EVENT_IDS::LANGUAGE_CHANGE_FONT>
 	{
 		virtual bool OnLanguageChangeFontStub() = 0;

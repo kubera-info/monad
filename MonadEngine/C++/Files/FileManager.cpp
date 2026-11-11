@@ -21,19 +21,20 @@ namespace fs = filesystem;
 namespace Monad
 {
 	using namespace Exceptions;
+	using namespace Files;
 	using namespace Kernel;
 	using namespace System;
 	using namespace Safety;
 	using namespace Threads;
 	using namespace Tools;
 
-	namespace
-	{
-		Files::Path FONT_PATH{ DummyParameter{}, "Font" };
-	}
-
 	namespace Files
 	{
+		namespace
+		{
+			Path FONT_PATH{ DummyFolderParameter{}, "Font" };
+		}
+
 		VectorPath g_texturesExts;
 		SingleCall g_profileOnce;
 		atomic_size_t g_fileManagerState = FILE_MAN_STATE_LOAD_BOOT;
@@ -118,7 +119,7 @@ namespace Monad
 #endif
 				OnFile();
 #if MONAD_HARDWARE_EXCEPTIONS == 1
-		}
+			}
 			__except (filter(
 				GetExceptionCode(),
 				GetExceptionInformation())
@@ -248,10 +249,11 @@ namespace Monad
 						m_listOfPtrs{ listOfPointers }
 					{}
 					void OnFindFile(
-						const filesystem::path& selectedFolder
+						const filesystem::path& selectedFolder,
+						WIN32_FIND_DATA findFileData
 					) final
 					{
-						const fs::path fileName = ToLower(FindFileData().cFileName);
+						const fs::path fileName = ToLower(findFileData.cFileName);
 						const wstring ext = fileName.extension();
 						if (m_fileSearcher->c_interpreter.contains(ext)) [[likely]]
 						{
@@ -259,7 +261,7 @@ namespace Monad
 							file.Attach(new FileRefHolder(
 								m_fileSearcher,
 								selectedFolder / fileName,
-								FindFileData().nFileSizeLow)
+								findFileData.nFileSizeLow)
 							);
 							m_listOfPtrs.emplace_front(file);
 							m_fileSearcher->IncrementRefCount();
@@ -350,7 +352,7 @@ namespace Monad
 		}
 
 		FileHandleCount::FileHandleCount(
-			Kernel::DummyParameter,
+			Files::DummyFolderParameter,
 			const Kernel::VectorPath& searchFolders
 		) :
 			FileHandle(
@@ -361,20 +363,26 @@ namespace Monad
 			Run();
 		}
 
-		void FileHandleCount::OnFindFile(const fs::path&)
+		void FileHandleCount::OnFindFile(
+			const fs::path&,
+			WIN32_FIND_DATA findFileData
+		)
 		{
 			if (ranges::find(
 				g_texturesExts,
-				fs::path(ToLower(FindFileData().cFileName)).extension())
+				fs::path(ToLower(findFileData.cFileName)).extension())
 				!= g_texturesExts.cend())
 				++m_count;
 		}
 
-		void FileHandleCount::OnFindDirectory(const fs::path& selectedFolder)
+		void FileHandleCount::OnFindDirectory(
+			const fs::path& selectedFolder,
+			WIN32_FIND_DATA findFileData
+		)
 		{
 			m_count += FileHandleCount{
-				Kernel::DummyParameter{},
-				{ selectedFolder / FindFileData().cFileName / WILDCARD_ANY }
+				Files::DummyFolderParameter{},
+				{ selectedFolder / findFileData.cFileName / WILDCARD_ANY }
 			};
 		}
 

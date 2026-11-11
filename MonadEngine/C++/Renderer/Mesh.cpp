@@ -74,19 +74,19 @@ namespace Monad
 					graphicsCommandList.Transition({ {
 						m_vertexBuffer,
 						D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER,
-						D3D12_RESOURCE_STATE_COPY_DEST},
-						{m_indexBuffer,
+						D3D12_RESOURCE_STATE_COPY_DEST },
+						{ m_indexBuffer,
 						D3D12_RESOURCE_STATE_INDEX_BUFFER,
-						D3D12_RESOURCE_STATE_COPY_DEST} }
+						D3D12_RESOURCE_STATE_COPY_DEST } }
 						);
 				else
 					graphicsCommandList.Transition({ {
 						m_vertexBuffer,
 						D3D12_RESOURCE_STATE_COMMON,
 						D3D12_RESOURCE_STATE_COPY_DEST },
-						{m_indexBuffer,
+						{ m_indexBuffer,
 						D3D12_RESOURCE_STATE_COMMON,
-						D3D12_RESOURCE_STATE_COPY_DEST} }
+						D3D12_RESOURCE_STATE_COPY_DEST } }
 						);
 
 				// Copy data to the intermediate upload heap and then schedule a copy 
@@ -128,10 +128,10 @@ namespace Monad
 				graphicsCommandList.Transition({ {
 					m_vertexBuffer,
 					D3D12_RESOURCE_STATE_COPY_DEST,
-					D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER},
-					{m_indexBuffer,
+					D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER },
+					{ m_indexBuffer,
 					D3D12_RESOURCE_STATE_COPY_DEST,
-					D3D12_RESOURCE_STATE_INDEX_BUFFER} }
+					D3D12_RESOURCE_STATE_INDEX_BUFFER } }
 					);
 				// Initialize the vertex buffer view.
 				m_vertexBufferView =
@@ -221,13 +221,11 @@ namespace Monad
 			const MeshName& meshFilename
 		) :
 			Mesh{ Repositories::g_repositoryGeneric->m_meshes.GetMember(meshFilename) }
-		{
-		}
+		{}
 
 		Mesh::Mesh() :
 			m_interfaces{ std::make_shared<MeshInterfaces>(0) }
-		{
-		}
+		{}
 
 		Mesh::Mesh(
 			const MeshHelper& meshDef,

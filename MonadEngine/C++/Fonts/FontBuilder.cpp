@@ -169,7 +169,7 @@ namespace Monad
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
-			__super::OnComputePerWorldFrame(modelSpaceMatrix);
+			TexGUI::OnComputePerWorldFrame(modelSpaceMatrix);
 
 			g_forecolorFontGeneric->SetMe(GetCurrentConfig());
 		}
@@ -178,7 +178,7 @@ namespace Monad
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
-			__super::OnComputePerShadowFrame(modelSpaceMatrix);
+			TexGUI::OnComputePerShadowFrame(modelSpaceMatrix);
 
 			GetCurrentTexture().SetMe(GetCurrentConfig(), c_startTexSlot);
 		}
@@ -191,8 +191,7 @@ namespace Monad
 			CB::ForecolorInstance(counter),
 			c_me(this, g_forecolorFontGeneric
 			)
-		{
-		}
+		{}
 		ForecolorGeneric* g_forecolorFontGeneric = nullptr;
 #pragma endregion
 	}

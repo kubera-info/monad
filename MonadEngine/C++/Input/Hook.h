@@ -16,7 +16,7 @@ namespace Monad::Input
 	/// RAII wrapper managing the lifetime of a Windows hook
 	/// (e.g. mouse, keyboard, or other low-level hooks).
 	/// </summary>
-	interface Hook abstract
+	struct Hook
 	{
 	protected:
 		/// <summary>
@@ -26,7 +26,7 @@ namespace Monad::Input
 		/// <param name="hookID">Windows hook type identifier.</param>
 		/// <param name="procedure">Hook callback procedure.</param>
 		Hook(
-			HHOOK & hookHandle,
+			HHOOK& hookHandle,
 			int32_t hookID,
 			HOOKPROC procedure
 		);
@@ -40,7 +40,7 @@ namespace Monad::Input
 		Hook(const Hook&) = delete;
 		Hook& operator=(const Hook&) = delete;
 		Hook(Hook&&) = delete;
-		Hook& operator=(Hook&&) = delete;		
+		Hook& operator=(Hook&&) = delete;
 
 	private:
 		/// <summary>

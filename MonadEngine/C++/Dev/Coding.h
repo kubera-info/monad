@@ -35,12 +35,12 @@ namespace Monad::Dev
 		Tools::SingleCall s_profileOnce;
 		for (const C ch : name)
 		{
-			if(!s_profileOnce.test_and_set()) [[unlikely]]
+			if (!s_profileOnce.test_and_set()) [[unlikely]]
 				assert(
 					'_' == ch
 					|| Kernel::between<size_t>('a', 'z', ch)
 					|| Kernel::between<size_t>('A', 'Z', ch)
-				); 
+				);
 			else [[likely]]
 				assert(
 					'_' == ch

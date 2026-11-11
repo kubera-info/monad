@@ -41,8 +41,7 @@ namespace Monad::Renderer
 			stateBefore,
 			stateAfter
 		)
-	{
-	}
+	{}
 
 	GraphicsCommandList1::ScopedBarrier::ScopedBarrier(
 		GraphicsCommandList1& commandList,
@@ -50,8 +49,7 @@ namespace Monad::Renderer
 	) noexcept :
 		m_commandList(commandList),
 		m_resourceBarriers(resourceBarriers)
-	{
-	}
+	{}
 
 	GraphicsCommandList1::ScopedBarrier::~ScopedBarrier()
 	{

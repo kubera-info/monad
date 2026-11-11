@@ -10,8 +10,7 @@ namespace Monad::Math
 {
 	Random::Random() :
 		m_generator{ m_rd() }
-	{
-	}
+	{}
 
 	float Random::GetFlip()
 	{

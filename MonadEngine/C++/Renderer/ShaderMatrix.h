@@ -11,7 +11,7 @@
 
 namespace Monad::Renderer
 {
-	interface ShaderNoLight abstract : ShaderGeneric
+	struct ShaderNoLight : ShaderGeneric
 	{
 	protected:
 		ShaderNoLight(
@@ -34,7 +34,7 @@ namespace Monad::Renderer
 #endif
 	};
 
-	interface Shader abstract : ShaderNoLight
+	struct Shader : ShaderNoLight
 	{
 	protected:
 		Shader(

@@ -145,8 +145,7 @@ namespace Monad
 			m_parent{
 			parent
 		}
-		{
-		}
+		{}
 
 		void CombineCursorCrayon::TimeLerpColorChange::OnFlush() noexcept
 		{
@@ -171,8 +170,7 @@ namespace Monad
 			ShaderMetallic2{
 			"crayon"_technique,
 			"crayon"_mesh }
-		{
-		}
+		{}
 
 		void CombineCursorCrayon::ShaderCrayon::SetColor(
 			const XMFLOAT3& cursorColor
@@ -193,7 +191,7 @@ namespace Monad
 				.m_color{ SPEC(m_rgb.x), SPEC(m_rgb.y), SPEC(m_rgb.z), 1.0f }
 			};
 
-			__super::OnComputePerWorldFrame(modelSpaceMatrix);
+			ShaderMetallic2::OnComputePerWorldFrame(modelSpaceMatrix);
 		}
 #pragma endregion
 
@@ -203,8 +201,7 @@ namespace Monad
 				"paper"_technique,
 				"paper"_mesh },
 				m_forecolor{ "forecolor"_constantBuffer }
-		{
-		}
+		{}
 
 		void CombineCursorCrayon::ShaderPaper::SetColor(
 			const XMFLOAT3& cursorColor
@@ -217,7 +214,7 @@ namespace Monad
 			const XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
-			__super::OnComputePerWorldFrame(modelSpaceMatrix);
+			Shader::OnComputePerWorldFrame(modelSpaceMatrix);
 
 			constexpr float lum = 1.5f;
 			XMStoreFloat3(&m_forecolor.GetBuffer(), XMVectorScale(
@@ -234,8 +231,7 @@ namespace Monad
 			"torus"_mesh,
 			TORUS_COLORS
 		}
-		{
-		}
+		{}
 
 		void ShaderCursorTorus::OnNewMatrix(XMFLOAT4X4& matrixToAlter) const noexcept
 		{

@@ -18,11 +18,11 @@ namespace Monad::GUI
 	/// Interface defining click-handling behavior for UI elements.
 	/// Supports input from various pointing devices, including the Xbox controller.
 	/// </summary>
-	interface Clickable abstract : Kernel::EventPointerDownStub
+	struct Clickable : Kernel::EventPointerDownStub
 	{
 		Clickable(
-			const std::string & pageNo,
-			const Audio::RandomJingle & clicksSounds
+			const std::string& pageNo,
+			const Audio::RandomJingle& clicksSounds
 		);
 
 	protected:
@@ -46,8 +46,8 @@ namespace Monad::GUI
 	/// <summary>
 	/// Abstract base class for renderable UI elements.
 	/// </summary>
-	interface Pane abstract :
-	Renderer::CalculatePosition<
+	struct Pane :
+		Renderer::CalculatePosition<
 		Renderer::ShaderTextured<
 		Renderer::Shader>>
 	{
@@ -57,6 +57,9 @@ namespace Monad::GUI
 			const VectorResourceNames& textureFilenames,
 			const MeshName& meshFilename
 		);
+		using Super = Renderer::CalculatePosition<
+			Renderer::ShaderTextured<
+			Renderer::Shader>>;
 		const DirectX::XMFLOAT2 GetPos() const noexcept;
 
 	protected:

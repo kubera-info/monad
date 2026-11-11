@@ -153,7 +153,7 @@ namespace Monad
 			.DepthOrArraySize = static_cast<UINT16>(metadata.arraySize),
 			.MipLevels = static_cast<UINT16>(metadata.mipLevels),
 			.Format = metadata.format,
-			.SampleDesc = {.Count = 1, .Quality = 0 },
+			.SampleDesc = { .Count = 1, .Quality = 0 },
 			.Flags = D3D12_RESOURCE_FLAG_NONE,
 			};
 
@@ -316,8 +316,7 @@ namespace Monad
 			Texture{
 			Repositories::g_repositoryGeneric->m_shaderResources.GetMember(filename)
 		}
-		{
-		}
+		{}
 
 		Texture::Texture(
 			const SpanConstBytes sourceDDS
@@ -326,8 +325,7 @@ namespace Monad
 			sourceDDS.data(),
 			sourceDDS.size()
 		}
-		{
-		}
+		{}
 
 		void Texture::UpdateTextureInternal(
 			const D3D12_SUBRESOURCE_DATA& textureData,
@@ -337,7 +335,7 @@ namespace Monad
 			const auto scopedTransition = g_dxSample->m_commandList.ScopedTransition({ {
 				m_res,
 				D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE,
-				D3D12_RESOURCE_STATE_COPY_DEST} }
+				D3D12_RESOURCE_STATE_COPY_DEST } }
 				);
 			UpdateSubresources(
 				g_dxSample->m_commandList.Get(),

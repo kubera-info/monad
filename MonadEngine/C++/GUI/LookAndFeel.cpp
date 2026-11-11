@@ -30,8 +30,7 @@ namespace Monad::GUI
 		c_rgb{ rgb },
 		c_clicksSounds{ clicksSounds },
 		c_icons{ icons }
-	{
-	}
+	{}
 
 	// ---------------------------------------------------------------------
 	// Predefined mesh styles used by GUI elements
@@ -115,8 +114,7 @@ namespace Monad::GUI
 			clicksSounds,
 			icons
 	}
-	{
-	}
+	{}
 
 	IconicStyle::IconicStyle(
 		const XMFLOAT3& rgb,
@@ -129,8 +127,7 @@ namespace Monad::GUI
 			clicksSounds,
 			icons
 	}
-	{
-	}
+	{}
 
 	IconicStyle::IconicStyle(
 		const XMFLOAT3& rgb,
@@ -141,8 +138,7 @@ namespace Monad::GUI
 			{ JINGLE_FOCUS },
 			icons
 	}
-	{
-	}
+	{}
 
 	IconicStyle::IconicStyle(
 		const VectorResourceNames& icons
@@ -151,8 +147,7 @@ namespace Monad::GUI
 			GUI_CHECKBOX_COLOR,
 			icons
 	}
-	{
-	}
+	{}
 
 	IconicStyle::IconicStyle(
 		const ShaderResourceName& flag
@@ -162,6 +157,5 @@ namespace Monad::GUI
 			{ JINGLE_FOCUS },
 			{ flag }
 	}
-	{
-	}
+	{}
 }

@@ -15,13 +15,14 @@ namespace Monad::App
 	/// Base class for all art-rendering shaders.
 	/// Handles palette binding and textured quad rendering.
 	/// </summary>
-	interface ShaderArtGeneric abstract : Renderer::ShaderTextured<Renderer::ShaderNoLight>
+	struct ShaderArtGeneric : Renderer::ShaderTextured<Renderer::ShaderNoLight>
 	{
 		ShaderArtGeneric(
-			ArrayColors & colors,
-			const std::string & palette,
-			const DirectX::XMFLOAT4 & paneRect
+			ArrayColors& colors,
+			const std::string& palette,
+			const DirectX::XMFLOAT4& paneRect
 		);
+		using Super = Renderer::ShaderTextured<Renderer::ShaderNoLight>;
 
 		/// <summary>
 		/// Selects the currently displayed artwork.

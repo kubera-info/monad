@@ -20,6 +20,8 @@ namespace Monad::Fonts
 		ShaderEmoji(
 			const std::string& emojiName
 		);
+		using Super = Renderer::ShaderTextured<Renderer::ShaderNoLight>;
+
 		/// <summary>
 		/// Creates and registers a dedicated quad for the emoji, with separate vertex data, index data, and rendering resources.
 		/// </summary>

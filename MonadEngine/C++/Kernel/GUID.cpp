@@ -18,5 +18,4 @@ namespace Monad::Kernel
 		StringFromGUID2(guid, wszGuid.data(), static_cast<int>(wszGuid.size()));
 		return std::wstring(wszGuid.data());
 	}
-
 }

@@ -22,7 +22,7 @@ namespace Monad::Threads
 	/// The derived class must implement Routine(), which becomes
 	/// the body of the thread.
 	/// </summary>
-	interface Thread abstract
+	struct Thread
 	{
 		/// <summary>
 		/// Default constructor.
@@ -38,7 +38,7 @@ namespace Monad::Threads
 		/// Used by debuggers and crash reports.
 		/// </param>
 		Thread(
-		const std::wstring_view name
+			const std::wstring_view name
 		) noexcept;
 
 		Thread(const Thread&) = delete;

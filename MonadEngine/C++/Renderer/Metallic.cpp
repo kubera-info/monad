@@ -68,7 +68,7 @@ namespace Monad::Renderer
 		const XMFLOAT4X4& modelSpaceMatrix
 	)
 	{
-		__super::OnComputePerWorldFrame(modelSpaceMatrix);
+		Shader::OnComputePerWorldFrame(modelSpaceMatrix);
 
 		m_cBufferMetallic.SetMe(GetCurrentConfig());
 	}
@@ -77,7 +77,7 @@ namespace Monad::Renderer
 		const XMFLOAT4X4& modelSpaceMatrix
 	)
 	{
-		__super::OnComputePerShadowFrame(modelSpaceMatrix);
+		ShaderMetallic2::OnComputePerShadowFrame(modelSpaceMatrix);
 
 		m_cBufferMetallic.SetMe(GetCurrentConfig());
 	}

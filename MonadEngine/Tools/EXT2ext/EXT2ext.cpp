@@ -35,14 +35,20 @@ int wmain(
 		{
 			using FileHandle::FileHandle;
 
-			void OnFindDirectory(const fs::path& selectedFolder) final
+			void OnFindDirectory(
+				const fs::path& selectedFolder,
+				WIN32_FIND_DATA findFileData
+			) final
 			{
-				FileHandleLowerCase{ { selectedFolder / FindFileData().cFileName / Monad::Files::WILDCARD_ANY } }.Run();
+				FileHandleLowerCase{ { selectedFolder / findFileData.cFileName / Monad::Files::WILDCARD_ANY } }.Run();
 			}
-			void OnFindFile(const fs::path& selectedFolder) final
+			void OnFindFile(
+				const fs::path& selectedFolder,
+				WIN32_FIND_DATA findFileData
+			) final
 			{
 				const fs::path
-					p = selectedFolder / FindFileData().cFileName,
+					p = selectedFolder / findFileData.cFileName,
 					e = p.extension();
 				const std::wstring n = Monad::Tools::ToLower(e.wstring());
 				const fs::path s = p.parent_path() / (p.stem().wstring() + n);

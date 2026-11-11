@@ -51,7 +51,6 @@ using namespace Monad::Renderer;
 using namespace Monad::Renderer::HDR;
 using namespace Monad::Time;
 using namespace Monad::Tools;
-using namespace Monad::Wnd;
 
 uint32_t DXSample::m_width{ 1920 }, DXSample::m_height{ 1080 };
 extern uint32_t g_shaderResourceViewCount = 0;

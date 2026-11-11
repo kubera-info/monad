@@ -21,7 +21,7 @@ namespace Monad::System
 	/// Base class for loading and accessing dynamic libraries (DLLs).
 	/// Provides a thin wrapper over LoadLibrary / GetProcAddress.
 	/// </summary>
-	struct LibraryGeneric abstract
+	struct LibraryGeneric
 	{
 	protected:
 		/// <summary>

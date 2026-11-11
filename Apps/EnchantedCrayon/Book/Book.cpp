@@ -1,5 +1,6 @@
-﻿// Book.cpp : Definiuje punkt wejścia dla aplikacji.
-//
+﻿// ##########################################################################
+// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ##########################################################################
 
 // Platform
 #include "framework.h"
@@ -13,7 +14,6 @@
 #include "Renderer/HardwareAdapter.h"
 
 // Platform
-#pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "DXGI.lib")
 #pragma comment(lib, "d3d12.lib")
 
@@ -63,6 +63,11 @@ const Monad::I18N::I18NString g_fullAppName
 	L"The Enchanted Crayon Coloring Book"_en_US
 };
 
+void ErrorMessageBox(const Monad::I18N::I18NString& message)
+{
+	MessageBox(0, message.ToLPCWSTR(), g_fullAppName.ToLPCWSTR(), MB_ICONERROR | MB_OK);
+}
+
 void MsgBoxD3D()
 {
 	const Monad::I18N::I18NString CAPS_FAILED
@@ -72,7 +77,7 @@ void MsgBoxD3D()
 		L"Graphics adapter or its driver do not meet minimal software requirements"_en_GB,
 		L"The graphics adapter or its driver do not meet minimal software requirements"_en_US
 	};
-	MessageBox(0, CAPS_FAILED.ToLPCWSTR(), g_fullAppName.ToLPCWSTR(), 0);
+	ErrorMessageBox(CAPS_FAILED);
 }
 
 int APIENTRY wWinMain(_In_ HINSTANCE,
@@ -90,39 +95,41 @@ int APIENTRY wWinMain(_In_ HINSTANCE,
 			L"Microprocessor does not meet minimal software requirements (AVX2)"_en_GB,
 			L"The microprocessor does not meet minimal software requirements (AVX2)"_en_US
 		};
-		MessageBox(0, g_noAVX2.ToLPCWSTR(), g_fullAppName.ToLPCWSTR(), 0);
-		return 1;
+		ErrorMessageBox(g_noAVX2);
+		return EXIT_FAILURE;
 	}
-
-	Microsoft::WRL::ComPtr<IDXGIFactory6> m_dxgiFactory;
+	{
+		Microsoft::WRL::ComPtr<IDXGIFactory6> m_dxgiFactory;
 #if defined _DEBUG
-	constexpr uint32_t DXGI_FACTORY_FLAGS = DXGI_CREATE_FACTORY_DEBUG;
+		constexpr uint32_t DXGI_FACTORY_FLAGS = DXGI_CREATE_FACTORY_DEBUG;
 #else
-	constexpr uint32_t DXGI_FACTORY_FLAGS = 0u;
+		constexpr uint32_t DXGI_FACTORY_FLAGS = 0u;
 #endif
 
-	if (FAILED(CreateDXGIFactory2(
-		DXGI_FACTORY_FLAGS,
-		IID_PPV_ARGS(&m_dxgiFactory)))
-		)
-	{
-		MsgBoxD3D();
-		return 1;
-	}
-	else
-	{
+		if (FAILED(CreateDXGIFactory2(
+			DXGI_FACTORY_FLAGS,
+			IID_PPV_ARGS(&m_dxgiFactory)))
+			)
+		{
+			MsgBoxD3D();
+			return EXIT_FAILURE;
+		}
 		Microsoft::WRL::ComPtr<IDXGIAdapter1> hardwareAdapter;
 		Monad::Renderer::GetHardwareAdapter(m_dxgiFactory.Get(), &hardwareAdapter, true);
-
+		if (!hardwareAdapter)
+		{
+			MsgBoxD3D();
+			return EXIT_FAILURE;
+		}
 		if (FAILED(D3D12CreateDevice(
 			hardwareAdapter.Get(),
 			D3D_FEATURE_LEVEL_12_0,
-			_uuidof(ID3D12Device), 
+			_uuidof(ID3D12Device),
 			nullptr))
 			)
 		{
 			MsgBoxD3D();
-			return 1;
+			return EXIT_FAILURE;
 		}
 	}
 	/*do

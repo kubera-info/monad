@@ -37,12 +37,12 @@ namespace Monad::App
 		/// Base asset directories used by the application.
 		/// </summary>
 		const Files::Path
-			FOLDER_BOOT2{ DummyParameter{}, L"Boot2" },
-			FOLDER_LOGO{ DummyParameter{}, L"Logo" },
-			FOLDER_AUTO{ DummyParameter{}, L"Auto" },
+			FOLDER_BOOT2{ DummyFolderParameter{}, L"Boot2" },
+			FOLDER_LOGO{ DummyFolderParameter{}, L"Logo" },
+			FOLDER_AUTO{ DummyFolderParameter{}, L"Auto" },
 			FOLDER_BOOT2_QUALITY{ FOLDER_BOOT2 / "Lo" },
 			FOLDER_AUTO_QUALITY{ FOLDER_AUTO / "Lo" },
-			FOLDER_STREAM{ DummyParameter{}, L"Stream" };
+			FOLDER_STREAM{ DummyFolderParameter{}, L"Stream" };
 	}
 
 	// ---------------------------------------------------------------------

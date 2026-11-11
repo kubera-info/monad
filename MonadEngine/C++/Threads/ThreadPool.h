@@ -33,15 +33,15 @@ namespace Monad::Threads
 	/// - Exception-safe execution
 	/// - Optional ownership of task lifetime
 	/// </summary>
-	struct ThreadManager abstract
+	struct ThreadManager
 	{
 		/// <summary>
-		/// Abstract interface representing a single executable task.
+		/// Abstract struct representing a single executable task.
 		/// The task may be self-managed or externally managed.
 		/// If constructed with ifDelete = true,
 		/// the task will be destroyed automatically after execution.
 		/// </summary>
-		interface ITask abstract : Kernel::RefCount
+		struct ITask : Kernel::RefCount
 		{
 			/// <summary>
 			/// Constructs a task object.
@@ -125,7 +125,7 @@ namespace Monad::Threads
 		ThreadPool(const ThreadPool&) = delete;
 		ThreadPool& operator=(const ThreadPool&) = delete;
 		ThreadPool(ThreadPool&&) = delete;
-		ThreadPool& operator=(ThreadPool&&) = delete; 
+		ThreadPool& operator=(ThreadPool&&) = delete;
 
 		/// <summary>
 		/// Adds tasks to the execution queue.
@@ -139,7 +139,7 @@ namespace Monad::Threads
 			T tasks
 		)
 		{
-			auto notNullTasks = PrepareTasks(tasks, m_ev.operator std::mutex &());
+			auto notNullTasks = PrepareTasks(tasks, m_ev.operator std::mutex & ());
 
 			// Wake up workers for each inserted task
 			for ([[maybe_unused]] auto task : notNullTasks)
@@ -201,7 +201,6 @@ namespace Monad::Threads
 		/// </summary>
 		struct VectorThreads : std::vector<std::unique_ptr<ThreadWorker>>
 		{
-			using std::vector<std::unique_ptr<ThreadWorker>>::vector;
 			void request_stops() noexcept;
 		} m_threadPool;
 
@@ -218,15 +217,14 @@ namespace Monad::Threads
 		/// - Each inserted task should be dequed oustide the DirectX processing.
 		/// </summary>
 		/// <param name="tasks">Collection of task pointers</param>
-		template<typename T = std::initializer_list<ITask*>>
+		template<typename T = InitializerListTasks>
 		void InsertTasks(
 			const T& tasks
 		)
 		{
 			auto notNullTasks = PrepareTasks(tasks, m_lockMessageQueue);
 
-			if (FALSE == Win32ApplicationGeneric::PostMessageW(WM_APP_MESSAGE_QUE))
-				THROW_EXC(Monad::Exceptions::InvalidClass, E_OUTOFMEMORY, L"Failed to post message to main thread");
+			Win32ApplicationGeneric::PostMessageW(WM_APP_MESSAGE_QUE);
 		}
 		void InsertTask(
 			ITask* task

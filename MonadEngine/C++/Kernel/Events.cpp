@@ -11,9 +11,6 @@
 #include <vector>
 #include <ranges>
 
-// Monad
-#include "Exceptions/Exceptions.h"
-
 namespace Monad::Kernel
 {
 	namespace
@@ -26,9 +23,9 @@ namespace Monad::Kernel
 		/// <summary>
 		/// Container storing objects subscribed to a specific event.
 		/// </summary>
-		struct SkilledObjects final : std::deque<void*>
+		struct DequeSkilledObjects final : std::deque<void*>
 		{
-			explicit SkilledObjects(FnExecuteEvent functor) noexcept;
+			explicit DequeSkilledObjects(FnExecuteEvent functor) noexcept;
 
 			/// <summary>
 			/// Executes callbacks for all registered objects.
@@ -48,21 +45,21 @@ namespace Monad::Kernel
 		/// <summary>
 		/// Registry holding all event handlers grouped by event type.
 		/// </summary>
-		struct SkillCollector
-			: std::array<SkilledObjects,
+		struct ArraySkillCollector
+			: std::array<DequeSkilledObjects,
 			static_cast<size_t>(EVENT_IDS::EVENT_ID_SIZE)>
 		{
-			SkillCollector() noexcept;
+			ArraySkillCollector() noexcept;
 		};
 
-		void SkilledObjects::ForEachFunctorOnCopy()
+		void DequeSkilledObjects::ForEachFunctorOnCopy()
 		{
 			// Copy is required because callbacks may unregister themselves
 			for (const auto& object : std::vector<void*>{ cbegin(), cend() })
 				m_functor(object);
 		}
 
-		SkillCollector g_registry;
+		ArraySkillCollector g_registry;
 	}
 
 	// ---------------------------------------------------------------------
@@ -77,7 +74,7 @@ namespace Monad::Kernel
 	}
 
 	void UnregisterEventGeneric(
-		SkilledObjects& objects,
+		DequeSkilledObjects& objects,
 		void* const object)
 	{
 		if (const auto it = std::ranges::find(objects, object);
@@ -164,20 +161,20 @@ namespace Monad::Kernel
 	}
 	// ---------------------------------------------------------------------
 
-	SkillCollector::SkillCollector() noexcept
+	ArraySkillCollector::ArraySkillCollector() noexcept
 		: array{
-			SkilledObjects{ [](void* o) noexcept { return static_cast<EventFrameMoveStub*>(o)->OnFrameMoveStub(); } },
-			SkilledObjects{ [](void* o) noexcept { return static_cast<EventPointerDownStub*>(o)->OnPointerDownStub(); } },
-			SkilledObjects{ [](void* o) noexcept { return static_cast<EventPointerUpStub*>(o)->OnPointerUpStub(); } },
-			SkilledObjects{ [](void* o) noexcept { return static_cast<EventD3DCreateStub*>(o)->OnD3DCreateStub(); } },
-			SkilledObjects{ [](void* o) noexcept { return static_cast<EventD3DRenderStub*>(o)->OnD3DRenderStub(); } },
-			SkilledObjects{ [](void* o) noexcept { return static_cast<EventClearD3DAssetsStub*>(o)->OnClearD3DAssetsStub(); } },
-			SkilledObjects{ [](void* o) noexcept { return static_cast<EventLanguageChangeEmojiStub*>(o)->OnLanguageChangeEmojiStub(); } },
-			SkilledObjects{ [](void* o) noexcept { return static_cast<EventLanguageChangeFontStub*>(o)->OnLanguageChangeFontStub(); } }
+			DequeSkilledObjects{ [](void* o) noexcept { return static_cast<EventFrameMoveStub*>(o)->OnFrameMoveStub(); } },
+			DequeSkilledObjects{ [](void* o) noexcept { return static_cast<EventPointerDownStub*>(o)->OnPointerDownStub(); } },
+			DequeSkilledObjects{ [](void* o) noexcept { return static_cast<EventPointerUpStub*>(o)->OnPointerUpStub(); } },
+			DequeSkilledObjects{ [](void* o) noexcept { return static_cast<EventD3DCreateStub*>(o)->OnD3DCreateStub(); } },
+			DequeSkilledObjects{ [](void* o) noexcept { return static_cast<EventD3DRenderStub*>(o)->OnD3DRenderStub(); } },
+			DequeSkilledObjects{ [](void* o) noexcept { return static_cast<EventClearD3DAssetsStub*>(o)->OnClearD3DAssetsStub(); } },
+			DequeSkilledObjects{ [](void* o) noexcept { return static_cast<EventLanguageChangeEmojiStub*>(o)->OnLanguageChangeEmojiStub(); } },
+			DequeSkilledObjects{ [](void* o) noexcept { return static_cast<EventLanguageChangeFontStub*>(o)->OnLanguageChangeFontStub(); } }
 		}
 	{}
 
-	SkilledObjects::SkilledObjects(
+	DequeSkilledObjects::DequeSkilledObjects(
 		FnExecuteEvent functor
 	) noexcept
 		: m_functor(functor)
@@ -185,7 +182,7 @@ namespace Monad::Kernel
 		assert(m_functor != nullptr);
 	}
 
-	void SkilledObjects::ForEachFunctor()
+	void DequeSkilledObjects::ForEachFunctor()
 	{
 		for (const auto& object : *this)
 			if (!m_functor(object))

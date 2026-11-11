@@ -31,16 +31,20 @@
 #include "System/Exit.h"
 #include "Pages/Page.h"
 
+using namespace std;
 using namespace Monad::App;
+using namespace Monad::Audio;
 using namespace Monad::Exceptions;
 using namespace Monad::Files;
 using namespace Monad::Globals;
 using namespace Monad::I18N;
 using namespace Monad::Input;
+using namespace Monad::Pages;
+using namespace Monad::System;
 using namespace Monad::Time;
 using namespace Monad::Wnd;
 
-std::atomic_bool g_keyPressed{ false };
+atomic_bool g_keyPressed{ false };
 
 void DestroyMainWindow(HWND hWnd)
 {
@@ -60,10 +64,10 @@ ExpectedLResult ProcessWM_CLOSE(
 	if (!g_keyPressed)
 	{
 		g_keyPressed = true;
-		if (Monad::Files::FILE_MAN_STATE_READY == g_fileManagerState)
+		if (FILE_MAN_STATE_READY == g_fileManagerState)
 		{
-			Monad::Audio::g_persistentAudio->PlayJingle("no"_cue);
-			Monad::Pages::SelectPage("exit"_pageNo);
+			g_persistentAudio->PlayJingle("no"_cue);
+			SelectPage("exit"_pageNo);
 			return PROCESSING_OK;
 		}
 	}
@@ -166,7 +170,7 @@ ExpectedLResult ProcessWM_SETCURSOR
 	return PROCESSING_TRUE;
 }
 
-Monad::Wnd::ExpectedLResult ProcessWM_ACTIVATEAPP
+ExpectedLResult ProcessWM_ACTIVATEAPP
 (
 	HWND,
 	UINT,
@@ -182,7 +186,7 @@ Monad::Wnd::ExpectedLResult ProcessWM_ACTIVATEAPP
 	return PROCESSING_OK;
 }
 
-Monad::Wnd::ExpectedLResult ProcessWM_KEYDOWN
+ExpectedLResult ProcessWM_KEYDOWN
 (
 	HWND,
 	UINT,
@@ -194,8 +198,8 @@ Monad::Wnd::ExpectedLResult ProcessWM_KEYDOWN
 	if (VK_ESCAPE == wParam)
 	{
 		g_keyPressed = true;
-		Monad::Audio::g_persistentAudio->PlayJingle("no"_cue);
-		Monad::Pages::SelectPage("exit"_pageNo);
+		g_persistentAudio->PlayJingle("no"_cue);
+		SelectPage("exit"_pageNo);
 		return PROCESSING_OK;
 	}
 	else if (VK_RETURN == wParam)
@@ -208,7 +212,7 @@ Monad::Wnd::ExpectedLResult ProcessWM_KEYDOWN
 		return std::unexpected(CONTINUE_PROCESSING);
 }
 
-Monad::Wnd::ExpectedLResult ProcessWM_APP_MESSAGE_QUE
+ExpectedLResult ProcessWM_APP_MESSAGE_QUE
 (
 	HWND,
 	UINT,
@@ -217,8 +221,8 @@ Monad::Wnd::ExpectedLResult ProcessWM_APP_MESSAGE_QUE
 	LPVOID&
 )
 {
-	Monad::App::g_singleton->m_threadWndMessage.DequeueAndRunTask();
-	return Monad::Wnd::PROCESSING_OK;
+	g_singleton->m_threadWndMessage.DequeueAndRunTask();
+	return PROCESSING_OK;
 }
 
 MapForMessages g_forMainMessage{

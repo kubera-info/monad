@@ -12,7 +12,7 @@ namespace Monad::Audio
 	/// <summary>
 	/// An audio task intended for execution within a thread pool, maintaining a reference to a PersistentAudio object.
 	/// </summary>
-	interface TaskAudioGeneric abstract : Threads::ThreadPool::ITask
+	struct TaskAudioGeneric : Threads::ThreadPool::ITask
 	{
 		TaskAudioGeneric() noexcept;
 	};
@@ -22,7 +22,7 @@ namespace Monad::Audio
 #endif
 
 	/// <summary>
-	/// Base interface for audio thread pool tasks.
+	/// Base struct for audio thread pool tasks.
 	/// </summary>
 #define TASK_AUDIO(NAME)\
 	struct NAME final : TaskAudioGeneric\

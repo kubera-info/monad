@@ -37,7 +37,7 @@ namespace Monad::Audio
 	};
 
 	/// <summary>
-	/// PCM WAV buffer adapted for the audio engine, using a COM-style interface for access and management.
+	/// PCM WAV buffer adapted for the audio engine, using a COM-style struct for access and management.
 	/// </summary>
 	using PtrWaveBuffer = Microsoft::WRL::ComPtr<WaveBuffer>;
 }

@@ -28,9 +28,9 @@ namespace Monad
 		namespace
 		{
 			const IconicStyle
-				STYLE_PAINT_BUTTON{ GUI_GREEN, { JINGLE_FOCUS }, { "wrist"_shaderResource } },
-				STYLE_LEFT_BUTTON{ GUI_GREY, { JINGLE_CLEAR1, JINGLE_CLEAR2 }, { "left"_shaderResource } },
-				STYLE_RIGHT_BUTTON{ GUI_GREY, { JINGLE_CLEAR1, JINGLE_CLEAR2 }, { "right"_shaderResource } };
+				STYLE_PAINT_BUTTON{ GUI_GREEN,{ JINGLE_FOCUS },{ "wrist"_shaderResource } },
+				STYLE_LEFT_BUTTON{ GUI_GREY,{ JINGLE_CLEAR1, JINGLE_CLEAR2 },{ "left"_shaderResource } },
+				STYLE_RIGHT_BUTTON{ GUI_GREY,{ JINGLE_CLEAR1, JINGLE_CLEAR2 },{ "right"_shaderResource } };
 			constexpr float g_period = 0.75f;
 			bool s_true = true;
 		}
@@ -207,8 +207,7 @@ namespace Monad
 				"main_menu"_pageNo,
 				positionOfCenter,
 				style }
-		{
-		}
+		{}
 
 		void DialogArtSelection::ButtonLeft::OnClick()
 		{
@@ -249,18 +248,17 @@ namespace Monad
 
 		DialogArtSelection::CheckboxAudioGeneric::CheckboxAudioGeneric(const GUI::IconicStyle& style, bool& isSelected) :
 			Checkbox{
-			"main_menu"_pageNo, {
+			"main_menu"_pageNo,{
 					-SIDE + 2.0f * DISTANCE,
-					POS_Y},
+					POS_Y },
 					style,
 					isSelected
 		}
-		{
-		}
+		{}
 
 		bool DialogArtSelection::CheckboxAudioButton::IsVisible() const noexcept
 		{
-			return __super::IsVisible() && Audio::g_persistentAudio->IsReady();
+			return CheckboxAudioGeneric::IsVisible() && Audio::g_persistentAudio->IsReady();
 		}
 
 		void DialogArtSelection::CheckboxAudioButton::OnClick()
@@ -273,17 +271,15 @@ namespace Monad
 			CheckboxAudioGeneric(
 				STYLE_SPEAKER_ERROR_BUTTON,
 				s_true)
-		{
-		}
+		{}
 
 		bool DialogArtSelection::CheckboxAudioError::IsVisible() const noexcept
 		{
-			return __super::IsVisible() && !Audio::g_persistentAudio->IsReady();
+			return CheckboxAudioGeneric::IsVisible() && !Audio::g_persistentAudio->IsReady();
 		}
 
 		void DialogArtSelection::CheckboxAudioError::OnClick() noexcept
-		{
-		}
+		{}
 
 		void DialogArtSelection::ButtonSetup::OnClick()
 		{
@@ -322,8 +318,7 @@ namespace Monad
 				"app_exit"_pageNo,
 				positionOfCenter,
 				style }
-		{
-		}
+		{}
 
 		void DialogExitApp::ButtonExitApp::OnClick()
 		{

@@ -18,18 +18,20 @@ void IterateFiles(
 		using FileHandle::FileHandle;
 
 		void OnFindFile(
-			const std::filesystem::path& selectedFolder
+			const std::filesystem::path& selectedFolder,
+			WIN32_FIND_DATA findFileData
 		) final
 		{
-			if (const auto file = selectedFolder / FindFileData().cFileName; Monad::Files::IsMonadExt(file.extension()))
+			if (const auto file = selectedFolder / findFileData.cFileName; Monad::Files::IsMonadExt(file.extension()))
 				SetAssetFileTime(file);
 		}
 
 		void OnFindDirectory(
-			const std::filesystem::path& selectedFolder
+			const std::filesystem::path& selectedFolder,
+			WIN32_FIND_DATA findFileData
 		) final
 		{
-			FileHandleTime{ { selectedFolder / FindFileData().cFileName / Monad::Files::WILDCARD_ANY } }.Run();
+			FileHandleTime{ { selectedFolder / findFileData.cFileName / Monad::Files::WILDCARD_ANY } }.Run();
 		}
 
 	} handle{ { folder } };

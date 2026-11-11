@@ -126,6 +126,7 @@
       <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -177,6 +178,7 @@
       <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>legacy_stdio_definitions.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -231,6 +233,7 @@
       <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>legacy_stdio_definitions.lib;d3dx11d.lib;d3dx9d.lib;dxerr.lib;dxguid.lib;winmm.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>

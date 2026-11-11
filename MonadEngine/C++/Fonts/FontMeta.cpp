@@ -32,8 +32,7 @@ namespace Monad
 			c_chunk{ chunk },
 			c_offset{ offset },
 			c_advance{ advance }
-		{
-		}
+		{}
 
 		float Font::Char::CalculateDistance(
 			wchar_t char2

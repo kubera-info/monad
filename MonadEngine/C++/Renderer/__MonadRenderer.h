@@ -39,11 +39,11 @@ namespace Monad::Renderer
 #endif
 
 	constexpr float MAX_BYTE(0xff);
-	inline constexpr DirectX::XMFLOAT4 
+	inline constexpr DirectX::XMFLOAT4
 		FLOAT_4_ONES{ 1.0f, 1.0f, 1.0f, 1.0f },
 		FLOAT_4_ZEROS{ .0f, .0f, .0f, .0f };
 
-	interface FormatAndClear abstract
+	struct FormatAndClear
 	{
 		D3D12_CLEAR_VALUE m_clearValue;
 	};
@@ -55,10 +55,9 @@ namespace Monad::Renderer
 			const DirectX::XMFLOAT4 color,
 			const D3D12_RTV_DIMENSION viewDimension
 		) noexcept :
-			FormatAndClear{ {.Format = format, .Color{ color.x, color.y, color.z, color.w } } },
+			FormatAndClear{ { .Format = format, .Color{ color.x, color.y, color.z, color.w } } },
 			m_desc{ .Format = format, .ViewDimension = viewDimension }
-		{
-		}
+		{}
 		FormatAndClearRenderTarget() noexcept = default;
 
 		D3D12_RENDER_TARGET_VIEW_DESC m_desc;
@@ -69,10 +68,9 @@ namespace Monad::Renderer
 		consteval FormatAndClearDepthStencil(
 			const D3D12_DSV_DIMENSION viewDimension
 		) noexcept :
-			FormatAndClear{ {.Format = DXGI_FORMAT_D32_FLOAT, .DepthStencil{.Depth = 1.0f, .Stencil = 0 } } },
+			FormatAndClear{ { .Format = DXGI_FORMAT_D32_FLOAT, .DepthStencil{ .Depth = 1.0f, .Stencil = 0 } } },
 			m_desc{ .Format = DXGI_FORMAT_D32_FLOAT, .ViewDimension = viewDimension }
-		{
-		}
+		{}
 
 		const D3D12_DEPTH_STENCIL_VIEW_DESC m_desc;
 	} constexpr

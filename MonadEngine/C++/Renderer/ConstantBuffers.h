@@ -121,10 +121,10 @@ namespace Monad::Renderer::CB
 	};
 
 	/// <summary>
-	/// Base interface for a constant buffer instance.
+	/// Base struct for a constant buffer instance.
 	/// Represents one logical binding to a shader register.
 	/// </summary>
-	interface CBInstanceGeneric abstract
+	struct CBInstanceGeneric
 	{
 		CBInstanceGeneric(
 			const ConstantBufferName& counter,
@@ -327,11 +327,12 @@ namespace Monad::Renderer::CB
 		}
 	};
 
-	struct MapConstantBufferManager final : private std::flat_map<ConstantBufferName,CBTypeCtrl>
+	struct MapConstantBufferManager final : private std::flat_map<ConstantBufferName, CBTypeCtrl>
 	{
 		using value_type = typename std::flat_map<ConstantBufferName, CBTypeCtrl>::value_type;
 		using InitializerListConstantBufferManager = std::initializer_list<value_type>;
 		using std::flat_map<ConstantBufferName, CBTypeCtrl>::flat_map;
+		using Super = std::flat_map<ConstantBufferName, CBTypeCtrl>;
 
 		// Map operations
 		[[nodiscard]] iterator find(const key_type& _Key_val);

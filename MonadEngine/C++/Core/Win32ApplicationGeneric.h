@@ -37,18 +37,23 @@ enum WM_APPS : uint32_t
 /// <summary>
 /// A class containing a window class, a WindowProc, and a message loop for a DirectX 12 window.
 /// </summary>
-interface Win32ApplicationGeneric abstract
+struct Win32ApplicationGeneric
 {
 	static void SetTitle() noexcept;
 	inline static bool IsIconic() noexcept { return ::IsIconic(Monad::Globals::g_mainWindow); }
 	inline static void ActivateDirect3DWindow() noexcept { PostMessage(WM_APP_ACTIVATE_WINDOW); }
-	inline static BOOL PostMessage(
+	inline static void PostMessage(
 		uint32_t message,
 		WPARAM wParam = 0,
 		LPARAM lParam = 0
-	) noexcept
+	)
 	{
-		/*if (nullptr != s_hwnd)*/ return ::PostMessage(
+		THROW_EXC_IFNULL(
+			Monad::Exceptions::NotInitialized,
+			Monad::Globals::g_mainWindow,
+			L"Main window handle is null"
+		);
+		::PostMessage(
 			Monad::Globals::g_mainWindow,
 			message,
 			wParam,
@@ -57,7 +62,7 @@ interface Win32ApplicationGeneric abstract
 	}
 	static bool IsRendered() noexcept;
 	static void OnBoth();
-	static bool s_in_sizemove, s_inSuspend, s_minimized;
+	static bool s_inSizeMove, s_inSuspend, s_minimized;
 };
 
 Monad::Wnd::ExpectedLResult ProcessWM_POINTERUPDATE(

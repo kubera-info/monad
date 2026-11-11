@@ -106,21 +106,21 @@ namespace Monad::App
 		/// <summary>
 		/// Base class for toolbar buttons.
 		/// </summary>
-		interface ButtonOneToolbar abstract : GUI::ButtonOneToolbarGeneric
+		struct ButtonOneToolbar : GUI::ButtonOneToolbarGeneric
 		{
 			ButtonOneToolbar(
-				const DirectX::XMFLOAT2 & positionOfCenter,
-				const GUI::IconicStyle & style
+				const DirectX::XMFLOAT2& positionOfCenter,
+				const GUI::IconicStyle& style
 			);
 		};
 
 		/// <summary>
 		/// Base class for audio-related checkboxes.
 		/// </summary>
-		interface CheckboxAudioGeneric abstract : GUI::Checkbox
+		struct CheckboxAudioGeneric : GUI::Checkbox
 		{
 			CheckboxAudioGeneric(
-				const GUI::IconicStyle & style,
+				const GUI::IconicStyle& style,
 				bool& isSelected
 			);
 		};
@@ -228,11 +228,11 @@ namespace Monad::App
 		/// <summary>
 		/// Base class for exit dialog buttons.
 		/// </summary>
-		interface ButtonOneToolbar abstract : GUI::ButtonOneToolbarGeneric
+		struct ButtonOneToolbar : GUI::ButtonOneToolbarGeneric
 		{
 			ButtonOneToolbar(
-				const DirectX::XMFLOAT2 & positionOfCenter,
-				const GUI::IconicStyle & style);
+				const DirectX::XMFLOAT2& positionOfCenter,
+				const GUI::IconicStyle& style);
 		};
 
 		/// <summary>

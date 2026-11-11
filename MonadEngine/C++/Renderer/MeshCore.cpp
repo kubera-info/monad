@@ -21,10 +21,10 @@ namespace Monad::Renderer::InputLayout
 			f0 = 1.0f - endLerp,
 			f1 = 1.0f - startLerp;
 		AddQuad(
-			{ { x, paneRect.y }, { f1, 1.0f } },
-			{ { z, paneRect.y }, { f0, 1.0f } },
-			{ { z, paneRect.w }, { f0, 0.0f } },
-			{ { x, paneRect.w }, { f1, 0.0f } });
+			{ { x, paneRect.y },{ f1, 1.0f } },
+			{ { z, paneRect.y },{ f0, 1.0f } },
+			{ { z, paneRect.w },{ f0, 0.0f } },
+			{ { x, paneRect.w },{ f1, 0.0f } });
 	}
 
 	inline float MeshBuilderArtPane::Lerp(

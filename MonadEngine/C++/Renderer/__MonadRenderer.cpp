@@ -17,8 +17,7 @@ namespace Monad::Renderer
 		VectorBytes&& Source
 	) noexcept :
 		VectorBytes{ move(Source) }
-	{
-	}
+	{}
 
 	VectorBytesBytecode::operator D3D12_SHADER_BYTECODE() const noexcept
 	{
@@ -32,8 +31,7 @@ namespace Monad::Renderer
 	ConfigVS::ConfigVS(VectorBytesBytecode vs, std::string il) :
 		m_vs{ vs },
 		c_il{ il }
-	{
-	}
+	{}
 
 	ConfigVS::operator D3D12_SHADER_BYTECODE() const noexcept
 	{

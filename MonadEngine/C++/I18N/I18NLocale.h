@@ -13,7 +13,7 @@
 #include <vector>
 
 /// <summary>
-/// Defines the interface for the I18N system.
+/// Defines the struct for the I18N system.
 /// Allows selecting the active translation set (locale) at runtime.
 /// </summary>
 namespace Monad::I18N

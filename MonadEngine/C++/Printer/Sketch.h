@@ -14,7 +14,7 @@ namespace Monad::Print
 	/// <summary>
 	/// This class is a shader that creates a picture for further printing
 	/// </summary>
-	interface ShaderSketchGeneric abstract : Renderer::ShaderTextured<Renderer::ShaderGeneric>
+	struct ShaderSketchGeneric : Renderer::ShaderTextured<Renderer::ShaderGeneric>
 	{
 		friend TaskTexturePrinter;
 

@@ -106,7 +106,7 @@ namespace Monad::System
 			/// </summary>
 			bool IsOSWine() const noexcept
 			{
-//#define FORCE_WINE
+				//#define FORCE_WINE
 #if defined FORCE_WINE
 #	pragma message ("IsOSWine() set to true")
 				static const bool WINE = true;

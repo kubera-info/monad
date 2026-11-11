@@ -19,19 +19,24 @@ try
 
     int globalIdx = 1;
     using var loaded = new Bitmap(args[1]);
-    // Convert to 32bpp ARGB for efficient pixel access
-    using var source = loaded.Clone(new System.Drawing.Rectangle(0, 0, loaded.Width, loaded.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+    if (loaded.RawFormat.Equals(System.Drawing.Imaging.ImageFormat.Png))
+    {
+        // Convert to 32bpp ARGB for efficient pixel access
+        using var source = loaded.Clone(new System.Drawing.Rectangle(0, 0, loaded.Width, loaded.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
-    for (int idxY = 0; idxY < source.Height; ++idxY)
-        for (int idxX = 0; idxX < source.Width; ++idxX)
-            if (IsWhite(source, idxX, idxY))
-            {
-                var fillColor = Color.FromArgb(0xFF, (globalIdx >> 8) & 0xFF, globalIdx & 0xFF, 0xFF);
-                FloodFill(source, idxX, idxY, fillColor);
-                ++globalIdx;
-            }
+        for (int idxY = 0; idxY < source.Height; ++idxY)
+            for (int idxX = 0; idxX < source.Width; ++idxX)
+                if (IsWhite(source, idxX, idxY))
+                {
+                    var fillColor = Color.FromArgb(0xFF, (globalIdx >> 8) & 0xFF, globalIdx & 0xFF, 0xFF);
+                    FloodFill(source, idxX, idxY, fillColor);
+                    ++globalIdx;
+                }
 
-    source.Save(args[2]);
+        source.Save(args[2]);
+    }
+    else
+        throw new System.Exception("Input file is not a PNG image.");
 }
 catch (Exception exc)
 {

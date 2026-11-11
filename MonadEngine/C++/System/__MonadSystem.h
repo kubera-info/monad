@@ -35,8 +35,8 @@ namespace Monad::System
 		SmartHandle(const SmartHandle&) = delete;
 		SmartHandle& operator=(const SmartHandle&) = delete;
 		SmartHandle(SmartHandle&&) = delete;
-		SmartHandle& operator=(SmartHandle&&) = delete; 
-		
+		SmartHandle& operator=(SmartHandle&&) = delete;
+
 		/// <summary>
 		/// Implicit conversion to raw HANDLE.
 		/// </summary>

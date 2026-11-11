@@ -51,7 +51,7 @@ namespace Monad::Audio
 			const float volume
 		) noexcept;
 		/// <summary>
-		/// Clears the specified voice interface and removes all buffers currently queued for playback.
+		/// Clears the specified voice struct and removes all buffers currently queued for playback.
 		/// </summary>
 		/// <returns>Should return S_OK</returns>
 		HRESULT FlushSourceBuffers() noexcept;

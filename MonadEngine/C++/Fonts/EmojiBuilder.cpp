@@ -26,25 +26,24 @@ namespace Monad
 				{}
 		},
 			m_emojiName{ emojiName }
-		{
-		}
+		{}
 
 		void ShaderEmoji::AddEmoji(
 			const DirectX::XMFLOAT4& rect
 		)
 		{
 			m_emojiToRender.AddQuad(
-				{ { rect.x, rect.y }, { 0.0f, 0.0f } },
-				{ { GetRight(rect), rect.y }, { 1.0f, 0.0f } },
-				{ { GetRight(rect), GetBottom(rect) }, { 1.0f, 1.0f } },
-				{ { rect.x, GetBottom(rect) }, { 0.0f, 1.0f } });
+				{ { rect.x, rect.y },{ 0.0f, 0.0f } },
+				{ { GetRight(rect), rect.y },{ 1.0f, 0.0f } },
+				{ { GetRight(rect), GetBottom(rect) },{ 1.0f, 1.0f } },
+				{ { rect.x, GetBottom(rect) },{ 0.0f, 1.0f } });
 		}
 
 		void ShaderEmoji::OnComputePerShadowFrame(
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
-			__super::OnComputePerShadowFrame(modelSpaceMatrix);
+			Super::OnComputePerShadowFrame(modelSpaceMatrix);
 
 			GetCurrentTexture().SetMe(
 				GetCurrentConfig(),

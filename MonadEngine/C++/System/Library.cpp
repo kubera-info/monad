@@ -29,7 +29,7 @@ namespace Monad::System
 				LOAD_WITH_ALTERED_SEARCH_PATH
 			);
 			if (nullptr == lib)
-				throw std::exception("Load LibraryEx failed");
+				throw std::runtime_error("Load LibraryEx failed");
 			return lib;
 		}
 	}
@@ -39,8 +39,7 @@ namespace Monad::System
 		const wchar_t* fileName
 	) :
 		m_lib(Validate((folder / fileName)))
-	{
-	}
+	{}
 
 	LibraryGeneric::~LibraryGeneric()
 	{
@@ -62,8 +61,7 @@ namespace Monad::System
 		LibraryGeneric(
 			Files::GetFolderSystem(),
 			fileName)
-	{
-	}
+	{}
 #pragma endregion
 
 #pragma region LocalLibrary
@@ -74,7 +72,6 @@ namespace Monad::System
 			Files::GetFolderBin(),
 			fileName
 		)
-	{
-	}
+	{}
 #pragma endregion
 }

@@ -7,7 +7,6 @@
 #include "Message.h"
 
 // Monad
-#include <Exceptions/Exceptions.h>
 #include <Globals/__MonadGlobals.h>
 
 using namespace std;
@@ -52,7 +51,7 @@ namespace Monad::Wnd
 			if (wParam == VK_F10) [[unlikely]]
 				return PROCESSING_OK;
 			else [[likely]]
-				return std::unexpected(CONTINUE_PROCESSING);
+				return unexpected(CONTINUE_PROCESSING);
 		}
 
 		ExpectedLResult ProcessWM_SYSCOMMAND(
@@ -67,7 +66,7 @@ namespace Monad::Wnd
 			if (wParam == VK_F10) [[unlikely]]
 				return PROCESSING_OK;
 			else [[likely]]
-				return std::unexpected(CONTINUE_PROCESSING);
+				return unexpected(CONTINUE_PROCESSING);
 		}
 
 		ExpectedLResult ProcessWM_DESTROY(
@@ -90,14 +89,9 @@ namespace Monad::Wnd
 			LPARAM,
 			LPVOID&
 		)
-		{	// Final validation before window becomes visible
-			if (!Exceptions::IsValid())
-				return PROCESSING_ERROR;
-
+		{
 			SetMyIcon(hWnd, ICON_BIG);
 			SetMyIcon(hWnd, ICON_SMALL);
-			if (Monad::Globals::g_mainWindow == hWnd && 0 == SetTimer(hWnd, 1, 500, nullptr))
-				THROW_EXC_GETLASTERROR(Monad::Exceptions::InvalidClass, L"Timer");
 
 			return PROCESSING_OK;
 		}
@@ -144,11 +138,11 @@ namespace Monad::Wnd
 				lParam,
 				context
 			);
-		return std::unexpected(CONTINUE_PROCESSING);
+		return unexpected(CONTINUE_PROCESSING);
 	}
 
 	ExpectedLResult OnCommonMessages2(
-		std::initializer_list<std::reference_wrapper<MapForMessages>> mapsForMessages,
+		initializer_list<reference_wrapper<MapForMessages>> mapsForMessages,
 		const HWND hWnd,
 		const UINT uMsg,
 		const WPARAM wParam,
@@ -177,6 +171,6 @@ namespace Monad::Wnd
 					lParam,
 					context); msgRes.has_value())
 				return *msgRes;
-		return std::unexpected(CONTINUE_PROCESSING);
+		return unexpected(CONTINUE_PROCESSING);
 	}
 }

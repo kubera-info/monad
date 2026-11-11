@@ -27,8 +27,7 @@ namespace Monad::Kernel
 	/// </summary>
 	template<typename T>
 	struct HasMethodGet<T, decltype(static_cast<void>(T::Get), 0)>
-		: std::true_type {
-	};
+		: std::true_type {};
 
 	/// <summary>
 	/// Checks whether a value lies within a given range (inclusive).
@@ -137,8 +136,7 @@ namespace Monad::Kernel
 
 		explicit Me(T*& globalPtr) noexcept
 			: Me(nullptr, globalPtr)
-		{
-		}
+		{}
 
 		void operator=(T* parentThis) noexcept
 		{

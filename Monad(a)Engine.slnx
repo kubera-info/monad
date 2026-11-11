@@ -90,6 +90,7 @@
   </Folder>
   <Folder Name="/Apps/Enchanted Crayon/Code/">
     <Project Path="Apps/EnchantedCrayon/Book/Book.vcxproj" Id="789b79d7-ab0b-4da2-b418-5d4951b7b69a">
+      <BuildDependency Project="Apps/EnchantedCrayon/Core.vcxproj" />
       <BuildType Solution="0-Engine|*" Project="Release" />
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />

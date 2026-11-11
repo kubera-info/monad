@@ -466,9 +466,6 @@
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Del.h">
       <Filter>Monad%28a%29 Engine\Kernel</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\MonadEngine\C++\Kernel\Dummy.h">
-      <Filter>Monad%28a%29 Engine\Kernel</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\MonadEngine\C++\Kernel\Events.h">
       <Filter>Monad%28a%29 Engine\Kernel</Filter>
     </ClInclude>

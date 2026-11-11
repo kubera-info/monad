@@ -39,7 +39,7 @@ namespace Monad::Renderer
 	/// Base shader class.
 	/// Owns a mesh and controls rendering passes.
 	/// </summary>
-	interface ShaderGeneric abstract : First
+	struct ShaderGeneric : First
 	{
 		/// <summary>
 		/// Constructs shader from a mesh file.

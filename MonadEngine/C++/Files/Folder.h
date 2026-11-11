@@ -10,11 +10,11 @@
 // STD
 #include <filesystem>
 
-// Monad
-#include "Kernel/Dummy.h"
-
 namespace Monad::Files
 {
+	struct DummyFolderParameter final
+	{};
+
 	/// <summary>
 	/// std::path-like class with a constructor that initializes the directory to the application’s assets folder.
 	/// </summary>
@@ -27,7 +27,7 @@ namespace Monad::Files
 		/// <param name=""Placeholder type to prevent usage of the default std::path constructor./param>
 		/// <param name="source">Subdirectories located within the application’s assets folder.</param>
 		Path(
-			Kernel::DummyParameter,
+			Files::DummyFolderParameter,
 			const path& source
 		);
 		Path& operator=(

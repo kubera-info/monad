@@ -13,8 +13,7 @@ namespace Monad::Audio
 {
 	TaskAudioGeneric::TaskAudioGeneric() noexcept :
 		ITask{ false }
-	{
-	}
+	{}
 
 	void TaskRestart::Run()
 	{
