@@ -1,5 +1,6 @@
 # Monad(a)Engine
 **🎨 All my current projects 🎨**
+### 🎨 CGA Emulator 🎨
 ### 🎨 Enchanted Crayon 🎨
 ### 🎨 Monad(a) Engine 🎨
 ### 🎨 Report.exe 🎨
