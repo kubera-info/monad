@@ -25,6 +25,7 @@ namespace Monad::Wnd
 		const HWND hWnd
 	) noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		// Brings the window to the top of the Z-order
 		BringWindowToTop(hWnd);
 
@@ -67,6 +68,7 @@ namespace Monad::Wnd
 		const I18N::I18NString& appTitle
 	) const
 	{
+		MONAD_FUNCTION_NAME;
 		// Create the main window and store it globally
 		Globals::g_mainWindow = WindowFactoryGeneric(
 			WS_EX_APPWINDOW,

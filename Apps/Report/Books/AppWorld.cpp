@@ -86,9 +86,8 @@ namespace Monad
 
 			XMStoreFloat4x4(
 				&matrixToAlter,
-				XMMatrixMultiply(
-					XMMatrixScaling(scale, scale, scale),
-					XMLoadFloat4x4(&matrixToAlter))
+				XMMatrixScaling(scale, scale, scale)
+				* XMLoadFloat4x4(&matrixToAlter)
 			);
 		}
 

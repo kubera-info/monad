@@ -33,6 +33,7 @@ namespace Monad
 
 		bool Clickable::OnPointerDownStub()
 		{
+			MONAD_FUNCTION_NAME;
 			if (IsInRegion())
 			{
 				PlayClickJingle();
@@ -46,13 +47,13 @@ namespace Monad
 			const XMFLOAT4& positionOfCenter
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			XMFLOAT4X4 transformRet;
 
 			XMStoreFloat4x4(&transformRet,
-				XMMatrixMultiply(
-					XMMatrixScaling(positionOfCenter.z, positionOfCenter.w, 0.065f),
-					XMMatrixTranslation(positionOfCenter.x, positionOfCenter.y, 0.0f)
-				));
+					XMMatrixScaling(positionOfCenter.z, positionOfCenter.w, 0.065f)
+					* XMMatrixTranslation(positionOfCenter.x, positionOfCenter.y, 0.0f)				
+			);
 
 			return transformRet;
 		}
@@ -81,6 +82,7 @@ namespace Monad
 			const XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			Super::OnComputePerWorldFrame(modelSpaceMatrix);
 
 			Light();

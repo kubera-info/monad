@@ -35,6 +35,7 @@ namespace Monad
 			m_forecolor{ "forecolor"_constantBuffer },
 			c_fnOnRegion{ style.c_style.c_onRegionFun }
 		{
+			MONAD_FUNCTION_NAME;
 			m_forecolor.GetBuffer() = { style.c_rgb.GetFloatSRGB() };
 		}
 
@@ -52,11 +53,13 @@ namespace Monad
 
 		bool Button::OnRegion() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			return c_fnOnRegion(m_positionOfCenter) && IsVisible() && !Monad::Pages::g_MorphingDecay->IsWorking();
 		}
 
 		void Button::OnComputePerWorldFrame(const DirectX::XMFLOAT4X4& modelSpaceMatrix)
 		{
+			MONAD_FUNCTION_NAME;
 			Pane::OnComputePerWorldFrame(modelSpaceMatrix);
 
 			m_forecolor.SetMe(GetCurrentConfig());
@@ -75,6 +78,7 @@ namespace Monad
 			const XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			if (IsSelected())
 				m_forecolor.GetBuffer() = c_rgbBackup;
 			else
@@ -88,6 +92,7 @@ namespace Monad
 
 		size_t TwoStateButton::GetCurrentTextureID() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			assert(!m_textures.empty());
 			return IsSelected() ? 0 : m_textures.size() - 1;
 		}
@@ -130,6 +135,7 @@ namespace Monad
 				c_pos{ pos },
 				m_manager{ manager }
 		{
+			MONAD_FUNCTION_NAME;
 			if (label)
 				m_manager.LabelRadioButton(
 					*this,
@@ -161,6 +167,7 @@ namespace Monad
 			const RadioButton* radioButton
 		) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			auto radio = std::ranges::find_if(
 				m_radioStates,
 				[=](const RadioButton* radioToCheck) noexcept
@@ -177,6 +184,7 @@ namespace Monad
 
 		ManagerRadioButton::RadioButton* ManagerRadioButton::GetSelected() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			auto radio = std::ranges::find_if(
 				m_radioStates,
 				[=](const RadioButton* radioToCheck) noexcept
@@ -193,6 +201,7 @@ namespace Monad
 			const I18N::I18NString& title
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			m_parent.LabelRadioButton(
 				radioButton,
 				title
@@ -204,6 +213,7 @@ namespace Monad
 			RadioButton& radioButton
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			m_parent.AddRenderedObject(&radioButton);
 			m_radioStates.push_back(&radioButton);
 		}

@@ -47,6 +47,7 @@ namespace Monad
 			m_hr{ dialogFrame },
 			m_border{ dialogFrame }
 		{
+			MONAD_FUNCTION_NAME;
 			AddRenderedObjects({
 				&m_hr,
 				&m_border,
@@ -66,6 +67,7 @@ namespace Monad
 			const ShaderResourceName& fontName
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			return m_guiText.GetFont(
 				*this,
 				fontName
@@ -124,11 +126,12 @@ namespace Monad
 			XMFLOAT4X4& matrixToAlter
 		) const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			XMStoreFloat4x4(
 				&matrixToAlter,
-				XMMatrixMultiply(
-					XMLoadFloat4x4(Renderer::g_dataMorphingMatrix),
-					XMLoadFloat4x4(&matrixToAlter)));
+				XMLoadFloat4x4(Renderer::g_dataMorphingMatrix)
+				* XMLoadFloat4x4(&matrixToAlter)
+			);
 		}
 
 		void DialogGeneric::LabelTwoStatesButton(
@@ -137,6 +140,7 @@ namespace Monad
 			const Fonts::FontStyle& style
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			AddRenderedObject(&labeledTwoStatesButton);
 			GetFont(FONT_TIMES_NEW_ROMAN).
 				AddRenderedText(
@@ -156,6 +160,7 @@ namespace Monad
 			const I18N::I18NString& label
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			LabelTwoStatesButton(
 				checkbox,
 				label,
@@ -168,6 +173,7 @@ namespace Monad
 			const I18N::I18NString& label
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			LabelTwoStatesButton(
 				radioButton,
 				label,
@@ -194,6 +200,7 @@ namespace Monad
 				title
 			}
 		{
+			MONAD_FUNCTION_NAME;
 			auto& text = GetFont(FONT_CENTURY_GOTHIC);
 			text.AddRenderedText(
 				INNER_FONT_STYLE,

@@ -26,6 +26,7 @@ namespace Monad::GUI
 		const I18N::I18NString& title
 	) noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		assert(!title.GetVal().empty());
 		const auto buf = title.ToLPCWSTR();
 

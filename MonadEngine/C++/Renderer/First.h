@@ -94,10 +94,8 @@ namespace Monad::Renderer
 		{
 			DirectX::XMStoreFloat4x4(
 				&matrixToAlter,
-				DirectX::XMMatrixMultiply(
-					DirectX::XMLoadFloat4x4(&m_staticSpace),
-					DirectX::XMLoadFloat4x4(&matrixToAlter)
-				)
+					DirectX::XMLoadFloat4x4(&m_staticSpace)
+					* DirectX::XMLoadFloat4x4(&matrixToAlter)
 			);
 		}
 

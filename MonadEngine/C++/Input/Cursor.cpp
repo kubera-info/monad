@@ -33,6 +33,7 @@ namespace Monad
 
 		void CenterCursor() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			if (g_active && !Monad::Exceptions::InAnyCloseReason())
 			{
 				const long long rightUInt = DXSample::GetWidth() / 2, bottomUInt = DXSample::GetHeight() / 2;
@@ -52,6 +53,7 @@ namespace Monad
 				const long y
 			) noexcept
 			{
+				MONAD_FUNCTION_NAME;
 				const auto xFloat = static_cast<float>(x),
 					yFloat = static_cast<float>(y),
 					dx = static_cast<float>(DXSample::GetWidth()),
@@ -77,6 +79,7 @@ namespace Monad
 			const long y
 		) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			g_cursorPos = Screen2Pane(x, y);
 		}
 
@@ -84,6 +87,7 @@ namespace Monad
 			const LPARAM lParam
 		) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			SetCursorPosGeneric(
 				GET_X_LPARAM(lParam),
 				GET_Y_LPARAM(lParam)
@@ -95,12 +99,14 @@ namespace Monad
 			HCURSOR newCursor
 		) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			m_currentCursor = newCursor;
 			SetCurrentCursor();
 		}
 
 		void CursorControl::SetCurrentCursor() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			SetCursor(m_currentCursor);
 		}
 #pragma endregion

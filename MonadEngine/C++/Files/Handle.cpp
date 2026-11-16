@@ -18,11 +18,13 @@ namespace Monad::Files
 	{
 		inline bool IsDirectory(const WIN32_FIND_DATA& findFileData) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			return findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY;
 		}
 
 		inline bool IsSpecialDirectory(const wchar_t* cFileName) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			constexpr wstring_view oneDot = L".", twoDots = L"..";
 			return oneDot == cFileName || twoDots == cFileName;
 		}
@@ -42,6 +44,7 @@ namespace Monad::Files
 
 	void FileHandle::Run()
 	{
+		MONAD_FUNCTION_NAME;
 		WIN32_FIND_DATA findFileData{};
 		for (const auto& folder : c_searchFolders)
 		{

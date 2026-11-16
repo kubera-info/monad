@@ -53,6 +53,7 @@ namespace Monad::Renderer
 
 	GraphicsCommandList1::ScopedBarrier::~ScopedBarrier()
 	{
+		MONAD_FUNCTION_NAME;
 		// reverse barrier inputs and outputs
 		for (auto& b : m_resourceBarriers)
 			std::swap(b.Transition.StateAfter, b.Transition.StateBefore);
@@ -64,6 +65,7 @@ namespace Monad::Renderer
 	GraphicsCommandList1::ScopedBarrier GraphicsCommandList1::ScopedTransition(
 		InitializerListResourceBarrier resourceBarriers) noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		Transition(resourceBarriers);
 		return ScopedBarrier(*this, resourceBarriers);
 	}
@@ -72,6 +74,7 @@ namespace Monad::Renderer
 		InitializerListResourceBarrier resourceBarriers
 	) const
 	{
+		MONAD_FUNCTION_NAME;
 		assert(m_commandList);
 		assert(resourceBarriers.begin() != resourceBarriers.end());
 		m_commandList->ResourceBarrier(
@@ -97,6 +100,7 @@ namespace Monad::Renderer
 		uint64_t value
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		assert(m_fence);
 		assert(c_fenceEvent);
 		THROW_EXC_D3D(m_fence->SetEventOnCompletion(
@@ -116,6 +120,7 @@ namespace Monad::Renderer
 		ID3D12RootSignature* rootSignature
 	) noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		assert(pipelineState);
 		assert(rootSignature);
 		assert(m_commandList);
@@ -138,6 +143,7 @@ namespace Monad::Renderer
 		RenderTargetDepthStencilGeneric& sourceRenderTarget
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		m_commandList->ResolveSubresource(
 			destinationSource,
 			0,

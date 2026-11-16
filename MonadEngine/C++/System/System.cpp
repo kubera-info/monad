@@ -27,6 +27,7 @@ namespace Monad::System
 		/// </summary>
 		AppVersion()
 		{
+			MONAD_FUNCTION_NAME;
 			DWORD dummyDW{};
 			const auto modulePath = Files::GetModulePath();
 			const auto fviSize = GetFileVersionInfoSize(modulePath.c_str(), &dummyDW);
@@ -64,6 +65,7 @@ namespace Monad::System
 		/// </returns>
 		std::wstring GetAppVersionAndArch() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 #if defined _DEBUG
 			return m_appVersion + L" (Debug) " + GetAppArchitecture() + L" on " + GetOSArchitecture();
 #else
@@ -97,6 +99,7 @@ namespace Monad::System
 	/// </returns>
 	bool IsOSWine()
 	{
+		MONAD_FUNCTION_NAME;
 		struct SystemLibraryNtdll : private SystemLibrary
 		{
 			SystemLibraryNtdll() : SystemLibrary{ g_Ntdll } {}
@@ -146,6 +149,7 @@ namespace Monad::System
 	/// </returns>
 	std::wstring GetOSArchitecture()
 	{
+		MONAD_FUNCTION_NAME;
 		struct SystemLibraryKernel32 : SystemLibrary
 		{
 			SystemLibraryKernel32() : SystemLibrary{ L"kernel32.dll" }

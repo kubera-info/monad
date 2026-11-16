@@ -65,6 +65,7 @@ namespace Monad::Renderer
 			CBTypeCtrl&& source
 			) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			Move(std::move(source));
 
 			return *this;
@@ -72,6 +73,7 @@ namespace Monad::Renderer
 
 		void CBTypeCtrl::Move(CBTypeCtrl&& source) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			EventD3DCreateStub::MoveEvent(std::move(source));
 			m_resCounter = source.m_resCounter;
 			c_size256 = source.c_size256;
@@ -83,6 +85,7 @@ namespace Monad::Renderer
 
 		void CBTypeCtrl::Unmap() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			assert(m_pCbvDataBegin);
 			assert(m_constantBuffer);
 			m_constantBuffer->Unmap(
@@ -94,6 +97,7 @@ namespace Monad::Renderer
 
 		bool CBTypeCtrl::OnD3DCreateStub()
 		{
+			MONAD_FUNCTION_NAME;
 			const auto buf = CD3DX12_RESOURCE_DESC::Buffer(
 				static_cast<size_t>(c_size256)
 				* static_cast<size_t>(m_resCounter.m_count)
@@ -134,6 +138,7 @@ namespace Monad::Renderer
 
 		void CBTypeCtrl::Remap()
 		{
+			MONAD_FUNCTION_NAME;
 			Unmap();
 			Map({
 				0,
@@ -150,6 +155,7 @@ namespace Monad::Renderer
 			const D3D12_RANGE& range
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			THROW_EXC_IFFALSE(Exceptions::ThreeDFailed, nullptr == m_pCbvDataBegin, L"Map CB");
 			THROW_EXC_IFNULL(Exceptions::ThreeDFailed, m_constantBuffer, L"Map CB #2");
 			THROW_EXC_D3D(m_constantBuffer->Map(0, &range, reinterpret_cast<void**>(&m_pCbvDataBegin)), L"Map CB #3");
@@ -249,11 +255,13 @@ namespace Monad::Renderer
 
 		void CBInstanceGeneric::Remap()
 		{
+			MONAD_FUNCTION_NAME;
 			m_typedCounter.Remap();
 		}
 
 		void CBInstanceGeneric::Unmap() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			m_typedCounter.Unmap();
 		}
 
@@ -264,6 +272,7 @@ namespace Monad::Renderer
 
 		bool CBInstanceGeneric::IsFragmentedSwap() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			return m_typedCounter.m_resCounter.IsFragmentedSwap();
 		}
 		/// <summary>
@@ -275,6 +284,7 @@ namespace Monad::Renderer
 			const MapConstantBufferManager::key_type& _Key_val
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			auto manager = Super::find(_Key_val);
 			THROW_EXC_ONEND(*this, manager, L"CB Manager");
 			return manager;

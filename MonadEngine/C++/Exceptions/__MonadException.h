@@ -8,6 +8,8 @@
 #include <Windows.h>
 
 // Monad
+#include "Threads/__MonadThread.h"
+#include "Exceptions/Trace.h"
 #include "I18N/I18N.h"
 
 namespace Monad::I18N::Errors
@@ -158,3 +160,5 @@ namespace Monad::Exceptions
 		REPORT_TO_CONSOLE
 	};
 }
+
+#define MONAD_FUNCTION_NAME MND_LOG(L"Monad Fn: " __FUNCTIONW__)

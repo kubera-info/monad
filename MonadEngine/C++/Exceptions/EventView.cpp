@@ -16,42 +16,6 @@ using namespace std;
 
 namespace Monad::Exceptions
 {
-	namespace
-	{
-		void ReportEventGeneric(
-			const HANDLE hEventLog,
-			const WORD type,
-			const wstring& message
-		)
-		{
-			if (hEventLog)
-			{
-				vector<wstring> parts;
-				wstringstream wss(message);
-				for (wstring currentRow; getline(wss, currentRow);)
-					if (!currentRow.empty())
-						parts.emplace_back(move(currentRow));
-				assert(!parts.empty());
-				auto stringZRows(
-					ranges::views::transform(
-						parts,
-						[](const auto& str) noexcept { return str.c_str(); }) |
-					ranges::to<vector<const wchar_t*>>());
-				::ReportEvent(
-					hEventLog,
-					type,
-					0,
-					0,
-					nullptr,
-					static_cast<WORD>(stringZRows.size()),
-					0,
-					stringZRows.data(),
-					nullptr
-				);
-			}
-		}
-	}
-
 	EventLog::EventLog(
 		const wstring& fullAppName
 	) noexcept :
@@ -68,12 +32,61 @@ namespace Monad::Exceptions
 			DeregisterEventSource(c_hEventLog);
 	}
 
-	void EventLog::ReportErrorEvent(
+	void EventLog::ReportEventGeneric(
+		const uint16_t type,
 		const wstring& message
-	) const
+	) const noexcept
+	{
+		if (c_hEventLog)
+		{
+			try
+			{
+				vector<wstring> parts;
+				wstringstream wss(message);
+				for (wstring currentRow; getline(wss, currentRow);)
+					if (!currentRow.empty())
+						parts.emplace_back(currentRow);
+				if (parts.empty())
+					abort();
+				auto stringZRows(
+					ranges::views::transform(
+						parts,
+						[](const auto& str) noexcept { return str.c_str(); }) |
+					ranges::to<vector<const wchar_t*>>());
+				ReportEvent(
+					c_hEventLog,
+					type,
+					0,
+					0,
+					nullptr,
+					static_cast<WORD>(stringZRows.size()),
+					0,
+					stringZRows.data(),
+					nullptr
+				);
+			}
+			catch (...)
+			{
+				abort();
+			}
+		}
+	}
+
+	void EventLog::ReportSuccessEvent(
+		const wstring& message
+	) const noexcept
 	{
 		ReportEventGeneric(
-			c_hEventLog,
+			EVENTLOG_SUCCESS,
+			message
+		);
+	}
+
+	void EventLog::ReportErrorEvent(
+		const wstring& message
+	) const noexcept
+	{
+		ReportEventGeneric(
 			EVENTLOG_ERROR_TYPE,
 			message
 		);

@@ -20,6 +20,7 @@ namespace Monad::Safety::SafetyCore
 		DWORD flags
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		BCRYPT_ALG_HANDLE tmp = nullptr;
 		THROW_EXC_NTERROR(BCryptOpenAlgorithmProvider(
 			&tmp,
@@ -56,6 +57,7 @@ namespace Monad::Safety::SafetyCore
 		const wchar_t* pszProperty
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		DWORD cbData = 0, cbSize = 0;
 		THROW_EXC_NTERROR(BCryptGetProperty(
 			algorithm.m_algorithm,
@@ -75,6 +77,7 @@ namespace Monad::Safety::SafetyCore
 
 	PBYTE SafetyManager::SafetyProperty::Factory() const
 	{
+		MONAD_FUNCTION_NAME;
 		auto pbBuffer = static_cast<PBYTE>(HeapAlloc(GetProcessHeap(), 0, m_size));
 		if (nullptr == pbBuffer)
 			THROW_EXC_GETLASTERROR(Exceptions::NullValue, L"Heap Alloc");

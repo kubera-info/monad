@@ -305,7 +305,7 @@
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
       <EnablePREfast>false</EnablePREfast>
       <CompileAsWinRT>false</CompileAsWinRT>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
@@ -313,7 +313,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <OmitFramePointers>false</OmitFramePointers>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <SDLCheck>true</SDLCheck>
       <GuardEHContMetadata>false</GuardEHContMetadata>
       <BuildStlModules>false</BuildStlModules>
@@ -399,7 +399,7 @@
       <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv80</EnableEnhancedInstructionSet>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
       <EnablePREfast>false</EnablePREfast>
       <CompileAsWinRT>false</CompileAsWinRT>
       <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
@@ -407,7 +407,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <OmitFramePointers>false</OmitFramePointers>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <SDLCheck>true</SDLCheck>
       <GuardEHContMetadata>false</GuardEHContMetadata>
       <BuildStlModules>false</BuildStlModules>
@@ -499,11 +499,11 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
       <EnablePREfast>false</EnablePREfast>
       <MinimalRebuild>false</MinimalRebuild>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <ConformanceMode>true</ConformanceMode>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -604,11 +604,11 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
       <EnablePREfast>false</EnablePREfast>
       <MinimalRebuild>false</MinimalRebuild>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <ConformanceMode>true</ConformanceMode>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -707,11 +707,11 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
       <EnablePREfast>false</EnablePREfast>
       <MinimalRebuild>false</MinimalRebuild>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <ConformanceMode>true</ConformanceMode>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -808,11 +808,11 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
       <EnablePREfast>false</EnablePREfast>
       <MinimalRebuild>false</MinimalRebuild>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <ConformanceMode>true</ConformanceMode>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
@@ -951,6 +951,7 @@
     <ClInclude Include="..\..\MonadEngine\C++\Dev\DevDialog.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Exceptions.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Catch.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Trace.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Exceptions\__MonadException.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Files\EncryptAndSave.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Files\Folder.h" />
@@ -1131,6 +1132,7 @@
     <ClCompile Include="..\..\MonadEngine\C++\Core\Win32ApplicationGeneric.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Dev\DevDialog.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Exceptions\Exceptions.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Exceptions\Trace.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Files\Folder.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Files\Handle.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Files\FileManager.cpp" />
@@ -1217,6 +1219,7 @@
     <ClCompile Include="..\..\MonadEngine\C++\System\__MonadSystem.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Threads\Thread.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Threads\ThreadPool.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Threads\__MonadThread.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Time\__MonadTime.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Time\TimeLerp.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Time\Timer.cpp" />

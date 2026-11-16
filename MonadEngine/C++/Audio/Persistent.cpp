@@ -255,7 +255,8 @@ namespace Monad
 		}
 
 		void PersistentAudio::Describe(
-			const VectorCue& filenames
+			const VectorCue& filenames,
+			const bool resetQueue
 		)
 		{
 			const lock_guard lg(m_lockAudio);
@@ -265,7 +266,8 @@ namespace Monad
 					VOLUME_SILENT,
 					STREAM
 				);
-				InternalResetQueue(DESCRIBE);
+				if (resetQueue)
+					InternalResetQueue(DESCRIBE);
 				for (auto itInnner = filenames.cbegin(); filenames.cend() != itInnner; ++itInnner)
 				{
 					if (filenames.cend() - 1 == itInnner)

@@ -1,20 +1,22 @@
-// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
-// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+// ##########################################################################
+// ### Copyright Â© Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ##########################################################################
 
-// ############################################################################
-// ### Copyright © 2016-2024 by W³odzimierz O. Kubera. All rights reserved. ###
-// ############################################################################
-
+// Me
 #include "stdafx.h"
-#include "MonadTrace.h"
-//
+#include "Trace.h"
+
 #if defined(MONAD_TEST)
+// Platform
+#include "Modules/Xbox-ATG-Samples/Kits/CPUTK/OSLockable.h"
+
+// STD
 #	include <fstream>
-#	include <mutex>
-#	include "Files/MonadFileFolder.h"
-#	include "Kernel/MonadPatterns.h"
+
+// Monad
+#	include "Files/Folder.h"
+#	include "Kernel/Patterns.h"
 #	include "Time/__MonadTime.h"
-#	include "Threads/MonadThreadName.h"
 
 using namespace std;
 
@@ -25,69 +27,92 @@ namespace Monad
 
 	namespace Exceptions
 	{
-		struct DumpToFile
+		namespace
 		{
-			DumpToFile()
+			struct DumpToFile
 			{
-				m_fileName = Files::GetFolderAppDocumentsSettings(L"Test", L"04.01.2024") / (L"MonadLog "s + Threads::g_threadName.data() + L".txt"s);
-				DeleteFile(m_fileName.data());
-				m_file.open(m_fileName);
-			}
+				DumpToFile()
+				{
+					m_fileName = Files::GetFolderAppDocumentsSettings(L"Test", L"04.01.2024") / (L"MonadLog "s + Threads::GetThreadName() + L".txt"s);
+					DeleteFile(m_fileName.data());
+					m_file.open(m_fileName);
+				}
 
-			~DumpToFile()
+				~DumpToFile()
+				{
+					if (!Exceptions::IsValid())
+						write_sz(L"Exception has been thrown");
+				}
+
+				void write(const wstring& output) noexcept
+				{
+					write_sz(output.c_str());
+				}
+
+				void write_sz(const wchar_t* output) noexcept
+				{
+					m_file << output;
+					OutputDebugString(output);
+				}
+
+				void flush()
+				{
+					m_file.flush();
+				}
+
+				ATG::CriticalSectionLockable m_lock;
+				wofstream m_file;
+				wstring m_fileName;
+			};
+
+			DumpToFile& LogFile()
 			{
-				if (!Exceptions::IsValid())
-					write_sz(L"Exception has been thrown");
+				thread_local DumpToFile s_logFile;
+				return s_logFile;
 			}
-
-			void write(const wstring& pOutput)
-			{
-				write_sz(pOutput.c_str());
-			}
-
-			void write_sz(const wchar_t* pOutput)
-			{
-				m_file << pOutput;
-				System::MndOutputDebugString(pOutput);
-			}
-
-			void flush()
-			{
-				m_file.flush();
-			}
-
-			mutex m_lock;
-			wofstream m_file;
-			wstring m_fileName;
-		};
-
-		DumpToFile& LogFile()
-		{
-			thread_local DumpToFile s_logFile;
-			return s_logFile;
 		}
 
-		wstring TraceParam(const wstring& pParam, const wstring& pValue)
+		wstring TraceParam(
+			const wstring& param,
+			const wstring& value
+		)
 		{
-			return pParam + L": " + pValue;
+			return param + L": " + value;
 		}
 
-		Trace::Trace(const wstring& pStage, InitListString pParams, InitListString pSeverities) :
-			m_startTime{ Time::g_fTime }, c_stage{ L"*" + pStage + L"*" }, /*m_params(pParams),*/ m_severity{ false }, c_exception{ InAnyCloseReason() },
-			m_params{ pParams.begin(), pParams.end() }
+		Trace::Trace(
+			const wstring& stage,
+			InitializerListString params,
+			InitializerListString severities
+		) :
+			m_startTime{ Time::g_fTime },
+			c_stage{ L"*" + stage + L"*" },
+			m_severity{ false },
+			c_exception{ InAnyCloseReason() },
+			m_params{ params }
 		{
-			if (gSeverities.empty())
+			if (g_severities.empty())
 				m_severity = true; // Log all
-			else if (0 == pSeverities.size())
+			else if (severities.empty())
 				m_severity = true; // Log me always
 			else
 			{
-				Kernel::VectorString intersection;
-				m_severity = intersection.cend() != set_intersection(gSeverities.cbegin(), gSeverities.cend(), pSeverities.begin(), pSeverities.end(), intersection.begin());
+				VectorString intersection;
+				m_severity = !ranges::set_intersection_result(
+					g_severities,
+					severities,
+					intersection
+				).out.empty();
 			}
 
-			m_params.emplace_back(TraceParam(L"Start Time", m_startTime));
-			m_params.emplace_back(TraceParam(L"This Thread", GetCurrentThreadId()));
+			m_params.emplace_back(
+				TraceParam(L"Start Time", 
+					m_startTime)
+			);
+			m_params.emplace_back(
+				TraceParam(L"This Thread", 
+					GetCurrentThreadId())
+			);
 			WriteToConsole(L"Begin-");
 		}
 
@@ -105,31 +130,31 @@ namespace Monad
 			WriteToConsole(L"End-");
 		}
 
-		void Trace::WriteToConsole(const wstring& pLog) const
+		void Trace::WriteToConsole(const wstring& log) const
 		{
 			if (m_severity)
 			{
 				LogFile().m_lock.lock();
-				wstring tmp{ pLog + c_stage + L'\n' };
+				wstring parameters{ log + c_stage + L'\n' };
 				for (const auto OneParam : m_params)
-					tmp += OneParam + L'\n';
-				tmp += L'\n';
-				LogFile().write(tmp);
+					parameters += OneParam + L'\n';
+				parameters += L'\n';
+				LogFile().write(parameters);
 				LogFile().flush();
 				LogFile().m_lock.unlock();
 			}
 		}
 
-		Kernel::VectorString gSeverities;
+		Trace::VectorString g_severities;
 
-		void WriteToErrorLog(const wchar_t* pLog)
+		void WriteToErrorLog(const wchar_t* log)
 		{
 			LogFile().write_sz(L"\n");
 			LogFile().write_sz(L"Thread Id: ");
 			LogFile().write(to_wstring(GetCurrentThreadId()));
-			LogFile().write(Threads::g_threadName.data());
+			LogFile().write(Threads::GetThreadName());
 			LogFile().write_sz(L"; ");
-			LogFile().write_sz(pLog);
+			LogFile().write_sz(log);
 			LogFile().write_sz(L"\n");
 			LogFile().flush();
 		}
@@ -142,7 +167,7 @@ namespace Monad
 			GetLocalTime(&fileTime);
 			wstring str(StringFromType(fileTime));
 			str += L' ';
-			str += Threads::g_threadName;
+			str += Threads::GetThreadName();
 			str += L' ';
 			str += pLog;
 			LogFile().write(str);

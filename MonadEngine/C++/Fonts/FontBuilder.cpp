@@ -46,6 +46,7 @@ namespace Monad
 			m_ownerDialog{ ownerDialog },
 			c_fontMeta{ Repositories::g_repositoryGeneric->m_dialogFonts[fontName] }
 		{
+			MONAD_FUNCTION_NAME;
 			Register();
 		}
 
@@ -56,6 +57,7 @@ namespace Monad
 			const wstring parameters
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			m_recorders.emplace_back(
 				style,
 				origin,
@@ -68,6 +70,7 @@ namespace Monad
 			const RenderingRecorderAtom& atom
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			if (atom.m_origin)
 			{
 				g_carriagePos = *atom.m_origin;
@@ -142,6 +145,7 @@ namespace Monad
 			float fontSize
 		) const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			const auto newLine = c_fontMeta.m_lineHeight * 1.02f * fontSize;
 			assert(newLine > 0.0f);
 			return newLine;
@@ -149,6 +153,7 @@ namespace Monad
 
 		void Text2Mesh::Commit()
 		{
+			MONAD_FUNCTION_NAME;
 			for (const auto& rec : m_recorders)
 				RenderText(rec);
 			if (!m_textToRender.m_vertices.empty())
@@ -160,6 +165,7 @@ namespace Monad
 
 		bool Text2Mesh::OnLanguageChangeFontStub()
 		{
+			MONAD_FUNCTION_NAME;
 			Commit();
 
 			return true;
@@ -169,6 +175,7 @@ namespace Monad
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			TexGUI::OnComputePerWorldFrame(modelSpaceMatrix);
 
 			g_forecolorFontGeneric->SetMe(GetCurrentConfig());
@@ -178,6 +185,7 @@ namespace Monad
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			TexGUI::OnComputePerShadowFrame(modelSpaceMatrix);
 
 			GetCurrentTexture().SetMe(GetCurrentConfig(), c_startTexSlot);

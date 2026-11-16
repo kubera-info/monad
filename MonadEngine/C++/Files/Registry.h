@@ -10,9 +10,6 @@
 // STD
 #include <string>
 
-// Monad
-#include "Globals/__MonadGlobals.h"
-
 //
 // A wrapper for the Windows Registry API.
 //
@@ -29,7 +26,11 @@ namespace Monad::Files
 	protected:
 		Registry(
 			const DWORD options,
-			const std::wstring& subKey = Globals::g_userProfile
+			const wchar_t* subKey
+		);			
+		Registry(
+			const DWORD options,
+			const std::wstring& subKey
 		);
 		~Registry();
 

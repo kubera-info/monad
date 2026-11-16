@@ -25,6 +25,7 @@ namespace Monad
 				float height
 			) noexcept
 			{
+				MONAD_FUNCTION_NAME;
 				assert(0 != width && 0 != height);
 				if (width >= height)
 					return { 1.0f, height / width };

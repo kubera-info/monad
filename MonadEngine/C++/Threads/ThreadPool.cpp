@@ -72,6 +72,7 @@ namespace Monad
 			size_t workersCount
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			m_threadPool.reserve(workersCount);
 
 			for (size_t i = 0; i < workersCount; ++i)
@@ -91,6 +92,7 @@ namespace Monad
 		/// </summary>
 		ThreadPool::~ThreadPool()
 		{
+			MONAD_FUNCTION_NAME;
 			// Request stop for all workers.
 			m_threadPool.request_stops();
 			// Wake all sleeping workers.
@@ -110,6 +112,7 @@ namespace Monad
 			std::stop_token stopToken
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			while (true)
 			{
 				ITask* task = nullptr;
@@ -168,6 +171,7 @@ namespace Monad
 		/// </summary>
 		ThreadPool::QueueTask::~QueueTask() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			while (!empty())
 			{
 				const auto task = front();
@@ -178,6 +182,7 @@ namespace Monad
 
 		void ThreadPool::VectorThreads::request_stops() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			for (auto& thread : *this)
 				thread->request_stop();
 		}
@@ -193,6 +198,7 @@ namespace Monad
 
 		void ThreadWndMessage::DequeueAndRunTask()
 		{
+			MONAD_FUNCTION_NAME;
 			try
 			{
 				const std::lock_guard lg(m_lockMessageQueue);

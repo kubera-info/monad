@@ -31,6 +31,7 @@ namespace Monad
 				const D3D12_RESOURCE_DESC& resourceDesc
 			) noexcept
 			{
+				MONAD_FUNCTION_NAME;
 				switch (resourceDesc.Dimension)
 				{
 					[[likely]]
@@ -80,6 +81,7 @@ namespace Monad
 				D3D12_CLEAR_VALUE* clearValue = nullptr
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				/*if ((resourceDesc.Flags & D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET) > 0)
 					ptrClearValue = &g_backBufferClearValue;
 				else if ((resourceDesc.Flags & D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL) > 0)
@@ -119,6 +121,7 @@ namespace Monad
 			size_t sourceSize
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			THROW_EXC_IFFALSE(ThreeDFailed, g_dxSample && g_dxSample->m_device, L"TexDDSg_dxSample");
 			THROW_EXC_IFFALSE(ThreeDFailed, source && sourceSize, L"TexDDS");
 			Stateless stateless;
@@ -216,6 +219,7 @@ namespace Monad
 			const D3D12_RESOURCE_DESC& sourceFormat
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			CreateShaderResourceView(sourceFormat);
 		}
 
@@ -226,6 +230,7 @@ namespace Monad
 			D3D12_RESOURCE_FLAGS resourceFlags
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			CreateShaderResource(*this, CD3DX12_RESOURCE_DESC::Tex2D(
 				format,
 				dx,
@@ -253,6 +258,7 @@ namespace Monad
 		) :
 			m_onHeapID{ id }
 		{
+			MONAD_FUNCTION_NAME;
 			CreateShaderResource(*this, CD3DX12_RESOURCE_DESC::Tex2D(
 				format,
 				dx,
@@ -273,6 +279,7 @@ namespace Monad
 			DXGI_FORMAT format,
 			D3D12_RESOURCE_FLAGS resourceFlags)
 		{
+			MONAD_FUNCTION_NAME;
 			CreateShaderResource(
 				*this,
 				CD3DX12_RESOURCE_DESC::Tex1D(
@@ -290,6 +297,7 @@ namespace Monad
 			const D3D12_RESOURCE_DESC& resourceDesc
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			if (!m_onHeapID)
 				m_onHeapID = g_dxSample->m_cbSrCurrentID++;
 			// Describe and create a SRV for the texture.
@@ -332,6 +340,7 @@ namespace Monad
 			ID3D12Resource* textureUploadHeap
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			const auto scopedTransition = g_dxSample->m_commandList.ScopedTransition({ {
 				m_res,
 				D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE,
@@ -353,6 +362,7 @@ namespace Monad
 			Registers::INPUT_RESOURCE baseShaderRegister
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			assert(nullptr != shaderConfig);
 			shaderConfig->SetTableParameter(
 				baseShaderRegister,

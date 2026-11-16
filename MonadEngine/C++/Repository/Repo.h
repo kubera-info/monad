@@ -40,6 +40,7 @@ namespace Monad::Repositories
 			const std::string& filename
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			auto object(this->find(filename));
 			THROW_EXC_ONEND(
 				*this,
@@ -58,6 +59,7 @@ namespace Monad::Repositories
 			const std::string& filename
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			const auto object(this->find(filename));
 			THROW_EXC_ONEND(
 				*this,
@@ -87,6 +89,7 @@ namespace Monad::Repositories
 			_Mappedty&&... internalType
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			const std::lock_guard lg(m_lockInsert);
 			this->UnsafeInsert(
 				std::move(filename),
@@ -100,6 +103,7 @@ namespace Monad::Repositories
 			_Mappedty&&... internalType
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			const std::lock_guard lg(m_lockInsert);
 			this->UnsafeInsert(
 				filename,
@@ -113,6 +117,7 @@ namespace Monad::Repositories
 			_Mappedty&&... internalType
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			if (!this->try_emplace(
 				std::move(filename),
 				std::forward<_Mappedty>(internalType)...).second
@@ -131,6 +136,7 @@ namespace Monad::Repositories
 			_Mappedty&&... internalType
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			if (!this->try_emplace(
 				filename,
 				std::forward<_Mappedty>(internalType)...).second)
@@ -153,6 +159,7 @@ namespace Monad::Repositories
 
 		bool OnClearD3DAssetsStub() noexcept final
 		{
+			MONAD_FUNCTION_NAME;
 			this->m_lockInsert.lock();
 			this->clear();
 			this->m_lockInsert.unlock();

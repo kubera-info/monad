@@ -16,6 +16,7 @@ namespace Monad::Fonts
 		const ShaderResourceName& name
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		const auto shaderFont = m_guiTexts.try_emplace(
 			name,
 			ownerDialog,

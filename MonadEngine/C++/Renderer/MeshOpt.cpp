@@ -6,6 +6,9 @@
 #include "stdafx.h"
 #include "MeshOpt.h"
 
+// Monad
+#include "Exceptions/__MonadException.h"
+
 namespace Monad::Renderer
 {
 	namespace
@@ -17,6 +20,7 @@ namespace Monad::Renderer
 			const bool omitPosition3 = false
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			// 1. Deduplication
 			std::vector<uint32_t> remap(sourceVertices.c_blocks);
 			const size_t new_vertex_count = meshopt_generateVertexRemap(
@@ -59,6 +63,7 @@ namespace Monad::Renderer
 		const bool omitPosition3
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		return OptimizeMeshInternal(sourceIndices, sourceVertices, omitPosition3);
 	}
 

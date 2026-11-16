@@ -115,15 +115,13 @@ namespace Monad
 		) const noexcept
 		{
 			XMStoreFloat4x4(&matrixToAlter,
-				XMMatrixMultiply(
-					XMMatrixMultiply(XMLoadFloat4x4(&ROTATE_CURSOR),
-						XMMatrixTranslation(
-							g_cursorPos.x,
-							g_cursorPos.y,
-							m_timeLerpPushPop.GetCurrentValue())), XMLoadFloat4x4(
-								&matrixToAlter
-							)
-				)
+				XMLoadFloat4x4(&ROTATE_CURSOR)
+				* XMMatrixTranslation(
+					g_cursorPos.x,
+					g_cursorPos.y,
+					m_timeLerpPushPop.GetCurrentValue()) * XMLoadFloat4x4(
+						&matrixToAlter
+					)
 			);
 		}
 
@@ -235,14 +233,13 @@ namespace Monad
 
 		void ShaderCursorTorus::OnNewMatrix(XMFLOAT4X4& matrixToAlter) const noexcept
 		{
-			XMStoreFloat4x4(&matrixToAlter, XMMatrixMultiply(XMMatrixMultiply(
-				XMMatrixMultiply(
-					XMMatrixRotationY(static_cast<float>(g_fTime) * 4.0f),
-					XMMatrixRotationZ(static_cast<float>(g_fTime) * 2.0f)),
-				XMMatrixTranslation(
+			XMStoreFloat4x4(&matrixToAlter,
+				XMMatrixRotationY(static_cast<float>(g_fTime) * 4.0f)
+				* XMMatrixRotationZ(static_cast<float>(g_fTime) * 2.0f)
+				* XMMatrixTranslation(
 					g_cursorPos.x,
 					g_cursorPos.y,
-					0.075f)), XMLoadFloat4x4(&matrixToAlter)));
+					0.075f) * XMLoadFloat4x4(&matrixToAlter));
 		}
 
 		bool ShaderCursorTorus::IsVisible() const noexcept

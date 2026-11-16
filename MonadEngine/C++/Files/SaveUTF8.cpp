@@ -16,6 +16,7 @@ namespace Monad::Files
 		const string& utf8Buffer
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		SmartHandleFile fileToWrite{
 			path,
 			GENERIC_READ | GENERIC_WRITE,

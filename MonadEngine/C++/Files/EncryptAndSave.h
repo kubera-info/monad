@@ -24,6 +24,7 @@ namespace Monad::Files
 		const V& buffer
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		const auto key = outputPath.filename();
 		VectorBytesArchive compressed(
 			buffer,

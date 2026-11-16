@@ -44,6 +44,7 @@ namespace Monad::Input
 			long deltaY
 		) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			if (deltaX == 0 && deltaY == 0)
 				return;
 
@@ -66,6 +67,7 @@ namespace Monad::Input
 
 	void ThreadXboxController::Routine()
 	{
+		MONAD_FUNCTION_NAME;
 		constexpr DWORD tickTime = 2, inactiveTime = 512;
 
 		ComPtr<IGamepadStatics> gamepadStatics;

@@ -31,6 +31,7 @@ namespace Monad::Renderer::HDR
 
 	XMFLOAT4 PowerFloat4::GetFloatSRGBA() const noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		XMFLOAT4 ret;
 		XMStoreFloat4(&ret,
 			XMColorSRGBToRGB(

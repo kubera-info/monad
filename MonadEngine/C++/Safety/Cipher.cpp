@@ -68,6 +68,7 @@ namespace Monad
 				BCRYPT_BLOCK_LENGTH
 			}
 			{
+				MONAD_FUNCTION_NAME;
 				THROW_EXC_NTERROR(BCryptSetProperty(
 					m_algorithm,
 					BCRYPT_CHAINING_MODE,
@@ -98,6 +99,7 @@ namespace Monad
 				VectorBytesArchive& source
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				CRYPT_INIT;
 
 				THROW_EXC_NTERROR(BCryptDecrypt(
@@ -131,6 +133,7 @@ namespace Monad
 				VectorBytesArchive& source
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				CRYPT_INIT;
 
 				THROW_EXC_NTERROR(BCryptEncrypt(

@@ -34,6 +34,7 @@ namespace Monad::Tools
 		const wstring& stringToLower
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		wstring lowerCaseBuffer;
 		ranges::transform(
 			stringToLower,
@@ -57,6 +58,7 @@ namespace Monad::Tools
 			const size_t length
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			string utf8Buffer;
 
 			// Defensive check:
@@ -97,6 +99,7 @@ namespace Monad::Tools
 		const wstring& unicodeString
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		return UnicodeToUTF8(
 			unicodeString.data(),
 			unicodeString.length()
@@ -107,6 +110,7 @@ namespace Monad::Tools
 		const wstring_view unicodeString
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		return UnicodeToUTF8(
 			unicodeString.data(),
 			unicodeString.length()
@@ -123,6 +127,7 @@ namespace Monad::Tools
 			const size_t length
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			wstring unicodeBuffer;
 
 			// Safe nullptr-first comparison
@@ -158,6 +163,7 @@ namespace Monad::Tools
 		const std::string& utf8String
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		return UTF8ToUnicode(
 			utf8String.data(),
 			utf8String.size()
@@ -168,6 +174,7 @@ namespace Monad::Tools
 		const std::string_view utf8String
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		return UTF8ToUnicode(
 			utf8String.data(),
 			utf8String.size()

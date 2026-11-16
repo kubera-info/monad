@@ -1,6 +1,16 @@
+// ##########################################################################
+// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ##########################################################################
+
+// Me
 #include "stdafx.h"
 #include "HardwareAdapter.h"
+
+// Platform
 #include <wrl.h>
+
+// Monad
+#include "Exceptions/__MonadException.h"
 
 namespace Monad::Renderer
 {
@@ -10,6 +20,7 @@ namespace Monad::Renderer
 		bool requestHighPerformanceAdapter
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		std::wstring adapterDesc;
 
 		*pAdapter = nullptr;

@@ -39,16 +39,15 @@ namespace Monad::Renderer
 		XMStoreFloat4x4(
 			&m_cBufferShadow.GetBuffer(),
 			XMMatrixTranspose(
-				XMMatrixMultiply(
-					XMLoadFloat4x4(&modelSpaceMatrix),
-					XMLoadFloat4x4(&SHADOW)))
+				XMLoadFloat4x4(&modelSpaceMatrix)
+				* XMLoadFloat4x4(&SHADOW))
 		);
 		m_cBufferShadow.SetMe(GetCurrentConfig());
 #endif
 
-		const auto WORLDVIEW_MATRIX = XMMatrixMultiply(
-			XMLoadFloat4x4(&modelSpaceMatrix),
-			XMLoadFloat4x4(&VIEW));
+		const auto WORLDVIEW_MATRIX =
+			XMLoadFloat4x4(&modelSpaceMatrix)
+			* XMLoadFloat4x4(&VIEW);
 		auto& cbModel = m_cBufferModel.GetBuffer();
 		XMStoreFloat4x4(
 			&cbModel.m_model,
@@ -56,9 +55,9 @@ namespace Monad::Renderer
 		XMStoreFloat4x4(
 			&cbModel.m_modelViewProj,
 			XMMatrixTranspose(
-				XMMatrixMultiply(
-					WORLDVIEW_MATRIX,
-					XMLoadFloat4x4(&g_dxSample->m_matrices.m_matrixProjection))));
+				WORLDVIEW_MATRIX
+				* XMLoadFloat4x4(&g_dxSample->m_matrices.m_matrixProjection))
+		);
 		m_cBufferModel.SetMe(GetCurrentConfig());
 	}
 
@@ -72,9 +71,8 @@ namespace Monad::Renderer
 		XMStoreFloat4x4(
 			&m_cBufferShadow.GetBuffer(),
 			XMMatrixTranspose(
-				XMMatrixMultiply(
-					XMLoadFloat4x4(&modelSpaceMatrix),
-					XMLoadFloat4x4(&SHADOW)))
+				XMLoadFloat4x4(&modelSpaceMatrix)
+				* XMLoadFloat4x4(&SHADOW))
 		);
 		m_cBufferShadow.SetMe(GetCurrentConfig());
 	}

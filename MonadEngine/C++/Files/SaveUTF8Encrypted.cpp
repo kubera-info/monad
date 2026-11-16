@@ -20,6 +20,7 @@ namespace Monad::Files
 		const string& utf8Buffer
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		RenameFileForBackup(filename);
 		CompressEncryptAndSaveFromMemory(
 			cipher,

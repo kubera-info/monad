@@ -20,6 +20,7 @@
 #include <xcall_once.h>
 
 // Monad
+#include "Trace.h"
 #include "System/__MonadSystem.h"
 #include "System/Console.h"
 #include "Globals/__MonadGlobals.h"
@@ -155,28 +156,7 @@ namespace Monad
 
 					const fs::path pathToReportXML = fs::temp_directory_path() / (Files::GlobalFileNameSuffix().wstring() + L".$$$"s);
 
-					PWSTR threadName = nullptr;
-					wstring strThreadName(L"Monad Anonymous"s);
-					if (SUCCEEDED(GetThreadDescription(GetCurrentThread(), &threadName)))
-					{
-						struct ScopedString
-						{
-							ScopedString(PWSTR& name) :
-								m_threadName(name)
-							{}
-
-							~ScopedString()
-							{
-								LocalFree(m_threadName);
-								m_threadName = nullptr;
-							}
-
-						private:
-							PWSTR& m_threadName;
-						} freeMe(threadName);
-						if (*threadName)
-							strThreadName = threadName;
-					}
+					wstring strThreadName(Threads::GetThreadName());
 					{
 						const auto xmlFileImage = XMLManager{ {
 									{ PAR_NAME_CLASS, exceptionClass },

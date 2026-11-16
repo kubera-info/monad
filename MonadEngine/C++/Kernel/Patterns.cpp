@@ -14,6 +14,7 @@ namespace Monad::Kernel
 		const uint32_t defaultSize
 	) noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		if (const auto optimalValue = std::ranges::find_if(resolutions,
 			[=](const auto& searchedSize) noexcept
 			{ return searchedSize.first <= dimensionSize; });

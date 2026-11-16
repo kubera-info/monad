@@ -6,12 +6,16 @@
 #include "stdafx.h"
 #include "First.h"
 
+// Monad
+#include "Exceptions/__MonadException.h"
+
 namespace Monad::Renderer
 {
 	void First::OnFrameRenderInternal(
 		const DirectX::XMFLOAT4X4& modelSpaceMatrix
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		if (IsVisible())
 		{
 			/// <summary>

@@ -24,6 +24,7 @@ namespace Monad::Wnd
 				const HMONITOR hMonitor
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				MONITORINFOEXW mi;
 				mi.cbSize = sizeof(mi);
 
@@ -50,6 +51,7 @@ namespace Monad::Wnd
 	/// <returns>HMONITOR of the primary display</returns>
 	HMONITOR GetPrimaryMonitor() noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		// (0,0) is always guaranteed to be on the primary monitor
 		return MonitorFromPoint({ 0, 0 }, MONITOR_DEFAULTTOPRIMARY);
 	}
@@ -67,6 +69,7 @@ namespace Monad::Wnd
 			_In_  LPARAM dwData
 		) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			return reinterpret_cast<SetNonPrimaryMonitors*>(dwData)->
 				AddNonPrimaryMonitor(hMonitor);
 		}
@@ -81,6 +84,7 @@ namespace Monad::Wnd
 		HMONITOR monitor
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		MONITORINFO mi{ sizeof mi };
 
 		if (!GetMonitorInfo(monitor, &mi))
@@ -100,6 +104,7 @@ namespace Monad::Wnd
 	/// </returns>
 	SetMonitors GetNonPrimaryMonitors()
 	{
+		MONAD_FUNCTION_NAME;
 		SetNonPrimaryMonitors nonPrimaryMonitors;
 
 		EnumDisplayMonitors(

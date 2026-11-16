@@ -31,6 +31,7 @@ namespace Monad::Kernel
 		HINSTANCE hInstance
 	) noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		g_hInstance = hInstance;
 		std::set_terminate(Exceptions::ReportAndTerminate);
 		/* Enable heap corruption termination */

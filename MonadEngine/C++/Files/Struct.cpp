@@ -50,6 +50,7 @@ namespace Monad
 			const fs::path& key
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			return CalcHash(
 				cipher,
 				key
@@ -60,6 +61,7 @@ namespace Monad
 			size_t newSize
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			resize(newSize + sizeof FileMeta);
 		}
 
@@ -67,6 +69,7 @@ namespace Monad
 			size_t newSize
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			Resize(newSize + BCRYPT_OBJECT_ALIGNMENT);
 			shrink_to_fit();
 			Resize(newSize);
@@ -77,6 +80,7 @@ namespace Monad
 			const fs::path& key
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			const SpanBytes blob2Hash{
 				data() + offsetof(FileMeta, m_sizeOfArchive),
 				GetHeader().m_sizeOfArchive + sizeof FileMeta - sizeof FOURCC - sizeof Safety::ArrayKey256Bits };
@@ -115,6 +119,7 @@ namespace Monad
 
 		void VectorBytesArchive::ValidateBufferIn()
 		{
+			MONAD_FUNCTION_NAME;
 			wchar_t const* excName = nullptr;
 			if (size() <= sizeof FileMeta)
 				excName = L"FS FileTruncated";
@@ -136,6 +141,7 @@ namespace Monad
 			const fs::path& key
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			wstring excName;
 			if (!Hash(cipher, key))
 				excName = L"Hash Validation";
@@ -155,6 +161,7 @@ namespace Monad
 			const filesystem::path& key
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			GetHeader().m_checksum = CalcHash(
 				cipher,
 				key
@@ -165,6 +172,7 @@ namespace Monad
 			VectorBytes& outputBuffer
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			outputBuffer.resize(GetHeader().m_sizeOfSource);
 			DecompressLZMA(outputBuffer);
 		}
@@ -173,6 +181,7 @@ namespace Monad
 			VectorBytes& outputBuffer
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			Decompress(outputBuffer);
 			ClearAndShrink();
 		}
@@ -181,6 +190,7 @@ namespace Monad
 			VectorBytes& outputBuffer
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			constexpr uint8_t SZ_UNKNOWN_DICT_SIZE(40);
 			SizeT
 				sizeOfArchive = GetHeader().m_sizeOfArchive,
@@ -217,6 +227,7 @@ namespace Monad
 			const filesystem::path& key
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			// Any change of this code may malform a file manipulation in program. (some elements may be processed implicitely)
 			if (IsCompressed(key))
 			{

@@ -19,6 +19,7 @@ namespace Monad::Renderer
 #pragma region RenderTargetDepthStencilGeneric
 	void RenderTargetDepthStencilGeneric::reset() noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		if (c_renderTarget)
 			GetRtTexture().m_res.Reset();
 		if (c_depthStencil)
@@ -35,6 +36,7 @@ namespace Monad::Renderer
 		uint32_t sampleCount
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		m_scissorRect = {
 			0,
 			0,
@@ -110,6 +112,7 @@ namespace Monad::Renderer
 
 	void RenderTargetDepthStencilGeneric::SetMe() noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		CD3DX12_CPU_DESCRIPTOR_HANDLE rtvHandle{}, dsvHandle{};
 		using PDESCR = CD3DX12_CPU_DESCRIPTOR_HANDLE*;
 		PDESCR rtv, dsv;
@@ -166,27 +169,32 @@ namespace Monad::Renderer
 
 	Texture& RenderTargetDepthStencilGeneric::GetRtTexture() noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		assert(c_renderTarget);
 		return c_renderTarget->m_texture;
 	}
 
 	ID3D12Resource* RenderTargetDepthStencilGeneric::GetRtResource() noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		return GetRtTexture().m_res.Get();
 	}
 	const D3D12_CLEAR_VALUE& RenderTargetDepthStencilGeneric::GetRtClearValue() const noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		return c_renderTarget->c_clearValue;
 	}
 
 	Texture& RenderTargetDepthStencilGeneric::GetDsTexture() noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		assert(c_depthStencil);
 		return c_depthStencil->m_texture;
 	}
 
 	ID3D12Resource* RenderTargetDepthStencilGeneric::GetDsResource() noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		return GetDsTexture().m_res.Get();
 	}
 #pragma endregion
@@ -249,6 +257,7 @@ namespace Monad::Renderer
 #pragma endregion
 	RenderTarget::RenderTarget()
 	{
+		MONAD_FUNCTION_NAME;
 		g_dxSample->m_countOfRT++;
 	}
 	void RenderTarget::CreateRenderTarget(
@@ -275,6 +284,7 @@ namespace Monad::Renderer
 
 	DepthStencil::DepthStencil()
 	{
+		MONAD_FUNCTION_NAME;
 		g_dxSample->m_countOfDS++;
 	}
 	void DepthStencil::CreateDepthStencil(
@@ -301,6 +311,7 @@ namespace Monad::Renderer
 
 	RenderTargetDepthStencil::RenderTargetDepthStencil()
 	{
+		MONAD_FUNCTION_NAME;
 		g_dxSample->m_countOfRT++;
 		g_dxSample->m_countOfDS++;
 	}
@@ -316,6 +327,7 @@ namespace Monad::Renderer
 		uint32_t sampleCount
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		CreateTargetDepthStencilGeneric(
 #if defined _DEBUG
 			name,

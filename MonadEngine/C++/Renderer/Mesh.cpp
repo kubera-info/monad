@@ -42,6 +42,7 @@ namespace Monad
 
 			void Render() const noexcept
 			{
+				MONAD_FUNCTION_NAME;
 				if (!IsInitialized())
 					return;
 
@@ -70,6 +71,7 @@ namespace Monad
 				bool wasInitialized
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				if (wasInitialized)
 					graphicsCommandList.Transition({ {
 						m_vertexBuffer,
@@ -156,6 +158,7 @@ namespace Monad
 				GraphicsCommandList1& graphicsCommandList
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				const auto vertexDesc = CD3DX12_RESOURCE_DESC::Buffer(meshDef.c_vertices.size());
 				// Create the vertex buffer.
 				THROW_EXC_D3D(g_dxSample->m_device->CreateCommittedResource(
@@ -233,6 +236,7 @@ namespace Monad
 		) :
 			m_interfaces{ std::make_shared<MeshInterfaces>(meshDef.GetIndexCount()) }
 		{
+			MONAD_FUNCTION_NAME;
 			Stateless stateless;
 			m_interfaces->CreateBuffers(meshDef, stateless.m_commandList);
 			stateless.Commit();
@@ -246,11 +250,13 @@ namespace Monad
 			bool wasInitialized
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			m_interfaces->SetBuffers(meshDef, graphicsCommandList, wasInitialized);
 		}
 
 		void Mesh::Render() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			m_interfaces->Render();
 		}
 

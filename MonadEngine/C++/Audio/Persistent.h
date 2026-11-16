@@ -50,7 +50,7 @@ namespace Monad::Audio
 		/// Parses monad's custom audio format, and creates object ready for playing in XAudio2
 		/// </summary>
 		/// <param name="filename">Custom audio file data name.</param>
-		/// <param name="blob">Binary blob containing a file in a custom audio format.</param>
+		/// <param name="blob">Binary lob containing a file in a custom audio format.</param>
 		void CreateSound(
 			const Cue& filename,
 			const Kernel::VectorBytes& blob
@@ -143,7 +143,8 @@ namespace Monad::Audio
 		/// </summary>
 		/// <param name="filename">The name of PCM Buffer.</param>
 		void Describe(
-			const VectorCue& filenames
+			const VectorCue& filenames,
+			const bool resetQueue = true
 		);
 		/// <summary>
 		/// Determines if the Voice Manager has any active playback.

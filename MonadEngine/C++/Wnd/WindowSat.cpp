@@ -42,6 +42,7 @@ namespace Monad
 				const HWND pHWND
 			) noexcept
 			{
+				MONAD_FUNCTION_NAME;
 				MSG msg{};
 				BOOL bRet;
 
@@ -66,6 +67,7 @@ namespace Monad
 				LPVOID&
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				DestroyWindow(hWnd);
 				return PROCESSING_OK;
 			}
@@ -78,6 +80,7 @@ namespace Monad
 				LPVOID& context
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				Exceptions::RegisterWM_CLOSE();
 				return ProcessWM_APP_CLOSE(
 					hWnd,
@@ -166,6 +169,7 @@ namespace Monad
 					LPARAM lParam
 				) noexcept
 				{
+					MONAD_FUNCTION_NAME;
 					try
 					{
 						thread_local LPVOID windowContext = nullptr;
@@ -212,12 +216,14 @@ namespace Monad
 
 				inline void DiscardDeviceResources()
 				{
+					MONAD_FUNCTION_NAME;
 					m_pRT.Reset();
 					m_pD2DBitmap.Reset();
 				}
 
 				void OnPaint()
 				{
+					MONAD_FUNCTION_NAME;
 					PAINTSTRUCT ps{};
 
 					if (BeginPaint(m_hWnd, &ps))
@@ -280,6 +286,7 @@ namespace Monad
 
 				void CreateDeviceResources() noexcept
 				{
+					MONAD_FUNCTION_NAME;
 					if (!m_pRT)
 					{
 						m_cursorControl.SetNewCurrentCursor(CURSOR_WAIT);
@@ -307,6 +314,7 @@ namespace Monad
 
 				void Routine()
 				{
+					MONAD_FUNCTION_NAME;
 					{
 						Files::TaskFileHolder loader(
 							Files::g_fileSearcherGeneric,
@@ -349,6 +357,7 @@ namespace Monad
 		{
 			size_t operator()(const ThreadSatellite& v) const noexcept
 			{
+				MONAD_FUNCTION_NAME;
 				return std::_Hash_array_representation(
 					reinterpret_cast<const uint8_t*>(&v.m_wndRect),
 					sizeof(RECT)
@@ -357,6 +366,7 @@ namespace Monad
 
 			bool operator()(const ThreadSatellite& lhs, const ThreadSatellite& rhs) const noexcept
 			{
+				MONAD_FUNCTION_NAME;
 				return memcmp(&lhs.m_wndRect, &rhs.m_wndRect, sizeof(RECT)) == 0;
 			}
 		};
@@ -368,6 +378,7 @@ namespace Monad
 
 		void ManagerSatellites::ArrangeSatellites()
 		{
+			MONAD_FUNCTION_NAME;
 			if (!System::IsOSWine())
 			{
 				const std::lock_guard lg(m_lockSat);
@@ -406,6 +417,7 @@ namespace Monad
 
 		void ManagerSatellites::SetTitle() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			if (m_satellites)
 				for (auto& satellite : *m_satellites)
 					SetWindowTitle(satellite.m_hWnd);
@@ -420,6 +432,7 @@ namespace Monad
 			m_blobJpgNames{ "background"s, "background1"s, "background2"s, "background3"s },
 			m_satellites{ std::make_unique<SetSatellites>() }
 		{
+			MONAD_FUNCTION_NAME;
 			const auto monitors = GetNonPrimaryMonitors();
 			for (const auto& monitorRect : monitors)
 				m_satellites->emplace(monitorRect);
@@ -441,6 +454,7 @@ namespace Monad
 			PVOID createWindowParameter,
 			const I18N::I18NString& appTitle) const
 		{
+			MONAD_FUNCTION_NAME;
 			return WindowFactoryGeneric(
 				WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE,
 				wndRect,
@@ -461,6 +475,7 @@ namespace Monad
 				LPVOID& context
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				context = reinterpret_cast<LPCREATESTRUCT>(lParam)->lpCreateParams;
 				assert(context);
 				SetLastError(ERROR_SUCCESS);
@@ -477,6 +492,7 @@ namespace Monad
 				LPVOID& context
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				static_cast<ThreadSatellite*> (context)->OnPaint();
 				return PROCESSING_OK;
 			}
@@ -489,6 +505,7 @@ namespace Monad
 				LPVOID& context
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				static_cast<ThreadSatellite*> (context)->m_cursorControl.SetCurrentCursor();
 				return PROCESSING_TRUE;
 			}

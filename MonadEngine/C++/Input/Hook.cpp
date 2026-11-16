@@ -18,6 +18,7 @@ namespace Monad::Input
 	) :
 		m_hookHandle{ hookHandle }
 	{
+		MONAD_FUNCTION_NAME;
 		if ((m_hookHandle = SetWindowsHookEx(
 			hookID,
 			procedure,
@@ -28,6 +29,7 @@ namespace Monad::Input
 	}
 	Hook::~Hook()
 	{
+		MONAD_FUNCTION_NAME;
 		UnhookWindowsHookEx(m_hookHandle);
 		m_hookHandle = nullptr;
 	}

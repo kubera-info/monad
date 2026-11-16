@@ -18,6 +18,7 @@ namespace Monad::Fonts
 		const DirectX::XMFLOAT4& rect
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		ShaderEmoji* resEmo = nullptr;
 		if (const auto itShaderEmoji =
 			std::ranges::find_if(
@@ -37,12 +38,14 @@ namespace Monad::Fonts
 
 	void EmojiManager::Commit()
 	{
+		MONAD_FUNCTION_NAME;
 		for (const auto& emoji : m_guiEmoji)
 			emoji->Commit();
 	}
 
 	bool EmojiManager::OnLanguageChangeEmojiStub()
 	{
+		MONAD_FUNCTION_NAME;
 		Commit();
 		return true;
 	}

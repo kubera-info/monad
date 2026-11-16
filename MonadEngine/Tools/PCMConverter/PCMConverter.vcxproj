@@ -230,6 +230,7 @@
     <ClInclude Include="..\..\C++\System\Parameter.h" />
     <ClInclude Include="..\..\C++\System\System.h" />
     <ClInclude Include="..\..\C++\System\__MonadSystem.h" />
+    <ClInclude Include="..\..\C++\Threads\__MonadThread.h" />
     <ClInclude Include="..\..\C++\Tools\Convert.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
@@ -256,6 +257,7 @@
     <ClCompile Include="..\..\C++\System\Parameter.cpp" />
     <ClCompile Include="..\..\C++\System\System.cpp" />
     <ClCompile Include="..\..\C++\System\__MonadSystem.cpp" />
+    <ClCompile Include="..\..\C++\Threads\__MonadThread.cpp" />
     <ClCompile Include="..\..\C++\Tools\Convert.cpp" />
     <ClCompile Include="PCMConverter.cpp" />
     <ClCompile Include="stdafx.cpp">

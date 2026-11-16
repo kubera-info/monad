@@ -256,6 +256,7 @@ namespace Monad::Renderer::InputLayout
 	protected:
 		void AddVertex(const VERTEX_TYPE& vertex)
 		{
+			MONAD_FUNCTION_NAME;
 			if (const auto it = m_verticesMap.find(vertex); it == m_verticesMap.end())
 			{
 				const size_t index = m_vertices.size();

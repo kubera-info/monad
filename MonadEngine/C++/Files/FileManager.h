@@ -276,17 +276,24 @@ namespace Monad::Files
 		{
 			Monad::Repositories::g_repositoryGeneric->m_meshes.Insert(
 				file.GetFilename(),
-				file.GetSpan());
+				file.GetSpan()
+			);
 		};
 
 	const auto LOADER_PCM = [](TaskFileHolderGeneric& file)
 		{
-			Audio::g_persistentAudio->CreateSound(Cue(file.GetFilename()), file.GetVector());
+			Audio::g_persistentAudio->CreateSound(
+				Cue(file.GetFilename()),
+				file.GetVector()
+			);
 		};
 
 	const auto LOADER_MP3 = [](TaskFileHolderGeneric& file)
 		{
-			Audio::g_persistentAudio->CreateStream(Cue(file.GetFilename()), file.GetComIStreamOnCopy().Get()); \
+			Audio::g_persistentAudio->CreateStream(
+				Cue(file.GetFilename()),
+				file.GetComIStreamOnCopy().Get()
+			);
 		};
 
 	const auto LOADER_TEX = [](TaskFileHolderGeneric& file)

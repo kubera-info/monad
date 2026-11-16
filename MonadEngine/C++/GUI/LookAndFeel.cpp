@@ -64,6 +64,7 @@ namespace Monad::GUI
 		ONE_COLOR_STYLE{
 			[](const XMFLOAT4& positionOfCenter) noexcept
 			{
+				MONAD_FUNCTION_NAME;
 				// Rectangular hit-test
 				return between(
 					positionOfCenter.x - positionOfCenter.z,

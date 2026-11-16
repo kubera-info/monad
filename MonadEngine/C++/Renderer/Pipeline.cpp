@@ -45,6 +45,7 @@ namespace Monad
 			: m_name(name)
 #endif
 		{
+			MONAD_FUNCTION_NAME;
 			// These structures are simplified. (assumed m_ranges.size() == rootParameters.size()).
 			m_ranges.reserve(ranges.size());
 			vector<CD3DX12_ROOT_PARAMETER1> rootParameters;
@@ -80,6 +81,7 @@ namespace Monad
 			const D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle
 		) const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			g_dxSample->m_commandList.Get()->
 				SetGraphicsRootDescriptorTable(
 					QueryTableParameter(
@@ -95,6 +97,7 @@ namespace Monad
 			const uint32_t baseShaderRegister
 		) const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			for (const auto [index, range] : m_ranges | std::views::enumerate)
 				// Range in Root Parameter, it is enough
 				if (baseShaderRegister == range.BaseShaderRegister
@@ -168,6 +171,7 @@ namespace Monad
 			InitD3D12Ranges1::InitializerListInitRanges ranges
 		)
 		{
+			MONAD_FUNCTION_NAME;
 #if defined _DEBUG
 			if (!g_dxSample->m_rootSignatures.contains(leadingTechID))
 			{
@@ -189,6 +193,7 @@ namespace Monad
 			const FXName& id
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			if (!m_pipelineState)
 			{
 				const auto psoDesc = CreateGraphicsPipelineStateDesc(
@@ -203,6 +208,7 @@ namespace Monad
 
 		void ShaderConfigGeneric::SetMe() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			assert(m_pipelineState);
 			assert(nullptr != m_parametersDef);
 			assert(m_parametersDef->m_rootSignature);
@@ -216,6 +222,7 @@ namespace Monad
 			Registers::CONSTANT_BUFFER baseShaderRegister
 		) const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			assert(m_parametersDef);
 			return m_parametersDef->QueryTableParameter(
 				D3D12_DESCRIPTOR_RANGE_TYPE_CBV,
@@ -226,6 +233,7 @@ namespace Monad
 			Registers::INPUT_RESOURCE baseShaderRegister
 		) const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			assert(m_parametersDef);
 			return m_parametersDef->QueryTableParameter(
 				D3D12_DESCRIPTOR_RANGE_TYPE_SRV,
@@ -238,6 +246,7 @@ namespace Monad
 			const D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle
 		) const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			assert(m_parametersDef);
 			m_parametersDef->SetTableParameter(
 				D3D12_DESCRIPTOR_RANGE_TYPE_CBV,
@@ -250,6 +259,7 @@ namespace Monad
 			const D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle
 		) const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			assert(m_parametersDef);
 			m_parametersDef->SetTableParameter(
 				D3D12_DESCRIPTOR_RANGE_TYPE_SRV,
@@ -262,6 +272,7 @@ namespace Monad
 			const D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle
 		) const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			g_dxSample->m_commandList.Get()->
 				SetGraphicsRootDescriptorTable(
 					tableID,
@@ -275,6 +286,7 @@ namespace Monad
 			const FXName& id
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			auto& tech = operator[](id);
 			tech->CreateGraphicsPipelineStateGeneric(id);
 			return tech.get();

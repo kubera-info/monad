@@ -64,6 +64,7 @@ namespace Monad::Renderer
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		) override
 		{
+			MONAD_FUNCTION_NAME;
 			B::OnComputePerWorldFrame(modelSpaceMatrix);
 
 			if (!m_textures.empty())

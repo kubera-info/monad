@@ -51,7 +51,7 @@ namespace Monad::System
 	void SmartHandle::Close() noexcept
 	{
 		if (operator bool())
-			::CloseHandle(m_handle);
+			CloseHandle(m_handle);
 	}
 
 	HANDLE SmartHandle::Detach() noexcept

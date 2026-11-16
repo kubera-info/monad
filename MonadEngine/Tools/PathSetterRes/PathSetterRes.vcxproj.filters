@@ -80,6 +80,9 @@
     <ClCompile Include="..\..\C++\GUI\__MonadGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C++\Threads\__MonadThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\C++\Kernel\Del.h">
@@ -164,6 +167,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C++\GUI\__MonadGUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C++\Threads\__MonadThread.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

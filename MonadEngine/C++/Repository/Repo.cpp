@@ -24,6 +24,7 @@ namespace Monad::Repositories
 
 	void RepositoryGeneric::AddGhostTexture()
 	{
+		MONAD_FUNCTION_NAME;
 		m_shaderResources.emplace(
 			Kernel::GHOST,
 			Renderer::RESOURCE_DESC
@@ -32,11 +33,13 @@ namespace Monad::Repositories
 
 	void RepositoryGeneric::OnClearD3DAssets() noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		Kernel::FireEvent(Kernel::EVENT_IDS::D3D_CLEAR_ASSETS);
 	}
 
 	Renderer::Texture& RepositoryGeneric::MapMembersTextures::LoadEmoji(const std::string& filename)
 	{
+		MONAD_FUNCTION_NAME;
 		auto texIt(this->find(filename));
 		if (cend() != texIt)
 			return texIt->second;

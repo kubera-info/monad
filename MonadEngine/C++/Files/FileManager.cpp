@@ -45,6 +45,7 @@ namespace Monad
 		void DropProfile() noexcept
 		{
 #if defined(MONAD_DROP_FILE)
+			MONAD_FUNCTION_NAME;
 			if (!g_profilePath.empty())
 			{
 				std::error_code ec;
@@ -82,6 +83,7 @@ namespace Monad
 
 		const SpanConstBytes TaskFileHolderGeneric::GetSpan() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			if (HasArchive())
 				return WITHOUT_META;
 			else
@@ -90,6 +92,7 @@ namespace Monad
 
 		VectorBytes TaskFileHolderGeneric::GetVector()
 		{
+			MONAD_FUNCTION_NAME;
 			if (HasArchive())
 				return WITHOUT_META;
 			else
@@ -98,16 +101,19 @@ namespace Monad
 
 		wstring TaskFileHolderGeneric::Split::UTF8ToUnicode() const
 		{
+			MONAD_FUNCTION_NAME;
 			return UTF8ToUnicodeView(c_stringView);
 		}
 
 		PtrIStream TaskFileHolderGeneric::GetComIStreamTemp() const
 		{
+			MONAD_FUNCTION_NAME;
 			return GetSpan().GetComIStreamTemp();
 		}
 
 		PtrIStream TaskFileHolderGeneric::GetComIStreamOnCopy() const
 		{
+			MONAD_FUNCTION_NAME;
 			return GetSpan().GetComIStreamOnCopy();
 		}
 
@@ -117,6 +123,7 @@ namespace Monad
 			__try
 			{
 #endif
+				MONAD_FUNCTION_NAME;
 				OnFile();
 #if MONAD_HARDWARE_EXCEPTIONS == 1
 			}
@@ -132,16 +139,19 @@ namespace Monad
 		}
 		wstring TaskFileHolderGeneric::GetWFilename() const
 		{
+			MONAD_FUNCTION_NAME;
 			return c_path.stem();
 		}
 
 		string TaskFileHolderGeneric::GetFilename() const
 		{
+			MONAD_FUNCTION_NAME;
 			return c_path.stem().string();
 		}
 
 		bool TaskFileHolderGeneric::HasArchive() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			return !m_archiveBuffer.empty();
 		}
 #pragma endregion
@@ -149,6 +159,7 @@ namespace Monad
 #pragma region TaskFileHolder
 		void TaskFileHolder::OnFile()
 		{
+			MONAD_FUNCTION_NAME;
 			if (!InAnyCloseReason())
 				try
 				{
@@ -202,6 +213,7 @@ namespace Monad
 
 		TaskFileSearcherGeneric::~TaskFileSearcherGeneric()
 		{
+			MONAD_FUNCTION_NAME;
 			WaitForStateCompletion();
 		}
 
@@ -233,6 +245,7 @@ namespace Monad
 			VectorPath searchPaths
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			m_called = false;
 
 			ThreadPool::ListPtrsTasks listOfPtrsHolders;
@@ -296,6 +309,7 @@ namespace Monad
 
 		void TaskFileSearcherGeneric::OnFinish() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			if (IsNotReferenced())
 			{
 				OnStateChange();
@@ -305,11 +319,13 @@ namespace Monad
 
 		fs::path TaskFileSearcherGeneric::GetFontPath(const std::string& fontFace)
 		{
+			MONAD_FUNCTION_NAME;
 			return FONT_PATH / (fontFace + ".monad$fnt"s);
 		}
 
 		uint32_t TaskFileSearcherGeneric::SetShaderResourceViewsCount()
 		{
+			MONAD_FUNCTION_NAME;
 			return FileHandleCount{
 				{ GetFolderRes() }
 			};
@@ -334,6 +350,7 @@ namespace Monad
 
 		FileRefHolder::~FileRefHolder()
 		{
+			MONAD_FUNCTION_NAME;
 			m_fileSearcher->OnFinish(/*c_sequenceNo*/);
 		}
 #pragma endregion
@@ -348,6 +365,7 @@ namespace Monad
 			),
 			m_count(0)
 		{
+			MONAD_FUNCTION_NAME;
 			Run();
 		}
 
@@ -360,6 +378,7 @@ namespace Monad
 			),
 			m_count(0)
 		{
+			MONAD_FUNCTION_NAME;
 			Run();
 		}
 
@@ -368,6 +387,7 @@ namespace Monad
 			WIN32_FIND_DATA findFileData
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			if (ranges::find(
 				g_texturesExts,
 				fs::path(ToLower(findFileData.cFileName)).extension())
@@ -380,6 +400,7 @@ namespace Monad
 			WIN32_FIND_DATA findFileData
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			m_count += FileHandleCount{
 				Files::DummyFolderParameter{},
 				{ selectedFolder / findFileData.cFileName / WILDCARD_ANY }
@@ -388,6 +409,7 @@ namespace Monad
 
 		FileHandleCount::operator uint32_t() const
 		{
+			MONAD_FUNCTION_NAME;
 			THROW_EXC_IFFALSE(Exceptions::OutOfRange, m_count < 10001, L"Cannot count more files");
 			return m_count;
 		}

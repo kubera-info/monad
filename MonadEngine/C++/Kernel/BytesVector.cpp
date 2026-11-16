@@ -10,11 +10,15 @@
 #include <shlwapi.h>
 #pragma comment(lib, "Shlwapi.lib")
 
+// Monad
+#include "Exceptions/__MonadException.h"
+
 namespace Monad::Kernel
 {
 #pragma region SpanConstBytes
 	PtrIStream SpanConstBytes::GetComIStreamTemp() const
 	{
+		MONAD_FUNCTION_NAME;
 		/// <summary>
 		/// Class sugested by claude.ai
 		/// </summary>
@@ -229,6 +233,7 @@ namespace Monad::Kernel
 
 	PtrIStream SpanConstBytes::GetComIStreamOnCopy() const
 	{
+		MONAD_FUNCTION_NAME;
 		PtrIStream fileStream;
 		fileStream.Attach(SHCreateMemStream(
 			data(),
@@ -260,11 +265,13 @@ namespace Monad::Kernel
 
 	void VectorBlock::resize(size_t blocks)
 	{
+		MONAD_FUNCTION_NAME;
 		VectorBytes::resize(blocks * c_blockSize);
 	}
 
 	size_t VectorBlock::size() const noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		return VectorBytes::size() / c_blockSize;
 	}
 

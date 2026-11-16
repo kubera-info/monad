@@ -190,8 +190,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -247,8 +247,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -301,8 +301,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=0;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv81</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -357,8 +357,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv81</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -409,8 +409,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>MONAD_ENGINE;_WINDOWS;_DEBUG;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>AdvancedVectorExtensions2</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -460,8 +460,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>MONAD_ENGINE;_WINDOWS;_DEBUG;MONAD_HARDWARE_EXCEPTIONS=0;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
       <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv80</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -521,6 +521,7 @@
     <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Catch.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Exceptions\EventView.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Exceptions.h" />
+    <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Trace.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Exceptions\__MonadException.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Files\EncryptAndSave.h" />
     <ClInclude Include="..\..\MonadEngine\C++\Files\FileManager.h" />
@@ -664,6 +665,7 @@
     <ClCompile Include="..\..\MonadEngine\C++\Core\Win32ApplicationGeneric.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Exceptions\EventView.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Exceptions\Exceptions.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Exceptions\Trace.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Files\FileManager.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Files\Folder.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Files\Handle.cpp" />
@@ -756,6 +758,7 @@
     <ClCompile Include="..\..\MonadEngine\C++\System\__MonadSystem.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Threads\Thread.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Threads\ThreadPool.cpp" />
+    <ClCompile Include="..\..\MonadEngine\C++\Threads\__MonadThread.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Time\TimeLerp.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Time\Timer.cpp" />
     <ClCompile Include="..\..\MonadEngine\C++\Time\__MonadTime.cpp" />

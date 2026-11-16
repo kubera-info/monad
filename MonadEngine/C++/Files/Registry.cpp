@@ -6,6 +6,9 @@
 #include "stdafx.h"
 #include "Registry.h"
 
+// STD
+#include <stdexcept>
+
 using namespace std;
 
 namespace Monad::Files
@@ -17,13 +20,13 @@ namespace Monad::Files
 			return !!dword;
 		}
 
-		inline const HKEY RegCreateKeyEx(
+		inline const HKEY InternalRegCreateKeyEx(
 			const DWORD options,
 			const wchar_t* subKey
 		)
 		{
 			HKEY retSubKey;
-			if (ERROR_SUCCESS != ::RegCreateKeyEx(
+			if (ERROR_SUCCESS != RegCreateKeyEx(
 				HKEY_CURRENT_USER,
 				subKey,
 				0,
@@ -38,14 +41,14 @@ namespace Monad::Files
 			return retSubKey;
 		}
 
-		LSTATUS RegQueryValueEx(
+		LSTATUS InternalRegQueryValueEx(
 			HKEY subKey,
 			LPCWSTR name,
 			LPBYTE data,
 			LPDWORD size
 		) noexcept
 		{
-			return ::RegQueryValueEx(
+			return RegQueryValueEx(
 				subKey,
 				name,
 				nullptr,
@@ -55,7 +58,7 @@ namespace Monad::Files
 			);
 		}
 
-		void RegSetValueEx(
+		void InternalRegSetValueEx(
 			HKEY subKey,
 			LPCWSTR name,
 			DWORD type,
@@ -63,7 +66,7 @@ namespace Monad::Files
 			DWORD size
 		)
 		{
-			if (ERROR_SUCCESS != ::RegSetValueEx(
+			if (ERROR_SUCCESS != RegSetValueEx(
 				subKey,
 				name,
 				0,
@@ -81,7 +84,7 @@ namespace Monad::Files
 		const wstring& value
 	)
 	{
-		RegSetValueEx(
+		InternalRegSetValueEx(
 			m_subKey,
 			name,
 			REG_SZ,
@@ -93,7 +96,7 @@ namespace Monad::Files
 		const wchar_t* name
 	) const
 	{
-		if (DWORD dwLength; ERROR_SUCCESS == RegQueryValueEx(
+		if (DWORD dwLength; ERROR_SUCCESS == InternalRegQueryValueEx(
 			m_subKey,
 			name,
 			nullptr,
@@ -101,7 +104,7 @@ namespace Monad::Files
 			)
 		{
 			wstring registryStringValue(dwLength / sizeof(wchar_t) - 1, L'\0');
-			if (ERROR_SUCCESS != RegQueryValueEx(
+			if (ERROR_SUCCESS != InternalRegQueryValueEx(
 				m_subKey,
 				name,
 				reinterpret_cast<uint8_t*>(registryStringValue.data()),
@@ -118,7 +121,7 @@ namespace Monad::Files
 		DWORD value
 	)
 	{
-		/*return ERROR_SUCCESS ==*/ RegSetValueEx(
+		/*return ERROR_SUCCESS ==*/ InternalRegSetValueEx(
 			m_subKey,
 			name,
 			REG_DWORD,
@@ -133,7 +136,7 @@ namespace Monad::Files
 	) const noexcept
 	{
 		if (DWORD dwLength = sizeof DWORD, dwValue = 0; ERROR_SUCCESS !=
-			RegQueryValueEx(
+			InternalRegQueryValueEx(
 				m_subKey,
 				name,
 				reinterpret_cast<uint8_t*>(&dwValue),
@@ -171,13 +174,22 @@ namespace Monad::Files
 #pragma region Ctors Dtors
 	Registry::Registry(
 		const DWORD options,
-		const wstring& subKey
+		const wchar_t* subKey
 	) :
 		m_subKey{
-		RegCreateKeyEx(
+		InternalRegCreateKeyEx(
+			options,
+			subKey)
+	}
+	{}
+
+	Registry::Registry(
+		const DWORD options,
+		const wstring& subKey
+	) :
+		Registry(
 			options,
 			subKey.c_str())
-	}
 	{}
 
 	Registry::~Registry()

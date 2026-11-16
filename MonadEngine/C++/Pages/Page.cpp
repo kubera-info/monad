@@ -90,6 +90,7 @@ namespace Monad
 			const string& pageNo
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			if (g_MorphingDecay)
 			{
 				if ("boot"_pageNo != pageNo)
@@ -100,6 +101,7 @@ namespace Monad
 
 		void DequeuePage()
 		{
+			MONAD_FUNCTION_NAME;
 			if (g_MorphingDecay)
 				g_MorphingDecay->DequeuePage();
 		}
@@ -116,6 +118,7 @@ namespace Monad
 
 		void TimeLerpMorphing::SetMorphing(float lerp) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			XMStoreFloat4x4(
 				Renderer::g_dataMorphingMatrix,
 				DirectX::XMMatrixScaling(lerp, lerp, 1.0f)
@@ -124,12 +127,14 @@ namespace Monad
 
 		void TimeLerpMorphing::OnFrameMove() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			if (c_isMe == g_isYou)
 				SetMorphing(GetCurrentValue());
 		}
 
 		void TimeLerpMorphing::SetFinish() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			SetMorphing(static_cast<float>(GetStopValue()));
 		}
 #pragma endregion
@@ -151,6 +156,7 @@ namespace Monad
 
 		void TimeLerpMorphingDecay::OnFlush() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			if (g_langChanged)
 			{
 				Kernel::FireEventFont();
@@ -170,6 +176,7 @@ namespace Monad
 
 		void TimeLerpMorphingDecay::OnFrameMove() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			TimeLerpMorphing::OnFrameMove();
 			if (IsInExit() && Audio::g_persistentAudio)
 				Audio::g_persistentAudio->SetMasterVoiceVolume(GetCurrentValue());
@@ -179,6 +186,7 @@ namespace Monad
 			const string& pageNo
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			g_processingPages = true;
 			if (Audio::g_persistentAudio)
 				Audio::g_persistentAudio->ResetQueueDescribe();
@@ -196,11 +204,13 @@ namespace Monad
 
 		bool TimeLerpMorphingDecay::IsWorking() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			return g_processingPages;
 		}
 
 		void TimeLerpMorphingDecay::DequeuePage()
 		{
+			MONAD_FUNCTION_NAME;
 			if (!m_pageQueue.empty() && !IsWorking())
 			{
 				const auto desiredPage = m_pageQueue.front();
@@ -211,6 +221,7 @@ namespace Monad
 
 		bool TimeLerpMorphingDecay::IsInExit() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			return "exit"_pageNo == m_pageNo;
 		}
 
@@ -218,6 +229,7 @@ namespace Monad
 			const string& pageNo
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			if (IsWorking())
 				m_pageQueue.push(pageNo);
 			else
@@ -226,6 +238,7 @@ namespace Monad
 
 		void TimeLerpMorphingDecay::TimeLerpRaise::OnFlush() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			if (g_langChanged)
 				g_langChanged = false;
 

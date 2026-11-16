@@ -26,6 +26,7 @@ namespace Monad::System
 			)
 		)
 	{
+		MONAD_FUNCTION_NAME;
 		// If the mutex already exists or cannot be accessed,
 		// this means another instance is already running.
 		if (const DWORD res = GetLastError();

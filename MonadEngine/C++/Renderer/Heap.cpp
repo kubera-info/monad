@@ -20,6 +20,7 @@ namespace Monad::Renderer
 			descriptorHeapType.Type)
 		)
 	{
+		MONAD_FUNCTION_NAME;
 		THROW_EXC_D3D(d3d12Device->CreateDescriptorHeap(
 			&descriptorHeapType,
 			IID_PPV_ARGS(&m_heap)),
@@ -34,6 +35,7 @@ namespace Monad::Renderer
 		const int32_t offset
 	) const noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		return {
 			m_heap->GetGPUDescriptorHandleForHeapStart(),
 			offset,
@@ -43,6 +45,7 @@ namespace Monad::Renderer
 
 	const CD3DX12_CPU_DESCRIPTOR_HANDLE HeapCombine::GetCPUDescriptorHandle(const int32_t offset) const noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		return {
 			GetCPUDescriptorHandleForHeapStart(),
 			offset,
@@ -52,11 +55,13 @@ namespace Monad::Renderer
 
 	D3D12_CPU_DESCRIPTOR_HANDLE HeapCombine::GetCPUDescriptorHandleForHeapStart() const noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		return m_heap->GetCPUDescriptorHandleForHeapStart();
 	}
 
 	uint32_t HeapCombine::GetDescriptorSize() const noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		assert(c_descriptorSize);
 		return c_descriptorSize;
 	}

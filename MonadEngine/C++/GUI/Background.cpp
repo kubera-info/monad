@@ -20,14 +20,15 @@ namespace Monad::GUI
 	{
 		XMFLOAT4X4 GetTransform() noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			XMFLOAT4X4 backgroundTransform;
 			XMStoreFloat4x4(&backgroundTransform,
-				XMMatrixMultiply(
-					XMMatrixTranslation(0.0f, 0.0f, -1.0f),
-					XMMatrixScaling(
-						-g_dxSample->m_matrices.m_monitorProps.m_cursorFactor.x,
-						g_dxSample->m_matrices.m_monitorProps.m_cursorFactor.y,
-						1.0f)));
+				XMMatrixTranslation(0.0f, 0.0f, -1.0f)
+				* XMMatrixScaling(
+					-g_dxSample->m_matrices.m_monitorProps.m_cursorFactor.x,
+					g_dxSample->m_matrices.m_monitorProps.m_cursorFactor.y,
+					1.0f)
+			);
 			return backgroundTransform;
 		}
 	}

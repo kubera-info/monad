@@ -83,6 +83,7 @@ namespace Monad::Fonts
 		{
 			const StyleInFont GetStyleInFont()
 			{
+				MONAD_FUNCTION_NAME;
 				assert(m_rootOfDoc.m_nestedElements.size());
 				const auto& inf =
 					m_rootOfDoc.m_nestedElements[m_rootOfDoc.m_nestedElements.size() - 1].
@@ -101,6 +102,7 @@ namespace Monad::Fonts
 				{ L"fnt",
 				[](const XMLElement& tag, XMLManager* manager)
 				{
+					MONAD_FUNCTION_NAME;
 					assert(manager);
 					XMFLOAT2 fontStyleOffset{ .0f, .0f };
 					FONT_STYLES style = FONT_STYLES::NORMAL;

@@ -493,13 +493,10 @@ namespace Monad
 			const auto scale0 = static_cast<float>((sin(g_fTime * 1.75) * 0.5 + 0.5) * .25 + .75);
 			const auto scale = scale0 * scale0;
 			XMStoreFloat4x4(&matrixToAlter,
-				XMMatrixMultiply(
-					XMMatrixMultiply(
-						XMMatrixMultiply(
-							XMMatrixScaling(scale, scale, 1.0f),
-							XMMatrixRotationZ(static_cast<float> (g_fTime * .25))),
-						XMMatrixTranslation(0.0f, 0.2f, 0.0f)),
-					XMLoadFloat4x4(&matrixToAlter)));
+				XMMatrixScaling(scale, scale, 1.0f)
+				* XMMatrixRotationZ(static_cast<float> (g_fTime * .25))
+				* XMMatrixTranslation(0.0f, 0.2f, 0.0f)
+				* XMLoadFloat4x4(&matrixToAlter));
 		}
 #pragma endregion
 

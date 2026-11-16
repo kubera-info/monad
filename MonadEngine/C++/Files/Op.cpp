@@ -17,6 +17,7 @@ namespace Monad::Files
 {
 	Security::Security()
 	{
+		MONAD_FUNCTION_NAME;
 		// Initialize security descriptor
 		THROW_EXC_IFFALSE(Exceptions::InvalidClass, InitializeSecurityDescriptor(&m_sd, SECURITY_DESCRIPTOR_REVISION), L"Security Descriptor");
 		THROW_EXC_IFFALSE(Exceptions::InvalidClass, SetSecurityDescriptorDacl(&m_sd, TRUE, NULL, FALSE), L"Set Security Descriptor Dacl");
@@ -114,9 +115,12 @@ namespace Monad::Files
 		const fs::path& filename
 	)
 	{
-		const fs::path oldFilename = filename.wstring() + L'~';
-		error_code ec;
-		fs::remove(oldFilename, ec);
-		fs::rename(filename, oldFilename, ec);
+		if (fs::exists(filename))
+		{
+			const fs::path oldFilename = filename.wstring() + L'~';
+			error_code ec;
+			fs::remove(oldFilename, ec);
+			fs::rename(filename, oldFilename, ec);
+		}
 	}
 }

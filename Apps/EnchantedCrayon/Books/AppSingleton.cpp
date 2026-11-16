@@ -217,7 +217,7 @@ namespace Monad
 		{
 			g_singleton->m_fileSearcher.SetPaths();
 			g_samplers.SetAnisotropy(g_applied.m_quality + 1);
-			g_singleton->m_monitorConf = MonitorConf{};
+			g_singleton->m_monitorConf = {};
 			const auto
 				width = g_singleton->m_monitorConf.GetWidth(),
 				height = g_singleton->m_monitorConf.GetHeight();
@@ -256,7 +256,7 @@ namespace Monad
 			struct RegistryReadProfile : Registry
 			{
 				RegistryReadProfile(ConfigRecord& profile) :
-					Registry{ KEY_READ }
+					Registry{ KEY_READ, Globals::g_userProfile }
 				{
 					profile = {
 					.m_audio = GetBool(
@@ -304,7 +304,7 @@ namespace Monad
 			struct RegistryWriteProfile : Registry
 			{
 				inline RegistryWriteProfile() noexcept :
-					Registry{ KEY_WRITE }
+					Registry{ KEY_WRITE, Globals::g_userProfile }
 				{
 					SetBool(
 						L"Audio",

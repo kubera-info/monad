@@ -52,6 +52,7 @@ namespace Monad::Kernel
 		/// </summary>
 		const S& GetRandomString() const
 		{
+			MONAD_FUNCTION_NAME;
 			THROW_EXC_IFFALSE(Exceptions::NoDataFound, !this->empty(), L"Random String");
 			return std::vector<S>::operator[](Math::g_random.GetRandomInt(this->size() - 1));
 		}
@@ -61,6 +62,7 @@ namespace Monad::Kernel
 		/// </summary>
 		S GetRandomStringOnce()
 		{
+			MONAD_FUNCTION_NAME;
 			auto ret = GetRandomString();
 			erase_if(*this, [&ret](const auto& name) { return name == ret; });
 			return ret;
@@ -80,8 +82,8 @@ struct D                                                                        
     D(const D & t_) BOOST_NOEXCEPT_IF(boost::has_nothrow_copy_constructor<T>::value) : t(t_.t) {}                \
     D& operator=(const D& rhs) BOOST_NOEXCEPT_IF(boost::has_nothrow_assign<T>::value) {t = rhs.t; return *this;} \
     D& operator=(const T& rhs) BOOST_NOEXCEPT_IF(boost::has_nothrow_assign<T>::value) {t = rhs; return *this;}   \
-    operator const T&() const {return t;}                                                                        \
-    operator T&() {return t;}                                                                                    \
+    operator const T&() const noexcept {return t;}                                                                        \
+    operator T&() noexcept {return t;}                                                                                    \
     bool operator==(const D& rhs) const {return t == rhs.t;}                                                     \
 	auto operator<=>(const D& rhs) const {return t <=> rhs.t;}\
 };

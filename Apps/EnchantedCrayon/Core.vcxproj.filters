@@ -594,6 +594,9 @@
     <ClInclude Include="..\..\MonadEngine\C++\Threads\ThreadPool.h">
       <Filter>Monad%28a%29 Incudes\Threads</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\MonadEngine\C++\Exceptions\Trace.h">
+      <Filter>Monad%28a%29 Incudes\Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\MonadEngine\C++\GUI\GUI.cpp">
@@ -988,6 +991,12 @@
     </ClCompile>
     <ClCompile Include="..\..\MonadEngine\C++\Renderer\HardwareAdapter.cpp">
       <Filter>Monad%28a%29 Incudes\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Exceptions\Trace.cpp">
+      <Filter>Monad%28a%29 Incudes\Exceptions</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\MonadEngine\C++\Threads\__MonadThread.cpp">
+      <Filter>Monad%28a%29 Incudes\Threads</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

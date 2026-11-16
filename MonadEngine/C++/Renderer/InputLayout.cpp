@@ -30,6 +30,7 @@ namespace Monad::Renderer::InputLayout
 
 	D3D12_INPUT_LAYOUT_DESC VectorInputElementsDesc::GetInputLayoutDesc() const
 	{
+		MONAD_FUNCTION_NAME;
 		THROW_EXC_IFFALSE(Exceptions::NoDataFound, !empty(), L"3D Input Layout Description (vector)");
 		return
 		{
@@ -42,6 +43,7 @@ namespace Monad::Renderer::InputLayout
 		const std::string& id
 	) const
 	{
+		MONAD_FUNCTION_NAME;
 		const auto foundIL = find(id);
 		THROW_EXC_ONEND(*this, foundIL, L"3D Input Layout Descriptions (map)");
 		return foundIL->second.GetInputLayoutDesc();
@@ -94,6 +96,7 @@ namespace Monad::Renderer::InputLayout
 		const MapInputLayouts& source
 		)
 	{
+		MONAD_FUNCTION_NAME;
 		const size_t oldSize = size();
 		insert(source.cbegin(), source.cend());
 		THROW_EXC_IFFALSE(Exceptions::ClassAlreadyExists, oldSize + source.size() == size(), L"3D Failed to merge input layout maps");
@@ -104,6 +107,7 @@ namespace Monad::Renderer::InputLayout
 		const MapInputLayouts& source
 		)
 	{
+		MONAD_FUNCTION_NAME;
 		return MapInputLayouts{ *this } += source;
 	}
 }

@@ -69,6 +69,7 @@ namespace Monad::System
 
 		void ExtractIconToFile(int groupIconId, const fs::path& outIcoPath)
 		{
+			MONAD_FUNCTION_NAME;
 			struct SmartHandleFileLogo : Files::SmartHandleFile
 			{
 				using SmartHandleFile::SmartHandleFile;
@@ -153,6 +154,7 @@ namespace Monad::System
 
 	void TaskSaverProfileIco::Run()
 	{
+		MONAD_FUNCTION_NAME;
 		std::wstring profile
 		{
 			BOM
@@ -161,9 +163,10 @@ namespace Monad::System
 			+ GUI::RemoveEmojiIcon(Globals::g_shortAppName.GetVal())
 			+ L"\nIconResource=logo.ico,0\n"s
 		};
-		const auto profileFolder = Files::GetFolderAppDocumentsSettingsGeneric(Globals::g_userFolder);
-		const auto desktopIniPath = profileFolder / "desktop.ini";
-		const auto desktopIcoPath = profileFolder / LOGO;
+		const auto 
+			profileFolder = Files::GetFolderAppDocumentsSettingsGeneric(Globals::g_userFolder),
+			desktopIniPath = profileFolder / "desktop.ini",
+			desktopIcoPath = profileFolder / LOGO;
 		SetFileAttributesW(
 			desktopIcoPath.c_str(),
 			GetFileAttributesW(desktopIcoPath.c_str()) & !DWORD(FILE_ATTRIBUTE_SYSTEM)

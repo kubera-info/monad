@@ -12,6 +12,7 @@
 
 // Monad
 #include "__MonadTime.h"
+#include "Exceptions/__MonadException.h"
 
 namespace Monad::Time
 {
@@ -55,6 +56,7 @@ namespace Monad::Time
 		const double stopValue
 	) noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		SetLerpParameters(startValue, stopValue);
 		assert(0.0 < m_durationInSeconds);
 		m_durationInSeconds = durationInSeconds;

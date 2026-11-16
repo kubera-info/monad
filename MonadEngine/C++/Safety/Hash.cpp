@@ -32,6 +32,7 @@ namespace Monad::Safety::SafetyCore
 				const SHA256Manager& algorithm
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				THROW_EXC_NTERROR(
 					BCryptCreateHash(
 						algorithm.m_algorithm,
@@ -65,6 +66,7 @@ namespace Monad::Safety::SafetyCore
 				InitializerListArgHash buffers
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				for (const auto& buffer : buffers)
 				{
 					if (std::holds_alternative<PtrString>(buffer))
@@ -104,6 +106,7 @@ namespace Monad::Safety::SafetyCore
 				size_t blockSize
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				THROW_EXC_NTERROR(::BCryptHashData(
 					m_hash,
 					const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(data)),
@@ -116,6 +119,7 @@ namespace Monad::Safety::SafetyCore
 				const std::wstring hashMe
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				BCryptHashDataGeneric(
 					hashMe.data(),
 					hashMe.size(),
@@ -126,6 +130,7 @@ namespace Monad::Safety::SafetyCore
 				const std::string hashMe
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				BCryptHashDataGeneric(
 					hashMe.data(),
 					hashMe.size(),
@@ -136,6 +141,7 @@ namespace Monad::Safety::SafetyCore
 				const Kernel::SpanBytes& hashMe
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				BCryptHashDataGeneric(
 					hashMe.data(),
 					hashMe.size(),
@@ -146,6 +152,7 @@ namespace Monad::Safety::SafetyCore
 				const fs::path& hashMe
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				BCryptHashData(
 					hashMe.wstring()
 				);

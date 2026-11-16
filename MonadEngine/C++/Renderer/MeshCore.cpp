@@ -14,6 +14,7 @@ namespace Monad::Renderer::InputLayout
 		const double end
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		const float startLerp = static_cast<float>(start),
 			endLerp = static_cast<float>(end),
 			x = Lerp(paneRect, startLerp),

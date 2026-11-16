@@ -71,7 +71,7 @@ namespace Monad::Files
 			OptionalSize optionalSize = std::nullopt
 		) const
 		{
-			OnZipBomb(buffer);
+			// OnZipBomb(buffer); do not validate itself
 			if (FALSE == ::WriteFile(m_handle,
 				reinterpret_cast<const uint8_t*>(buffer.data()) + (optionalBegin ? *optionalBegin : 0ul),
 				static_cast<DWORD>(optionalSize ? *optionalSize : buffer.size() * sizeof(V::value_type)),

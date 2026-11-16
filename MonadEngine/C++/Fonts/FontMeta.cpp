@@ -38,6 +38,7 @@ namespace Monad
 			wchar_t char2
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			const auto kerning = m_kernings.find(char2);
 			return c_advance + (m_kernings.cend() != kerning ? kerning->second : 0.0f);
 		}
@@ -46,6 +47,7 @@ namespace Monad
 			float lineHeight
 		) noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			m_lineHeight = lineHeight;
 		}
 #pragma endregion

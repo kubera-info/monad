@@ -23,6 +23,7 @@ namespace Monad::System
 			const fs::path& path
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			const HMODULE lib = ::LoadLibraryEx(
 				path.c_str(),
 				nullptr,

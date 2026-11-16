@@ -17,6 +17,7 @@ namespace Monad::Renderer
 	{
 		inline void ValidateSample()
 		{
+			MONAD_FUNCTION_NAME;
 			THROW_EXC_IFFALSE(
 				Exceptions::ThreeDFailed,
 				g_dxSample && g_dxSample->m_device,
@@ -26,6 +27,7 @@ namespace Monad::Renderer
 
 	Stateless::Stateless()
 	{
+		MONAD_FUNCTION_NAME;
 		ValidateSample();
 
 		THROW_EXC_D3D(g_dxSample->m_device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&m_commandAllocator)), L"Less Create Alloc");
@@ -36,6 +38,7 @@ namespace Monad::Renderer
 
 	void Stateless::Commit()
 	{
+		MONAD_FUNCTION_NAME;
 		ValidateSample();
 
 		// Close the resource creation command list and execute it to begin the vertex buffer copy into

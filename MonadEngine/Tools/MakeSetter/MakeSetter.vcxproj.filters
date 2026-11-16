@@ -66,6 +66,7 @@
     <ClCompile Include="..\..\C++\Audio\__MonadAudio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C++\Threads\__MonadThread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -142,6 +143,7 @@
     <ClInclude Include="..\..\C++\Audio\__MonadAudio.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C++\Threads\__MonadThread.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

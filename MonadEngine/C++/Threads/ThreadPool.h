@@ -139,6 +139,7 @@ namespace Monad::Threads
 			T tasks
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			auto notNullTasks = PrepareTasks(tasks, m_ev.operator std::mutex & ());
 
 			// Wake up workers for each inserted task

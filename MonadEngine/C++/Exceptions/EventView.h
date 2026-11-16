@@ -4,11 +4,18 @@
 
 #pragma once
 
+// Platform
+#include <Windows.h>
+
 // STD
+#include <stdint.h>
 #include <string>
 
 namespace Monad::Exceptions
 {
+	/// <summary>
+	/// This event log functionality does not throw exceptions
+	/// </summary>
 	struct EventLog
 	{
 		/// <summary>
@@ -25,12 +32,30 @@ namespace Monad::Exceptions
 		EventLog& operator=(EventLog&&) = delete;
 
 		/// <summary>
-		/// Reports an error to event log.
+		/// Reports a text to the event log.
+		/// </summary>
+		/// <param name="type">A kind of report text, for example EVENTLOG_WARNING_TYPE</param>
+		/// <param name="message">A bulk of rows separated by CRLF values</param>
+		void ReportEventGeneric(
+			const uint16_t type,
+			const std::wstring& message
+		) const noexcept;
+
+		/// <summary>
+		/// Reports a success to the event log.
+		/// </summary>
+		/// <param name="message">A bulk of rows separated by CRLF values</param>
+		void ReportSuccessEvent(
+			const std::wstring& message
+		) const noexcept;
+
+		/// <summary>
+		/// Reports an error to the event log.
 		/// </summary>
 		/// <param name="message">A bulk of rows separated by CRLF values</param>
 		void ReportErrorEvent(
 			const std::wstring& message
-		) const;
+		) const noexcept;
 
 	private:
 		const HANDLE c_hEventLog;

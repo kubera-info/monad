@@ -66,6 +66,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\C++\Audio\__MonadAudio.cpp" />
+    <ClCompile Include="..\..\C++\Threads\__MonadThread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -148,6 +149,7 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\C++\Audio\__MonadAudio.h" />
+    <ClInclude Include="..\..\C++\Threads\__MonadThread.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EXT2ext.rc" />

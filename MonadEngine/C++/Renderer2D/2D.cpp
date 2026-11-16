@@ -27,6 +27,7 @@ namespace Monad
 				g_factory2D
 			)
 		{
+			MONAD_FUNCTION_NAME;
 			THROW_EXC_IFFAILED(NotInitialized, CoCreateInstance(
 				CLSID_WICImagingFactory2,
 				nullptr,
@@ -47,6 +48,7 @@ namespace Monad
 			PtrWICBitmap& wicBitmap
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			ComPtr<IWICBitmapFrameDecode> frame;
 			THROW_EXC_IFFAILED(InvalidClass, bitmapBlob->GetFrame(0, &frame), L"WIC Get Frame");
 			ComPtr<IWICFormatConverter> converter;
@@ -75,6 +77,7 @@ namespace Monad
 			PtrWICBitmap& wicBitmap
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			ComPtr<IWICBitmapDecoder> decoder;
 			THROW_EXC_IFFAILED(
 				InvalidClass,

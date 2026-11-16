@@ -54,6 +54,7 @@ namespace Monad::System
 		size_t count
 	) noexcept
 	{
+		MONAD_FUNCTION_NAME;
 		return value.substr(0, count) + Fonts::CHAR_HORIZONTAL_ELLIPSIS;
 	}
 
@@ -73,6 +74,7 @@ namespace Monad::System
 		const wstring& name
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		for (size_t i = 1; i < __argc; ++i)
 			// This is safe fragment of code,
 			// the [] operator is always valid in this sequence of comparisons.

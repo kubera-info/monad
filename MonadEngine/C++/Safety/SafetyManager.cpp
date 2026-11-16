@@ -18,6 +18,7 @@ namespace Monad::Safety
 		InitializerListArgHash buffers
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		return m_sha256Manager.HashSource(buffers);
 	}
 
@@ -26,6 +27,7 @@ namespace Monad::Safety
 		Files::VectorBytesArchive& source
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		m_aes256Manager.GetEncrypted(
 			m_sha256Manager,
 			key,
@@ -38,6 +40,7 @@ namespace Monad::Safety
 		Files::VectorBytesArchive& source
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		source.ValidateBufferIn();
 		m_aes256Manager.GetClear(
 			m_sha256Manager,

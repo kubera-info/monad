@@ -36,6 +36,7 @@ namespace Monad::System
 		bool waitForProcessEnd
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		STARTUPINFO si{ .cb = sizeof STARTUPINFO };
 		PROCESS_INFORMATION pi{};
 
@@ -98,6 +99,7 @@ namespace Monad::System
 		bool waitForProcessEnd
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		return ExecuteApp(
 			path,
 			CreateParameters(parameters),

@@ -86,6 +86,7 @@ namespace Monad
 				VectorTransform characterToQuotedPrintablePairs
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				for (auto const& quotedPair : characterToQuotedPrintablePairs)
 				{
 					ReplaceAll(
@@ -104,6 +105,7 @@ namespace Monad
 		) :
 			c_semantics{ semantics }
 		{
+			MONAD_FUNCTION_NAME;
 			Microsoft::WRL::ComPtr<IXmlReader> xmlReader;
 			THROW_EXC_IFFAILED_DB(
 				CreateXmlReader(
@@ -156,6 +158,7 @@ namespace Monad
 
 		void XMLManager::Processor()
 		{
+			MONAD_FUNCTION_NAME;
 			for (const auto& element : m_rootOfDoc.m_nestedElements)
 			{
 				if (const auto fun(c_semantics.find(element.GetElementName())); fun != c_semantics.cend())
@@ -172,6 +175,7 @@ namespace Monad
 		}
 		const std::string XMLManager::BuildXML() const
 		{
+			MONAD_FUNCTION_NAME;
 			wstringstream buffer;
 			m_rootOfDoc.SaveXML(buffer);
 			return Tools::UnicodeToUTF8(buffer.str());
@@ -183,6 +187,7 @@ namespace Monad
 			wstringstream& buffer
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			SaveOpenAndAttrs(buffer);
 			if (m_nestedElements.empty()
 #if defined EXTREME_XML
@@ -198,6 +203,7 @@ namespace Monad
 			wstringstream& buffer
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			buffer << L'>';
 			SaveDescendants(buffer);
 #if defined EXTREME_XML
@@ -210,6 +216,7 @@ namespace Monad
 			wstringstream& buffer
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			buffer << L"/>";
 		}
 
@@ -217,6 +224,7 @@ namespace Monad
 			wstringstream& buffer
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			buffer << L'<' << m_elementName;
 			for (const auto& attr : m_attrs)
 			{
@@ -230,6 +238,7 @@ namespace Monad
 			wstringstream& buffer
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			for (const auto& element : m_nestedElements)
 				element.SaveXML(buffer);
 		}
@@ -257,6 +266,7 @@ namespace Monad
 			IXmlReader* reader
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			const wchar_t* pwszValue = nullptr;
 			uint32_t countOfValue = 0;
 			THROW_EXC_IFFAILED_DB(
@@ -342,6 +352,7 @@ namespace Monad
 
 		const string XMLManager::XMLElement::GetElementNameUTF8() const noexcept
 		{
+			MONAD_FUNCTION_NAME;
 			return Tools::UnicodeToUTF8(m_elementName);
 		}
 
@@ -356,6 +367,7 @@ namespace Monad
 			const wstring& name
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			const auto itSearch = m_attrs.find(name);
 			THROW_EXC_ONEND(m_attrs, itSearch, L"Attribute");
 			return itSearch->second;
@@ -365,6 +377,7 @@ namespace Monad
 			const wstring& name
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			return stof(GetAttr(name));
 		}
 
@@ -372,6 +385,7 @@ namespace Monad
 			const wstring& name
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			return stoull(GetAttr(name));
 		}
 
@@ -379,6 +393,7 @@ namespace Monad
 			const wstring& name
 		) const
 		{
+			MONAD_FUNCTION_NAME;
 			return static_cast<wchar_t>(stoul(GetAttr(name)));
 		}
 

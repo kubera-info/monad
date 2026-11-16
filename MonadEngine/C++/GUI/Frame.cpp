@@ -26,6 +26,7 @@ namespace Monad::GUI
 				const XMFLOAT4& pipe
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				VERTEX_TYPE buildLeftUpper, buildRightUpper;
 				VERTEX_TYPE buildRightLower, buildLeftLower;
 				VERTEX_TYPE buildLeftUpper2, buildRightUpper2;
@@ -85,6 +86,7 @@ namespace Monad::GUI
 				float normalID
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				a.m_normal = b.m_normal = c.m_normal = { normalID, 0, 0 };
 				AddTriangle(a, b, c);
 			}
@@ -96,6 +98,7 @@ namespace Monad::GUI
 				const VERTEX_TYPE& rightLower
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				for (float lerpVert = .0f; lerpVert < 2.0f; lerpVert += c_lerpStep)
 				{
 					VERTEX_TYPE buildLeftUpper(leftUpper), buildLeftLower(leftLower), buildRightUpper(rightUpper), buildRightLower(rightLower);
@@ -125,6 +128,7 @@ namespace Monad::GUI
 				const VERTEX_TYPE& rightLower2
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				for (float lerpVert = .0f; lerpVert < 2.0f; lerpVert += c_lerpStep)
 				{
 					VERTEX_TYPE buildLeftUpper2(leftUpper2), buildRightUpper2(rightUpper2), buildLeftLower2(leftLower2), buildRightLower2(rightLower2);
@@ -153,6 +157,7 @@ namespace Monad::GUI
 				const VERTEX_TYPE& leftUpper2
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				for (float lerpVert = .0f; lerpVert < .5f; lerpVert += c_lerpStep)
 				{
 					VERTEX_TYPE buildLeftUpper(leftUpper), buildLeftLower2(leftLower2), buildLeftLower(leftLower), buildLeftUpper2(leftUpper2);
@@ -182,6 +187,7 @@ namespace Monad::GUI
 				const VERTEX_TYPE& rightUpper2
 			)
 			{
+				MONAD_FUNCTION_NAME;
 				for (float lerpVert = .0f; lerpVert < .5f; lerpVert += c_lerpStep)
 				{
 					VERTEX_TYPE buildRightUpper(rightUpper), buildRightLower(rightLower), buildRightLower2(rightLower2), buildRightUpper2(rightUpper2);
@@ -214,6 +220,7 @@ namespace Monad::GUI
 		const DirectX::XMFLOAT4& pipe
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		// ":" means it is a system resource, not from OS file. 
 		// It is used to distinguish meshes created on the fly from meshes loaded from files,
 		// because they are stored in the same repository.

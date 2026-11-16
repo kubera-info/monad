@@ -20,6 +20,7 @@ namespace Monad::Wnd
 			WPARAM wParamSize
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			PostMessage(
 				hWnd,
 				WM_SETICON,
@@ -47,6 +48,7 @@ namespace Monad::Wnd
 			LPVOID&
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			/// Prevents system menu activation via F10
 			if (wParam == VK_F10) [[unlikely]]
 				return PROCESSING_OK;
@@ -62,6 +64,7 @@ namespace Monad::Wnd
 			LPVOID&
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			/// Prevents system menu activation via F10
 			if (wParam == VK_F10) [[unlikely]]
 				return PROCESSING_OK;
@@ -77,6 +80,7 @@ namespace Monad::Wnd
 			LPVOID&
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			// Standard shutdown path
 			PostQuitMessage(0);
 			return PROCESSING_OK;
@@ -90,6 +94,7 @@ namespace Monad::Wnd
 			LPVOID&
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			SetMyIcon(hWnd, ICON_BIG);
 			SetMyIcon(hWnd, ICON_SMALL);
 
@@ -129,6 +134,7 @@ namespace Monad::Wnd
 		LPVOID& context
 	)
 	{
+		MONAD_FUNCTION_NAME;
 		auto msg = mapForMessages.find(uMsg);
 		if (mapForMessages.cend() != msg)
 			return msg->second(
@@ -150,6 +156,7 @@ namespace Monad::Wnd
 		LPVOID& context
 	)
 	{
+		MONAD_FUNCTION_NAME;
 #if defined _DEBUG
 		size_t messagesCount = 0;
 		MapForMessages summary{};

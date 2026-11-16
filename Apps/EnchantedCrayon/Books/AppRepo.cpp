@@ -146,7 +146,7 @@ namespace Monad
 					RegistryWriteDefaultSketchName(
 						const wstring& profile
 					) noexcept :
-						Registry{ KEY_WRITE }
+						Registry{ KEY_WRITE, Globals::g_userProfile }
 					{
 						SetString(
 							L"Art",
@@ -234,7 +234,7 @@ namespace Monad
 			struct RegistryReadDefaultSketchName : Registry
 			{
 				RegistryReadDefaultSketchName() noexcept :
-					Registry(KEY_READ)
+					Registry(KEY_READ, Globals::g_userProfile)
 				{
 					g_repository->FindAndSetArtByFilename(
 						Tools::UnicodeToUTF8(GetString(L"Art"))

@@ -32,6 +32,7 @@ namespace Monad
 			const DirectX::XMFLOAT4& rect
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			m_emojiToRender.AddQuad(
 				{ { rect.x, rect.y },{ 0.0f, 0.0f } },
 				{ { GetRight(rect), rect.y },{ 1.0f, 0.0f } },
@@ -43,6 +44,7 @@ namespace Monad
 			const DirectX::XMFLOAT4X4& modelSpaceMatrix
 		)
 		{
+			MONAD_FUNCTION_NAME;
 			Super::OnComputePerShadowFrame(modelSpaceMatrix);
 
 			GetCurrentTexture().SetMe(
@@ -53,6 +55,7 @@ namespace Monad
 
 		void ShaderEmoji::Commit()
 		{
+			MONAD_FUNCTION_NAME;
 			m_mesh = m_emojiToRender.Commit();
 			m_emojiToRender.ClearAndShrink();
 		}

@@ -32,6 +32,7 @@ namespace Monad
 		) :
 			c_className{ className }
 		{
+			MONAD_FUNCTION_NAME;
 			/// Registers a window class used for all application windows.
 			/// This is performed once per application lifetime.
 
@@ -55,6 +56,7 @@ namespace Monad
 
 		WindowClass::~WindowClass()
 		{
+			MONAD_FUNCTION_NAME;
 			/// Unregisters the window class during shutdown.
 			/// Safe to call even if registration failed earlier.
 			UnregisterClass(c_className.c_str(), g_hInstance);
