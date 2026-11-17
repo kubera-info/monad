@@ -1,7 +1,12 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-  "name": "mysolution",
-  "version-string": "1.0.0",
+  "name": "monad-solution",
+  "version": "1.0.0.2",
+  "license": "MIT",
+  "description": "Open Source solution by Wlodzimierz O. Kubera",
+  "summary": "Source code for further usage",
+  "homepage": "https://kubera.info",
+  "documentation": "https://github.com/Kubera-Info/monad",
   "supports": "windows & (x64 | arm64)",
   "dependencies": [
     "7zip",
@@ -9,12 +14,12 @@
       "name": "curl",
       "default-features": false,
       "features": [
-        "brotli",
         "http3"
       ]
     },
     {
       "name": "directxtex",
+      "default-features": false,
       "features": [
         "dx12",
         "tools"

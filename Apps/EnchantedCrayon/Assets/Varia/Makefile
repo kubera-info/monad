@@ -21,7 +21,7 @@ all: icons logo_obj logo emoji
 all: satellites help streams
 
 ..\Textures\DDS\logo.dds: ..\Textures\Maps\logo.png
-	"..\..\..\..\vcpkg_installed\x64\x64-windows-static-md\tools\directxtex\texconv.exe" -nologo -y -gpu 0 -f BC7_UNORM_SRGB -srgb -m 2 -o "..\Textures\DDS" $?
+	"..\..\..\..\vcpkg_installed\x64\monad-x64-windows-static-md\tools\directxtex\texconv.exe" -nologo -y -gpu 0 -f BC7_UNORM_SRGB -srgb -m 2 -o "..\Textures\DDS" $?
 
 logo_obj: ..\Textures\DDS\logo.dds
 

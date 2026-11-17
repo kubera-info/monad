@@ -9,10 +9,6 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Setup|x64">
-      <Configuration>Setup</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F685DAE3-5F88-4B6C-A4EB-27EEE9177B54}</ProjectGuid>
@@ -35,13 +31,6 @@
     <CharacterSet>Unicode</CharacterSet>
     <SpectreMitigation>false</SpectreMitigation>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v145</PlatformToolset>
-    <UseOfAtl>Static</UseOfAtl>
-    <CharacterSet>Unicode</CharacterSet>
-    <SpectreMitigation>false</SpectreMitigation>
-  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
@@ -50,9 +39,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -69,12 +55,6 @@
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
     <IncludePath>$(SolutionDir)libs;$(IncludePath)</IncludePath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\Bin\</OutDir>
-    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
-    <IncludePath>$(SolutionDir)libs;$(IncludePath)</IncludePath>
-  </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
   </PropertyGroup>
@@ -82,16 +62,15 @@
     <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-x64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
-  </PropertyGroup>
-  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
-    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
-    <VcpkgUseStatic>true</VcpkgUseStatic>
-    <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-x64-windows</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -161,6 +140,7 @@
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -174,50 +154,6 @@
     </Link>
     <PostBuildEvent>
       <Command>signtool.exe sign /n "Open Source Developer Wlodzimierz O. Kubera" /tr http://time.certum.pl /td SHA256 /fd SHA256  "$(TargetPath)"</Command>
-    </PostBuildEvent>
-    <Manifest>
-      <EnableSegmentHeap>true</EnableSegmentHeap>
-    </Manifest>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir);..\..\C++\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MONAD_TOOLS;NOMINMAX;WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
-      <DisableSpecificWarnings>
-      </DisableSpecificWarnings>
-      <LanguageStandard_C>stdclatest</LanguageStandard_C>
-      <SDLCheck>true</SDLCheck>
-      <BuildStlModules>false</BuildStlModules>
-      <EnableModules>false</EnableModules>
-      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-    </ClCompile>
-    <Link>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
-      <LargeAddressAware>true</LargeAddressAware>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
-      <OutputFile>$(TargetPath)</OutputFile>
-      <ProgramDatabaseFile>$(ProjectDir)..\pdb\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
-    </Link>
-    <PostBuildEvent>
-      <Command>
-      </Command>
     </PostBuildEvent>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -257,14 +193,11 @@
       </ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
-      </ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Encryption.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

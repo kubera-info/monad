@@ -238,36 +238,48 @@
     <VcpkgEnableManifest>true</VcpkgEnableManifest>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
     <VcpkgConfiguration>Debug</VcpkgConfiguration>
+    <VcpkgTriplet>monad-arm64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-arm64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'" Label="Vcpkg">
-    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-arm64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
     <VcpkgConfiguration>Debug</VcpkgConfiguration>
+    <VcpkgTriplet>monad-x64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-x64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'" Label="Vcpkg">
     <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-x64-windows</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
@@ -285,7 +297,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MONAD_DROP_FILE;MONAD_HARDWARE_EXCEPTIONS=0;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;_DEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;_XM_NO_INTRINSICS_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MONAD_DROP_FILE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;_DEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;_XM_NO_INTRINSICS_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessKeepComments>false</PreprocessKeepComments>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -315,13 +327,13 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <SDLCheck>true</SDLCheck>
-      <GuardEHContMetadata>false</GuardEHContMetadata>
       <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
       <ConformanceMode>Default</ConformanceMode>
       <StringPooling>true</StringPooling>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
     </ClCompile>
     <Link>
       <AdditionalOptions>/IGNORE:4089,4291 %(AdditionalOptions)</AdditionalOptions>
@@ -379,7 +391,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MONAD_DROP_FILE;EXC_TYPE_REPORT_EXE=0;MONAD_HARDWARE_EXCEPTIONS=0;EXC_TYPE_MESSAGE_BOX=1;EXC_TYPE_CONSOLE=2;MONAD_INLINE_EXCEPTION=EXC_TYPE_REPORT_EXE;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;_DEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MONAD_DROP_FILE;EXC_TYPE_REPORT_EXE=0;MONAD_HARDWARE_EXCEPTIONS=1;EXC_TYPE_MESSAGE_BOX=1;EXC_TYPE_CONSOLE=2;MONAD_INLINE_EXCEPTION=EXC_TYPE_REPORT_EXE;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;_DEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessKeepComments>false</PreprocessKeepComments>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
@@ -396,7 +408,7 @@
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv80</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv81</EnableEnhancedInstructionSet>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
       <LanguageStandard>stdcpp23</LanguageStandard>
@@ -409,7 +421,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <SDLCheck>true</SDLCheck>
-      <GuardEHContMetadata>false</GuardEHContMetadata>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
       <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
@@ -475,7 +487,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MONAD_DROP_FILE;MONAD_HARDWARE_EXCEPTIONS=0;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;NDEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MONAD_DROP_FILE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;NDEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -511,7 +523,7 @@
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <GuardEHContMetadata>false</GuardEHContMetadata>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <ProjectReference>
@@ -612,7 +624,7 @@
       <ConformanceMode>true</ConformanceMode>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <GuardEHContMetadata>false</GuardEHContMetadata>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
       <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
@@ -683,7 +695,7 @@
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>MONAD_DROP_FILE;EXC_TYPE_REPORT_EXE=1;MONAD_HARDWARE_EXCEPTIONS=0;EXC_TYPE_MESSAGE_BOX=1;EXC_TYPE_CONSOLE=2;MONAD_INLINE_EXCEPTION=EXC_TYPE_REPORT_EXE;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;NDEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MONAD_DROP_FILE;EXC_TYPE_REPORT_EXE=1;MONAD_HARDWARE_EXCEPTIONS=1;EXC_TYPE_MESSAGE_BOX=1;EXC_TYPE_CONSOLE=2;MONAD_INLINE_EXCEPTION=EXC_TYPE_REPORT_EXE;MONAD_SHADOW;MONAD_SAT;MONAD_ENGINE;WIN32;NDEBUG;_WINDOWS;NOMINMAX;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -720,6 +732,7 @@
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
     </ClCompile>
     <ProjectReference>
       <LinkLibraryDependencies>
@@ -816,7 +829,7 @@
       <ConformanceMode>true</ConformanceMode>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
-      <GuardEHContMetadata>false</GuardEHContMetadata>
+      <GuardEHContMetadata>true</GuardEHContMetadata>
       <BuildStlModules>false</BuildStlModules>
       <EnableModules>false</EnableModules>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>

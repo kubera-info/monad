@@ -5,11 +5,115 @@
     <BuildType Name="2-Debug" />
     <BuildType Name="2-Release" />
     <BuildType Name="3-Setup" />
+    <BuildType Name="Debug" />
     <Platform Name="ARM64" />
     <Platform Name="x64" />
   </Configurations>
   <Folder Name="/Apps/">
+    <Project Path="Apps/MergeCatalog/MergeCatalog.vcxproj" Id="fa0f574d-4cde-41bc-aedf-a33ffd6cba88">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
+    </Project>
+    <Project Path="Apps/Name2Date/Name2Date.vcxproj" Id="08afda0e-eb33-459a-90b5-3e196fab887b">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
+    </Project>
     <Project Path="Apps/Report/Report.vcxproj" Id="bbd6a5a8-b2e9-4678-929d-d481bed559c7">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Apps/CGA/">
+    <Project Path="Apps/CGA/CGA.vcxproj" Id="fc36ab56-ef25-48cf-9e8b-512cb6527e8c">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+      <Build Solution="2-Release|ARM64" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
+    </Project>
+    <Project Path="Apps/CGA/Konwerter/Konwerter/Konwerter.vcxproj" Id="9be33a04-43cf-42a8-8eae-32fa28431a37">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Apps/Clock/" />
+  <Folder Name="/Apps/Clock/Assets/">
+    <Project Path="Apps/OldPolishClock/Assets/Shaders/Shaders.vcxproj" Id="892faaf4-0e42-4161-bed8-f50b42e3eb33">
+      <BuildType Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
+    </Project>
+    <Project Path="Apps/OldPolishClock/Assets/Varia/Varia.vcxproj" Id="1a882cac-5b4a-4494-aa76-aac1ece00f07">
+      <BuildDependency Project="MonadEngine/Tools/Encryption/Encryption.vcxproj" />
+      <BuildDependency Project="MonadEngine/Tools/MeshConverter/MeshConverter.vcxproj" />
+      <BuildDependency Project="MonadEngine/Tools/PCMConverter/PCMConverter.vcxproj" />
+      <BuildType Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Apps/Clock/Code/">
+    <Project Path="Apps/OldPolishClock/HLSL/HLSL.vcxproj" Id="37cca192-c001-41e5-bfb3-6f4b075ae55a">
+      <BuildType Solution="0-Engine|*" Project="Release" />
+      <BuildType Solution="1-Assets|*" Project="Release" />
+      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Release|*" Project="Release" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
+      <Platform Project="x64" />
+      <Build Solution="1-Assets|ARM64" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+      <Build Solution="2-Release|ARM64" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
+    </Project>
+    <Project Path="Apps/OldPolishClock/OldPolishClock.vcxproj" Id="8d42e01f-26b1-4dc7-8f0c-b46df37f0584">
       <BuildType Solution="0-Engine|*" Project="Release" />
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
@@ -26,48 +130,37 @@
     <Project Path="Apps/EnchantedCrayon/Assets/Art/Arts.vcxproj" Id="f0cb79d6-a576-4a51-95fa-2efe47c8799c">
       <BuildDependency Project="MonadEngine/Tools/Encryption/Encryption.vcxproj" />
       <BuildDependency Project="MonadEngine/Tools/translator/Translator.csproj" />
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Release" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Project="Release" />
       <Platform Project="x64" />
-      <Build Solution="*|ARM64" Project="false" />
-      <Build Solution="0-Engine|x64" Project="false" />
-      <Build Solution="2-Debug|x64" Project="false" />
-      <Build Solution="2-Release|x64" Project="false" />
-      <Build Solution="3-Setup|x64" Project="false" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|ARM64" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
     </Project>
     <Project Path="Apps/EnchantedCrayon/Assets/Fonts/Fonts.vcxproj" Id="f6547db0-4674-45fa-a9d1-e5a4b494e0ce">
       <BuildDependency Project="MonadEngine/Assets/Fonts/Fonts.vcxproj" />
       <BuildDependency Project="MonadEngine/Assets/Textures/Textures.vcxproj" />
       <BuildDependency Project="MonadEngine/Tools/Encryption/Encryption.vcxproj" />
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Release" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Project="Release" />
       <Platform Project="x64" />
-      <Build Solution="*|ARM64" Project="false" />
-      <Build Solution="0-Engine|x64" Project="false" />
-      <Build Solution="2-Debug|x64" Project="false" />
-      <Build Solution="2-Release|x64" Project="false" />
-      <Build Solution="3-Setup|x64" Project="false" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|ARM64" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
     </Project>
     <Project Path="Apps/EnchantedCrayon/Assets/Shaders/Shaders.vcxproj" Id="2c2ea39f-64f8-4d7f-b5dd-c099ce1c11c2">
       <BuildDependency Project="Apps/EnchantedCrayon/HLSL/HLSL.vcxproj" />
       <BuildDependency Project="MonadEngine/Tools/Encryption/Encryption.vcxproj" />
       <BuildDependency Project="MonadEngine/Tools/VSI/VSI.vcxproj" />
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Release" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Project="Release" />
       <Platform Project="x64" />
-      <Build Solution="*|ARM64" Project="false" />
-      <Build Solution="0-Engine|x64" Project="false" />
-      <Build Solution="1-Assets|x64" Project="false" />
-      <Build Solution="3-Setup|x64" Project="false" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+      <Build Solution="2-Release|ARM64" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
     </Project>
     <Project Path="Apps/EnchantedCrayon/Assets/Varia/Varia.vcxproj" Id="62a33e1f-19e5-4e15-8f39-c53bf7eb616f">
       <BuildDependency Project="MonadEngine/Assets/Audio/Audio.vcxproj" />
@@ -75,17 +168,13 @@
       <BuildDependency Project="MonadEngine/Tools/Encryption/Encryption.vcxproj" />
       <BuildDependency Project="MonadEngine/Tools/MeshConverter/MeshConverter.vcxproj" />
       <BuildDependency Project="MonadEngine/Tools/PCMConverter/PCMConverter.vcxproj" />
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Release" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Project="Release" />
       <Platform Project="x64" />
-      <Build Solution="*|ARM64" Project="false" />
-      <Build Solution="0-Engine|x64" Project="false" />
-      <Build Solution="2-Debug|x64" Project="false" />
-      <Build Solution="2-Release|x64" Project="false" />
-      <Build Solution="3-Setup|x64" Project="false" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|ARM64" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
     </Project>
   </Folder>
   <Folder Name="/Apps/Enchanted Crayon/Code/">
@@ -93,13 +182,16 @@
       <BuildDependency Project="Apps/EnchantedCrayon/Core.vcxproj" />
       <BuildType Solution="0-Engine|*" Project="Release" />
       <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Debug" />
+      <BuildType Solution="2-Debug|ARM64" Project="Debug" />
+      <BuildType Solution="2-Debug|x64" Project="Release" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Debug" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Solution="0-Engine|ARM64" Project="x64" />
       <Platform Solution="1-Assets|ARM64" Project="x64" />
       <Platform Solution="2-Debug|ARM64" Project="x64" />
-      <Platform Solution="3-Setup|ARM64" Project="x64" />
+      <Build Solution="1-Assets|ARM64" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+      <Build Solution="3-Setup|ARM64" Project="false" />
     </Project>
     <Project Path="Apps/EnchantedCrayon/Core.vcxproj" Id="d3d09108-96d0-4629-88b8-122c0256058c">
       <BuildDependency Project="Apps/EnchantedCrayon/Assets/Shaders/Shaders.vcxproj" />
@@ -118,12 +210,13 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Project="x64" />
-      <Build Solution="*|ARM64" Project="false" />
-      <Build Solution="0-Engine|x64" Project="false" />
-      <Build Solution="1-Assets|x64" Project="false" />
-      <Build Solution="3-Setup|x64" Project="false" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
+      <Build Solution="2-Release|ARM64" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
     </Project>
   </Folder>
   <Folder Name="/Apps/Enchanted Crayon/Setup/">
@@ -147,12 +240,13 @@
     </Project>
     <Project Path="Apps/EnchantedCrayon/Setup/SetupBook/SetupBook.wapproj" Type="c7167f0d-bc9f-4e6e-afe1-012c56b48db5">
       <BuildDependency Project="Apps/EnchantedCrayon/Setup/Post-Process/Post-Process.vcxproj" />
+      <BuildDependency Project="Apps/EnchantedCrayon/Book/Book.vcxproj" />
       <BuildDependency Project="Apps/Report/Report.vcxproj" />
       <BuildType Solution="0-Engine|*" Project="Release" />
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Build Solution="0-Engine|*" Project="false" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
@@ -164,11 +258,7 @@
   <Folder Name="/Monad(a) Engine/Assets - Objects/">
     <Project Path="MonadEngine/Assets/Audio/Audio.vcxproj" Id="d467e7c4-9393-42c4-8806-8c0d1964a68a">
       <BuildDependency Project="MonadEngine/Tools/PCMConverter/PCMConverter.vcxproj" />
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Release" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Project="Release" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
@@ -180,22 +270,15 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
-      <Platform Solution="0-Engine|ARM64" Project="x64" />
-      <Platform Solution="1-Assets|ARM64" Project="x64" />
-      <Platform Solution="2-Debug|ARM64" Project="x64" />
-      <Platform Solution="2-Release|ARM64" Project="x64" />
-      <Platform Solution="3-Setup|ARM64" Project="Win32" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
+      <Platform Project="x64" />
       <Build Solution="1-Assets|ARM64" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
       <Build Solution="2-Release|*" Project="false" />
       <Build Solution="3-Setup|*" Project="false" />
     </Project>
     <Project Path="MonadEngine/Assets/Fonts/Fonts.vcxproj" Id="ca6142cf-5c69-43cc-a47f-9a76d09abda5">
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Release" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Project="Release" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
@@ -203,11 +286,7 @@
       <Build Solution="3-Setup|*" Project="false" />
     </Project>
     <Project Path="MonadEngine/Assets/Textures/Textures.vcxproj" Id="a27010f3-ce75-41c8-8023-12c1b534df43">
-      <BuildType Solution="0-Engine|*" Project="Release" />
-      <BuildType Solution="1-Assets|*" Project="Release" />
-      <BuildType Solution="2-Debug|*" Project="Release" />
-      <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Project="Release" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
@@ -221,7 +300,7 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
       <Build Solution="2-Release|*" Project="false" />
@@ -232,7 +311,7 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
       <Build Solution="2-Release|*" Project="false" />
@@ -243,7 +322,7 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
@@ -255,7 +334,7 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|ARM64" Project="false" />
@@ -267,9 +346,10 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|ARM64" Project="false" />
+      <Build Solution="2-Debug|ARM64" Project="false" />
       <Build Solution="2-Release|ARM64" Project="false" />
       <Build Solution="3-Setup|*" Project="false" />
     </Project>
@@ -278,7 +358,7 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|ARM64" Project="false" />
@@ -289,16 +369,20 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Project="x64" />
-      <Build Project="false" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
     </Project>
     <Project Path="MonadEngine/Tools/MeshConverter/MeshConverter.vcxproj" Id="be14c82b-b17c-4bb1-8e7e-ab35047b8644">
       <BuildType Solution="0-Engine|*" Project="Release" />
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
@@ -310,16 +394,20 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Project="x64" />
-      <Build Project="false" />
+      <Build Solution="0-Engine|*" Project="false" />
+      <Build Solution="1-Assets|*" Project="false" />
+      <Build Solution="2-Debug|*" Project="false" />
+      <Build Solution="2-Release|*" Project="false" />
+      <Build Solution="3-Setup|*" Project="false" />
     </Project>
     <Project Path="MonadEngine/Tools/PCMConverter/PCMConverter.vcxproj" Id="e766728c-10fd-49c9-b806-e2643cbb64b6">
       <BuildType Solution="0-Engine|*" Project="Release" />
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
@@ -331,7 +419,7 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|*" Project="false" />
       <Build Solution="2-Release|*" Project="false" />
@@ -342,7 +430,7 @@
       <BuildType Solution="1-Assets|*" Project="Release" />
       <BuildType Solution="2-Debug|*" Project="Debug" />
       <BuildType Solution="2-Release|*" Project="Release" />
-      <BuildType Solution="3-Setup|*" Project="Setup" />
+      <BuildType Solution="3-Setup|*" Project="Release" />
       <Platform Project="x64" />
       <Build Solution="1-Assets|*" Project="false" />
       <Build Solution="2-Debug|ARM64" Project="false" />
@@ -356,5 +444,11 @@
     <File Path="NOTICE.md" />
     <File Path="README.md" />
     <File Path="SECURITY.md" />
+  </Folder>
+  <Folder Name="/Solution Items/vcpkg/">
+    <File Path="triplets/monad-arm64-windows-static-md.cmake" />
+    <File Path="triplets/monad-x64-windows-static-md.cmake" />
+    <File Path="vcpkg-configuration.json" />
+    <File Path="vcpkg.json" />
   </Folder>
 </Solution>

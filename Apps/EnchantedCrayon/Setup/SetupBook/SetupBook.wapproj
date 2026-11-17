@@ -132,36 +132,36 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-	  <Content Include="..\..\Release\Report.exe">
-		  <Link>Book\Report.exe</Link>
-	  </Content>
-	  <Content Include="..\..\Release\Core.dll">
-		  <Link>Book\Core.dll</Link>
-	  </Content>
+    <Content Include="..\..\Release\Report.exe">
+      <Link>Book\Report.exe</Link>
+    </Content>
+    <Content Include="..\..\Release\Core.dll">
+      <Link>Book\Core.dll</Link>
+    </Content>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'">
     <Content Include="..\..\Release\Report.exe">
       <Link>Book\Report.exe</Link>
     </Content>
-	  <Content Include="..\..\Release\Core.dll">
-		  <Link>Book\Core.dll</Link>
-	  </Content>  
+    <Content Include="..\..\Release\Core.dll">
+      <Link>Book\Core.dll</Link>
+    </Content>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <Content Include="..\..\ARM64Release\Report.exe">
       <Link>Book\Report.exe</Link>
     </Content>
-	  <Content Include="..\..\ARM64Release\Core.dll">
-		  <Link>Book\Core.dll</Link>
-	  </Content>
+    <Content Include="..\..\ARM64Release\Core.dll">
+      <Link>Book\Core.dll</Link>
+    </Content>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'">
     <Content Include="..\..\ARM64Release\Report.exe">
       <Link>Book\Report.exe</Link>
     </Content>
-	  <Content Include="..\..\ARM64Release\Core.dll">
-		  <Link>Book\Core.dll</Link>
-	  </Content>
+    <Content Include="..\..\ARM64Release\Core.dll">
+      <Link>Book\Core.dll</Link>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\BadgeLogo.scale-100.png" />

@@ -155,31 +155,45 @@
     <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-arm64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-arm64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|ARM64'" Label="Vcpkg">
     <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-arm64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-x64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-x64-windows-static-md</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
+    <VcpkgHostTriplet>
+    </VcpkgHostTriplet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Setup|x64'" Label="Vcpkg">
-    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)\</VcpkgInstalledDir>
+    <VcpkgInstalledDir>$(SolutionDir)vcpkg_installed\$(Platform)</VcpkgInstalledDir>
     <VcpkgUseStatic>true</VcpkgUseStatic>
     <VcpkgUseMD>true</VcpkgUseMD>
+    <VcpkgTriplet>monad-x64-windows</VcpkgTriplet>
+    <VcpkgAdditionalInstallOptions>--overlay-triplets="$(SolutionDir)triplets"</VcpkgAdditionalInstallOptions>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -188,7 +202,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=0;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -245,7 +259,7 @@
       </FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=0;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -261,6 +275,7 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
+      <GuardEHContMetadata>false</GuardEHContMetadata>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -355,7 +370,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WINDOWS;NDEBUG;MONAD_ENGINE;MONAD_HARDWARE_EXCEPTIONS=0;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -371,6 +386,7 @@
       <ExceptionHandling>Async</ExceptionHandling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
+      <GuardEHContMetadata>false</GuardEHContMetadata>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -407,7 +423,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>MONAD_ENGINE;_WINDOWS;_DEBUG;MONAD_HARDWARE_EXCEPTIONS=1;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MONAD_ENGINE;_WINDOWS;_DEBUG;MONAD_HARDWARE_EXCEPTIONS=0;MONAD_SHADOW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -424,6 +440,7 @@
       </ControlFlowGuard>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <GuardEHContMetadata>false</GuardEHContMetadata>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -463,7 +480,7 @@
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <AdditionalIncludeDirectories>$(SolutionDir)Modules\Xbox-ATG-Samples\Kits\ATGTK;$(ProjectDir);$(SolutionDir)MonadEngine\C++;$(SolutionDir);$(ProjectDir)Books;$(SolutionDir)Apps;$(SolutionDir)Libs</AdditionalIncludeDirectories>
-      <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv80</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv81</EnableEnhancedInstructionSet>
       <FloatingPointModel>Fast</FloatingPointModel>
       <ExceptionHandling>Async</ExceptionHandling>
       <BuildStlModules>false</BuildStlModules>
@@ -473,6 +490,7 @@
       <StringPooling>true</StringPooling>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <GuardEHContMetadata>false</GuardEHContMetadata>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
