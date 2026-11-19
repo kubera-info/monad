@@ -34,7 +34,6 @@ For ($FolderNumber = 3; $FolderNumber -lt $args.length; ++$FolderNumber)
 		$FileList = (Join-Path $args[2] 'Conv.$$$')
 		$List | Out-File -NoNewline -FilePath $FileList
 		& $Exe -nologo -y -gpu 0 -f $args[0] -flist "$FileList" -srgb -m $args[1] -o $args[2]
-		& $Exe -nologo -y -gpu 0 -f $args[0] -srgb -m $args[1] -o $args[2] $SourceFile
 		Remove-Item -Path $FileList -Force
 	}
 }
