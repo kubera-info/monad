@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\C++\Kernel\BytesVector.cpp" />
+    <ClCompile Include="..\..\C++\Renderer\MeshOpt.cpp" />
+    <ClCompile Include="MeshConverter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\C++\Kernel\BytesVector.h" />
+    <ClInclude Include="..\..\C++\Renderer\MeshOpt.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+</Project>

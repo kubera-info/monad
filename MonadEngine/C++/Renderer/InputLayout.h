@@ -1,0 +1,80 @@
+// ##########################################################################
+// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ##########################################################################
+
+#pragma once
+
+// Platform
+#include <d3d12.h>
+
+// STD
+#include <vector>
+
+// Monad
+#include "Kernel/Templates.h"
+
+namespace Monad::Renderer::InputLayout
+{
+	/// <summary>
+	/// Wrapper around D3D12_INPUT_ELEMENT_DESC providing a simpler constructor.
+	/// </summary>
+	struct INPUT_ELEMENT_DESC : D3D12_INPUT_ELEMENT_DESC
+	{
+		INPUT_ELEMENT_DESC(
+			const char* semanticName,
+			SEMANTIC_INDEX semanticIndex,
+			DXGI_FORMAT format
+		) noexcept;
+		using D3D12_INPUT_ELEMENT_DESC::D3D12_INPUT_ELEMENT_DESC;
+	};
+
+	/// <summary>
+	/// Container for input layout elements.
+	/// </summary>
+	struct VectorInputElementsDesc : std::vector<INPUT_ELEMENT_DESC>
+	{
+		using std::vector<INPUT_ELEMENT_DESC>::vector;
+
+		/// <summary>
+		/// Builds a D3D12 input layout descriptor.
+		/// </summary>
+		D3D12_INPUT_LAYOUT_DESC GetInputLayoutDesc() const;
+	};
+
+	/// <summary>
+	/// Collection of named input layouts.
+	/// </summary>
+	struct MapInputLayouts : private
+		Kernel::FlatMapString<VectorInputElementsDesc>
+	{
+		using Kernel::FlatMapString<VectorInputElementsDesc>::FlatMapString;
+
+		/// <summary>
+		/// Returns an input layout descriptor by name.
+		/// </summary>
+		D3D12_INPUT_LAYOUT_DESC GetInputLayoutDesc(
+			const std::string& id
+		) const;
+
+		/// <summary>
+		/// Merges another layout map into this one.
+		/// </summary>
+		MapInputLayouts& operator+=(
+			const MapInputLayouts& source
+			);
+
+		/// <summary>
+		/// Returns a merged copy of two layout maps.
+		/// </summary>
+		MapInputLayouts operator+(
+			const MapInputLayouts& source
+			);
+	};
+
+	/// <summary>
+	/// Standard input layouts for basic geometry.
+	/// Input layouts used for font and emoji rendering.
+	/// Input layouts for textured image rendering.
+	/// </summary>
+	extern MapInputLayouts Basics, FontEndEmoji, Image;
+}

@@ -1,0 +1,1 @@
+#include "..\..\Include\shadow_logo.hlsli"

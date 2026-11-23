@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <!-- Global build optimizations for solution: przyspieszenie budowy C++ i C# -->
+  <PropertyGroup>
+	<!-- Dla projektów C++: włączenie wielowątkowej kompilacji (/MP) -->
+	<MultiProcessorCompilation>true</MultiProcessorCompilation>
+
+	<!-- Dla projektów C#: wyłącz analizatory podczas budowy żeby skrócić czas kompilacji -->
+	<RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+	<RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <!-- Najpierw definiujesz zmienną -->
+    <MyTargetFramework>net10.0</MyTargetFramework>
+    <!-- Następnie jej używasz -->
+    <TargetFramework>$(MyTargetFramework)</TargetFramework>
+	
+	<!-- Upewnij się, że używana jest współdzielona kompilacja Roslyn (domyślnie true dla SDK, ale wymuszenie pomaga) -->
+	<UseSharedCompilation>true</UseSharedCompilation>
+
+	<!-- Mniejsze IO: zachowaj domyślne katalogi tymczasowe i przyspiesz linkowanie tam gdzie możliwe -->
+	<LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+
+  <!-- Dla projektów VC++: przekazanie MultiProcessorCompilation do ClCompile -->
+  <ItemDefinitionGroup>
+	<ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+	</ClCompile>
+  </ItemDefinitionGroup>
+</Project>

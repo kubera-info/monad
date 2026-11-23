@@ -1,0 +1,66 @@
+// ##########################################################################
+// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ##########################################################################
+
+#pragma once
+
+// Platform
+#include <Windows.h>
+
+// Monad
+#include "Kernel/Templates.h"
+
+namespace Monad::Wnd
+{
+	/// <summary>
+	/// A set of rectangles describing non-primary monitors.
+	/// Each rectangle represents the desktop coordinates of a monitor.
+	/// </summary>
+	using SetMonitors = Kernel::UnorderedSet<RECT>;
+
+	/// <summary>
+	/// Retrieves the handle of the primary monitor.
+	/// </summary>
+	/// <returns>
+	/// Handle to the primary display monitor.
+	/// </returns>
+	HMONITOR GetPrimaryMonitor() noexcept;
+
+	/// <summary>
+	/// Retrieves the desktop rectangle of a given monitor.
+	/// </summary>
+	/// <param name="monitor">
+	/// Handle to the monitor.  
+	/// If omitted, the primary monitor is used.
+	/// </param>
+	/// <returns>
+	/// Rectangle describing the monitor position in virtual screen space.
+	/// </returns>
+	RECT GetMonitorRect(
+		HMONITOR monitor = GetPrimaryMonitor()
+	);
+
+	/// <summary>
+	/// Enumerates all monitors except the primary one.
+	/// </summary>
+	/// <returns>
+	/// A set containing rectangles of all non-primary monitors.
+	/// </returns>
+	SetMonitors GetNonPrimaryMonitors();
+
+	struct MonitorConf
+	{
+		auto GetWidth() const noexcept
+		{
+			return m_monitorRect.right - m_monitorRect.left;
+		}
+
+		auto GetHeight() const noexcept
+		{
+			return m_monitorRect.bottom - m_monitorRect.top;
+		}
+
+		HMONITOR m_monitor = Monad::Wnd::GetPrimaryMonitor();
+		RECT m_monitorRect = Monad::Wnd::GetMonitorRect(m_monitor);
+	};
+}

@@ -1,0 +1,284 @@
+//*********************************************************
+//
+// Copyright (c) Microsoft. All rights reserved.
+// This code is licensed under the MIT License (MIT).
+// THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+// IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+// PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+//
+//*********************************************************
+
+// ##########################################################################
+// ### Copyright © Wlodzimierz O. Kubera. Licensed under the MIT License. ###
+// ##########################################################################
+
+// Me
+#include "stdafx.h"
+#include "D3D12Framework.h"
+
+// Monad
+#include "__App.h"
+#include "AppSingleton.h"
+#include "GUI/__MonadGUI.h"
+#include "Files/FileManager.h"
+#include "Input/Cursor.h"
+#include "System/Parameter.h"
+#include "Time/__MonadTime.h"
+#include "Time/Timer.h"
+#include "Win32Application.h"
+#include "Renderer/__MonadRenderer.h"
+
+using namespace DirectX;
+using namespace std;
+using Microsoft::WRL::ComPtr;
+using namespace Monad::App;
+using namespace Monad::Files;
+using namespace Monad::GUI;
+using namespace Monad::Input;
+using namespace Monad::Kernel;
+using namespace Monad::Pages;
+using namespace Monad::Renderer;
+using namespace Monad::System;
+using namespace Monad::Threads;
+using namespace Monad::Time;
+using namespace Monad::Tools;
+
+SingleCall g_setArtStubs(true);
+
+D3D12Core::D3D12Core() :
+	DXSample{
+		{
+			InputLayout::FontEndEmoji
+			+ InputLayout::Basics
+			+ InputLayout::Image
+		},
+		{
+			.c_bareCbvSrvCount = CBV_SRV_COUNT,
+			.c_foundSrvFilesCount = g_shaderResourceViewCount
+		},
+	2u,
+	{
+		{
+			"emoji"_fx,
+			make_shared<ShaderConfig>(
+				"emoji"_vertexShader,
+				"emoji"_pixelShader,
+				true
+			)
+		},
+		{
+			"font"_fx,
+			make_shared<ShaderConfig>(
+				"font"_vertexShader,
+				"font"_pixelShader,
+				true
+			)
+		},
+		{
+			"iconic"_fx,
+			make_shared<ShaderConfig>(
+				"iconic"_vertexShader,
+				"iconic"_pixelShader,
+				false
+			)
+		},
+		{
+			"metallic_border"_fx,
+			make_shared<ShaderConfig>(
+				"metal_border"_vertexShader,
+				"metal"_pixelShader,
+				false
+			)
+		},
+		{
+			"metallic_hr"_fx,
+			make_shared<ShaderConfig>(
+				"metal_hr"_vertexShader,
+				"metal"_pixelShader,
+				false
+			)
+		}
+	},
+	{
+		{
+			"emoji"_technique,
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "emoji"_fx }
+			}
+		},
+		{
+			"font"_technique,
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "font"_fx }
+			}
+		},
+		{
+			"iconic"_technique,
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "iconic"_fx }
+			}
+		},
+		{
+			"metallic_border"_technique,
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "metallic_border"_fx }
+			}
+		},
+		{
+			"metallic_hr"_technique,
+			{
+				{ STAGE_MODES::STAGE_MODE_WORLD, "metallic_hr"_fx }
+			}
+		}
+	},
+	{
+		{ "forecolor"_constantBuffer,{ sizeof DirectX::XMFLOAT3, 4u } },
+		{ "hdr"_constantBuffer,{ sizeof BOOL, 1u } },
+		{ "shadow"_constantBuffer,{ sizeof DirectX::XMFLOAT4X4 , 12u } },
+		{ "light_pos"_constantBuffer,{ sizeof DirectX::XMFLOAT4, 1u } },
+		{ "model"_constantBuffer,{ sizeof CB::Model, 12u } },
+		{ "pipe_color"_constantBuffer,{ sizeof CB::PipeColor, 2u } }
+	} }
+{
+	m_shadows.emplace();
+	LoadPipeline();
+	LoadAssets();
+}
+
+void D3D12Core::OnUpdate()
+{
+	switch (g_fileManagerState)
+	{
+	case FILE_MAN_STATE_LOAD_BOOT:
+	{
+		g_singleton->InsertTaskSearcher2(LOAD_BOOT_DX);
+
+		break;
+	}
+	[[unlikely]]
+	case STOP_BOOT_DX:
+	{
+		g_singleton->m_cursorControl.SetNewCurrentCursor(CURSOR_ARROW);
+		SetMyCursor();
+		g_singleton->m_d3dSingleton->Initialize();
+
+		m_shadows->CreateDepthStencil(
+#if defined _DEBUG
+			L"Shadow",
+#endif
+			{
+				static_cast<int32_t>(m_dsCurrentID++),
+				DEPTH_STENCIL_VIEW_DESC,
+				D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE
+			},
+			128,
+			128
+		);
+		g_singleton->CreateFull();
+		g_fileManagerState = FILE_MAN_STATE_READY;
+		break;
+	}
+	}
+
+	FireEventOnCopy(EVENT_IDS::FRAME_MOVE_STUB);
+}
+
+void D3D12Core::OnRender()
+{
+	// Record all the commands we need to render the scene into the command lists.
+/*#if defined MONAD_PIX
+	PIXBeginEvent(m_taskQueue.Get(), 0, L"Render");
+#endif*/
+	PopulateCommandLists();
+	/*#if defined MONAD_PIX
+		PIXEndEvent(m_taskQueue.Get());
+	#endif*/
+
+	// Execute the command lists.
+	ID3D12CommandList* ppCommandLists[]{ m_commandList.Get() };
+	m_commandQueue->ExecuteCommandLists(
+		_countof(ppCommandLists),
+		ppCommandLists);
+
+	// When using sync interval 0, it is recommended to always pass the tearing
+	// flag when it is supported, even when presenting in windowed mode.
+	// However, this flag cannot be used if the app is in fullscreen mode as a
+	// result of calling SetFullscreenState.
+
+	// Present the frame.
+	switch (const HRESULT hr = m_swapChain->Present(
+		0,
+		m_tearingSupport
+		? DXGI_PRESENT_ALLOW_TEARING
+		: 0
+	); hr)
+	{
+	case DXGI_ERROR_DEVICE_REMOVED:
+#if defined _DEBUG
+	{
+		char buff[64] = "";
+		sprintf_s(buff, "Device Lost on Present: Reason code 0x%08X\n",
+			(hr == DXGI_ERROR_DEVICE_REMOVED)
+			? m_device->GetDeviceRemovedReason() : hr);
+		OutputDebugStringA(buff);
+	}
+#endif
+	case DXGI_ERROR_DEVICE_RESET:
+		g_singleton->EnqueueResetDevice();
+		break;
+	default:
+		THROW_EXC_D3D(hr, L"Present");
+		NewFrame();
+	}
+}
+
+void D3D12Core::NewFrame()
+{
+	MoveToNextFrame();
+}
+
+void D3D12Core::PopulateCommandLists()
+{
+	OnD3DReset();
+	FireEvent(EVENT_IDS::D3D_RENDER);
+	m_commandList.Get()->IASetPrimitiveTopology(
+		D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST
+	);
+
+	// Populate m_sceneCommandList to render scene to intermediate render target.
+#pragma region Shadow
+	if (STOP_BOOT_DX < g_fileManagerState)
+	{
+		DequeuePage();
+		{
+			const auto scopedTransition = m_commandList.ScopedTransition({ {
+				m_shadows->GetDsResource(),
+				D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE,
+				D3D12_RESOURCE_STATE_DEPTH_WRITE } }
+				);
+			m_shadows->SetMe();
+			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_SHADOW);
+		}
+#pragma endregion
+
+#pragma region World			
+		{
+			const auto scopedTransition = m_commandList.ScopedTransition({ {
+				m_msaaTargets.GetRtResource(),
+				D3D12_RESOURCE_STATE_RESOLVE_SOURCE,
+				D3D12_RESOURCE_STATE_RENDER_TARGET } }
+				);
+			m_msaaTargets.SetMe();
+			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_WORLD);
+#pragma endregion
+
+#pragma region Alpha blending
+			OnFrameRenderAll(STAGE_MODES::STAGE_MODE_ALPHA_BLENDING);
+#pragma endregion
+		}
+	}
+
+	OnBackBuffer();
+	m_commandList.Get()->Close();
+}

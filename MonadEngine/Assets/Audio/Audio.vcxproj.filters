@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="..\NMake\Header.mk" />
+    <None Include="README.md">
+      <Filter>Doc</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Doc">
+      <UniqueIdentifier>{94c239fa-9d82-40f1-aa01-83e38e408eb0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

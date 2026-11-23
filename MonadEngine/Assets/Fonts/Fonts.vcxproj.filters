@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="..\..\bin\XMLFontPack.ps1" />
+    <None Include="..\..\bin\Font.cmd" />
+    <None Include="..\..\bin\XMLLib.ps1" />
+    <None Include="..\NMake\Header.mk" />
+    <None Include="README.md">
+      <Filter>Doc</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Doc">
+      <UniqueIdentifier>{ff719747-85a9-4e97-8170-d64df49183d6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
